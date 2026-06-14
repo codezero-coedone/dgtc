@@ -46,7 +46,6 @@ export const site = {
   },
 
   media: {
-    heroVideo: "/videos/daekwang-hero.mp4",
     heroPoster: imagePaths.hero.main,
     heroPosterFallback: imagePaths.hero.main,
     companyFrontImage: "/images/company/company-front.jpg",
@@ -177,8 +176,6 @@ export const site = {
     mobileHref: "tel:010-9256-7475",
     email: "ndh7157@hanmail.net",
     emailHref: "mailto:ndh7157@hanmail.net",
-    formTitle: "오시는 길",
-    formSubtitle: "경남 김해시 한림면 신천산단로 52에서 CNC 자동선반 기반 정밀 부품 가공을 수행합니다.",
   },
 
   pages: {

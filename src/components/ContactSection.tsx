@@ -10,15 +10,6 @@ type LocationRow = {
 };
 
 const locationRows: LocationRow[] = [
-  {
-    label: "회사명",
-    value: (
-      <>
-        <strong>{site.company.nameKo}</strong>
-        <span>{site.company.nameEn}</span>
-      </>
-    ),
-  },
   { label: "담당", value: `${site.company.manager.department} / ${site.company.manager.title} ${site.company.manager.name}` },
   { label: "주소", value: site.contact.address },
   { label: "TEL", value: site.contact.tel, href: site.contact.telHref },
@@ -38,6 +29,10 @@ export function ContactSection() {
             title={site.contact.title}
             description={site.contact.subtitle}
           />
+          <div className="support-company-title">
+            <strong>{site.company.nameKo}</strong>
+            <span>{site.company.nameEn}</span>
+          </div>
           <dl>
             {locationRows.map((row) => (
               <div key={row.label} className="support-info-row">
@@ -49,11 +44,14 @@ export function ContactSection() {
             ))}
           </dl>
           <div className="support-action-row" aria-label="방문 안내 바로가기">
-            <a href={site.contact.mapHref} target="_blank" rel="noreferrer" className="support-link-cta primary">
+            <a href={site.contact.mapHref} target="_blank" rel="noopener noreferrer" className="support-link-cta primary">
               카카오맵 보기
             </a>
             <a href={site.contact.telHref} className="support-link-cta">
               전화 연결
+            </a>
+            <a href={site.contact.emailHref} className="support-link-cta">
+              이메일 보내기
             </a>
           </div>
         </div>
@@ -89,7 +87,7 @@ export function ContactSection() {
           <div className="support-hold-note">
             <p className="support-note-label">CONTACT POINT</p>
             <p className="support-note-body keep-ko">
-              담당 품질팀 / 부장 이원근 · TEL 055-323-7157 · Mobile 010-9256-7475
+              방문 전 전화 문의 후 방문해 주시면 보다 정확한 안내가 가능합니다.
             </p>
           </div>
         </div>

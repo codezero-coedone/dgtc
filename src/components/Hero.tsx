@@ -1,26 +1,8 @@
-import { useState } from "react";
 import { site } from "../data/site";
 
 export function Hero() {
-  const [isVideoFailed, setIsVideoFailed] = useState(false);
-
   return (
-    <section className={`hero-corporate${isVideoFailed ? " is-video-failed" : ""}`}>
-      {!isVideoFailed && (
-        <video
-          className="hero-video-bg"
-          poster={site.media.heroPoster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-          onError={() => setIsVideoFailed(true)}
-        >
-          <source src={site.media.heroVideo} type="video/mp4" />
-        </video>
-      )}
+    <section className="hero-corporate">
       <div className="hero-backdrop" aria-hidden="true" />
       <div className="dk-container hero-layout">
         <div className="hero-copy">
