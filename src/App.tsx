@@ -29,41 +29,6 @@ function QuickMenu() {
   );
 }
 
-function CompanyViewSection() {
-  return (
-    <section className="company-view-section dk-section-compact">
-      <div className="dk-container company-view-grid">
-        <div className="company-view-copy">
-          <SectionTitle
-            variant="compact"
-            eyebrow="Company View"
-            title="회사 전경"
-            description="대광테크의 실제 사업장 이미지를 별도 영역으로 열어, CNC 자동선반 기반 가공 현장의 신뢰도를 명확하게 확인할 수 있게 했습니다."
-          />
-          <div className="company-view-facts">
-            <span>제조 사업장</span>
-            <span>자동차·유압·전자부품</span>
-            <span>정밀 가공 대응</span>
-          </div>
-        </div>
-        <figure className="company-view-media">
-          <video
-            className="company-view-video"
-            src={site.media.heroVideo}
-            autoPlay
-            loop
-            controls
-            muted
-            playsInline
-            preload="metadata"
-          />
-          <figcaption>대광테크 회사 전경 영상</figcaption>
-        </figure>
-      </div>
-    </section>
-  );
-}
-
 const pageKeys = ["company", "products", "capability", "quality", "gallery", "support"] as const;
 
 function getRoute(): PageKey | "home" {
@@ -116,7 +81,7 @@ function ProductCatalogPage() {
                   <dl>
                     <div>
                       <dt>상담 기준</dt>
-                      <dd>도면 / 사양 / 수량</dd>
+                      <dd>도면 / 사양 / 소재</dd>
                     </div>
                     <div>
                       <dt>대응 흐름</dt>
@@ -137,7 +102,6 @@ function CompanyPage() {
   return (
     <main>
       <PageIntro pageKey="company" image={site.media.heroPosterFallback} />
-      <CompanyViewSection />
       <CompanyIntro />
     </main>
   );
@@ -192,7 +156,6 @@ function HomePage() {
     <main>
       <Hero />
       <QuickMenu />
-      <CompanyViewSection />
       <ProductSection />
       <CapabilitySection />
       <ContactSection />

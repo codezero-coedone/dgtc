@@ -62,7 +62,7 @@ export function Hero() {
           <span>유압부품</span>
           <span>전자부품</span>
           <span>CNC 자동선반</span>
-          <a href="#/support">고객지원</a>
+          <a href="#/support">회사위치</a>
         </div>
       </div>
     </section>

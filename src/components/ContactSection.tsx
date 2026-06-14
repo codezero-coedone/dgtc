@@ -1,26 +1,43 @@
-import type { FormEvent } from "react";
+import type { ReactNode } from "react";
 import { site } from "../data/site";
 import { SectionTitle } from "./ui/SectionTitle";
+import { ImageSlot } from "./ui/ImageSlot";
 
-const locationRows = [
+type LocationRow = {
+  label: string;
+  value: ReactNode;
+  href?: string;
+};
+
+const locationRows: LocationRow[] = [
+  {
+    label: "회사명",
+    value: (
+      <>
+        <strong>{site.company.nameKo}</strong>
+        <span>{site.company.nameEn}</span>
+      </>
+    ),
+  },
+  { label: "담당", value: `${site.company.manager.department} / ${site.company.manager.title} ${site.company.manager.name}` },
   { label: "주소", value: site.contact.address },
-  { label: "TEL", value: site.contact.tel, href: "tel:055-323-7157" },
+  { label: "TEL", value: site.contact.tel, href: site.contact.telHref },
   { label: "FAX", value: site.contact.fax },
-  { label: "Mobile", value: site.contact.mobile, href: "tel:010-9256-7475" },
-  { label: "E-mail", value: site.contact.email, href: "mailto:ndh7157@hanmail.net" },
+  { label: "Mobile", value: site.contact.mobile, href: site.contact.mobileHref },
+  { label: "E-mail", value: site.contact.email, href: site.contact.emailHref },
 ];
 
 export function ContactSection() {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    window.alert("문의가 접수되었습니다. 확인 후 연락드리겠습니다.");
-  };
-
   return (
     <section id="support" className="section-anchor support-section dk-section">
       <div className="dk-container support-grid">
         <div className="support-info">
-          <SectionTitle variant="compact" eyebrow="Support" title={site.contact.title} description={site.contact.subtitle} />
+          <SectionTitle
+            variant="compact"
+            eyebrow="Location"
+            title={site.contact.title}
+            description={site.contact.subtitle}
+          />
           <dl>
             {locationRows.map((row) => (
               <div key={row.label} className="support-info-row">
@@ -31,59 +48,49 @@ export function ContactSection() {
               </div>
             ))}
           </dl>
-          <div className="support-hold-note">
-            <p className="support-note-label">CONTACT POINT</p>
-            <p className="support-note-body keep-ko">
-              제품 도면, 소재, 수량, 납기 정보를 함께 전달해 주시면 품질팀 담당자가 확인 후 안내드립니다.
-            </p>
+          <div className="support-action-row" aria-label="방문 안내 바로가기">
+            <a href={site.contact.mapHref} target="_blank" rel="noreferrer" className="support-link-cta primary">
+              카카오맵 보기
+            </a>
+            <a href={site.contact.telHref} className="support-link-cta">
+              전화 연결
+            </a>
           </div>
         </div>
 
-        <form className="support-form" onSubmit={handleSubmit}>
-          <div className="support-form-head">
-            <span>CONTACT</span>
-            <strong>{site.contact.formTitle}</strong>
-            <p className="keep-ko">{site.contact.formSubtitle}</p>
+        <div className="company-front-card">
+          <ImageSlot variant="facility" label="대광테크 사업장 자료" src={site.media.companyFrontImage} className="company-front-image" />
+          <div className="company-front-copy">
+            <span>DAE KWANG TECH</span>
+            <strong className="keep-ko">경남 김해 한림면 사업장</strong>
+            <p className="keep-ko">{site.contact.address}</p>
           </div>
-          <label>
-            <span>회사명 / 담당자</span>
-            <input name="name" type="text" placeholder="회사명 또는 담당자명" required />
-          </label>
-          <label>
-            <span>연락처</span>
-            <input name="phone" type="tel" placeholder="연락 가능한 번호" required />
-          </label>
-          <label>
-            <span>E-mail</span>
-            <input name="email" type="email" placeholder="회신 받을 이메일" />
-          </label>
-          <label>
-            <span>문의 내용</span>
-            <textarea name="message" placeholder="제품 사양, 도면, 수량, 납기 등 문의 내용을 입력해 주세요." rows={5} required />
-          </label>
-          <button type="submit">문의 접수</button>
-        </form>
+        </div>
 
-        <div className="location-map-panel">
-          <div className="location-map-grid dk-enterprise-surface" />
-          <div className="location-map-content">
-            <div className="location-map-head">
-              <span>VISIT</span>
-              <span className="text-[var(--dk-steel-700)]">GIMHAE</span>
+        <div className="visit-guide-panel">
+          <div className="visit-guide-head">
+            <span>VISIT GUIDE</span>
+            <strong className="keep-ko">방문 안내</strong>
+          </div>
+          <div className="visit-guide-list">
+            <div>
+              <span>01</span>
+              <p className="keep-ko">방문 전 품질팀 담당자에게 전화로 일정을 확인해 주세요.</p>
             </div>
-            <div className="location-map-body">
-              <strong>방문 안내</strong>
-              <p className="keep-ko">{site.contact.address}</p>
-              <p className="keep-ko">방문 전 전화 문의 후 방문해 주시면 보다 정확한 안내가 가능합니다.</p>
-              <p>
-                <a href="tel:055-323-7157">TEL 055-323-7157</a>
-              </p>
+            <div>
+              <span>02</span>
+              <p className="keep-ko">주소는 경남 김해시 한림면 신천산단로 52입니다.</p>
             </div>
-            <div className="location-map-tags">
-              <span>신천산단로</span>
-              <span>한림면</span>
-              <span>방문 전 연락</span>
+            <div>
+              <span>03</span>
+              <p className="keep-ko">현장 방문 시 안내에 따라 지정 구역에서 대기해 주세요.</p>
             </div>
+          </div>
+          <div className="support-hold-note">
+            <p className="support-note-label">CONTACT POINT</p>
+            <p className="support-note-body keep-ko">
+              담당 품질팀 / 부장 이원근 · TEL 055-323-7157 · Mobile 010-9256-7475
+            </p>
           </div>
         </div>
       </div>
