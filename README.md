@@ -1,6 +1,18 @@
-# DAEKWANG TECH Corporate Homepage
+# DAE KWANG TECH Corporate Homepage
 
-대광테크 자동차 유압부품 제조 기업 홈페이지입니다.
+대광테크 CNC 자동선반 기반 자동차·유압·전자부품 전문 가공업체 홈페이지입니다.
+
+## Company Information
+
+- 회사명: 대광테크
+- 영문명: DAE KWANG TECH
+- 업종/소개: CNC 자동선반 기반 자동차·유압·전자부품 전문 가공업체
+- 담당: 품질팀 / 부장 이원근
+- 주소: 경남 김해시 한림면 신천산단로 52
+- TEL: 055-323-7157
+- FAX: 055-314-5430
+- Mobile: 010-9256-7475
+- E-mail: ndh7157@hanmail.net
 
 ## Cloudflare Workers Static Assets
 
@@ -35,13 +47,14 @@
 - PASS: Contact form submit alert
 - PASS: 390px mobile no horizontal scroll
 - PASS: Gallery modal fits mobile viewport
-- PASS: Public title is `대광테크 | DAEKWANG TECH`
+- PASS: Public title is `대광테크 | DAE KWANG TECH`
 
 ## Image Replacement Paths
 
 실제 사진 교체 시 아래 파일명으로 넣으면 코드 수정 없이 반영됩니다.
 
 - Hero: `public/images/hero/hero-main.jpg`
+- Hero video: `public/videos/daekwang-hero.mp4`
 - Products: `public/images/products/product-01.jpg` ... `product-06.jpg`
 - Company: `public/images/company/company-01.jpg` ... `company-06.jpg`
 - Equipment: `public/images/equipment/equipment-01.jpg` ... `equipment-04.jpg`

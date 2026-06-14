@@ -38,11 +38,11 @@ function CompanyViewSection() {
             variant="compact"
             eyebrow="Company View"
             title="회사 전경"
-            description="히어로 배경으로만 지나가던 회사 전경 영상을 별도 영역으로 열어, 대광테크의 실제 사업장 이미지를 명확하게 확인할 수 있게 했습니다."
+            description="대광테크의 실제 사업장 이미지를 별도 영역으로 열어, CNC 자동선반 기반 가공 현장의 신뢰도를 명확하게 확인할 수 있게 했습니다."
           />
           <div className="company-view-facts">
             <span>제조 사업장</span>
-            <span>자동차 유압부품</span>
+            <span>자동차·유압·전자부품</span>
             <span>정밀 가공 대응</span>
           </div>
         </div>
@@ -103,7 +103,7 @@ function ProductCatalogPage() {
           <SectionTitle
             eyebrow="Product Catalog"
             title="제품 페이지"
-            description="제품 구매 화면이 아니라 대광테크가 대응하는 자동차 유압부품군을 기술 카탈로그 방식으로 분리했습니다."
+            description="제품 구매 화면이 아니라 대광테크가 대응하는 자동차·유압·전자부품 가공 범위를 기술 카탈로그 방식으로 분리했습니다."
           />
           <div className="product-page-grid">
             {site.products.map((product, index) => (

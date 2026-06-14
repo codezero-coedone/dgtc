@@ -9,7 +9,7 @@ export function ProductSection() {
         <SectionTitle
           eyebrow="Products"
           title="제품 카탈로그"
-          description="자동차 유압 시스템과 현장 장비에 적용되는 주요 부품군을 기술 카탈로그 형식으로 정리했습니다."
+          description="자동차부품, 유압부품, 전자부품과 CNC 자동선반 가공 가능 범위를 기술 카탈로그 형식으로 정리했습니다."
         />
 
         <div className="product-grid">

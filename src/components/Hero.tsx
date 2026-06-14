@@ -1,37 +1,44 @@
+import { useState } from "react";
 import { site } from "../data/site";
 
 export function Hero() {
+  const [isVideoFailed, setIsVideoFailed] = useState(false);
+
   return (
-    <section className="hero-corporate">
-      <video
-        className="hero-video-bg"
-        src={site.media.heroVideo}
-        poster={site.media.heroPosterFallback}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-      />
+    <section className={`hero-corporate${isVideoFailed ? " is-video-failed" : ""}`}>
+      {!isVideoFailed && (
+        <video
+          className="hero-video-bg"
+          poster={site.media.heroPoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          onError={() => setIsVideoFailed(true)}
+        >
+          <source src={site.media.heroVideo} type="video/mp4" />
+        </video>
+      )}
       <div className="hero-backdrop" aria-hidden="true" />
       <div className="dk-container hero-layout">
         <div className="hero-copy">
           <p className="hero-eyebrow">
             <span />
-            DAEKWANG TECH MANUFACTURING
+            {site.company.nameEn} CNC TURNING
           </p>
           <h1 className="keep-ko">
-            자동차 유압부품
+            CNC 자동선반 기반
             <br />
-            전문 제조기업
+            정밀 부품 가공업체
             <br />
-            대광테크
+            {site.company.nameKo}
           </h1>
           <p className="keep-ko">
-            대광테크는 자동차 유압 시스템에 필요한
+            {site.company.nameKo}는 자동차·유압·전자부품에 필요한
             <br />
-            정밀 가공 부품과 장비 구성품을 사양 확인,
+            소형 정밀 가공 부품을 사양 확인,
             <br />
             가공, 검사, 출하 흐름으로 대응합니다.
           </p>
@@ -42,19 +49,19 @@ export function Hero() {
             제품소개
           </a>
           <div className="hero-proof-strip">
-            <span>도면 기준 확인</span>
-            <span>정밀 가공 대응</span>
-            <span>출하 전 검수</span>
+            <span>자동차부품</span>
+            <span>유압부품</span>
+            <span>전자부품</span>
           </div>
         </div>
       </div>
       <div className="hero-region-bar">
         <div className="dk-container">
           <strong>제조 대응 범위</strong>
-          <span>유압 피팅</span>
-          <span>유압 밸브</span>
-          <span>실린더 부품</span>
-          <span>주문형 가공</span>
+          <span>자동차부품</span>
+          <span>유압부품</span>
+          <span>전자부품</span>
+          <span>CNC 자동선반</span>
           <a href="#/support">고객지원</a>
         </div>
       </div>

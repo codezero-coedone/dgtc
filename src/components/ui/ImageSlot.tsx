@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { site } from "../../data/site";
 
 export type ImageSlotVariant = "hero-wide" | "product-card" | "company-strip" | "gallery" | "facility";
 
@@ -63,7 +64,7 @@ export function ImageSlot({ variant = "gallery", label, className = "", src }: I
       {showImage ? <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(17,19,21,.62))]" /> : null}
       <div className="dk-fallback-caption">
         <strong className="keep-ko">{label}</strong>
-        <span>DAEKWANG TECH</span>
+        <span>{site.company.nameEn}</span>
       </div>
     </div>
   );

@@ -9,11 +9,11 @@ export function Header() {
   return (
     <header className="corporate-header">
       <div className="dk-container header-inner">
-        <a href="#/" className="brand" onClick={closeMenu} aria-label="DAEKWANG TECH home">
+        <a href="#/" className="brand" onClick={closeMenu} aria-label={`${site.company.nameEn} home`}>
           <span className="brand-mark">DT</span>
           <span>
-            <strong>DAEKWANG TECH</strong>
-            <em>대광테크</em>
+            <strong>{site.company.nameEn}</strong>
+            <em>{site.company.nameKo}</em>
           </span>
         </a>
 

@@ -3,10 +3,12 @@ import { site } from "../data/site";
 import { SectionTitle } from "./ui/SectionTitle";
 
 const locationRows = [
+  { label: "담당", value: site.contact.managerLabel },
   { label: "주소", value: site.contact.address },
-  { label: "TEL", value: site.contact.tel },
+  { label: "TEL", value: site.contact.tel, href: site.contact.telHref },
   { label: "FAX", value: site.contact.fax },
-  { label: "E-mail", value: site.contact.email },
+  { label: "Mobile", value: site.contact.mobile, href: site.contact.mobileHref },
+  { label: "E-mail", value: site.contact.email, href: site.contact.emailHref },
 ];
 
 export function ContactSection() {
@@ -24,14 +26,16 @@ export function ContactSection() {
             {locationRows.map((row) => (
               <div key={row.label} className="support-info-row">
                 <dt>{row.label}</dt>
-                <dd className="keep-ko">{row.value}</dd>
+                <dd className="keep-ko">
+                  {row.href ? <a href={row.href}>{row.value}</a> : row.value}
+                </dd>
               </div>
             ))}
           </dl>
           <div className="support-hold-note">
-            <p className="support-note-label">정보 확인 중</p>
+            <p className="support-note-label">CONTACT POINT</p>
             <p className="support-note-body keep-ko">
-              주소와 지도 정보는 공식 확인 후 반영됩니다. 방문 관련 안내는 확정 정보 기준으로 순차 업데이트됩니다.
+              제품 도면, 소재, 수량, 납기 정보를 함께 전달해 주시면 품질팀 담당자가 확인 후 안내드립니다.
             </p>
           </div>
         </div>
@@ -67,18 +71,18 @@ export function ContactSection() {
           <div className="location-map-content">
             <div className="location-map-head">
               <span>LOCATION MAP</span>
-              <span className="text-[var(--dk-steel-700)]">MAP UPDATE</span>
+              <span className="text-[var(--dk-steel-700)]">GIMHAE</span>
             </div>
             <div className="location-map-body">
               <strong>찾아오시는 길</strong>
               <p className="keep-ko">
-                공식 주소 확인 후 지도와 방문 안내 정보를 반영합니다.
+                {site.contact.address}
               </p>
             </div>
             <div className="location-map-tags">
-              <span>도로명 주소</span>
-              <span>방문 안내</span>
-              <span>주차 / 출입</span>
+              <span>신천산단로</span>
+              <span>한림면</span>
+              <span>방문 전 연락</span>
             </div>
           </div>
         </div>

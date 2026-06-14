@@ -10,7 +10,7 @@ export function CapabilitySection() {
         <SectionTitle
           eyebrow="Capability"
           title="기술역량"
-          description="장비 기반 정밀 선반 가공, 복합 형상 대응, 도면 기반 사양 검토를 중심으로 자동차 유압부품 제조 대응력을 보여줍니다."
+          description="CNC 자동선반 기반 정밀 선반 가공, 복합 형상 대응, 도면 기반 사양 검토를 중심으로 자동차·유압·전자부품 가공 대응력을 보여줍니다."
         />
 
         <div className="capability-grid">

@@ -29,16 +29,23 @@ export const imagePaths = {
 export const site = {
   company: {
     nameKo: "대광테크",
-    nameEn: "DAEKWANG TECH",
-    tagline: "정밀한 기술, 신뢰의 가치",
+    nameEn: "DAE KWANG TECH",
+    tagline: "CNC 자동선반 기반 정밀 부품 가공",
+    positioning: "CNC 자동선반 기반 자동차·유압·전자부품 전문 가공업체",
     description:
-      "대광테크는 자동차 유압 시스템에 필요한 정밀 가공 부품과 장비 구성품을 제조합니다.",
+      "대광테크는 CNC 자동선반 기반으로 자동차부품, 유압부품, 전자부품 분야의 정밀 가공을 수행합니다.",
     summary:
-      "대광테크는 자동차 유압부품 제조 분야에서 축적한 경험을 바탕으로 안정적인 품질과 공급 흐름을 지향합니다.",
+      "대광테크는 도면과 사양을 기준으로 자동차·유압·전자부품에 필요한 소형 정밀 금속 부품을 안정적으로 가공합니다.",
+    manager: {
+      department: "품질팀",
+      title: "부장",
+      name: "이원근",
+    },
   },
 
   media: {
-    heroVideo: "/KakaoTalk_20260614_172146925.mp4",
+    heroVideo: "/videos/daekwang-hero.mp4",
+    heroPoster: imagePaths.hero.main,
     heroPosterFallback: imagePaths.hero.main,
   },
 
@@ -60,7 +67,7 @@ export const site = {
     },
     {
       title: "제품소개",
-      desc: "다양한 자동차 유압부품과 장비를 확인하실 수 있습니다.",
+      desc: "자동차부품, 유압부품, 전자부품 가공 대응 범위를 확인하실 수 있습니다.",
       href: "#/products",
       icon: "products",
     },
@@ -79,17 +86,17 @@ export const site = {
   ],
 
   products: [
-    { name: "유압 피팅", desc: "유압 라인 연결을 위한 정밀 가공 부품", imageKey: "fitting", image: imagePaths.products[0] },
-    { name: "유압 밸브", desc: "유량과 압력 제어를 위한 유압 부품", imageKey: "valve", image: imagePaths.products[1] },
-    { name: "유압 호스 / 라인", desc: "자동차 유압 시스템용 호스 및 라인 부품", imageKey: "hose", image: imagePaths.products[2] },
-    { name: "유압 실린더", desc: "구동 장치와 장비에 적용되는 유압 실린더", imageKey: "cylinder", image: imagePaths.products[3] },
-    { name: "유압 장비", desc: "현장 요구에 맞춘 유압 장비 및 구성품", imageKey: "equipment", image: imagePaths.products[4] },
-    { name: "주문형 가공 부품", desc: "도면과 사양에 따른 맞춤형 가공 대응", imageKey: "custom", image: imagePaths.products[5] },
+    { name: "자동차부품", desc: "CNC 자동선반 기반 자동차용 정밀 가공 부품", imageKey: "automotive", image: imagePaths.products[0] },
+    { name: "유압부품", desc: "피팅, 밸브류 등 유압 계통 소형 금속 부품 가공", imageKey: "hydraulic", image: imagePaths.products[1] },
+    { name: "전자부품", desc: "도면과 사양을 기준으로 검토하는 전자부품 정밀 가공", imageKey: "electronic", image: imagePaths.products[2] },
+    { name: "CNC 자동선반 가공품", desc: "소형 원통형·복합 형상 부품의 도면 기반 가공 상담", imageKey: "cnc-turning", image: imagePaths.products[3] },
+    { name: "나사산 / 축류 가공품", desc: "체결부, 샤프트, 핀류 등 CNC 선반 가공 가능 범위 검토", imageKey: "thread-shaft", image: imagePaths.products[4] },
+    { name: "주문형 정밀 가공", desc: "소재, 공차, 수량 확인 후 맞춤형 가공 대응", imageKey: "custom", image: imagePaths.products[5] },
   ],
 
   capabilities: [
     { title: "정밀 선반 가공", desc: "CNC Swiss Turning Lathe 기반의 소형 정밀 금속 부품 가공 대응" },
-    { title: "복합 형상 대응", desc: "유압 피팅, 밸브류, 원통형 부품, 나사산 부품 등 복잡 형상 확인" },
+    { title: "복합 형상 대응", desc: "자동차·유압·전자부품에 필요한 원통형 부품, 나사산 부품 등 복합 형상 검토" },
     { title: "도면 기반 사양 검토", desc: "도면, 용도, 수량 정보를 기준으로 가공 가능 범위와 공정 흐름 검토" },
     { title: "출하 전 품질 확인", desc: "사양 확인부터 가공, 세척, 검사, 출하까지 이어지는 제조 흐름 관리" },
   ],
@@ -100,7 +107,7 @@ export const site = {
     model: "XDI 26/32",
     type: "CNC Swiss Turning Lathe",
     title: "보유장비 기반 정밀 선반 가공 역량",
-    purpose: "자동차 유압부품용 소형 정밀 금속 부품 가공 대응",
+    purpose: "자동차·유압·전자부품용 소형 정밀 금속 부품 가공 대응",
     description:
       "CNC Swiss Turning Lathe 기반으로 복잡 형상 소형 금속 부품의 반복 가공과 도면 기반 상담을 진행할 수 있는 제조 대응력을 보여줍니다.",
     images: [
@@ -118,8 +125,8 @@ export const site = {
       { name: "메인스핀들 최대출력", value: "2.2/5.5kW" },
     ],
     marketFit: [
-      "유압 피팅/밸브류 반복 정밀 가공",
-      "원통형·나사산·복합 형상 부품 대응",
+      "자동차·유압·전자부품 정밀 가공 상담",
+      "원통형·나사산·복합 형상 부품 대응 검토",
       "다품종 소량 및 도면 기반 상담 설득력",
       "실제 장비 기반 제조 신뢰도 강화",
     ],
@@ -127,12 +134,12 @@ export const site = {
 
   gallery: {
     products: [
-      { label: "유압 피팅 가공품", image: imagePaths.products[0] },
-      { label: "유압 밸브 카트리지", image: imagePaths.products[1] },
-      { label: "유압 호스 / 라인", image: imagePaths.products[2] },
-      { label: "유압 실린더 부품", image: imagePaths.products[3] },
-      { label: "유압 장비", image: imagePaths.products[4] },
-      { label: "주문형 가공 부품", image: imagePaths.products[5] },
+      { label: "자동차부품 가공품", image: imagePaths.products[0] },
+      { label: "유압부품 가공품", image: imagePaths.products[1] },
+      { label: "전자부품 가공품", image: imagePaths.products[2] },
+      { label: "CNC 자동선반 가공품", image: imagePaths.products[3] },
+      { label: "나사산 / 축류 가공품", image: imagePaths.products[4] },
+      { label: "주문형 정밀 가공품", image: imagePaths.products[5] },
     ],
     equipment: [
       { label: "정밀 선반 가공 장비", image: imagePaths.equipment[0] },
@@ -152,42 +159,47 @@ export const site = {
 
   contact: {
     title: "고객지원",
-    subtitle: "제품 사양, 도면, 수량 정보를 남겨주시면 확인 후 안내드립니다.",
-    address: "본사 및 공장 주소 확인 중",
-    tel: "대표번호 확인 중",
-    fax: "팩스번호 확인 중",
-    email: "대표 이메일 확인 중",
+    subtitle: "자동차·유압·전자부품 가공 문의는 도면, 수량, 소재 정보를 함께 전달해 주세요.",
+    managerLabel: "품질팀 / 부장 이원근",
+    address: "경남 김해시 한림면 신천산단로 52",
+    tel: "055-323-7157",
+    telHref: "tel:055-323-7157",
+    fax: "055-314-5430",
+    mobile: "010-9256-7475",
+    mobileHref: "tel:010-9256-7475",
+    email: "ndh7157@hanmail.net",
+    emailHref: "mailto:ndh7157@hanmail.net",
     formTitle: "제품 문의",
-    formSubtitle: "도면, 적용 부위, 필요 수량 등 확인 가능한 정보를 함께 남겨주세요.",
+    formSubtitle: "자동차부품, 유압부품, 전자부품 또는 CNC 자동선반 가공 문의 내용을 남겨주세요.",
   },
 
   pages: {
     company: {
       eyebrow: "Company",
-      title: "자동차 유압부품 제조를 기반으로 신뢰할 수 있는 공급을 지향합니다.",
-      lead: "대광테크는 정밀 가공과 제조 단계별 확인을 바탕으로 고객 요구에 맞춘 유압부품과 장비 구성품을 제조합니다.",
+      title: "CNC 자동선반 기반 정밀 부품 가공업체입니다.",
+      lead: "대광테크는 정밀 가공과 제조 단계별 확인을 바탕으로 자동차·유압·전자부품 분야의 고객 요구에 대응합니다.",
       blocks: [
-        { title: "사업 영역", desc: "자동차 유압 시스템에 필요한 피팅, 밸브, 호스, 실린더, 장비 구성품을 중심으로 대응합니다." },
+        { title: "사업 영역", desc: "자동차부품, 유압부품, 전자부품과 CNC 자동선반 기반 소형 정밀 가공품을 중심으로 대응합니다." },
         { title: "운영 기준", desc: "사양 확인, 가공, 세척, 검사, 포장, 출하 흐름을 기준으로 안정적인 품질 관리를 지향합니다." },
         { title: "고객 대응", desc: "제품 사양, 도면, 수량 정보를 기준으로 적용 가능 품목과 제조 대응 범위를 확인합니다." },
       ],
     },
     products: {
       eyebrow: "Product Catalog",
-      title: "자동차 유압부품 및 장비 카탈로그",
-      lead: "자동차 유압부품 제품군과 제조 대응 범위를 한눈에 확인하실 수 있도록 정리했습니다.",
+      title: "자동차·유압·전자부품 가공 카탈로그",
+      lead: "자동차부품, 유압부품, 전자부품과 CNC 자동선반 가공 대응 범위를 한눈에 확인하실 수 있도록 정리했습니다.",
       blocks: [
-        { title: "유압 라인 부품", desc: "피팅, 호스, 라인 부품 등 연결과 이송에 필요한 구성품을 확인합니다." },
-        { title: "제어 부품", desc: "유량과 압력 제어를 위한 밸브류와 관련 부품 대응 범위를 확인합니다." },
+        { title: "자동차부품", desc: "차량용 소형 금속 부품의 도면 기반 가공 가능 범위를 확인합니다." },
+        { title: "유압·전자부품", desc: "유압 계통 부품과 전자부품 정밀 가공 상담 범위를 확인합니다." },
         { title: "주문형 가공", desc: "도면과 사양에 따른 맞춤형 가공 가능 여부를 확인합니다." },
       ],
     },
     capability: {
       eyebrow: "Technical Capability",
       title: "장비 기반 정밀 선반 가공과 도면 대응 역량",
-      lead: "대광테크의 기술 정보는 보유장비와 제조 과정에서 확인 가능한 대응 항목을 중심으로 정리합니다.",
+      lead: "대광테크의 기술 정보는 CNC 자동선반 보유장비와 제조 과정에서 확인 가능한 대응 항목을 중심으로 정리합니다.",
       blocks: [
-        { title: "정밀 선반 가공", desc: "유압부품에 필요한 치수, 형상, 체결부 특성을 고려한 CNC 선반 가공 대응." },
+        { title: "정밀 선반 가공", desc: "자동차·유압·전자부품에 필요한 치수, 형상, 체결부 특성을 고려한 CNC 선반 가공 대응." },
         { title: "도면 기반 검토", desc: "제품 용도, 도면, 수량, 적용 위치를 기준으로 대응 가능 범위를 확인." },
         { title: "출하 전 확인", desc: "사양 확인부터 검사까지 단계별 확인을 통해 납품 안정성을 높이는 흐름." },
       ],
@@ -207,7 +219,7 @@ export const site = {
       title: "제품·보유장비 자료실",
       lead: "제품과 보유장비 관련 자료를 순차적으로 정리하여 제조 대응 범위를 확인하실 수 있도록 구성했습니다.",
       blocks: [
-        { title: "제품 사진", desc: "유압부품, 장비, 주문형 가공품의 대표 사진 영역." },
+        { title: "제품 사진", desc: "자동차부품, 유압부품, 전자부품, 주문형 가공품의 대표 사진 영역." },
         { title: "보유장비 사진", desc: "CNC 자동선반 등 제조 환경과 가공 역량을 보여주는 자료 영역." },
         { title: "자료 확장", desc: "카탈로그, 도면 문의 안내, 적용 사례 자료로 확장 가능한 영역." },
       ],
@@ -215,11 +227,11 @@ export const site = {
     support: {
       eyebrow: "Support",
       title: "고객지원",
-      lead: "제품 문의와 방문 안내를 한 화면에서 확인할 수 있도록 구성했습니다.",
+      lead: "제품 문의, 방문 주소, 담당자 연락 정보를 한 화면에서 확인할 수 있도록 구성했습니다.",
       blocks: [
-        { title: "지도 안내", desc: "공식 주소 확인 후 위치 안내 이미지를 반영합니다." },
-        { title: "주소 정보", desc: "도로명 주소, 지번 주소, 방문 안내 문구를 순차적으로 안내합니다." },
-        { title: "연락 정보", desc: "방문 전 확인 가능한 TEL, FAX, E-mail 정보를 제공합니다." },
+        { title: "주소 정보", desc: "경남 김해시 한림면 신천산단로 52." },
+        { title: "담당자", desc: "품질팀 / 부장 이원근." },
+        { title: "연락 정보", desc: "TEL, FAX, Mobile, E-mail 정보를 제공합니다." },
       ],
     },
   },

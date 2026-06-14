@@ -392,7 +392,7 @@ img {
   background:
     linear-gradient(90deg, rgba(34, 33, 31, 0.88) 0%, rgba(34, 33, 31, 0.62) 34%, rgba(255, 255, 255, 0.34) 70%, rgba(255, 255, 255, 0.06) 100%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(34, 33, 31, 0.08)),
-    url("/KakaoTalk_20260613_235207458.jpg");
+    url("/images/hero/hero-main.jpg");
   background-position: center 58%;
   background-size: cover;
   color: white;
@@ -408,6 +408,10 @@ img {
   object-position: center;
   opacity: 0.86;
   filter: saturate(0.86) contrast(0.96);
+}
+
+.hero-corporate.is-video-failed .hero-video-bg {
+  display: none;
 }
 
 .hero-corporate::after {
@@ -1635,6 +1639,15 @@ img {
   color: var(--dk-steel-700);
 }
 
+.support-info dd a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.support-info dd a:hover {
+  color: var(--dk-ink);
+}
+
 .support-hold-note {
   margin-top: 20px;
   border: 1px solid rgba(16, 16, 16, 0.08);
@@ -1854,6 +1867,15 @@ img {
   text-decoration: none;
 }
 
+.footer-info a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  color: white;
+}
+
 .footer-links a:hover {
   color: white;
 }
@@ -2005,10 +2027,6 @@ img {
 }
 
 @media (max-width: 767px) {
-  .hero-video-bg {
-    display: none;
-  }
-
   .dk-detail-hero-grid,
   .dk-catalog-row {
     grid-template-columns: 1fr;
