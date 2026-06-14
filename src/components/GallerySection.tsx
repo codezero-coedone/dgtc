@@ -35,7 +35,7 @@ export function GallerySection() {
             description="제품 자료와 설비 자료를 분리하여 가공품과 보유 장비 기반 제조 역량을 함께 확인할 수 있습니다."
           />
           <a href="#/gallery" className="gallery-more">
-            더보기
+            자료실 보기
           </a>
         </div>
 
@@ -66,9 +66,9 @@ export function GallerySection() {
       </div>
 
       {selected ? (
-        <div className="fixed inset-0 z-[80] grid place-items-center bg-[rgba(7,17,31,.76)] p-4" role="dialog" aria-modal="true">
-          <div className="w-full max-w-3xl rounded-[var(--dk-radius-md)] bg-white p-4 shadow-[var(--dk-shadow-soft)]">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="gallery-modal fixed inset-0 z-[80] grid place-items-center bg-[rgba(7,17,31,.76)] p-4" role="dialog" aria-modal="true">
+          <div className="gallery-modal-dialog w-full max-w-3xl rounded-[var(--dk-radius-md)] bg-white p-4 shadow-[var(--dk-shadow-soft)]">
+            <div className="gallery-modal-head mb-4 flex flex-wrap items-center justify-between gap-3">
               <h3 className="keep-ko min-w-0 flex-1 text-lg font-bold text-[var(--dk-navy-950)]">{selected.label}</h3>
               <button
                 type="button"

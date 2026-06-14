@@ -7,7 +7,7 @@ export function Footer() {
         <div className="footer-brand">
           <strong>DAEKWANG TECH</strong>
           <span>대광테크</span>
-          <p className="keep-ko mt-4 text-sm leading-6 text-white/70">자동차 유압부품·장비 전문 기업</p>
+          <p className="keep-ko mt-4 text-sm leading-6 text-white/70">자동차 유압부품 및 장비 구성품 제조 기업</p>
         </div>
         <div className="footer-info">
           <span>{site.contact.address}</span>

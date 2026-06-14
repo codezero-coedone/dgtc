@@ -31,15 +31,15 @@ export function Hero() {
           <p className="keep-ko">
             대광테크는 자동차 유압 시스템에 필요한
             <br />
-            가공 부품과 장비 구성품을 사양 확인,
+            정밀 가공 부품과 장비 구성품을 사양 확인,
             <br />
             가공, 검사, 출하 흐름으로 대응합니다.
           </p>
           <a href="#/company" className="hero-primary">
-            회사소개 보기
+            회사소개
           </a>
           <a href="#/products" className="hero-secondary">
-            제품 카탈로그
+            제품소개
           </a>
           <div className="hero-proof-strip">
             <span>도면 기준 확인</span>
@@ -55,7 +55,7 @@ export function Hero() {
           <span>유압 밸브</span>
           <span>실린더 부품</span>
           <span>주문형 가공</span>
-          <a href="#/support">방문 정보 입력 예정</a>
+          <a href="#/support">고객지원</a>
         </div>
       </div>
     </section>

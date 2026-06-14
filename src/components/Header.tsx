@@ -27,7 +27,7 @@ export function Header() {
 
         <div className="header-utility">
           <a href="#/">HOME</a>
-          <a href="#/support">LOCATION</a>
+          <a href="#/support">CONTACT</a>
           <span>KOR</span>
         </div>
 
@@ -59,7 +59,7 @@ export function Header() {
                 HOME
               </a>
               <a href="#/support" onClick={closeMenu}>
-                LOCATION
+                CONTACT
               </a>
               <span>KOR</span>
             </div>

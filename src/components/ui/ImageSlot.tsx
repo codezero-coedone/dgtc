@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type ImageSlotVariant = "hero-wide" | "product-card" | "company-strip" | "gallery" | "facility";
 
@@ -26,32 +26,41 @@ const variantClass: Record<ImageSlotVariant, string> = {
 };
 
 export function ImageSlot({ variant = "gallery", label, className = "", src }: ImageSlotProps) {
-  const [imageFailed, setImageFailed] = useState(false);
-  const hasImage = Boolean(src) && !imageFailed;
+  const [imageState, setImageState] = useState<"idle" | "loaded" | "failed">("idle");
+  const hasSrc = Boolean(src);
+  const showImage = hasSrc && imageState === "loaded";
+  const showFallback = !showImage;
+
+  useEffect(() => {
+    setImageState("idle");
+  }, [src]);
 
   return (
     <div
       className={`dk-image-slot ${variantClass[variant]} ${className}`}
       style={{ aspectRatio: ratioByVariant[variant] }}
-      role="img"
-      aria-label={label}
+      role={showFallback ? "img" : undefined}
+      aria-label={showFallback ? label : undefined}
     >
-      {hasImage ? (
+      {hasSrc ? (
         <img
           src={src}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
+          alt={label}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ${showImage ? "opacity-100" : "opacity-0"}`}
           loading={variant === "hero-wide" ? "eager" : "lazy"}
-          onError={() => setImageFailed(true)}
+          aria-hidden={!showImage}
+          onLoad={() => setImageState("loaded")}
+          onError={() => setImageState("failed")}
         />
-      ) : (
-        <div className="dk-fallback-grid">
+      ) : null}
+      {showFallback ? (
+        <div className="dk-fallback-grid" aria-hidden="true">
           <div className="dk-fallback-line" />
           <div className="dk-fallback-circle" />
           <div className="dk-fallback-block" />
         </div>
-      )}
-      {hasImage ? <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(17,19,21,.62))]" /> : null}
+      ) : null}
+      {showImage ? <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(17,19,21,.62))]" /> : null}
       <div className="dk-fallback-caption">
         <strong className="keep-ko">{label}</strong>
         <span>DAEKWANG TECH</span>

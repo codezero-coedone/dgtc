@@ -8,8 +8,8 @@ export function ProductSection() {
       <div className="dk-container">
         <SectionTitle
           eyebrow="Products"
-          title="주요 제품"
-          description="자동차 유압 시스템과 현장 장비에 적용되는 주요 부품을 카탈로그형으로 확인하실 수 있습니다."
+          title="제품 카탈로그"
+          description="자동차 유압 시스템과 현장 장비에 적용되는 주요 부품군을 기술 카탈로그 형식으로 정리했습니다."
         />
 
         <div className="product-grid">

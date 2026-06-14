@@ -146,7 +146,7 @@ function CompanyPage() {
 function CapabilityPage() {
   return (
     <main>
-      <PageIntro pageKey="capability" image="/equipment/xdi26-32-detail.jpg" />
+      <PageIntro pageKey="capability" image={site.equipment.images[1].image} />
       <CapabilitySection />
     </main>
   );
