@@ -12,7 +12,7 @@ const galleryGroups: { eyebrow: string; title: string; items: GalleryItem[] }[] 
   {
     eyebrow: "Product Reference",
     title: "제품 자료",
-    items: site.gallery.products.slice(0, 4),
+    items: site.gallery.products,
   },
   {
     eyebrow: "Facility Reference",
@@ -47,9 +47,9 @@ export function GallerySection() {
                 <strong>{group.title}</strong>
               </div>
               <div className="gallery-grid">
-                {group.items.map((item) => (
+                {group.items.map((item, index) => (
                   <button
-                    key={`${group.title}-${item.label}`}
+                    key={`${group.title}-${item.label}-${item.image ?? index}`}
                     type="button"
                     className="gallery-card"
                     onClick={() => setSelected(item)}

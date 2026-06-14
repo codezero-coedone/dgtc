@@ -14,7 +14,7 @@ export function ProductSection() {
 
         <div className="product-grid">
           {site.products.map((product) => (
-            <a key={product.name} href="#/products" className="product-tile">
+            <a key={product.imageKey} href="#/products" className="product-tile">
               <ImageSlot variant="product-card" label={product.name} src={product.image} />
               <div className="product-tile-body">
                 <div>

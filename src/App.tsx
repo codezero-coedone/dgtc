@@ -107,7 +107,7 @@ function ProductCatalogPage() {
           />
           <div className="product-page-grid">
             {site.products.map((product, index) => (
-              <article key={product.name} className="product-page-card">
+              <article key={product.imageKey} className="product-page-card">
                 <ImageSlot variant="product-card" label={product.name} src={product.image} />
                 <div className="product-page-card-body">
                   <span>{String(index + 1).padStart(2, "0")}</span>

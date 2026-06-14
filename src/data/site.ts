@@ -9,6 +9,8 @@ export const imagePaths = {
     "/images/products/product-04.jpg",
     "/images/products/product-05.jpg",
     "/images/products/product-06.jpg",
+    "/images/products/product-07.jpg",
+    "/images/products/product-08.jpg",
   ],
   company: [
     "/images/company/company-01.jpg",
@@ -86,12 +88,14 @@ export const site = {
   ],
 
   products: [
-    { name: "자동차부품", desc: "CNC 자동선반 기반 자동차용 정밀 가공 부품", imageKey: "automotive", image: imagePaths.products[0] },
-    { name: "유압부품", desc: "피팅, 밸브류 등 유압 계통 소형 금속 부품 가공", imageKey: "hydraulic", image: imagePaths.products[1] },
-    { name: "전자부품", desc: "도면과 사양을 기준으로 검토하는 전자부품 정밀 가공", imageKey: "electronic", image: imagePaths.products[2] },
-    { name: "CNC 자동선반 가공품", desc: "소형 원통형·복합 형상 부품의 도면 기반 가공 상담", imageKey: "cnc-turning", image: imagePaths.products[3] },
-    { name: "나사산 / 축류 가공품", desc: "체결부, 샤프트, 핀류 등 CNC 선반 가공 가능 범위 검토", imageKey: "thread-shaft", image: imagePaths.products[4] },
-    { name: "주문형 정밀 가공", desc: "소재, 공차, 수량 확인 후 맞춤형 가공 대응", imageKey: "custom", image: imagePaths.products[5] },
+    { name: "CNC 정밀 샤프트", desc: "도면과 소재 조건을 기준으로 검토하는 CNC 선반 샤프트 가공품", imageKey: "cnc-precision-shaft-01", image: imagePaths.products[0] },
+    { name: "유압 밸브 스풀", desc: "유압 밸브 내부 구성에 쓰이는 스풀 형상 정밀 가공품", imageKey: "hydraulic-valve-spool-02", image: imagePaths.products[1] },
+    { name: "유압 카트리지 밸브 부품", desc: "카트리지 밸브 구성 부품의 형상과 공차 조건을 기준으로 한 가공 대응", imageKey: "hydraulic-cartridge-valve-part", image: imagePaths.products[2] },
+    { name: "유압 밸브 스풀", desc: "사양과 치수 조건을 확인해 검토하는 유압 밸브 스풀 가공품", imageKey: "hydraulic-valve-spool-04", image: imagePaths.products[3] },
+    { name: "유압 밸브 슬리브", desc: "유압 밸브용 슬리브 형상의 금속 부품 가공 상담", imageKey: "hydraulic-valve-sleeve", image: imagePaths.products[4] },
+    { name: "정밀 슬리브 가공품", desc: "소재, 치수, 수량 조건을 바탕으로 검토하는 정밀 슬리브 가공품", imageKey: "precision-sleeve-machined-part", image: imagePaths.products[5] },
+    { name: "CNC 정밀 샤프트", desc: "원통형 샤프트류 부품의 도면 기반 CNC 정밀 가공 상담", imageKey: "cnc-precision-shaft-07", image: imagePaths.products[6] },
+    { name: "유압 피팅·어댑터", desc: "유압 계통 연결 부품의 형상과 체결 조건을 확인해 검토하는 가공품", imageKey: "hydraulic-fitting-adapter", image: imagePaths.products[7] },
   ],
 
   capabilities: [
@@ -134,12 +138,14 @@ export const site = {
 
   gallery: {
     products: [
-      { label: "자동차부품 가공품", image: imagePaths.products[0] },
-      { label: "유압부품 가공품", image: imagePaths.products[1] },
-      { label: "전자부품 가공품", image: imagePaths.products[2] },
-      { label: "CNC 자동선반 가공품", image: imagePaths.products[3] },
-      { label: "나사산 / 축류 가공품", image: imagePaths.products[4] },
-      { label: "주문형 정밀 가공품", image: imagePaths.products[5] },
+      { label: "CNC 정밀 샤프트", image: imagePaths.products[0] },
+      { label: "유압 밸브 스풀", image: imagePaths.products[1] },
+      { label: "유압 카트리지 밸브 부품", image: imagePaths.products[2] },
+      { label: "유압 밸브 스풀", image: imagePaths.products[3] },
+      { label: "유압 밸브 슬리브", image: imagePaths.products[4] },
+      { label: "정밀 슬리브 가공품", image: imagePaths.products[5] },
+      { label: "CNC 정밀 샤프트", image: imagePaths.products[6] },
+      { label: "유압 피팅·어댑터", image: imagePaths.products[7] },
     ],
     equipment: [
       { label: "정밀 선반 가공 장비", image: imagePaths.equipment[0] },

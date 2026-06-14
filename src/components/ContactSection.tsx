@@ -3,12 +3,11 @@ import { site } from "../data/site";
 import { SectionTitle } from "./ui/SectionTitle";
 
 const locationRows = [
-  { label: "담당", value: site.contact.managerLabel },
   { label: "주소", value: site.contact.address },
-  { label: "TEL", value: site.contact.tel, href: site.contact.telHref },
+  { label: "TEL", value: site.contact.tel, href: "tel:055-323-7157" },
   { label: "FAX", value: site.contact.fax },
-  { label: "Mobile", value: site.contact.mobile, href: site.contact.mobileHref },
-  { label: "E-mail", value: site.contact.email, href: site.contact.emailHref },
+  { label: "Mobile", value: site.contact.mobile, href: "tel:010-9256-7475" },
+  { label: "E-mail", value: site.contact.email, href: "mailto:ndh7157@hanmail.net" },
 ];
 
 export function ContactSection() {
@@ -67,16 +66,17 @@ export function ContactSection() {
 
         <div className="location-map-panel">
           <div className="location-map-grid dk-enterprise-surface" />
-          <div className="location-map-placeholder" />
           <div className="location-map-content">
             <div className="location-map-head">
-              <span>LOCATION MAP</span>
+              <span>VISIT</span>
               <span className="text-[var(--dk-steel-700)]">GIMHAE</span>
             </div>
             <div className="location-map-body">
-              <strong>찾아오시는 길</strong>
-              <p className="keep-ko">
-                {site.contact.address}
+              <strong>방문 안내</strong>
+              <p className="keep-ko">{site.contact.address}</p>
+              <p className="keep-ko">방문 전 전화 문의 후 방문해 주시면 보다 정확한 안내가 가능합니다.</p>
+              <p>
+                <a href="tel:055-323-7157">TEL 055-323-7157</a>
               </p>
             </div>
             <div className="location-map-tags">

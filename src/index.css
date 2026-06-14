@@ -1925,6 +1925,13 @@ img {
   transition: transform 0.22s ease;
 }
 
+.dk-image-product img {
+  background: #fff;
+  box-sizing: border-box;
+  object-fit: contain;
+  padding: 14px;
+}
+
 .product-tile:hover .dk-image-slot img,
 .gallery-card:hover .dk-image-slot img {
   transform: scale(1.035);
