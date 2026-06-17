@@ -1,0 +1,28 @@
+{
+  "lock": "DAEKWANG_V2_COMPAT_FOLDER_CANONICAL_DEPLOY_V1",
+  "timestampKst": "2026-06-17T21:42:00+09:00",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)",
+  "canonicalFolder": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_site_v2_compat",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/",
+  "cloudflare": {
+    "target": "workers.dev",
+    "workerName": "dgtc",
+    "versionId": "5ca54b9d-75e4-4c76-afed-24f0a6ce7f56",
+    "assetsDirectory": "./daekwangtech_site_v2_compat"
+  },
+  "gates": {
+    "staticReferenceCheck": "PASS",
+    "wranglerDeploy": "PASS",
+    "publicRootHttp": "PASS 200",
+    "publicProductsHttp": "PASS 200",
+    "publicHeroImageHttp": "PASS 200",
+    "publicBrowserDom": "PASS",
+    "consoleErrors": "PASS none",
+    "horizontalOverflow": "PASS none"
+  },
+  "notes": [
+    "Root files were not used as the canonical static source.",
+    "The deployment source is the daekwangtech_site_v2_compat folder.",
+    "The supplied target URL is a Cloudflare Workers URL, so deployment used wrangler deploy against worker dgtc."
+  ]
+}
