@@ -1,0 +1,34 @@
+{
+  "lock": "DAEKWANG_ROOT_PROMOTE_NEW_DAEKWANG_DEPLOY_V1",
+  "timestampKst": "2026-06-17T18:36:00+09:00",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)",
+  "sourcePromotedFrom": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\new-daekwang",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/",
+  "cloudflare": {
+    "workerName": "dgtc",
+    "versionId": "f44e4bc1-b5da-4004-ab38-66ad6aded56a",
+    "assetsDirectory": "./dist",
+    "spaFallback": "wrangler.jsonc not_found_handling single-page-application"
+  },
+  "gates": {
+    "npmInstall": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "wranglerDeploy": "PASS",
+    "publicHttp": "PASS 200",
+    "publicBrowserDom": "PASS",
+    "consoleErrors": "PASS none",
+    "horizontalOverflow": "PASS none",
+    "noInquiryQuoteConsultCta": "PASS"
+  },
+  "publicSmoke": {
+    "title": "대광테크 | DAE KWANG TECH",
+    "sections": ["home", "company", "business", "technology", "process-quality", "facilities", "location"],
+    "imageCount": 17
+  },
+  "holds": [
+    "npm install reported 4 high severity audit findings; force audit fix was not applied because it can introduce breaking changes.",
+    "new-daekwang remains as a local ignored donor folder; root is the deployed canonical app."
+  ]
+}
