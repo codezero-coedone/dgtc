@@ -7,7 +7,7 @@
   "cloudflare": {
     "target": "workers.dev",
     "workerName": "dgtc",
-    "versionId": "5dae8048-3d3f-4661-82b7-4ec18d1612ee",
+    "versionId": "ed453864-8b76-4056-8028-67d9efce17fd",
     "assetsDirectory": "./daekwangtech_homepage_v3_function_pass/dist"
   },
   "package": {
