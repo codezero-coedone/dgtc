@@ -27,7 +27,7 @@ The app uses section anchors instead of separate route pages.
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
 - Production branch: `main`
-- Static assets directory: `./daekwangtech_site_v2_compat`
+- Static assets directory: `./daekwangtech_homepage_v3_function_pass/dist`
 - SPA fallback: `not_found_handling = single-page-application` in `wrangler.jsonc`
 
 Do not put `main` in the deploy command. Use `npx wrangler deploy`.
@@ -44,6 +44,6 @@ $env:PATH='C:\Users\USER\AppData\Local\nvm\v22.22.0;' + $env:PATH
 
 ## Notes
 
-- The active deployed source is `daekwangtech_site_v2_compat`.
+- The active deployed source is `daekwangtech_homepage_v3_function_pass`.
 - No inquiry, quote, or consultation CTA is part of this site.
 - Unknown official company values remain marked as `자료 확인 중`.

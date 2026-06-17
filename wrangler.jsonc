@@ -3,7 +3,7 @@
   "name": "dgtc",
   "compatibility_date": "2026-06-14",
   "assets": {
-    "directory": "./daekwangtech_site_v2_compat",
+    "directory": "./daekwangtech_homepage_v3_function_pass/dist",
     "not_found_handling": "single-page-application"
   }
 }

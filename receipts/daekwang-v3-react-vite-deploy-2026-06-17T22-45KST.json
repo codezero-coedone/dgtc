@@ -1,0 +1,39 @@
+{
+  "lock": "DAEKWANG_V3_REACT_VITE_CANONICAL_DEPLOY_V1",
+  "timestampKst": "2026-06-17T22:45:00+09:00",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)",
+  "canonicalFolder": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/",
+  "cloudflare": {
+    "target": "workers.dev",
+    "workerName": "dgtc",
+    "versionId": "5dae8048-3d3f-4661-82b7-4ec18d1612ee",
+    "assetsDirectory": "./daekwangtech_homepage_v3_function_pass/dist"
+  },
+  "package": {
+    "toolchain": "React + Vite",
+    "packageJson": "daekwangtech_homepage_v3_function_pass/package.json",
+    "buildCommand": "npm run build",
+    "buildOutput": "daekwangtech_homepage_v3_function_pass/dist"
+  },
+  "gates": {
+    "npmInstall": "PASS 0 vulnerabilities",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "viteBuild": "PASS",
+    "wranglerDeploy": "PASS",
+    "publicRootHttp": "PASS 200",
+    "publicProductsHttp": "PASS 200",
+    "publicBundleHttp": "PASS 200",
+    "publicRobotsHttp": "PASS 200",
+    "publicBrowserDom": "PASS",
+    "reactRuntimeMarker": "PASS",
+    "consoleErrors": "PASS none",
+    "horizontalOverflow": "PASS none"
+  },
+  "notes": [
+    "The v3 folder is the canonical source.",
+    "The deployment uses Vite build output, not raw static folder upload.",
+    "The supplied target URL is a Cloudflare Workers URL, so deployment used wrangler deploy against worker dgtc."
+  ]
+}
