@@ -1,0 +1,65 @@
+{
+  "lock": "DAEKWANG_OPERATIONAL_CMS_AND_DESIGN_POLISH_V1",
+  "targetRoot": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/#/",
+  "adminUrl": "https://dgtc.ejdzm90.workers.dev/#/admin",
+  "cloudflare": {
+    "worker": "dgtc",
+    "versionId": "15308972-b227-4701-b85e-899a2e4c2b41",
+    "d1": {
+      "binding": "DB",
+      "databaseName": "dgtc_content",
+      "databaseId": "576cee5c-9cf6-4226-a42f-4caaaf496059",
+      "publishedRevision": 1
+    },
+    "kv": {
+      "binding": "CONTENT_CACHE",
+      "namespaceId": "e2eb2bc3c77748518c40bbba36493968",
+      "key": "published-site-content"
+    },
+    "r2": {
+      "binding": "MEDIA_BUCKET",
+      "bucket": "dgtc-media",
+      "uploadSmoke": "PASS"
+    },
+    "adminToken": {
+      "secretName": "ADMIN_TOKEN",
+      "localPath": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\private_source\\dgtc_admin_token.txt",
+      "length": 43,
+      "sha8": "8f3ea628"
+    }
+  },
+  "implemented": {
+    "workerApi": "worker/index.js",
+    "d1Schema": "migrations/0001_dgtc_cms.sql",
+    "publicContentApi": "/api/cms/content",
+    "adminDraftApi": "/api/cms/admin/content",
+    "publishApi": "/api/cms/admin/publish",
+    "mediaUploadApi": "/api/cms/admin/media",
+    "mediaReadApi": "/api/cms/media/*",
+    "adminCloudUi": true,
+    "designPolish": true
+  },
+  "gates": {
+    "d1Create": "PASS",
+    "kvCreate": "PASS",
+    "r2Create": "PASS",
+    "d1Migration": "PASS - 5 queries processed",
+    "secretPut": "PASS - ADMIN_TOKEN",
+    "typecheck": "PASS - Static/Vite source check passed for 1 HTML pages.",
+    "lint": "PASS - Static/Vite source check passed for 1 HTML pages.",
+    "build": "PASS - vite build",
+    "deploy": "PASS - Worker bindings DB/KV/R2/ASSETS present",
+    "initialPublish": "PASS - published revision 1, pages 7, posts 1, media 5",
+    "publicContent": "PASS - source KV, pages 7, posts 1, media 5",
+    "unauthorizedAdmin": "PASS - 401",
+    "authorizedAdmin": "PASS - D1 published content returned",
+    "r2UploadRead": "PASS - upload 200, read 200 image/svg+xml",
+    "browserHome": "PASS - h1 DAEKWANG TECH, images 18/18, overflowX 0",
+    "browserAdmin": "PASS - token input, operating save, publish, no design token text, overflowX 0, console errors 0"
+  },
+  "remainingHold": [
+    "Cloudflare Access policy is not configured. Current write auth is ADMIN_TOKEN bearer secret.",
+    "R2 uploaded smoke object remains in dgtc-media for proof. It is not added to published site content."
+  ]
+}

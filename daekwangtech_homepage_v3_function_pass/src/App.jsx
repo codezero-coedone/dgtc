@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
+import { loadPublishedContent } from "./cmsClient.js";
 import { facilityCards, homeProducts, imageFallback, navItems, pageContent, processSteps, qualityCards, routeAlias } from "./siteData.js";
 
 function normalizeRoute() {
@@ -34,6 +35,19 @@ function useContent() {
     const onStorage = () => setContent(loadStoredContent());
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
+  }, []);
+  useEffect(() => {
+    let mounted = true;
+    loadPublishedContent()
+      .then((remoteContent) => {
+        if (mounted) setContent(remoteContent);
+      })
+      .catch(() => {
+        // Local preview falls back to bundled content when the Worker API is absent.
+      });
+    return () => {
+      mounted = false;
+    };
   }, []);
   return [content, setContent];
 }
@@ -211,7 +225,7 @@ function TrustPreview({ posts }) {
       </section>
       {visiblePosts.length ? (
         <section className="admin-managed-posts wrap">
-          <div className="section-intro"><p className="section-kicker">NEWS</p><h2>관리자 게시글</h2><p>React 관리자에서 관리되는 게시글입니다.</p></div>
+          <div className="section-intro"><p className="section-kicker">NEWS</p><h2>공지사항</h2><p>운영 관리자가 발행한 대광테크 소식입니다.</p></div>
           <div className="admin-post-grid">{visiblePosts.map((post) => <article className="admin-post-card" key={post.id}><span>{post.category}</span><h3>{post.title}</h3><p>{post.summary}</p><small>{post.publishedAt}</small></article>)}</div>
         </section>
       ) : null}

@@ -101,6 +101,33 @@ export function panelReducer(state, event) {
         error: "",
         lastEvent: event.type,
       };
+    case "SYNC_REMOTE":
+      return {
+        ...state,
+        dirty: false,
+        status: panelStates.ready,
+        notice: "운영 저장소에서 콘텐츠를 불러왔습니다.",
+        error: "",
+        lastEvent: event.type,
+      };
+    case "SAVE_REMOTE":
+      return {
+        ...state,
+        dirty: false,
+        status: panelStates.saved,
+        notice: "운영 D1 draft 저장 완료",
+        error: "",
+        lastEvent: event.type,
+      };
+    case "PUBLISH_REMOTE":
+      return {
+        ...state,
+        dirty: false,
+        status: panelStates.saved,
+        notice: "운영 콘텐츠 발행 완료",
+        error: "",
+        lastEvent: event.type,
+      };
     case "PREVIEW":
       return {
         ...state,

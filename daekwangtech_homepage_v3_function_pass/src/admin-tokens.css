@@ -50,6 +50,9 @@ a {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
+  background:
+    radial-gradient(circle at 80% 0%, rgba(37, 99, 235, 0.1), transparent 32%),
+    linear-gradient(180deg, #f8fafc 0%, #eef3f8 100%);
 }
 
 .admin-sidebar {
@@ -57,8 +60,9 @@ a {
   top: 0;
   height: 100vh;
   padding: 24px;
-  background: var(--admin-deep);
+  background: linear-gradient(180deg, #0f1724 0%, #111820 54%, #0b111a 100%);
   color: white;
+  box-shadow: 18px 0 44px rgba(15, 23, 42, 0.12);
 }
 
 .admin-brand {
@@ -132,6 +136,12 @@ a {
   justify-content: space-between;
   gap: 18px;
   margin-bottom: 18px;
+  padding: 18px 20px;
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(16px);
 }
 
 .admin-topbar h1 {
@@ -169,6 +179,17 @@ a {
   color: white;
 }
 
+.admin-button.publish {
+  border-color: #0f766e;
+  background: #0f766e;
+  color: #fff;
+}
+
+.admin-button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
 .admin-button.danger {
   border-color: rgba(185, 28, 28, 0.24);
   color: var(--admin-danger);
@@ -187,6 +208,7 @@ a {
   border-radius: var(--admin-radius);
   background: var(--admin-surface);
   box-shadow: var(--admin-shadow);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.98));
 }
 
 .admin-panel {
@@ -219,6 +241,23 @@ a {
   padding: 14px;
   border-radius: var(--admin-radius);
   background: var(--admin-accent-soft);
+}
+
+.cloud-state {
+  margin-top: 12px;
+}
+
+.cloud-state[data-status="published"],
+.cloud-state[data-status="saved"],
+.cloud-state[data-status="synced"],
+.cloud-state[data-status="uploaded"] {
+  border: 1px solid rgba(15, 118, 110, 0.28);
+  background: #ecfdf5;
+}
+
+.cloud-state[data-status="error"] {
+  border: 1px solid rgba(185, 28, 28, 0.24);
+  background: #fef2f2;
 }
 
 .admin-state strong {

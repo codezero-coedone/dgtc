@@ -9,6 +9,7 @@ const required = [
   "src/App.jsx",
   "src/admin.jsx",
   "src/adminContentSeed.js",
+  "src/cmsClient.js",
   "src/designTokens.js",
   "src/panelState.js",
   "src/siteData.js",

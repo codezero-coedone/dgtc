@@ -1,6 +1,7 @@
 import React, { useEffect, useId, useMemo, useReducer, useState } from "react";
 import "./admin-tokens.css";
 import { cloneContent, defaultAdminContent, loadStoredContent, saveStoredContent } from "./adminContentSeed.js";
+import { getStoredAdminToken, loadAdminContent, publishAdminContent, saveAdminContent, setStoredAdminToken, uploadAdminMedia } from "./cmsClient.js";
 import { initialPanelState, panelReducer } from "./panelState.js";
 
 const panels = [
@@ -84,7 +85,8 @@ function PostEditor({ post, onChange, onDelete }) {
   );
 }
 
-function MediaEditor({ media, onChange, onDelete }) {
+function MediaEditor({ media, onChange, onDelete, onUpload, uploading }) {
+  const uploadId = useId();
   if (!media) return <p className="admin-muted">왼쪽에서 이미지를 선택하거나 새 이미지를 추가하세요.</p>;
   const set = (key) => (value) => onChange({ ...media, [key]: value });
   return (
@@ -109,6 +111,21 @@ function MediaEditor({ media, onChange, onDelete }) {
             <span>{media.src}</span>
           </div>
         </div>
+      </div>
+      <div className="admin-field full">
+        <label htmlFor={uploadId}>이미지 업로드</label>
+        <input
+          id={uploadId}
+          type="file"
+          accept="image/*"
+          disabled={uploading}
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            if (file) onUpload(file);
+            event.target.value = "";
+          }}
+        />
+        <p className="admin-muted">운영 토큰이 있어야 R2 저장소로 업로드됩니다.</p>
       </div>
       <div className="admin-field full">
         <button className="admin-button danger" type="button" onClick={onDelete}>
@@ -137,6 +154,9 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
   const content = controlledContent ?? localContent;
   const setContent = onContentChange ?? setLocalContent;
   const [jsonText, setJsonText] = useState("");
+  const [adminToken, setAdminToken] = useState(() => getStoredAdminToken());
+  const [cloud, setCloud] = useState({ status: "local", message: "운영 저장소 미연결" });
+  const [busy, setBusy] = useState("");
 
   useEffect(() => {
     dispatch({ type: "READY" });
@@ -292,6 +312,93 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
     }
   };
 
+  const setCloudError = (error) => {
+    const message = error instanceof Error ? error.message : "운영 저장소 작업 실패";
+    setCloud({ status: "error", message });
+    dispatch({ type: "ERROR", error: message });
+  };
+
+  const updateToken = (value) => {
+    setAdminToken(value);
+    setStoredAdminToken(value);
+    setCloud({ status: value ? "ready" : "local", message: value ? "운영 토큰 입력됨" : "운영 저장소 미연결" });
+  };
+
+  const requireToken = () => {
+    if (!adminToken) {
+      const error = new Error("운영 토큰을 먼저 입력하세요.");
+      setCloudError(error);
+      throw error;
+    }
+    return adminToken;
+  };
+
+  const syncFromCloud = async () => {
+    try {
+      setBusy("sync");
+      const token = requireToken();
+      const result = await loadAdminContent(token);
+      setContent(result.content);
+      saveStoredContent(result.content);
+      setJsonText(JSON.stringify(result.content, null, 2));
+      setCloud({ status: "synced", message: `운영 저장소에서 불러옴 · ${result.meta.source ?? "D1"}` });
+      dispatch({ type: "SYNC_REMOTE" });
+    } catch (error) {
+      setCloudError(error);
+    } finally {
+      setBusy("");
+    }
+  };
+
+  const saveCloud = async () => {
+    try {
+      setBusy("save");
+      const token = requireToken();
+      const localSaved = saveStoredContent(content);
+      const result = await saveAdminContent(token, localSaved);
+      setContent(result.content);
+      setJsonText(JSON.stringify(result.content, null, 2));
+      setCloud({ status: "saved", message: "D1 draft 저장 완료" });
+      dispatch({ type: "SAVE_REMOTE" });
+    } catch (error) {
+      setCloudError(error);
+    } finally {
+      setBusy("");
+    }
+  };
+
+  const publishCloud = async () => {
+    try {
+      setBusy("publish");
+      const token = requireToken();
+      const result = await publishAdminContent(token, content);
+      setContent(result.content);
+      saveStoredContent(result.content);
+      setJsonText(JSON.stringify(result.content, null, 2));
+      setCloud({ status: "published", message: "D1 published + KV cache 발행 완료" });
+      dispatch({ type: "PUBLISH_REMOTE" });
+    } catch (error) {
+      setCloudError(error);
+    } finally {
+      setBusy("");
+    }
+  };
+
+  const uploadMedia = async (media, file) => {
+    try {
+      setBusy("upload");
+      const token = requireToken();
+      const uploaded = await uploadAdminMedia(token, file, media);
+      const nextMedia = { ...media, ...uploaded, status: "active" };
+      updateMedia(nextMedia);
+      setCloud({ status: "uploaded", message: "R2 이미지 업로드 완료" });
+    } catch (error) {
+      setCloudError(error);
+    } finally {
+      setBusy("");
+    }
+  };
+
   const activeLabel = panels.find(([id]) => id === machine.activePanel)?.[1] ?? "상태";
 
   return (
@@ -344,8 +451,17 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
             <button className="admin-button" type="button" onClick={preview}>
               미리보기
             </button>
+            <button className="admin-button" type="button" disabled={busy === "sync"} onClick={syncFromCloud}>
+              운영 불러오기
+            </button>
             <button className="admin-button" type="button" onClick={exportJson}>
               JSON 갱신
+            </button>
+            <button className="admin-button" type="button" disabled={busy === "save"} onClick={saveCloud}>
+              운영 저장
+            </button>
+            <button className="admin-button publish" type="button" disabled={busy === "publish"} onClick={publishCloud}>
+              발행
             </button>
             <button className="admin-button primary" type="button" onClick={save}>
               초안 저장
@@ -510,7 +626,13 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
                 </div>
                 <div>
                   <h2>이미지 항목 수정</h2>
-                  <MediaEditor media={selectedMedia} onChange={updateMedia} onDelete={() => selectedMedia && deleteMedia(selectedMedia.id)} />
+                  <MediaEditor
+                    media={selectedMedia}
+                    onChange={updateMedia}
+                    onDelete={() => selectedMedia && deleteMedia(selectedMedia.id)}
+                    onUpload={(file) => selectedMedia && uploadMedia(selectedMedia, file)}
+                    uploading={busy === "upload"}
+                  />
                 </div>
               </div>
             ) : null}
@@ -536,7 +658,23 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
 
           <aside className="admin-status">
             <div className="admin-card">
-              <h2>상태</h2>
+              <h2>운영 저장소</h2>
+              <div className="admin-field">
+                <label>관리자 토큰</label>
+                <input
+                  type="password"
+                  value={adminToken}
+                  placeholder="운영 토큰 입력"
+                  onChange={(event) => updateToken(event.target.value)}
+                />
+              </div>
+              <div className="admin-state cloud-state" data-status={cloud.status}>
+                <span>{cloud.message}</span>
+                <strong>{cloud.status}</strong>
+              </div>
+            </div>
+            <div className="admin-card">
+              <h2>상태머신</h2>
               <div className="admin-state">
                 <span>{machine.notice}</span>
                 <strong>{machine.status}</strong>

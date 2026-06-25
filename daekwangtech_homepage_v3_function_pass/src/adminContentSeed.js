@@ -170,7 +170,7 @@ function spaHref(id) {
   return id === "index" ? "#/" : `#/${id}`;
 }
 
-function normalizeContent(content) {
+export function normalizeContent(content) {
   const base = cloneContent();
   const storedPages = Array.isArray(content.pages) ? content.pages : [];
   const storedById = new Map(storedPages.map((page) => [page.id, page]));
