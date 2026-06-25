@@ -261,10 +261,10 @@ function SiteApp({ content, setContent, route }) {
   const detail = pageContent[page.id] ?? pageContent.index;
 
   useEffect(() => {
-    applySeo(page);
+    if (route !== "admin") applySeo(page);
     document.body.classList.toggle("nav-open", menuOpen);
     return () => document.body.classList.remove("nav-open");
-  }, [page, menuOpen]);
+  }, [page, menuOpen, route]);
 
   if (route === "admin") return <AdminApp content={content} onContentChange={setContent} />;
 
