@@ -1,0 +1,35 @@
+{
+  "lock": "DAEKWANGTECH_REVERSE_REACT_SPA_CF_DEPLOY_V1",
+  "targetRoot": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "deployRoot": "C:\\Users\\USER\\Desktop\\새 폴더 (3)",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/#/",
+  "worker": "dgtc",
+  "cloudflareVersionId": "09203286-e5b8-41c2-b747-c9d9889f95ae",
+  "implemented": {
+    "staticMpaRemoved": true,
+    "reactViteSpa": true,
+    "hashRoutes": ["#/", "#/technology", "#/products", "#/process", "#/quality", "#/facility", "#/company", "#/admin"],
+    "adminRoute": "#/admin",
+    "panelStateMachine": "src/panelState.js",
+    "designTokenSystem": "src/designTokens.js",
+    "contentSeed": "src/adminContentSeed.js",
+    "assetCopyPipeline": "vite.config.js"
+  },
+  "gates": {
+    "npmInstall": "PASS",
+    "typecheck": "PASS - Static/Vite source check passed for 1 HTML pages.",
+    "lint": "PASS - Static/Vite source check passed for 1 HTML pages.",
+    "build": "PASS - vite build",
+    "localBrowserHome": "PASS - React mounted, nav 6, eager/visible broken images 0, overflowX 0",
+    "localBrowserAdmin": "PASS - admin shell, 6 panels, status ready, href migration to hash routes",
+    "mobile390": "PASS - desktop nav hidden, hamburger visible, panel opens, overflowX 0",
+    "deploy": "PASS - wrangler deploy uploaded dgtc",
+    "publicHttp": "PASS - root 200, JS 200, product asset 200, products fallback 200",
+    "publicBrowserHome": "PASS - h1 DAEKWANG TECH, images loaded 18/18, overflowX 0",
+    "publicBrowserProducts": "PASS - active 제품/서비스, cardCount 5, images loaded 8/8, overflowX 0",
+    "publicBrowserAdmin": "PASS - admin shell, panels 6, status ready, console errors 0"
+  },
+  "holds": [
+    "Admin persistence is browser localStorage only. Multi-user durable admin editing needs an auth and storage layer such as Workers KV, D1, or another backend."
+  ]
+}

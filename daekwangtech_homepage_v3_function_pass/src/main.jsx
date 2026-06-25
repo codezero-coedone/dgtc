@@ -1,14 +1,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import "../script.js";
+import App from "./App.jsx";
+import "../styles.css";
 
-function RuntimeMarker() {
-  return <span data-react-vite-runtime="ready" />;
-}
-
-const mount = document.createElement("div");
-mount.id = "react-vite-runtime";
-mount.hidden = true;
-document.body.appendChild(mount);
-
-createRoot(mount).render(<RuntimeMarker />);
+createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);
