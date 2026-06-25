@@ -18,7 +18,7 @@ export const initialPanelState = {
   selectedNoticeId: null,
   selectedMediaId: null,
   dirty: false,
-  notice: "관리자 콘솔을 준비하고 있습니다.",
+  notice: "관리 화면을 준비하고 있습니다.",
   error: "",
   lastEvent: "BOOT",
 };
@@ -29,7 +29,7 @@ export function panelReducer(state, event) {
       return {
         ...state,
         status: panelStates.ready,
-        notice: "브라우저 초안 편집 준비 완료",
+        notice: "수정할 준비가 되었습니다.",
         error: "",
         lastEvent: event.type,
       };
@@ -97,7 +97,7 @@ export function panelReducer(state, event) {
         ...state,
         dirty: false,
         status: panelStates.saved,
-        notice: "브라우저 초안 저장 완료",
+        notice: "임시 저장했습니다.",
         error: "",
         lastEvent: event.type,
       };
@@ -106,7 +106,7 @@ export function panelReducer(state, event) {
         ...state,
         dirty: false,
         status: panelStates.ready,
-        notice: "운영 저장소에서 콘텐츠를 불러왔습니다.",
+        notice: "사이트에 저장된 내용을 불러왔습니다.",
         error: "",
         lastEvent: event.type,
       };
@@ -115,7 +115,7 @@ export function panelReducer(state, event) {
         ...state,
         dirty: false,
         status: panelStates.saved,
-        notice: "운영 D1 draft 저장 완료",
+        notice: "사이트에 저장했습니다.",
         error: "",
         lastEvent: event.type,
       };
@@ -124,7 +124,7 @@ export function panelReducer(state, event) {
         ...state,
         dirty: false,
         status: panelStates.saved,
-        notice: "운영 콘텐츠 발행 완료",
+        notice: "방문자 화면에 발행했습니다.",
         error: "",
         lastEvent: event.type,
       };
@@ -142,7 +142,7 @@ export function panelReducer(state, event) {
         ...state,
         dirty: true,
         status: panelStates.imported,
-        notice: "JSON 데이터를 가져왔습니다. 저장하면 브라우저 초안에 반영됩니다.",
+        notice: "데이터를 불러왔습니다. 저장하면 반영됩니다.",
         error: "",
         lastEvent: event.type,
       };
@@ -150,7 +150,7 @@ export function panelReducer(state, event) {
       return {
         ...state,
         status: panelStates.exported,
-        notice: "현재 초안 JSON을 갱신했습니다.",
+        notice: "현재 내용을 갱신했습니다.",
         error: "",
         lastEvent: event.type,
       };
@@ -166,7 +166,7 @@ export function panelReducer(state, event) {
         ...state,
         status: panelStates.error,
         error: event.error ?? "알 수 없는 오류",
-        notice: "상태머신이 오류 상태로 전환되었습니다.",
+        notice: "확인이 필요한 문제가 있습니다.",
         lastEvent: event.type,
       };
     default:

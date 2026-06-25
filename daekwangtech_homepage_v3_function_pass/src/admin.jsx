@@ -5,14 +5,54 @@ import { getStoredAdminToken, loadAdminContent, publishAdminContent, saveAdminCo
 import { initialPanelState, panelReducer } from "./panelState.js";
 
 const panels = [
-  ["dashboard", "상태"],
-  ["homepage", "홈페이지"],
+  ["dashboard", "대시보드"],
+  ["homepage", "홈 화면"],
   ["pages", "페이지"],
   ["notices", "공지사항"],
   ["posts", "게시글"],
   ["media", "이미지"],
-  ["export", "JSON"],
 ];
+
+const statusLabels = {
+  published: "공개",
+  draft: "임시저장",
+  hidden: "숨김",
+  active: "사용 중",
+};
+
+function statusLabel(value) {
+  return statusLabels[value] ?? value;
+}
+
+const saveStateLabels = {
+  local: "대기",
+  ready: "준비됨",
+  synced: "불러옴",
+  saved: "저장됨",
+  published: "발행됨",
+  uploaded: "업로드됨",
+  error: "확인 필요",
+};
+
+const workStateLabels = {
+  booting: "준비 중",
+  ready: "준비됨",
+  editing: "수정 중",
+  dirty: "수정됨",
+  previewing: "미리보기",
+  imported: "불러옴",
+  exported: "내보냄",
+  saved: "저장됨",
+  error: "확인 필요",
+};
+
+function saveStateLabel(value) {
+  return saveStateLabels[value] ?? "대기";
+}
+
+function workStateLabel(value) {
+  return workStateLabels[value] ?? "준비됨";
+}
 
 function Field({ label, value, onChange, textarea = false, full = false, type = "text" }) {
   const id = useId();
@@ -31,20 +71,20 @@ function PageEditor({ page, onChange }) {
   return (
     <div className="admin-field-grid">
       <Field label="메뉴명" value={page.label} onChange={set("label")} />
-      <Field label="페이지 경로" value={page.href} onChange={set("href")} />
-      <Field label="SEO 제목" value={page.seoTitle} onChange={set("seoTitle")} full />
-      <Field label="SEO 설명" value={page.description} onChange={set("description")} textarea full />
-      <Field label="Eyebrow" value={page.eyebrow} onChange={set("eyebrow")} />
-      <Field label="히어로 제목" value={page.title} onChange={set("title")} />
-      <Field label="히어로 헤드라인" value={page.headline} onChange={set("headline")} textarea full />
+      <Field label="화면 주소" value={page.href} onChange={set("href")} />
+      <Field label="검색 제목" value={page.seoTitle} onChange={set("seoTitle")} full />
+      <Field label="검색 설명" value={page.description} onChange={set("description")} textarea full />
+      <Field label="상단 작은 문구" value={page.eyebrow} onChange={set("eyebrow")} />
+      <Field label="대표 화면명" value={page.title} onChange={set("title")} />
+      <Field label="대표 제목" value={page.headline} onChange={set("headline")} textarea full />
       <Field label="본문 요약" value={page.summary} onChange={set("summary")} textarea full />
-      <Field label="히어로 이미지 경로" value={page.heroImage} onChange={set("heroImage")} full />
+      <Field label="대표 이미지 주소" value={page.heroImage} onChange={set("heroImage")} full />
       <div className="admin-field">
         <label>상태</label>
         <select value={page.status} onChange={(event) => set("status")(event.target.value)}>
-          <option value="published">published</option>
-          <option value="draft">draft</option>
-          <option value="hidden">hidden</option>
+          <option value="published">공개</option>
+          <option value="draft">임시저장</option>
+          <option value="hidden">숨김</option>
         </select>
       </div>
     </div>
@@ -64,16 +104,16 @@ function PostEditor({ post, onChange, onDelete }) {
       <div className="admin-field">
         <label>상태</label>
         <select value={post.status} onChange={(event) => set("status")(event.target.value)}>
-          <option value="draft">draft</option>
-          <option value="published">published</option>
-          <option value="hidden">hidden</option>
+          <option value="draft">임시저장</option>
+          <option value="published">공개</option>
+          <option value="hidden">숨김</option>
         </select>
       </div>
       <div className="admin-field">
-        <label>고정 표시</label>
+        <label>상단 고정</label>
         <select value={post.pinned ? "yes" : "no"} onChange={(event) => set("pinned")(event.target.value === "yes")}>
-          <option value="yes">yes</option>
-          <option value="no">no</option>
+          <option value="yes">고정</option>
+          <option value="no">일반</option>
         </select>
       </div>
       <div className="admin-field full">
@@ -93,14 +133,14 @@ function MediaEditor({ media, onChange, onDelete, onUpload, uploading }) {
     <div className="admin-field-grid">
       <Field label="이미지명" value={media.label} onChange={set("label")} />
       <Field label="사용 위치" value={media.usage} onChange={set("usage")} />
-      <Field label="파일 경로" value={media.src} onChange={set("src")} full />
+      <Field label="이미지 주소" value={media.src} onChange={set("src")} full />
       <Field label="대체 텍스트" value={media.alt} onChange={set("alt")} full />
       <div className="admin-field">
         <label>상태</label>
         <select value={media.status} onChange={(event) => set("status")(event.target.value)}>
-          <option value="active">active</option>
-          <option value="draft">draft</option>
-          <option value="hidden">hidden</option>
+          <option value="active">사용 중</option>
+          <option value="draft">임시저장</option>
+          <option value="hidden">숨김</option>
         </select>
       </div>
       <div className="admin-field full">
@@ -125,7 +165,7 @@ function MediaEditor({ media, onChange, onDelete, onUpload, uploading }) {
             event.target.value = "";
           }}
         />
-        <p className="admin-muted">운영 토큰이 있어야 R2 저장소로 업로드됩니다.</p>
+        <p className="admin-muted">관리 비밀번호가 있어야 사이트에 이미지를 올릴 수 있습니다.</p>
       </div>
       <div className="admin-field full">
         <button className="admin-button danger" type="button" onClick={onDelete}>
@@ -148,15 +188,39 @@ function PreviewCard({ page }) {
   );
 }
 
+function EditorWindow({ title, children, onClose }) {
+  return (
+    <div className="admin-modal-backdrop" role="dialog" aria-modal="true" aria-label={title}>
+      <div className="admin-modal">
+        <div className="admin-modal-head">
+          <div>
+            <span>빠른 수정</span>
+            <h2>{title}</h2>
+          </div>
+          <button className="admin-icon-button" type="button" aria-label="편집창 닫기" onClick={onClose}>
+            ×
+          </button>
+        </div>
+        <div className="admin-modal-body">{children}</div>
+        <div className="admin-modal-foot">
+          <button className="admin-button primary" type="button" onClick={onClose}>
+            완료
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function AdminApp({ content: controlledContent, onContentChange } = {}) {
   const [machine, dispatch] = useReducer(panelReducer, initialPanelState);
   const [localContent, setLocalContent] = useState(() => loadStoredContent());
   const content = controlledContent ?? localContent;
   const setContent = onContentChange ?? setLocalContent;
-  const [jsonText, setJsonText] = useState("");
   const [adminToken, setAdminToken] = useState(() => getStoredAdminToken());
-  const [cloud, setCloud] = useState({ status: "local", message: "운영 저장소 미연결" });
+  const [cloud, setCloud] = useState({ status: "local", message: "사이트 저장 대기 중" });
   const [busy, setBusy] = useState("");
+  const [editor, setEditor] = useState(null);
 
   useEffect(() => {
     dispatch({ type: "READY" });
@@ -171,6 +235,29 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
   const notices = useMemo(() => content.posts.filter((post) => post.category === "공지" || post.category === "공지사항"), [content.posts]);
   const selectedNotice = notices.find((post) => post.id === machine.selectedNoticeId) ?? notices[0];
   const selectedMedia = content.media.find((media) => media.id === machine.selectedMediaId) ?? content.media[0];
+  const editorPage = editor?.type === "page" ? content.pages.find((page) => page.id === editor.id) : null;
+  const editorPost = editor?.type === "post" || editor?.type === "notice" ? content.posts.find((post) => post.id === editor.id) : null;
+  const editorMedia = editor?.type === "media" ? content.media.find((media) => media.id === editor.id) : null;
+
+  const openPageEditor = (pageId) => {
+    dispatch({ type: "SELECT_PAGE", pageId });
+    setEditor({ type: "page", id: pageId });
+  };
+
+  const openNoticeEditor = (postId) => {
+    dispatch({ type: "SELECT_NOTICE", postId });
+    setEditor({ type: "notice", id: postId });
+  };
+
+  const openPostEditor = (postId) => {
+    dispatch({ type: "SELECT_POST", postId });
+    setEditor({ type: "post", id: postId });
+  };
+
+  const openMediaEditor = (mediaId) => {
+    dispatch({ type: "SELECT_MEDIA", mediaId });
+    setEditor({ type: "media", id: mediaId });
+  };
 
   const markEdit = (next, notice) => {
     setContent(next);
@@ -225,6 +312,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
     };
     markEdit({ ...content, posts: [post, ...content.posts] }, "새 게시글을 추가했습니다.");
     dispatch({ type: "SELECT_POST", postId: id });
+    setEditor({ type: "post", id });
   };
 
   const addNotice = () => {
@@ -241,6 +329,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
     };
     markEdit({ ...content, posts: [post, ...content.posts] }, "새 공지사항을 추가했습니다.");
     dispatch({ type: "SELECT_NOTICE", postId: id });
+    setEditor({ type: "notice", id });
   };
 
   const addMedia = () => {
@@ -255,6 +344,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
     };
     markEdit({ ...content, media: [media, ...content.media] }, "새 이미지 항목을 추가했습니다.");
     dispatch({ type: "SELECT_MEDIA", mediaId: id });
+    setEditor({ type: "media", id });
   };
 
   const deletePost = (id) => {
@@ -275,7 +365,6 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
   const save = () => {
     const saved = saveStoredContent(content);
     setContent(saved);
-    setJsonText(JSON.stringify(saved, null, 2));
     dispatch({ type: "SAVE" });
   };
 
@@ -290,30 +379,11 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
     const next = cloneContent(defaultAdminContent);
     setContent(next);
     window.localStorage.removeItem("daekwang.admin.content.v1");
-    setJsonText(JSON.stringify(next, null, 2));
     dispatch({ type: "RESET" });
   };
 
-  const exportJson = () => {
-    setJsonText(JSON.stringify(content, null, 2));
-    dispatch({ type: "EXPORT" });
-  };
-
-  const importJson = () => {
-    try {
-      const parsed = JSON.parse(jsonText);
-      if (!Array.isArray(parsed.pages) || !Array.isArray(parsed.posts)) throw new Error("pages/posts 배열이 필요합니다.");
-      const imported = saveStoredContent(parsed);
-      setContent(imported);
-      setJsonText(JSON.stringify(imported, null, 2));
-      dispatch({ type: "IMPORT" });
-    } catch (error) {
-      dispatch({ type: "ERROR", error: error instanceof Error ? error.message : "JSON 형식 오류" });
-    }
-  };
-
   const setCloudError = (error) => {
-    const message = error instanceof Error ? error.message : "운영 저장소 작업 실패";
+    const message = error instanceof Error ? error.message : "사이트 저장 작업 실패";
     setCloud({ status: "error", message });
     dispatch({ type: "ERROR", error: message });
   };
@@ -321,12 +391,12 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
   const updateToken = (value) => {
     setAdminToken(value);
     setStoredAdminToken(value);
-    setCloud({ status: value ? "ready" : "local", message: value ? "운영 토큰 입력됨" : "운영 저장소 미연결" });
+    setCloud({ status: value ? "ready" : "local", message: value ? "관리 비밀번호 입력됨" : "사이트 저장 대기 중" });
   };
 
   const requireToken = () => {
     if (!adminToken) {
-      const error = new Error("운영 토큰을 먼저 입력하세요.");
+      const error = new Error("관리 비밀번호를 먼저 입력하세요.");
       setCloudError(error);
       throw error;
     }
@@ -340,8 +410,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
       const result = await loadAdminContent(token);
       setContent(result.content);
       saveStoredContent(result.content);
-      setJsonText(JSON.stringify(result.content, null, 2));
-      setCloud({ status: "synced", message: `운영 저장소에서 불러옴 · ${result.meta.source ?? "D1"}` });
+      setCloud({ status: "synced", message: "사이트에 저장된 내용을 불러왔습니다." });
       dispatch({ type: "SYNC_REMOTE" });
     } catch (error) {
       setCloudError(error);
@@ -357,8 +426,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
       const localSaved = saveStoredContent(content);
       const result = await saveAdminContent(token, localSaved);
       setContent(result.content);
-      setJsonText(JSON.stringify(result.content, null, 2));
-      setCloud({ status: "saved", message: "D1 draft 저장 완료" });
+      setCloud({ status: "saved", message: "사이트에 저장했습니다." });
       dispatch({ type: "SAVE_REMOTE" });
     } catch (error) {
       setCloudError(error);
@@ -374,8 +442,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
       const result = await publishAdminContent(token, content);
       setContent(result.content);
       saveStoredContent(result.content);
-      setJsonText(JSON.stringify(result.content, null, 2));
-      setCloud({ status: "published", message: "D1 published + KV cache 발행 완료" });
+      setCloud({ status: "published", message: "방문자에게 보이도록 발행했습니다." });
       dispatch({ type: "PUBLISH_REMOTE" });
     } catch (error) {
       setCloudError(error);
@@ -391,7 +458,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
       const uploaded = await uploadAdminMedia(token, file, media);
       const nextMedia = { ...media, ...uploaded, status: "active" };
       updateMedia(nextMedia);
-      setCloud({ status: "uploaded", message: "R2 이미지 업로드 완료" });
+      setCloud({ status: "uploaded", message: "이미지를 사이트에 올렸습니다." });
     } catch (error) {
       setCloudError(error);
     } finally {
@@ -432,12 +499,11 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
               onClick={() => dispatch({ type: "SELECT_PANEL", panel: id, label })}
             >
               <span>{label}</span>
-              <small>{id}</small>
             </button>
           ))}
         </nav>
         <div className="admin-side-note">
-          이 콘솔은 회사 관리자가 홈페이지 문구, 공지사항, 게시글, 이미지 항목을 관리하는 화면입니다. 현재 저장은 브라우저 초안이며, 운영 저장소 연결 전까지 공개 반영은 JSON export 후 빌드/배포가 필요합니다.
+          홈페이지 문구, 공지사항, 게시글, 이미지를 관리하는 화면입니다. 수정 후 저장하고 발행하면 방문자 화면에 반영됩니다.
         </div>
       </aside>
 
@@ -445,26 +511,23 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
         <div className="admin-topbar">
           <div>
             <h1>{activeLabel}</h1>
-            <p>홈페이지 문구, 페이지 메타, 공지사항, 게시글, 이미지 항목을 한 곳에서 관리합니다.</p>
+            <p>수정할 영역을 선택하면 편집창이 열립니다. 작업이 끝나면 저장 후 발행하세요.</p>
           </div>
           <div className="admin-actions">
             <button className="admin-button" type="button" onClick={preview}>
-              미리보기
+              사이트 보기
             </button>
             <button className="admin-button" type="button" disabled={busy === "sync"} onClick={syncFromCloud}>
-              운영 불러오기
-            </button>
-            <button className="admin-button" type="button" onClick={exportJson}>
-              JSON 갱신
+              사이트 내용 불러오기
             </button>
             <button className="admin-button" type="button" disabled={busy === "save"} onClick={saveCloud}>
-              운영 저장
+              사이트에 저장
             </button>
             <button className="admin-button publish" type="button" disabled={busy === "publish"} onClick={publishCloud}>
               발행
             </button>
             <button className="admin-button primary" type="button" onClick={save}>
-              초안 저장
+              임시 저장
             </button>
           </div>
         </div>
@@ -473,35 +536,57 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
           <section className="admin-panel">
             {machine.activePanel === "dashboard" ? (
               <>
-                <h2>패널 상태머신</h2>
-                <p>현재 관리자 UI의 패널 전환, 수정 상태, 저장/미리보기/가져오기 이벤트를 단일 상태머신으로 관리합니다.</p>
-                <div className="admin-field-grid">
-                  <div className="admin-state">
-                    <span>status</span>
-                    <strong>{machine.status}</strong>
-                  </div>
-                  <div className="admin-state">
-                    <span>last event</span>
-                    <strong>{machine.lastEvent}</strong>
-                  </div>
-                  <div className="admin-state">
-                    <span>dirty</span>
-                    <strong>{machine.dirty ? "true" : "false"}</strong>
-                  </div>
-                  <div className="admin-state">
-                    <span>pages / posts</span>
-                    <strong>
-                      {content.pages.length} / {content.posts.length}
-                    </strong>
-                  </div>
-                  <div className="admin-state">
-                    <span>notices / images</span>
-                    <strong>
-                      {notices.length} / {content.media.length}
-                    </strong>
-                  </div>
+                <h2>대시보드</h2>
+                <p>자주 수정하는 영역을 바로 선택하세요. 카드나 이미지를 누르면 해당 편집창이 열립니다.</p>
+                <div className="admin-dashboard-grid">
+                  <button className="admin-dashboard-card wide" type="button" onClick={() => openPageEditor(homePage.id)}>
+                    <span>홈 화면</span>
+                    <strong>{homePage.headline}</strong>
+                    <small>{homePage.summary}</small>
+                  </button>
+                  <button className="admin-dashboard-card" type="button" onClick={() => dispatch({ type: "SELECT_PANEL", panel: "notices", label: "공지사항" })}>
+                    <span>공지사항</span>
+                    <strong>{notices.length}개</strong>
+                    <small>새 공지 등록과 수정</small>
+                  </button>
+                  <button className="admin-dashboard-card" type="button" onClick={() => dispatch({ type: "SELECT_PANEL", panel: "posts", label: "게시글" })}>
+                    <span>게시글</span>
+                    <strong>{content.posts.length}개</strong>
+                    <small>소식과 안내글 관리</small>
+                  </button>
+                  <button className="admin-dashboard-card" type="button" onClick={() => dispatch({ type: "SELECT_PANEL", panel: "pages", label: "페이지" })}>
+                    <span>페이지</span>
+                    <strong>{content.pages.length}개</strong>
+                    <small>회사 소개 화면 관리</small>
+                  </button>
+                  <button className="admin-dashboard-card" type="button" onClick={() => dispatch({ type: "SELECT_PANEL", panel: "media", label: "이미지" })}>
+                    <span>이미지</span>
+                    <strong>{content.media.length}개</strong>
+                    <small>대표 이미지와 업로드 관리</small>
+                  </button>
                 </div>
-                <div className="admin-footnote">PUBLISH HOLD: 서버 API, DB, 인증이 없으므로 배포된 전체 방문자에게 즉시 반영하는 기능은 아직 없습니다.</div>
+
+                <h2 style={{ marginTop: 28 }}>섹션 바로 수정</h2>
+                <div className="admin-section-picker">
+                  {content.pages.map((page) => (
+                    <button key={page.id} type="button" onClick={() => openPageEditor(page.id)}>
+                      <img src={page.heroImage} alt="" />
+                      <span>{page.label}</span>
+                      <small>{statusLabel(page.status)}</small>
+                    </button>
+                  ))}
+                </div>
+
+                <h2 style={{ marginTop: 28 }}>이미지 바로 수정</h2>
+                <div className="admin-section-picker image-picker">
+                  {content.media.map((media) => (
+                    <button key={media.id} type="button" onClick={() => openMediaEditor(media.id)}>
+                      <img src={media.src} alt="" />
+                      <span>{media.label}</span>
+                      <small>{media.usage}</small>
+                    </button>
+                  ))}
+                </div>
               </>
             ) : null}
 
@@ -528,7 +613,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
                       key={page.id}
                       type="button"
                       data-active={selectedPage?.id === page.id ? "true" : undefined}
-                      onClick={() => dispatch({ type: "SELECT_PAGE", pageId: page.id })}
+                      onClick={() => openPageEditor(page.id)}
                     >
                       <strong>{page.label}</strong>
                       <small>{page.href}</small>
@@ -554,11 +639,11 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
                         key={post.id}
                         type="button"
                         data-active={selectedPost?.id === post.id ? "true" : undefined}
-                        onClick={() => dispatch({ type: "SELECT_POST", postId: post.id })}
+                        onClick={() => openPostEditor(post.id)}
                       >
                         <strong>{post.title}</strong>
                         <small>
-                          {post.category} · {post.status}
+                          {post.category} · {statusLabel(post.status)}
                         </small>
                       </button>
                     ))}
@@ -583,11 +668,11 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
                         key={post.id}
                         type="button"
                         data-active={selectedNotice?.id === post.id ? "true" : undefined}
-                        onClick={() => dispatch({ type: "SELECT_NOTICE", postId: post.id })}
+                        onClick={() => openNoticeEditor(post.id)}
                       >
                         <strong>{post.title}</strong>
                         <small>
-                          {post.publishedAt} · {post.status}
+                          {post.publishedAt} · {statusLabel(post.status)}
                         </small>
                       </button>
                     ))}
@@ -613,12 +698,12 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
                         key={media.id}
                         type="button"
                         data-active={selectedMedia?.id === media.id ? "true" : undefined}
-                        onClick={() => dispatch({ type: "SELECT_MEDIA", mediaId: media.id })}
+                        onClick={() => openMediaEditor(media.id)}
                       >
                         <img src={media.src} alt="" />
                         <strong>{media.label}</strong>
                         <small>
-                          {media.usage} · {media.status}
+                          {media.usage} · {statusLabel(media.status)}
                         </small>
                       </button>
                     ))}
@@ -637,67 +722,84 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
               </div>
             ) : null}
 
-            {machine.activePanel === "export" ? (
-              <>
-                <h2>JSON 가져오기 / 내보내기</h2>
-                <textarea className="admin-json" value={jsonText || JSON.stringify(content, null, 2)} onChange={(event) => setJsonText(event.target.value)} />
-                <div className="admin-actions" style={{ justifyContent: "flex-start", marginTop: 12 }}>
-                  <button className="admin-button" type="button" onClick={exportJson}>
-                    현재 초안으로 갱신
-                  </button>
-                  <button className="admin-button primary" type="button" onClick={importJson}>
-                    JSON 가져오기
-                  </button>
-                  <button className="admin-button danger" type="button" onClick={reset}>
-                    기본값으로 초기화
-                  </button>
-                </div>
-              </>
-            ) : null}
           </section>
 
           <aside className="admin-status">
             <div className="admin-card">
-              <h2>운영 저장소</h2>
+              <h2>사이트 저장</h2>
               <div className="admin-field">
-                <label>관리자 토큰</label>
+                <label>관리 비밀번호</label>
                 <input
                   type="password"
                   value={adminToken}
-                  placeholder="운영 토큰 입력"
+                  placeholder="관리 비밀번호 입력"
                   onChange={(event) => updateToken(event.target.value)}
                 />
               </div>
               <div className="admin-state cloud-state" data-status={cloud.status}>
                 <span>{cloud.message}</span>
-                <strong>{cloud.status}</strong>
+                <strong>{saveStateLabel(cloud.status)}</strong>
               </div>
             </div>
             <div className="admin-card">
-              <h2>상태머신</h2>
+              <h2>작업 상태</h2>
               <div className="admin-state">
                 <span>{machine.notice}</span>
-                <strong>{machine.status}</strong>
+                <strong>{workStateLabel(machine.status)}</strong>
               </div>
               {machine.error ? <p style={{ color: "var(--admin-danger)" }}>{machine.error}</p> : null}
             </div>
             <div className="admin-card admin-preview">
               <h2>페이지 미리보기</h2>
               <PreviewCard page={selectedPage} />
-              <p className="admin-muted">미리보기 버튼은 초안을 저장한 뒤 같은 React 라우트로 이동합니다.</p>
+              <p className="admin-muted">사이트 보기 버튼을 누르면 선택한 화면으로 이동합니다.</p>
             </div>
             <div className="admin-card">
               <h2>공지/게시글 상태</h2>
               {content.posts.map((post) => (
                 <div className="admin-post-row" key={post.id}>
                   <span>{post.title}</span>
-                  <small>{post.status}</small>
+                  <small>{statusLabel(post.status)}</small>
                 </div>
               ))}
             </div>
           </aside>
         </div>
       </main>
+
+      {editorPage ? (
+        <EditorWindow title={`${editorPage.label} 수정`} onClose={() => setEditor(null)}>
+          <PageEditor page={editorPage} onChange={updatePage} />
+        </EditorWindow>
+      ) : null}
+
+      {editorPost ? (
+        <EditorWindow title={`${editor?.type === "notice" ? "공지사항" : "게시글"} 수정`} onClose={() => setEditor(null)}>
+          <PostEditor
+            post={editorPost}
+            onChange={updatePost}
+            onDelete={() => {
+              deletePost(editorPost.id);
+              setEditor(null);
+            }}
+          />
+        </EditorWindow>
+      ) : null}
+
+      {editorMedia ? (
+        <EditorWindow title="이미지 수정" onClose={() => setEditor(null)}>
+          <MediaEditor
+            media={editorMedia}
+            onChange={updateMedia}
+            onDelete={() => {
+              deleteMedia(editorMedia.id);
+              setEditor(null);
+            }}
+            onUpload={(file) => uploadMedia(editorMedia, file)}
+            uploading={busy === "upload"}
+          />
+        </EditorWindow>
+      ) : null}
     </div>
   );
 }

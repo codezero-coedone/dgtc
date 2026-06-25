@@ -1,0 +1,65 @@
+{
+  "lock": "DAEKWANG_ADMIN_PLAIN_OPERATOR_MODAL_EDIT",
+  "targetRoot": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/#/admin",
+  "createdAt": "2026-06-26T03:56:47+09:00",
+  "changes": [
+    "Removed visible JSON/export console from the administrator UI.",
+    "Removed visible developer/operator storage wording from administrator-facing copy.",
+    "Added dashboard cards for homepage, notices, posts, pages, and images.",
+    "Added click-to-edit modal windows for page sections, notices, posts, and images.",
+    "Added Korean status/save/work labels for nontechnical company operators.",
+    "Polished admin dashboard, picker, and modal layout for desktop and mobile."
+  ],
+  "gates": {
+    "typecheck": "PASS: npm run typecheck",
+    "lint": "PASS: npm run lint",
+    "build": "PASS: npm run build",
+    "deploy": "PASS: wrangler deploy",
+    "cloudflareVersionId": "6b3b4210-985f-4fcd-9445-8b8af4ad45b1",
+    "desktopBrowser": {
+      "url": "https://dgtc.ejdzm90.workers.dev/?bust=<timestamp>#/admin",
+      "panels": [
+        "대시보드",
+        "홈 화면",
+        "페이지",
+        "공지사항",
+        "게시글",
+        "이미지"
+      ],
+      "topButtons": [
+        "사이트 보기",
+        "사이트 내용 불러오기",
+        "사이트에 저장",
+        "발행",
+        "임시 저장"
+      ],
+      "forbiddenVisibleTerms": [],
+      "consoleErrors": [],
+      "horizontalOverflow": 0,
+      "sectionEditModal": "PASS: 대시보드 섹션 클릭 시 홈 수정 모달 표시",
+      "imageEditModal": "PASS: 이미지 항목 클릭 시 이미지 수정 모달 표시"
+    },
+    "mobileBrowser": {
+      "viewport": "390px class",
+      "forbiddenVisibleTerms": [],
+      "consoleErrors": [],
+      "horizontalOverflow": 0,
+      "sectionEditModal": "PASS: 모바일에서 홈 수정 모달이 화면 안에 표시됨"
+    }
+  },
+  "safety": {
+    "rawSecretLogged": false,
+    "backendSchemaChanged": false,
+    "databaseDataMutated": false,
+    "apiTouched": false,
+    "inquiryCtaAdded": false,
+    "jsonEditorVisible": false,
+    "developerLanguageVisible": false
+  },
+  "remainingHold": [
+    "Tailwind content warning remains from existing project configuration, but production Vite build passed.",
+    "Admin publishing still requires a valid management password entered by the site operator."
+  ],
+  "finalJudgment": "PASS_WITH_HOLDS"
+}
