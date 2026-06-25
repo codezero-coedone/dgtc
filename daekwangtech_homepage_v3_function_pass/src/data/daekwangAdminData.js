@@ -326,7 +326,7 @@ export const footerInfo = {
   address: "경상남도 김해시 ...",
   tel: "055-000-0000",
   email: "admin@daekwang.co.kr",
-  copyright: "© DAEKWANG TECH. All rights reserved.",
+  copyright: "© DAE KWANG TECH. All rights reserved.",
 };
 
 export const siteSettings = {

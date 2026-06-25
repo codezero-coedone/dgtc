@@ -1,11 +1,15 @@
 import React from "react";
+import { DaekwangLogoMark } from "../brand/DaekwangLogoMark.jsx";
 import { AdminIcon } from "./AdminIcons.jsx";
 
 export function AdminTopbar() {
   return (
     <header className="dk-topbar">
       <div className="dk-topbar-title">
-        <h1>대광테크 관리자 콘솔</h1>
+        <div className="dk-topbar-brandline">
+          <DaekwangLogoMark size={34} />
+          <h1>대광테크 관리자 콘솔</h1>
+        </div>
         <p>웹사이트 콘텐츠 및 공지사항을 효율적으로 관리하세요.</p>
       </div>
 

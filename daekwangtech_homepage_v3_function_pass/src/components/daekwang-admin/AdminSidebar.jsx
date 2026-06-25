@@ -1,4 +1,5 @@
 import React from "react";
+import { DaekwangLogoLockup } from "../brand/DaekwangLogoLockup.jsx";
 import { adminSectionOptions } from "../../data/daekwangAdminData.js";
 import { AdminIcon } from "./AdminIcons.jsx";
 
@@ -13,13 +14,7 @@ export function AdminSidebar({ activeSection = "dashboard", onSelectSection = ()
   return (
     <aside className="dk-sidebar" aria-label="관리자 사이드바">
       <div className="dk-sidebar-brand">
-        <div className="dk-logo-mark">
-          <AdminIcon name="LogoD" size={25} />
-        </div>
-        <div>
-          <strong>DAEKWANG TECH</strong>
-          <span>대광테크</span>
-        </div>
+        <DaekwangLogoLockup tone="dark" size="sm" />
       </div>
 
       <nav className="dk-sidebar-nav" aria-label="관리 메뉴">

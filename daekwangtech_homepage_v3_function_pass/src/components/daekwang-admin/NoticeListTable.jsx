@@ -1,17 +1,30 @@
 import React, { useMemo, useState } from "react";
 import { AdminIcon } from "./AdminIcons.jsx";
 
+const categories = ["all", "공지", "인증", "설비", "휴무", "기타"];
+
 export function NoticeListTable({ notices, onEditNotice, onDeleteNotice, onToggleNotice, onPreviewNotice, onOpenPublicNotice }) {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
+  const [category, setCategory] = useState("all");
+  const [pinned, setPinned] = useState("all");
+  const [sort, setSort] = useState("new");
   const filteredNotices = useMemo(
-    () =>
-      notices.filter((notice) => {
+    () => {
+      const rows = notices.filter((notice) => {
         const queryMatch = notice.title.toLowerCase().includes(query.toLowerCase());
         const statusMatch = status === "all" || notice.status === status;
-        return queryMatch && statusMatch;
-      }),
-    [notices, query, status],
+        const categoryMatch = category === "all" || notice.category === category;
+        const pinnedMatch = pinned === "all" || (pinned === "pinned" ? notice.isPinned : !notice.isPinned);
+        return queryMatch && statusMatch && categoryMatch && pinnedMatch;
+      });
+      return rows.sort((a, b) => {
+        if (sort === "pinned" && a.isPinned !== b.isPinned) return a.isPinned ? -1 : 1;
+        if (sort === "old") return String(a.publishDate).localeCompare(String(b.publishDate));
+        return String(b.publishDate).localeCompare(String(a.publishDate));
+      });
+    },
+    [category, notices, pinned, query, sort, status],
   );
 
   return (
@@ -27,6 +40,19 @@ export function NoticeListTable({ notices, onEditNotice, onDeleteNotice, onToggl
             <option value="all">전체 상태</option>
             <option value="visible">노출</option>
             <option value="hidden">비노출</option>
+          </select>
+          <select value={category} onChange={(event) => setCategory(event.target.value)} aria-label="공지 카테고리 필터">
+            {categories.map((item) => <option key={item} value={item}>{item === "all" ? "전체 분류" : item}</option>)}
+          </select>
+          <select value={pinned} onChange={(event) => setPinned(event.target.value)} aria-label="중요 공지 필터">
+            <option value="all">전체 중요도</option>
+            <option value="pinned">중요 공지</option>
+            <option value="normal">일반 공지</option>
+          </select>
+          <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="공지 정렬">
+            <option value="new">최신순</option>
+            <option value="old">오래된순</option>
+            <option value="pinned">중요 공지 우선</option>
           </select>
         </div>
       </div>

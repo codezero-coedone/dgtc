@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
+import { DaekwangLogoLockup } from "./components/brand/DaekwangLogoLockup.jsx";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
 import { NoticeDetailPage, NoticeListPage } from "./pages/NoticePages.jsx";
 import { facilityCards, homeProducts, imageFallback, navItems, pageContent, processSteps, qualityCards, routeAlias } from "./siteData.js";
@@ -57,9 +58,8 @@ function Header({ active, onMenu }) {
   const publicNavItems = [...navItems, { id: "notice", label: "공지사항" }];
   return (
     <header className="site-header">
-      <a aria-label="DAEKWANG TECH home" className="brand" href="#/">
-        <img alt="DAEKWANG TECH 로고" src="assets/dk-logo.svg" />
-        <span>DAEKWANG TECH</span>
+      <a aria-label="DAE KWANG TECH home" className="brand" href="#/">
+        <DaekwangLogoLockup tone="dark" size="sm" />
       </a>
       <nav className="desktop-nav">
         {publicNavItems.map((item) => (
@@ -239,8 +239,8 @@ function SubPage({ page, detail }) {
 function Footer({ company }) {
   return (
     <footer className="site-footer">
-      <div className="footer-brand"><img alt="DAEKWANG TECH 로고" src="assets/dk-logo.svg" /><span>DAEKWANG TECH</span></div>
-      <p>{company.address}</p><p>T. {company.tel}</p><p>F. {company.fax}</p><p className="copyright">© DAEKWANG TECH All rights reserved.</p>
+      <div className="footer-brand"><DaekwangLogoLockup tone="dark" size="sm" /></div>
+      <p>{company.address}</p><p>T. {company.tel}</p><p>F. {company.fax}</p><p className="copyright">© DAE KWANG TECH All rights reserved.</p>
       <div className="footer-links"><a href="#/company">회사 소개</a><a href="#/quality">품질 관리</a><a href="#/notice">공지사항</a></div>
     </footer>
   );

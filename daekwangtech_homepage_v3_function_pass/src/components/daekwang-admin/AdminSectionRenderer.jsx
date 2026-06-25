@@ -431,6 +431,30 @@ function NoticeCtaSettingsPanel({ state, actions, onToast, onPreview }) {
   );
 }
 
+function NoticeManagementIntro({ state, onNavigate, onPreview }) {
+  const visible = state.notices.filter((notice) => notice.status === "visible").length;
+  const pinned = state.notices.filter((notice) => notice.isPinned).length;
+  return (
+    <section className="dk-panel dk-admin-panel dk-notice-command">
+      <div>
+        <span>PUBLIC NOTICE CONTROL</span>
+        <h3>공개 공지사항 운영</h3>
+        <p>홈페이지 공지사항 목록과 상세 페이지에 노출될 안내 글을 등록하고 관리합니다.</p>
+      </div>
+      <dl>
+        <div><dt>전체</dt><dd>{state.notices.length}</dd></div>
+        <div><dt>공개</dt><dd>{visible}</dd></div>
+        <div><dt>중요</dt><dd>{pinned}</dd></div>
+      </dl>
+      <div className="dk-notice-command-actions">
+        <a className="dk-secondary-btn" href="#/notice">공개 페이지 보기</a>
+        <button className="dk-primary-btn" type="button" onClick={() => onPreview({ kind: "NOTICE CTA", title: state.noticeCtaSettings.title, description: state.noticeCtaSettings.description, rows: [["위치", state.noticeCtaSettings.position], ["스타일", state.noticeCtaSettings.style], ["버튼", state.noticeCtaSettings.buttonLabel]] })}>CTA 설정 보기</button>
+        <button className="dk-secondary-btn" type="button" onClick={() => onNavigate("notices")}>새 공지 작성</button>
+      </div>
+    </section>
+  );
+}
+
 export function AdminSectionRenderer({
   activeSection,
   actions,
@@ -482,7 +506,7 @@ export function AdminSectionRenderer({
   } else if (activeSection === "images") {
     body = <div className="dk-manager-grid dk-manager-grid-wide"><ImageManagerPanel {...imageManagerProps} /><RecentActivityPanel logs={activityLogs} /></div>;
   } else if (activeSection === "notices") {
-    body = <div className="dk-manager-grid"><NoticeCreatePanel {...noticeCreateProps} /><NoticeListTable notices={notices} onDeleteNotice={onDeleteNotice} onEditNotice={onEditNotice} onOpenPublicNotice={onOpenPublicNotice} onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content })} onToggleNotice={onToggleNotice} /><NoticeCtaSettingsPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} /><RecentActivityPanel logs={activityLogs} /></div>;
+    body = <div className="dk-manager-grid"><NoticeManagementIntro state={state} onNavigate={onNavigate} onPreview={onPreview} /><NoticeCreatePanel {...noticeCreateProps} /><NoticeListTable notices={notices} onDeleteNotice={onDeleteNotice} onEditNotice={onEditNotice} onOpenPublicNotice={onOpenPublicNotice} onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content })} onToggleNotice={onToggleNotice} /><NoticeCtaSettingsPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} /><RecentActivityPanel logs={activityLogs} /></div>;
   } else if (activeSection === "pages") {
     body = <PageManagerPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} />;
   } else if (activeSection === "popups") {

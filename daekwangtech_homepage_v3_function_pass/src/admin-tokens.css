@@ -1,23 +1,23 @@
 :root {
-  --dk-bg: #F6F8FB;
+  --dk-bg: #F7F9FC;
   --dk-surface: #FFFFFF;
   --dk-surface-soft: #F8FAFC;
-  --dk-sidebar: #061A35;
-  --dk-sidebar-2: #08234A;
-  --dk-navy-950: #061A35;
-  --dk-navy-900: #08234A;
-  --dk-navy-800: #0B326B;
+  --dk-sidebar: #0B1D3A;
+  --dk-sidebar-2: #0F2B55;
+  --dk-navy-950: #0B1D3A;
+  --dk-navy-900: #0B1D3A;
+  --dk-navy-800: #0F2B55;
   --dk-blue-700: #0F47AF;
-  --dk-blue-600: #2563EB;
-  --dk-blue-500: #3B82F6;
+  --dk-blue-600: #0F47AF;
+  --dk-blue-500: #5DA5E0;
   --dk-blue-100: #EAF4FF;
   --dk-steel-800: #1E293B;
   --dk-steel-700: #334155;
   --dk-steel-600: #475569;
-  --dk-steel-500: #64748B;
+  --dk-steel-500: #7D8591;
   --dk-steel-400: #94A3B8;
-  --dk-line: #E2E8F0;
-  --dk-line-soft: #EEF2F7;
+  --dk-line: #E6EBF1;
+  --dk-line-soft: #F0F4F8;
   --dk-green: #10B981;
   --dk-green-soft: #DCFCE7;
   --dk-purple: #7C3AED;
@@ -1902,5 +1902,124 @@ button:disabled {
   .dk-modal-actions {
     display: grid;
     grid-template-columns: 1fr;
+  }
+}
+
+.dk-sidebar-brand .dk-brand-logo {
+  width: 100%;
+}
+
+.dk-sidebar-brand .dk-brand-logo__text strong {
+  color: #FFFFFF;
+}
+
+.dk-topbar-brandline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dk-notice-command {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, .7fr) auto;
+  align-items: center;
+  gap: 22px;
+  padding: 26px;
+  background:
+    linear-gradient(135deg, rgba(11, 29, 58, .96), rgba(15, 71, 175, .88)),
+    var(--dk-navy-950);
+  color: #FFFFFF;
+}
+
+.dk-notice-command span {
+  color: rgba(255,255,255,.58);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .16em;
+}
+
+.dk-notice-command h3 {
+  margin: 8px 0 8px;
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 950;
+  letter-spacing: -.045em;
+}
+
+.dk-notice-command p {
+  margin: 0;
+  color: rgba(255,255,255,.74);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.dk-notice-command dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0;
+}
+
+.dk-notice-command dl div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 16px;
+  background: rgba(255,255,255,.08);
+}
+
+.dk-notice-command dt {
+  color: rgba(255,255,255,.62);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.dk-notice-command dd {
+  margin: 5px 0 0;
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: 950;
+}
+
+.dk-notice-command-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.dk-notice-command .dk-secondary-btn,
+.dk-notice-command .dk-primary-btn {
+  justify-content: center;
+  min-width: 142px;
+  border-color: rgba(255,255,255,.22);
+}
+
+.dk-notice-command .dk-secondary-btn {
+  color: #FFFFFF;
+  background: rgba(255,255,255,.08);
+}
+
+.dk-notice-command .dk-primary-btn {
+  background: #FFFFFF;
+  color: var(--dk-brand-navy);
+}
+
+@media (max-width: 1200px) {
+  .dk-notice-command {
+    grid-template-columns: 1fr;
+  }
+
+  .dk-notice-command-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .dk-notice-command dl,
+  .dk-notice-command-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .dk-topbar-brandline h1 {
+    font-size: 20px;
   }
 }

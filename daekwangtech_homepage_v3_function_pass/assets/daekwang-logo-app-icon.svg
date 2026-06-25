@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="대광테크 앱 아이콘">
+  <rect width="512" height="512" rx="120" fill="#0B1D3A"/>
+  <rect x="58" y="58" width="396" height="396" rx="98" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.18)" stroke-width="8"/>
+  <path d="M130 346V164h79c65 0 108 34 108 91s-43 91-108 91h-79Zm54-48h27c32 0 52-15 52-43s-20-43-52-43h-27v86Z" fill="#FFFFFF"/>
+  <path d="M312 164h68L292 253l96 93h-72l-84-88 80-94Z" fill="#5DA5E0"/>
+  <path d="M360 188h-26l-73 70 79 75h30l-77-81 67-64Z" fill="#0B1D3A"/>
+</svg>

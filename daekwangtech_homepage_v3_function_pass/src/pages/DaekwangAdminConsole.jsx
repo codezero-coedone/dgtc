@@ -70,7 +70,7 @@ export function DaekwangAdminConsole() {
   const [preview, setPreview] = useState(null);
 
   useEffect(() => {
-    document.title = "대광테크 관리자 콘솔 | DAEKWANG TECH";
+    document.title = "대광테크 관리자 콘솔 | DAE KWANG TECH";
   }, []);
 
   useEffect(() => {
