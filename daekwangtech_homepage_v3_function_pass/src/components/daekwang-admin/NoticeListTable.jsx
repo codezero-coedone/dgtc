@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { AdminIcon } from "./AdminIcons.jsx";
 
-export function NoticeListTable({ notices, onEditNotice }) {
+export function NoticeListTable({ notices, onEditNotice, onDeleteNotice, onToggleNotice, onPreviewNotice, onOpenPublicNotice }) {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
   const filteredNotices = useMemo(
@@ -36,6 +36,7 @@ export function NoticeListTable({ notices, onEditNotice }) {
           <thead>
             <tr>
               <th>번호</th>
+              <th>분류</th>
               <th>제목</th>
               <th>상태</th>
               <th>게시일</th>
@@ -47,21 +48,30 @@ export function NoticeListTable({ notices, onEditNotice }) {
             {filteredNotices.map((notice) => (
               <tr key={notice.id}>
                 <td>{notice.id}</td>
+                <td>{notice.category || "공지"}</td>
                 <td>{notice.title}</td>
                 <td>
-                  <span className={notice.status === "visible" ? "dk-notice-status visible" : "dk-notice-status"}>
-                    {notice.status === "visible" ? "노출" : "비노출"}
-                  </span>
+                  <button className="dk-status-button" type="button" onClick={() => onToggleNotice?.(notice)}>
+                    <span className={notice.status === "visible" ? "dk-notice-status visible" : "dk-notice-status"}>
+                      {notice.status === "visible" ? "노출" : "비노출"}
+                    </span>
+                  </button>
                 </td>
                 <td>{notice.publishDate}</td>
                 <td>{notice.createdAt}</td>
                 <td>
                   <div className="dk-row-actions">
+                    <button type="button" aria-label={`${notice.title} 미리보기`} onClick={() => onPreviewNotice?.(notice)}>
+                      <AdminIcon name="Eye" size={16} />
+                    </button>
+                    <button type="button" aria-label={`${notice.title} 공개 보기`} onClick={() => onOpenPublicNotice?.(notice)}>
+                      <AdminIcon name="Seo" size={16} />
+                    </button>
                     <button type="button" aria-label={`${notice.title} 수정`} onClick={() => onEditNotice(notice)}>
                       <AdminIcon name="Edit" size={16} />
                     </button>
-                    <button type="button" aria-label={`${notice.title} 더보기`}>
-                      <AdminIcon name="More" size={16} />
+                    <button className="danger" type="button" aria-label={`${notice.title} 삭제`} onClick={() => onDeleteNotice?.(notice)}>
+                      <AdminIcon name="Trash" size={16} />
                     </button>
                   </div>
                 </td>
@@ -69,7 +79,7 @@ export function NoticeListTable({ notices, onEditNotice }) {
             ))}
             {!filteredNotices.length ? (
               <tr>
-                <td colSpan="6" className="dk-empty-table">
+                <td colSpan="7" className="dk-empty-table">
                   검색 조건에 맞는 공지사항이 없습니다.
                 </td>
               </tr>

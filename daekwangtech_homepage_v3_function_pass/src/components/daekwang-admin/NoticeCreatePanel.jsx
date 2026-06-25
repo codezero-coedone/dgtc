@@ -1,10 +1,23 @@
 import React from "react";
 import { AdminIcon } from "./AdminIcons.jsx";
 
-export function NoticeCreatePanel({ draft, error, editingNoticeId, onChange, onSubmit, onSaveDraft }) {
+const noticeCategories = ["공지", "인증", "설비", "휴무", "기타"];
+
+export function NoticeCreatePanel({ draft, error, editingNoticeId, onChange, onSubmit, onSaveDraft, onCancelEdit, onPreview, onOpenPublic }) {
   return (
     <section className="dk-panel dk-notice-create">
-      <h2 className="dk-section-title">공지사항 등록</h2>
+      <div className="dk-panel-head">
+        <h2 className="dk-section-title">{editingNoticeId ? "공지사항 수정" : "공지사항 등록"}</h2>
+        <div className="dk-panel-controls">
+          <button type="button" onClick={onPreview}>
+            <AdminIcon name="Eye" size={16} />
+            미리보기
+          </button>
+          <button type="button" onClick={onOpenPublic}>
+            공개 페이지
+          </button>
+        </div>
+      </div>
       <form onSubmit={onSubmit}>
         <label>
           제목 *
@@ -14,6 +27,28 @@ export function NoticeCreatePanel({ draft, error, editingNoticeId, onChange, onS
             onChange={(event) => onChange({ ...draft, title: event.target.value })}
           />
         </label>
+        <div className="dk-form-row">
+          <label>
+            카테고리
+            <select value={draft.category || "공지"} onChange={(event) => onChange({ ...draft, category: event.target.value })}>
+              {noticeCategories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            상단 고정
+            <select
+              value={draft.isPinned ? "pinned" : "normal"}
+              onChange={(event) => onChange({ ...draft, isPinned: event.target.value === "pinned" })}
+            >
+              <option value="normal">일반</option>
+              <option value="pinned">상단 고정</option>
+            </select>
+          </label>
+        </div>
         <div className="dk-form-row">
           <label>
             게시일 *
@@ -66,9 +101,14 @@ export function NoticeCreatePanel({ draft, error, editingNoticeId, onChange, onS
             임시저장
           </button>
           <button className="dk-primary-btn" type="submit">
-            {editingNoticeId ? "수정 반영" : "공지 등록"}
+            {editingNoticeId ? "수정 완료" : "공지 등록"}
           </button>
         </div>
+        {editingNoticeId ? (
+          <button className="dk-text-btn" type="button" onClick={onCancelEdit}>
+            수정 취소
+          </button>
+        ) : null}
       </form>
     </section>
   );

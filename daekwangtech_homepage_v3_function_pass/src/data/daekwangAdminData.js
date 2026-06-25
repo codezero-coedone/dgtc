@@ -153,7 +153,12 @@ export const notices = [
     status: "visible",
     publishDate: "2024-05-20",
     createdAt: "2024-05-20 14:30",
-    content: "대광테크 홈페이지가 새롭게 리뉴얼되었습니다.",
+    updatedAt: "2024-05-20 14:30",
+    category: "공지",
+    isPinned: true,
+    author: "대광테크",
+    viewCount: 128,
+    content: "대광테크 홈페이지가 새롭게 리뉴얼되었습니다.\n\n정밀가공, 설비 인프라, 품질관리 정보를 더 명확하게 확인하실 수 있도록 화면과 콘텐츠 구조를 정비했습니다.",
   },
   {
     id: 23,
@@ -161,7 +166,12 @@ export const notices = [
     status: "visible",
     publishDate: "2024-05-10",
     createdAt: "2024-05-10 09:15",
-    content: "2024년 하계 휴가 일정을 안내드립니다.",
+    updatedAt: "2024-05-10 09:15",
+    category: "휴무",
+    isPinned: false,
+    author: "대광테크",
+    viewCount: 92,
+    content: "2024년 하계 휴가 일정을 안내드립니다.\n\n방문 및 업무 일정 확인이 필요한 경우 사전 일정을 확인해 주시기 바랍니다.",
   },
   {
     id: 22,
@@ -169,15 +179,25 @@ export const notices = [
     status: "visible",
     publishDate: "2024-04-25",
     createdAt: "2024-04-25 11:20",
-    content: "대광테크가 ISO 45001 인증을 획득했습니다.",
+    updatedAt: "2024-04-25 11:20",
+    category: "인증",
+    isPinned: false,
+    author: "대광테크",
+    viewCount: 76,
+    content: "대광테크가 ISO 45001 인증을 획득했습니다.\n\n안전한 작업 환경과 체계적인 운영 기준을 바탕으로 안정적인 제조 역량을 유지하겠습니다.",
   },
   {
     id: 21,
     title: "설비 증설에 따른 생산 능력 확대 안내",
-    status: "hidden",
+    status: "visible",
     publishDate: "2024-04-18",
     createdAt: "2024-04-18 16:45",
-    content: "설비 증설로 생산 대응력을 확대했습니다.",
+    updatedAt: "2024-04-18 16:45",
+    category: "설비",
+    isPinned: false,
+    author: "대광테크",
+    viewCount: 61,
+    content: "설비 증설로 생산 대응력을 확대했습니다.\n\n정밀 부품 생산과 검사 대응 범위를 안정적으로 확장해 품질 중심 운영을 이어가겠습니다.",
   },
   {
     id: 20,
@@ -185,9 +205,24 @@ export const notices = [
     status: "visible",
     publishDate: "2024-04-01",
     createdAt: "2024-04-01 10:10",
-    content: "2023년 연간 보고서가 발간되었습니다.",
+    updatedAt: "2024-04-01 10:10",
+    category: "공지",
+    isPinned: false,
+    author: "대광테크",
+    viewCount: 55,
+    content: "2023년 연간 보고서가 발간되었습니다.\n\n주요 운영 현황과 생산 역량 개선 내용을 정리한 자료입니다.",
   },
 ];
+
+export const noticeCtaSettings = {
+  enabled: true,
+  position: "bottom",
+  style: "navyOutline",
+  title: "대광테크 주요 소식 확인",
+  description: "품질, 설비, 운영 관련 안내를 공지사항에서 확인하실 수 있습니다.",
+  buttonLabel: "전체 공지사항 보기",
+  buttonUrl: "#/notice",
+};
 
 export const activityLogs = [
   {
@@ -236,17 +271,19 @@ export const initialNoticeDraft = {
   title: "",
   publishDate: "2024-05-20",
   visible: true,
+  category: "공지",
+  isPinned: false,
   content: "",
 };
 
 export const pageItems = [
-  { id: "page-home", name: "메인", path: "/", status: "visible", lastModified: "2026-06-26 10:10", description: "대광테크 대표 화면" },
-  { id: "page-about", name: "회사소개", path: "/about", status: "visible", lastModified: "2026-06-25 18:20", description: "회사 개요와 신뢰 정보" },
-  { id: "page-business", name: "사업분야", path: "/business", status: "visible", lastModified: "2026-06-24 14:00", description: "주요 사업영역 안내" },
-  { id: "page-facility", name: "설비현황", path: "/facility", status: "visible", lastModified: "2026-06-22 09:30", description: "생산 설비와 인프라" },
-  { id: "page-products", name: "제품소개", path: "/products", status: "visible", lastModified: "2026-06-21 16:40", description: "대표 제품군 관리" },
-  { id: "page-portfolio", name: "포트폴리오", path: "/portfolio", status: "hidden", lastModified: "2026-06-20 11:15", description: "프로젝트 사례" },
-  { id: "page-location", name: "오시는 길", path: "/location", status: "visible", lastModified: "2026-06-19 13:25", description: "사업장 위치 정보" },
+  { id: "page-home", name: "메인", path: "/", status: "visible", lastModified: "2026-06-26 10:10", seoTitle: "대광테크", description: "대광테크 대표 화면", sections: ["Hero", "회사소개", "제품", "설비", "위치"] },
+  { id: "page-about", name: "회사소개", path: "/about", status: "visible", lastModified: "2026-06-25 18:20", seoTitle: "대광테크 회사소개", description: "회사 개요와 신뢰 정보", sections: ["Hero", "회사소개"] },
+  { id: "page-business", name: "사업분야", path: "/business", status: "visible", lastModified: "2026-06-24 14:00", seoTitle: "대광테크 사업분야", description: "주요 사업영역 안내", sections: ["Hero", "제품"] },
+  { id: "page-facility", name: "설비현황", path: "/facility", status: "visible", lastModified: "2026-06-22 09:30", seoTitle: "대광테크 설비현황", description: "생산 설비와 인프라", sections: ["Hero", "설비"] },
+  { id: "page-products", name: "제품소개", path: "/products", status: "visible", lastModified: "2026-06-21 16:40", seoTitle: "대광테크 제품소개", description: "대표 제품군 관리", sections: ["Hero", "제품"] },
+  { id: "page-portfolio", name: "포트폴리오", path: "/portfolio", status: "hidden", lastModified: "2026-06-20 11:15", seoTitle: "대광테크 포트폴리오", description: "프로젝트 사례", sections: ["포트폴리오"] },
+  { id: "page-location", name: "오시는 길", path: "/location", status: "visible", lastModified: "2026-06-19 13:25", seoTitle: "대광테크 오시는 길", description: "사업장 위치 정보", sections: ["위치"] },
 ];
 
 export const popupItems = [
@@ -258,6 +295,7 @@ export const popupItems = [
     endDate: "2026-07-05",
     status: "active",
     linkUrl: "/notice/24",
+    content: "새롭게 정비된 대광테크 홈페이지를 확인해 주세요.",
   },
   {
     id: "popup-vacation",
@@ -267,6 +305,7 @@ export const popupItems = [
     endDate: "2026-08-05",
     status: "inactive",
     linkUrl: "/notice/23",
+    content: "방문 전 운영 일정을 확인해 주세요.",
   },
 ];
 
@@ -276,7 +315,8 @@ export const menuItems = [
   { id: "menu-facility", name: "설비현황", path: "/facility", order: 3, status: "visible" },
   { id: "menu-products", name: "제품소개", path: "/products", order: 4, status: "visible" },
   { id: "menu-portfolio", name: "포트폴리오", path: "/portfolio", order: 5, status: "hidden" },
-  { id: "menu-location", name: "오시는 길", path: "/location", order: 6, status: "visible" },
+  { id: "menu-notice", name: "공지사항", path: "/notice", order: 6, status: "visible" },
+  { id: "menu-location", name: "오시는 길", path: "/location", order: 7, status: "visible" },
 ];
 
 export const footerInfo = {

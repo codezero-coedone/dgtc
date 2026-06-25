@@ -8,7 +8,7 @@ const iconName = {
   clock: "Clock",
 };
 
-export function SummaryCards({ cards }) {
+export function SummaryCards({ cards, onNavigate }) {
   return (
     <section className="dk-summary-grid" aria-label="관리 요약">
       {cards.map((card) => (
@@ -23,7 +23,9 @@ export function SummaryCards({ cards }) {
               <small>{card.unit}</small>
             </strong>
             <p>{card.description}</p>
-            <button type="button">자세히 보기 &gt;</button>
+            <button type="button" onClick={() => onNavigate?.(card.targetSection || card.id)}>
+              자세히 보기 &gt;
+            </button>
           </div>
         </article>
       ))}

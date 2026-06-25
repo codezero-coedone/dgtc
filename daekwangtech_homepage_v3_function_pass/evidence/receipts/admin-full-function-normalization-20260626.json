@@ -1,0 +1,90 @@
+{
+  "lock": "DAEKWANG_ADMIN_FULL_FUNCTION_NORMALIZATION_PATCH",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/#/admin",
+  "baseCommitBeforePatch": "a6a10d84e853faa8daad1166a76b23aa6df952a9",
+  "deployVersion": "8303d7e1-4315-4c5d-8d33-02e4c1885ba6",
+  "storage": {
+    "key": "daekwang.admin.v1",
+    "mode": "localStorage",
+    "persistedSlices": [
+      "imageAssets",
+      "notices",
+      "pages",
+      "popups",
+      "menus",
+      "footerInfo",
+      "siteSettings",
+      "seoSettings",
+      "noticeCtaSettings",
+      "adminUsers",
+      "activityLogs",
+      "auditLogs",
+      "backupItems",
+      "uiPreferences"
+    ],
+    "parseErrorFallback": "default data fallback with audit log"
+  },
+  "implemented": {
+    "sidebarSections": "12/12 active and routable inside /admin",
+    "toast": true,
+    "confirmModal": true,
+    "previewModal": true,
+    "activityAuditLog": true,
+    "refreshPersistence": true,
+    "dashboardStateSummary": true,
+    "imageManagementCrud": true,
+    "noticeManagementCrud": true,
+    "pageManagerCrud": true,
+    "popupManagerCrud": true,
+    "menuManagerCrud": true,
+    "footerSettingsSave": true,
+    "siteSettingsSave": true,
+    "seoSettingsSave": true,
+    "userManagerCrud": true,
+    "logManagerFilterExportClear": true,
+    "backupCreateDownloadRestore": true
+  },
+  "commands": {
+    "hqfsOriginBattlefieldCompile": "PASS",
+    "hqfsPathSemanticsMap": "PASS",
+    "npmRunTypecheck": "PASS",
+    "npmRunLint": "PASS",
+    "npmRunBuild": "PASS",
+    "npmRunPreview": "PASS on port 4199",
+    "npxWranglerDeploy": "PASS"
+  },
+  "localChromeSmoke": {
+    "adminRoute": "PASS",
+    "menuActive": "PASS 12/12",
+    "noticeCreatePublicReflect": "PASS",
+    "hiddenNoticeBlocked": "PASS",
+    "refreshPersistence": "PASS",
+    "consoleErrors": 0,
+    "desktopOverflow": 0,
+    "mobileAdminOverflow": 0,
+    "mobileNoticeOverflow": 0
+  },
+  "publicChromeSmoke": {
+    "adminLoaded": true,
+    "noticeListLoaded": true,
+    "adminNoticeCreateToPublicList": true,
+    "adminNoticeCreateToPublicDetail": true,
+    "consoleErrors": 0,
+    "response404": 0,
+    "desktopOverflow": 0,
+    "mobileAdminOverflow": 0,
+    "mobileNoticeOverflow": 0
+  },
+  "captures": [
+    "evidence/daekwang_admin_console/full-function/dashboard-state-summary.png",
+    "evidence/daekwang_admin_console/full-function/mobile-390-full-function.png"
+  ],
+  "remainingRisks": [
+    "actual server DB/API persistence is not wired for admin mutations",
+    "actual admin authentication and role enforcement are not implemented",
+    "actual image object storage upload is not implemented",
+    "admin changes are browser-local until server persistence is added"
+  ],
+  "finalJudgment": "PASS"
+}

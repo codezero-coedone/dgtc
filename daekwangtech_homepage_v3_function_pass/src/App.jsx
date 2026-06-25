@@ -1,12 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
-import { loadPublishedContent } from "./cmsClient.js";
+import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
+import { NoticeDetailPage, NoticeListPage } from "./pages/NoticePages.jsx";
 import { facilityCards, homeProducts, imageFallback, navItems, pageContent, processSteps, qualityCards, routeAlias } from "./siteData.js";
 
 function normalizeRoute() {
   const hash = window.location.hash.replace(/^#\/?/, "");
   const path = window.location.pathname.split("/").pop() ?? "";
+  if (hash === "notice" || hash.startsWith("notice/")) return hash;
   return routeAlias[hash || path || "index"] ?? "index";
 }
 
@@ -36,19 +38,6 @@ function useContent() {
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
   }, []);
-  useEffect(() => {
-    let mounted = true;
-    loadPublishedContent()
-      .then((remoteContent) => {
-        if (mounted) setContent(remoteContent);
-      })
-      .catch(() => {
-        // Local preview falls back to bundled content when the Worker API is absent.
-      });
-    return () => {
-      mounted = false;
-    };
-  }, []);
   return [content, setContent];
 }
 
@@ -65,6 +54,7 @@ function applySeo(page) {
 }
 
 function Header({ active, onMenu }) {
+  const publicNavItems = [...navItems, { id: "notice", label: "공지사항" }];
   return (
     <header className="site-header">
       <a aria-label="DAEKWANG TECH home" className="brand" href="#/">
@@ -72,7 +62,7 @@ function Header({ active, onMenu }) {
         <span>DAEKWANG TECH</span>
       </a>
       <nav className="desktop-nav">
-        {navItems.map((item) => (
+        {publicNavItems.map((item) => (
           <a key={item.id} aria-current={active === item.id ? "page" : undefined} className={active === item.id ? "nav-link active" : "nav-link"} href={routeHref(item.id)}>
             {item.label}
           </a>
@@ -88,9 +78,10 @@ function Header({ active, onMenu }) {
 }
 
 function MobilePanel({ active, open, onClose }) {
+  const publicNavItems = [...navItems, { id: "notice", label: "공지사항" }];
   return (
     <div aria-hidden={!open} className="mobile-panel" id="mobile-menu" data-open={open ? "true" : undefined}>
-      {navItems.map((item) => (
+      {publicNavItems.map((item) => (
         <a key={item.id} aria-current={active === item.id ? "page" : undefined} className={active === item.id ? "nav-link active" : "nav-link"} href={routeHref(item.id)} onClick={onClose}>{item.label}</a>
       ))}
       <a className="nav-link" href="#/admin" onClick={onClose}>관리자</a>
@@ -250,7 +241,7 @@ function Footer({ company }) {
     <footer className="site-footer">
       <div className="footer-brand"><img alt="DAEKWANG TECH 로고" src="assets/dk-logo.svg" /><span>DAEKWANG TECH</span></div>
       <p>{company.address}</p><p>T. {company.tel}</p><p>F. {company.fax}</p><p className="copyright">© DAEKWANG TECH All rights reserved.</p>
-      <div className="footer-links"><a href="#/company">회사 소개</a><a href="#/quality">품질 관리</a></div>
+      <div className="footer-links"><a href="#/company">회사 소개</a><a href="#/quality">품질 관리</a><a href="#/notice">공지사항</a></div>
     </footer>
   );
 }
@@ -261,19 +252,38 @@ function SiteApp({ content, setContent, route }) {
   const detail = pageContent[page.id] ?? pageContent.index;
 
   useEffect(() => {
-    if (route !== "admin") applySeo(page);
+    if (route === "admin") return;
+    if (route === "notice" || route.startsWith("notice/")) {
+      document.title = "공지사항 | 대광테크";
+      const node = document.querySelector('meta[name="description"]');
+      if (node) node.setAttribute("content", "대광테크의 주요 안내와 최신 소식을 확인하실 수 있습니다.");
+    } else {
+      applySeo(page);
+    }
     document.body.classList.toggle("nav-open", menuOpen);
     return () => document.body.classList.remove("nav-open");
   }, [page, menuOpen, route]);
 
   if (route === "admin") return <AdminApp content={content} onContentChange={setContent} />;
+  if (route === "notice" || route.startsWith("notice/")) {
+    const noticeId = route.startsWith("notice/") ? route.split("/")[1] : null;
+    return (
+      <>
+        <a className="skip-link" href="#main-content">본문 바로가기</a>
+        <Header active="notice" onMenu={() => setMenuOpen((value) => !value)} />
+        <MobilePanel active="notice" open={menuOpen} onClose={() => setMenuOpen(false)} />
+        {noticeId ? <NoticeDetailPage noticeId={noticeId} /> : <NoticeListPage />}
+        <Footer company={content.company} />
+      </>
+    );
+  }
 
   return (
     <>
       <a className="skip-link" href="#main-content">본문 바로가기</a>
       <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <FeatureRail items={detail.rail} />
-      {page.id === "index" ? <><ProductsPreview /><ProcessBand /><QualityPreview /><FacilityPreview /><TrustPreview posts={content.posts} /></> : <SubPage page={page} detail={detail} />}
+      {page.id === "index" ? <><ProductsPreview /><ProcessBand /><QualityPreview /><FacilityPreview /><HomeNoticeSection /><TrustPreview posts={content.posts} /></> : <SubPage page={page} detail={detail} />}
       <Footer company={content.company} />
     </>
   );

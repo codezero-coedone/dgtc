@@ -15,6 +15,9 @@ export function ImageManagerPanel({
   onReplaceImage,
   onDeleteImage,
   onSortToggle,
+  onUpdateImage,
+  onMoveImage,
+  onPreviewImage,
 }) {
   const uploadRef = useRef(null);
   const replaceRef = useRef(null);
@@ -85,7 +88,7 @@ export function ImageManagerPanel({
                   key={asset.id}
                   selected={asset.id === selectedImageId}
                   onSelect={() => onSelectImage(asset.id)}
-                  onPreview={() => onSelectImage(asset.id)}
+                  onPreview={() => onPreviewImage?.(asset)}
                   onReplace={() => {
                     setReplaceTargetId(asset.id);
                     replaceRef.current?.click();
@@ -101,6 +104,42 @@ export function ImageManagerPanel({
 
         <ImagePreviewPanel image={selectedImage} />
       </div>
+      {selectedImage && onUpdateImage ? (
+        <div className="dk-image-edit-panel">
+          <h3>이미지 정보 수정</h3>
+          <div className="dk-image-edit-grid">
+            <label>
+              제목
+              <input value={selectedImage.title} onChange={(event) => onUpdateImage(selectedImage.id, { title: event.target.value })} />
+            </label>
+            <label>
+              분류
+              <select value={selectedImage.category} onChange={(event) => onUpdateImage(selectedImage.id, { category: event.target.value })}>
+                {Object.entries(categoryLabels).map(([key, label]) => (
+                  <option key={key} value={key}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              상태
+              <select value={selectedImage.status} onChange={(event) => onUpdateImage(selectedImage.id, { status: event.target.value })}>
+                <option value="active">사용중</option>
+                <option value="inactive">대기</option>
+              </select>
+            </label>
+            <div className="dk-image-order-actions">
+              <button type="button" onClick={() => onMoveImage?.(selectedImage.id, -1)}>
+                위로
+              </button>
+              <button type="button" onClick={() => onMoveImage?.(selectedImage.id, 1)}>
+                아래로
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
