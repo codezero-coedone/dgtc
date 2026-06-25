@@ -5,6 +5,21 @@ export const categoryLabels = {
   product: "제품 이미지",
 };
 
+export const adminSectionOptions = [
+  { key: "dashboard", label: "대시보드", icon: "Home" },
+  { key: "images", label: "이미지 관리", icon: "Image", group: "콘텐츠 관리" },
+  { key: "notices", label: "공지사항 관리", icon: "Megaphone", group: "콘텐츠 관리" },
+  { key: "pages", label: "페이지 관리", icon: "File", group: "콘텐츠 관리" },
+  { key: "popups", label: "팝업 관리", icon: "Popup", group: "콘텐츠 관리" },
+  { key: "menus", label: "메뉴 관리", icon: "Menu", group: "사이트 관리" },
+  { key: "footer", label: "푸터 관리", icon: "Footer", group: "사이트 관리" },
+  { key: "settings", label: "기본 설정", icon: "Settings", group: "사이트 관리" },
+  { key: "seo", label: "SEO 설정", icon: "Seo", group: "사이트 관리" },
+  { key: "users", label: "사용자 관리", icon: "Users", group: "시스템 관리" },
+  { key: "logs", label: "로그 관리", icon: "Log", group: "시스템 관리" },
+  { key: "backups", label: "백업 관리", icon: "Backup", group: "시스템 관리" },
+];
+
 export const summaryCards = [
   {
     id: "images",
@@ -223,3 +238,90 @@ export const initialNoticeDraft = {
   visible: true,
   content: "",
 };
+
+export const pageItems = [
+  { id: "page-home", name: "메인", path: "/", status: "visible", lastModified: "2026-06-26 10:10", description: "대광테크 대표 화면" },
+  { id: "page-about", name: "회사소개", path: "/about", status: "visible", lastModified: "2026-06-25 18:20", description: "회사 개요와 신뢰 정보" },
+  { id: "page-business", name: "사업분야", path: "/business", status: "visible", lastModified: "2026-06-24 14:00", description: "주요 사업영역 안내" },
+  { id: "page-facility", name: "설비현황", path: "/facility", status: "visible", lastModified: "2026-06-22 09:30", description: "생산 설비와 인프라" },
+  { id: "page-products", name: "제품소개", path: "/products", status: "visible", lastModified: "2026-06-21 16:40", description: "대표 제품군 관리" },
+  { id: "page-portfolio", name: "포트폴리오", path: "/portfolio", status: "hidden", lastModified: "2026-06-20 11:15", description: "프로젝트 사례" },
+  { id: "page-location", name: "오시는 길", path: "/location", status: "visible", lastModified: "2026-06-19 13:25", description: "사업장 위치 정보" },
+];
+
+export const popupItems = [
+  {
+    id: "popup-renewal",
+    title: "홈페이지 리뉴얼 안내",
+    placement: "메인",
+    startDate: "2026-06-20",
+    endDate: "2026-07-05",
+    status: "active",
+    linkUrl: "/notice/24",
+  },
+  {
+    id: "popup-vacation",
+    title: "하계 휴가 일정",
+    placement: "메인",
+    startDate: "2026-07-20",
+    endDate: "2026-08-05",
+    status: "inactive",
+    linkUrl: "/notice/23",
+  },
+];
+
+export const menuItems = [
+  { id: "menu-about", name: "회사소개", path: "/about", order: 1, status: "visible" },
+  { id: "menu-business", name: "사업분야", path: "/business", order: 2, status: "visible" },
+  { id: "menu-facility", name: "설비현황", path: "/facility", order: 3, status: "visible" },
+  { id: "menu-products", name: "제품소개", path: "/products", order: 4, status: "visible" },
+  { id: "menu-portfolio", name: "포트폴리오", path: "/portfolio", order: 5, status: "hidden" },
+  { id: "menu-location", name: "오시는 길", path: "/location", order: 6, status: "visible" },
+];
+
+export const footerInfo = {
+  companyName: "대광테크",
+  representative: "홍길동",
+  businessNumber: "000-00-00000",
+  address: "경상남도 김해시 ...",
+  tel: "055-000-0000",
+  email: "admin@daekwang.co.kr",
+  copyright: "© DAEKWANG TECH. All rights reserved.",
+};
+
+export const siteSettings = {
+  siteName: "대광테크",
+  adminEmail: "admin@daekwang.co.kr",
+  contactNumber: "055-000-0000",
+  language: "ko",
+  maintenanceMode: false,
+  publicStatus: true,
+};
+
+export const seoSettings = {
+  metaTitle: "대광테크 | 정밀 제조·산업 설비 전문기업",
+  metaDescription: "대광테크는 정밀 제조와 산업 설비 분야의 신뢰 기반 B2B 제조 기업입니다.",
+  keywords: "대광테크, 제조업, 정밀가공, 산업설비",
+  ogImage: "/og-daekwang.jpg",
+  robots: "index,follow",
+};
+
+export const adminUsers = [
+  { id: "user-owner", name: "최고관리자", email: "admin@daekwang.co.kr", role: "owner", status: "active", lastLogin: "2026-06-26 09:02" },
+  { id: "user-editor", name: "콘텐츠 관리자", email: "content@daekwang.co.kr", role: "editor", status: "active", lastLogin: "2026-06-25 17:30" },
+  { id: "user-viewer", name: "읽기 전용", email: "viewer@daekwang.co.kr", role: "viewer", status: "inactive", lastLogin: "2026-06-20 12:11" },
+];
+
+export const logItems = [
+  { id: "log-01", time: "2026-06-26 09:02", user: "관리자", action: "로그인", target: "관리자 콘솔", status: "success", type: "login" },
+  { id: "log-02", time: "2026-06-26 10:00", user: "관리자", action: "이미지 업로드", target: "메인 배너 01", status: "success", type: "imageUpload" },
+  { id: "log-03", time: "2026-06-25 17:30", user: "콘텐츠 관리자", action: "공지사항 수정", target: "ISO 45001 인증 획득 안내", status: "success", type: "noticeEdit" },
+  { id: "log-04", time: "2026-06-24 14:20", user: "관리자", action: "페이지 저장", target: "사업분야", status: "success", type: "pageSave" },
+  { id: "log-05", time: "2026-06-23 11:05", user: "관리자", action: "백업 생성", target: "사이트 데이터", status: "success", type: "backup" },
+];
+
+export const backupItems = [
+  { id: "backup-20260626", fileName: "backup_2026_06_26.zip", createdAt: "2026-06-26 10:00", fileSize: "24.8MB", status: "success" },
+  { id: "backup-20260620", fileName: "backup_2026_06_20.zip", createdAt: "2026-06-20 10:00", fileSize: "23.9MB", status: "success" },
+  { id: "backup-20260613", fileName: "backup_2026_06_13.zip", createdAt: "2026-06-13 10:00", fileSize: "23.1MB", status: "success" },
+];

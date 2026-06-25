@@ -1,18 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
 import {
   activityLogs as initialActivityLogs,
+  adminSectionOptions,
   imageAssets as initialImageAssets,
   initialNoticeDraft,
   notices as initialNotices,
   summaryCards,
 } from "../data/daekwangAdminData.js";
 import { AdminSidebar } from "../components/daekwang-admin/AdminSidebar.jsx";
+import { AdminSectionRenderer } from "../components/daekwang-admin/AdminSectionRenderer.jsx";
 import { AdminTopbar } from "../components/daekwang-admin/AdminTopbar.jsx";
-import { ImageManagerPanel } from "../components/daekwang-admin/ImageManagerPanel.jsx";
-import { NoticeCreatePanel } from "../components/daekwang-admin/NoticeCreatePanel.jsx";
-import { NoticeListTable } from "../components/daekwang-admin/NoticeListTable.jsx";
-import { RecentActivityPanel } from "../components/daekwang-admin/RecentActivityPanel.jsx";
-import { SummaryCards } from "../components/daekwang-admin/SummaryCards.jsx";
 
 function formatBytes(bytes) {
   if (!bytes) return "0KB";
@@ -57,6 +54,7 @@ function createImageFromFile(file, category, order) {
 }
 
 export function DaekwangAdminConsole() {
+  const [activeSection, setActiveSection] = useState("dashboard");
   const [activeCategory, setActiveCategory] = useState("mainBanner");
   const [imageAssets, setImageAssets] = useState(initialImageAssets);
   const [selectedImageId, setSelectedImageId] = useState(initialImageAssets[0]?.id ?? "");
@@ -186,39 +184,54 @@ export function DaekwangAdminConsole() {
     if (firstAsset) setSelectedImageId(firstAsset.id);
   };
 
+  const imageManagerProps = {
+    activeCategory,
+    assets: orderedAssets,
+    selectedImage,
+    selectedImageId,
+    onCategoryChange: changeCategory,
+    onSelectImage: setSelectedImageId,
+    onUploadImage: uploadImage,
+    onReplaceImage: replaceImage,
+    onDeleteImage: deleteImage,
+    onSortToggle: () => setSortReverse((value) => !value),
+  };
+
+  const noticeCreateProps = {
+    draft: noticeDraft,
+    error: noticeError,
+    editingNoticeId,
+    onChange: setNoticeDraft,
+    onSubmit: submitNotice,
+    onSaveDraft: saveNoticeDraft,
+  };
+
   return (
     <div className="dk-admin-page">
-      <AdminSidebar />
+      <AdminSidebar activeSection={activeSection} onSelectSection={setActiveSection} />
       <main className="dk-main">
         <AdminTopbar />
         <div className="dk-content">
-          <SummaryCards cards={summaryCards} />
-          <div className="dk-middle-grid">
-            <ImageManagerPanel
-              activeCategory={activeCategory}
-              assets={orderedAssets}
-              selectedImage={selectedImage}
-              selectedImageId={selectedImageId}
-              onCategoryChange={changeCategory}
-              onSelectImage={setSelectedImageId}
-              onUploadImage={uploadImage}
-              onReplaceImage={replaceImage}
-              onDeleteImage={deleteImage}
-              onSortToggle={() => setSortReverse((value) => !value)}
-            />
-            <NoticeCreatePanel
-              draft={noticeDraft}
-              error={noticeError}
-              editingNoticeId={editingNoticeId}
-              onChange={setNoticeDraft}
-              onSubmit={submitNotice}
-              onSaveDraft={saveNoticeDraft}
-            />
-          </div>
-          <div className="dk-bottom-grid">
-            <NoticeListTable notices={notices} onEditNotice={editNotice} />
-            <RecentActivityPanel logs={activityLogs} />
-          </div>
+          <label className="dk-mobile-section-select">
+            <span>관리 섹션</span>
+            <select value={activeSection} onChange={(event) => setActiveSection(event.target.value)}>
+              {adminSectionOptions.map((section) => (
+                <option key={section.key} value={section.key}>
+                  {section.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <AdminSectionRenderer
+            activeSection={activeSection}
+            activityLogs={activityLogs}
+            imageManagerProps={imageManagerProps}
+            noticeCreateProps={noticeCreateProps}
+            notices={notices}
+            summaryCards={summaryCards}
+            onAddActivity={(type, title, description) => addActivity(createActivity(type, title, description))}
+            onEditNotice={editNotice}
+          />
         </div>
       </main>
     </div>
