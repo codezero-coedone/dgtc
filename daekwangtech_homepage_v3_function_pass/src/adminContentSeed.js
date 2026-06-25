@@ -118,6 +118,48 @@ export const defaultAdminContent = {
       publishedAt: "2026-06-26",
     },
   ],
+  media: [
+    {
+      id: "media-logo",
+      label: "대광테크 로고",
+      src: "assets/dk-logo.svg",
+      alt: "DAEKWANG TECH 로고",
+      usage: "헤더 / 푸터 / 관리자",
+      status: "active",
+    },
+    {
+      id: "media-hero-machine",
+      label: "메인 히어로",
+      src: "assets/hero-machine.jpg",
+      alt: "대광테크 정밀 가공 메인 이미지",
+      usage: "홈 / 기술력 히어로",
+      status: "active",
+    },
+    {
+      id: "media-facility-cnc",
+      label: "CNC 설비",
+      src: "assets/facility-cnc.jpg",
+      alt: "대광테크 CNC 설비 이미지",
+      usage: "설비 / 제조 프로세스",
+      status: "active",
+    },
+    {
+      id: "media-inspection-cmm",
+      label: "검사 장비",
+      src: "assets/inspection-cmm.jpg",
+      alt: "대광테크 검사 장비 이미지",
+      usage: "품질 관리",
+      status: "active",
+    },
+    {
+      id: "media-map",
+      label: "오시는 길 지도",
+      src: "assets/map.jpg",
+      alt: "대광테크 오시는 길 지도",
+      usage: "회사 소개 / 위치 안내",
+      status: "active",
+    },
+  ],
 };
 
 export function cloneContent(content = defaultAdminContent) {
@@ -142,6 +184,7 @@ function normalizeContent(content) {
       return { ...page, ...stored, href: spaHref(page.id) };
     }),
     posts: Array.isArray(content.posts) ? content.posts : base.posts,
+    media: Array.isArray(content.media) ? content.media : base.media,
   };
 }
 

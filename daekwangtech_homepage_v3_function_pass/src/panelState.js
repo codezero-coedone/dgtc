@@ -15,6 +15,8 @@ export const initialPanelState = {
   activePanel: "dashboard",
   selectedPageId: "index",
   selectedPostId: null,
+  selectedNoticeId: null,
+  selectedMediaId: null,
   dirty: false,
   notice: "관리자 콘솔을 준비하고 있습니다.",
   error: "",
@@ -57,6 +59,27 @@ export function panelReducer(state, event) {
         activePanel: "posts",
         status: state.dirty ? panelStates.dirty : panelStates.editing,
         notice: "게시글 편집 대상을 변경했습니다.",
+        error: "",
+        lastEvent: event.type,
+      };
+    case "SELECT_NOTICE":
+      return {
+        ...state,
+        selectedNoticeId: event.postId,
+        selectedPostId: event.postId,
+        activePanel: "notices",
+        status: state.dirty ? panelStates.dirty : panelStates.editing,
+        notice: "공지사항 편집 대상을 변경했습니다.",
+        error: "",
+        lastEvent: event.type,
+      };
+    case "SELECT_MEDIA":
+      return {
+        ...state,
+        selectedMediaId: event.mediaId,
+        activePanel: "media",
+        status: state.dirty ? panelStates.dirty : panelStates.editing,
+        notice: "이미지 편집 대상을 변경했습니다.",
         error: "",
         lastEvent: event.type,
       };

@@ -1,15 +1,15 @@
 import React, { useEffect, useId, useMemo, useReducer, useState } from "react";
 import "./admin-tokens.css";
 import { cloneContent, defaultAdminContent, loadStoredContent, saveStoredContent } from "./adminContentSeed.js";
-import { tokenGroups } from "./designTokens.js";
 import { initialPanelState, panelReducer } from "./panelState.js";
 
 const panels = [
   ["dashboard", "상태"],
   ["homepage", "홈페이지"],
   ["pages", "페이지"],
+  ["notices", "공지사항"],
   ["posts", "게시글"],
-  ["design", "디자인 토큰"],
+  ["media", "이미지"],
   ["export", "JSON"],
 ];
 
@@ -84,6 +84,41 @@ function PostEditor({ post, onChange, onDelete }) {
   );
 }
 
+function MediaEditor({ media, onChange, onDelete }) {
+  if (!media) return <p className="admin-muted">왼쪽에서 이미지를 선택하거나 새 이미지를 추가하세요.</p>;
+  const set = (key) => (value) => onChange({ ...media, [key]: value });
+  return (
+    <div className="admin-field-grid">
+      <Field label="이미지명" value={media.label} onChange={set("label")} />
+      <Field label="사용 위치" value={media.usage} onChange={set("usage")} />
+      <Field label="파일 경로" value={media.src} onChange={set("src")} full />
+      <Field label="대체 텍스트" value={media.alt} onChange={set("alt")} full />
+      <div className="admin-field">
+        <label>상태</label>
+        <select value={media.status} onChange={(event) => set("status")(event.target.value)}>
+          <option value="active">active</option>
+          <option value="draft">draft</option>
+          <option value="hidden">hidden</option>
+        </select>
+      </div>
+      <div className="admin-field full">
+        <div className="admin-media-preview">
+          <img src={media.src} alt={media.alt || media.label} />
+          <div>
+            <strong>{media.label}</strong>
+            <span>{media.src}</span>
+          </div>
+        </div>
+      </div>
+      <div className="admin-field full">
+        <button className="admin-button danger" type="button" onClick={onDelete}>
+          이미지 항목 삭제
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function PreviewCard({ page }) {
   return (
     <div className="admin-preview-card">
@@ -113,6 +148,9 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
   );
   const homePage = content.pages.find((page) => page.id === "index") ?? content.pages[0];
   const selectedPost = content.posts.find((post) => post.id === machine.selectedPostId) ?? content.posts[0];
+  const notices = useMemo(() => content.posts.filter((post) => post.category === "공지" || post.category === "공지사항"), [content.posts]);
+  const selectedNotice = notices.find((post) => post.id === machine.selectedNoticeId) ?? notices[0];
+  const selectedMedia = content.media.find((media) => media.id === machine.selectedMediaId) ?? content.media[0];
 
   const markEdit = (next, notice) => {
     setContent(next);
@@ -133,10 +171,6 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
     markEdit({ ...content, company: { ...content.company, [key]: value } }, "회사 정보를 수정했습니다.");
   };
 
-  const updateToken = (key, value) => {
-    markEdit({ ...content, tokens: { ...content.tokens, [key]: value } }, "디자인 토큰을 수정했습니다.");
-  };
-
   const updatePost = (post) => {
     markEdit(
       {
@@ -144,6 +178,16 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
         posts: content.posts.map((item) => (item.id === post.id ? post : item)),
       },
       "게시글을 수정했습니다.",
+    );
+  };
+
+  const updateMedia = (media) => {
+    markEdit(
+      {
+        ...content,
+        media: content.media.map((item) => (item.id === media.id ? media : item)),
+      },
+      "이미지 정보를 수정했습니다.",
     );
   };
 
@@ -163,9 +207,49 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
     dispatch({ type: "SELECT_POST", postId: id });
   };
 
+  const addNotice = () => {
+    const id = `notice-${Date.now()}`;
+    const post = {
+      id,
+      status: "draft",
+      pinned: true,
+      category: "공지",
+      title: "새 공지사항",
+      summary: "",
+      body: "",
+      publishedAt: new Date().toISOString().slice(0, 10),
+    };
+    markEdit({ ...content, posts: [post, ...content.posts] }, "새 공지사항을 추가했습니다.");
+    dispatch({ type: "SELECT_NOTICE", postId: id });
+  };
+
+  const addMedia = () => {
+    const id = `media-${Date.now()}`;
+    const media = {
+      id,
+      label: "새 이미지",
+      src: "assets/image-fallback.svg",
+      alt: "",
+      usage: "미지정",
+      status: "draft",
+    };
+    markEdit({ ...content, media: [media, ...content.media] }, "새 이미지 항목을 추가했습니다.");
+    dispatch({ type: "SELECT_MEDIA", mediaId: id });
+  };
+
   const deletePost = (id) => {
     markEdit({ ...content, posts: content.posts.filter((post) => post.id !== id) }, "게시글을 삭제했습니다.");
     dispatch({ type: "SELECT_POST", postId: content.posts.find((post) => post.id !== id)?.id ?? null });
+  };
+
+  const deleteNotice = (id) => {
+    markEdit({ ...content, posts: content.posts.filter((post) => post.id !== id) }, "공지사항을 삭제했습니다.");
+    dispatch({ type: "SELECT_NOTICE", postId: notices.find((post) => post.id !== id)?.id ?? null });
+  };
+
+  const deleteMedia = (id) => {
+    markEdit({ ...content, media: content.media.filter((media) => media.id !== id) }, "이미지 항목을 삭제했습니다.");
+    dispatch({ type: "SELECT_MEDIA", mediaId: content.media.find((media) => media.id !== id)?.id ?? null });
   };
 
   const save = () => {
@@ -199,7 +283,9 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
     try {
       const parsed = JSON.parse(jsonText);
       if (!Array.isArray(parsed.pages) || !Array.isArray(parsed.posts)) throw new Error("pages/posts 배열이 필요합니다.");
-      setContent(parsed);
+      const imported = saveStoredContent(parsed);
+      setContent(imported);
+      setJsonText(JSON.stringify(imported, null, 2));
       dispatch({ type: "IMPORT" });
     } catch (error) {
       dispatch({ type: "ERROR", error: error instanceof Error ? error.message : "JSON 형식 오류" });
@@ -227,7 +313,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
           <img src="assets/dk-logo.svg" alt="DAEKWANG TECH 로고" />
           <div>
             <strong>관리자 콘솔</strong>
-            <span>Panel State + Design Tokens</span>
+            <span>홈페이지 · 공지 · 이미지 관리</span>
           </div>
         </div>
         <nav className="admin-nav" aria-label="관리자 패널">
@@ -244,7 +330,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
           ))}
         </nav>
         <div className="admin-side-note">
-          이 콘솔은 React/Vite SPA 내부 관리자입니다. 서버 저장소가 없으므로 저장은 현재 브라우저 초안이며, 공개 반영은 JSON export 후 빌드/배포가 필요합니다.
+          이 콘솔은 회사 관리자가 홈페이지 문구, 공지사항, 게시글, 이미지 항목을 관리하는 화면입니다. 현재 저장은 브라우저 초안이며, 운영 저장소 연결 전까지 공개 반영은 JSON export 후 빌드/배포가 필요합니다.
         </div>
       </aside>
 
@@ -252,7 +338,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
         <div className="admin-topbar">
           <div>
             <h1>{activeLabel}</h1>
-            <p>홈페이지 문구, 페이지 메타, 게시글 초안, 디자인 토큰을 한 곳에서 관리합니다.</p>
+            <p>홈페이지 문구, 페이지 메타, 공지사항, 게시글, 이미지 항목을 한 곳에서 관리합니다.</p>
           </div>
           <div className="admin-actions">
             <button className="admin-button" type="button" onClick={preview}>
@@ -272,7 +358,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
             {machine.activePanel === "dashboard" ? (
               <>
                 <h2>패널 상태머신</h2>
-                <p>현재 관리자 UI의 패널 전환, dirty 상태, 저장/미리보기/가져오기 이벤트를 단일 상태머신으로 관리합니다.</p>
+                <p>현재 관리자 UI의 패널 전환, 수정 상태, 저장/미리보기/가져오기 이벤트를 단일 상태머신으로 관리합니다.</p>
                 <div className="admin-field-grid">
                   <div className="admin-state">
                     <span>status</span>
@@ -290,6 +376,12 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
                     <span>pages / posts</span>
                     <strong>
                       {content.pages.length} / {content.posts.length}
+                    </strong>
+                  </div>
+                  <div className="admin-state">
+                    <span>notices / images</span>
+                    <strong>
+                      {notices.length} / {content.media.length}
                     </strong>
                   </div>
                 </div>
@@ -363,34 +455,64 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
               </div>
             ) : null}
 
-            {machine.activePanel === "design" ? (
-              <>
-                <h2>디자인 토큰 시스템</h2>
-                <p>현재 v3 공개 사이트의 CSS에서 역추출한 제조업 톤 토큰을 관리자 화면과 공개 초안 미리보기에 같이 사용합니다.</p>
-                <div className="admin-token-grid">
-                  {Object.entries(content.tokens).map(([key, value]) => (
-                    <div className="admin-field" key={key}>
-                      <label>{key}</label>
-                      <input value={value} onChange={(event) => updateToken(key, event.target.value)} />
-                      <div className="admin-token-swatch" style={{ background: key === "radius" ? "#fff" : value, borderRadius: key === "radius" ? value : undefined }} />
-                    </div>
-                  ))}
+            {machine.activePanel === "notices" ? (
+              <div className="admin-split">
+                <div>
+                  <button className="admin-button primary" type="button" onClick={addNotice}>
+                    새 공지사항
+                  </button>
+                  <div className="admin-list" style={{ marginTop: 12 }}>
+                    {notices.map((post) => (
+                      <button
+                        key={post.id}
+                        type="button"
+                        data-active={selectedNotice?.id === post.id ? "true" : undefined}
+                        onClick={() => dispatch({ type: "SELECT_NOTICE", postId: post.id })}
+                      >
+                        <strong>{post.title}</strong>
+                        <small>
+                          {post.publishedAt} · {post.status}
+                        </small>
+                      </button>
+                    ))}
+                    {!notices.length ? <p className="admin-muted">등록된 공지사항이 없습니다.</p> : null}
+                  </div>
                 </div>
-                <h2 style={{ marginTop: 24 }}>역추출 토큰 기준</h2>
-                <div className="admin-token-source-grid">
-                  {tokenGroups.map((group) => (
-                    <article className="admin-token-source" key={group.title}>
-                      <h3>{group.title}</h3>
-                      {group.items.map(([label, value]) => (
-                        <div key={`${group.title}-${label}`}>
-                          <span>{label}</span>
-                          <code>{value}</code>
-                        </div>
-                      ))}
-                    </article>
-                  ))}
+                <div>
+                  <h2>공지사항 수정</h2>
+                  <PostEditor post={selectedNotice} onChange={updatePost} onDelete={() => selectedNotice && deleteNotice(selectedNotice.id)} />
                 </div>
-              </>
+              </div>
+            ) : null}
+
+            {machine.activePanel === "media" ? (
+              <div className="admin-split">
+                <div>
+                  <button className="admin-button primary" type="button" onClick={addMedia}>
+                    새 이미지 항목
+                  </button>
+                  <div className="admin-list admin-media-list" style={{ marginTop: 12 }}>
+                    {content.media.map((media) => (
+                      <button
+                        key={media.id}
+                        type="button"
+                        data-active={selectedMedia?.id === media.id ? "true" : undefined}
+                        onClick={() => dispatch({ type: "SELECT_MEDIA", mediaId: media.id })}
+                      >
+                        <img src={media.src} alt="" />
+                        <strong>{media.label}</strong>
+                        <small>
+                          {media.usage} · {media.status}
+                        </small>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h2>이미지 항목 수정</h2>
+                  <MediaEditor media={selectedMedia} onChange={updateMedia} onDelete={() => selectedMedia && deleteMedia(selectedMedia.id)} />
+                </div>
+              </div>
             ) : null}
 
             {machine.activePanel === "export" ? (
@@ -427,7 +549,7 @@ export function AdminApp({ content: controlledContent, onContentChange } = {}) {
               <p className="admin-muted">미리보기 버튼은 초안을 저장한 뒤 같은 React 라우트로 이동합니다.</p>
             </div>
             <div className="admin-card">
-              <h2>게시글 상태</h2>
+              <h2>공지/게시글 상태</h2>
               {content.posts.map((post) => (
                 <div className="admin-post-row" key={post.id}>
                   <span>{post.title}</span>

@@ -1,0 +1,26 @@
+{
+  "lock": "DAEKWANG_ADMIN_OPERATOR_CONSOLE_REFOCUS_V1",
+  "targetRoot": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/#/admin",
+  "cloudflareVersionId": "51f0b634-b08e-486c-ab1f-4da406e193ea",
+  "changes": {
+    "designTokenPanelVisibleToOperator": false,
+    "operatorPanels": ["상태", "홈페이지", "페이지", "공지사항", "게시글", "이미지", "JSON"],
+    "internalDesignTokensKept": true,
+    "noticeManagement": true,
+    "postManagement": true,
+    "mediaManagement": true,
+    "mediaSeedCount": 5
+  },
+  "gates": {
+    "typecheck": "PASS - Static/Vite source check passed for 1 HTML pages.",
+    "lint": "PASS - Static/Vite source check passed for 1 HTML pages.",
+    "build": "PASS - vite build",
+    "localAdmin": "PASS - design token text absent, panels 7, notice editor present, media editor present, console errors 0",
+    "deploy": "PASS - wrangler deploy",
+    "publicAdmin": "PASS - panels 7, design token text absent, media rows 5, console errors 0"
+  },
+  "remainingHold": [
+    "Persistent multi-user admin storage is still not connected. D1/KV/R2/Auth should be added in the next backend/API pass."
+  ]
+}
