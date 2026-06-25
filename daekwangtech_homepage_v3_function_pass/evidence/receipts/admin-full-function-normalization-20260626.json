@@ -70,6 +70,7 @@
     "noticeListLoaded": true,
     "adminNoticeCreateToPublicList": true,
     "adminNoticeCreateToPublicDetail": true,
+    "localStorageRecovery": true,
     "consoleErrors": 0,
     "response404": 0,
     "desktopOverflow": 0,
