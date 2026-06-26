@@ -143,6 +143,16 @@ export function DaekwangAdminConsole() {
     return rows.filter((row) => `${row.label} ${row.meta} ${row.kind}`.toLowerCase().includes(query)).slice(0, 9);
   }, [globalQuery, state.adminUsers, state.auditLogs, state.imageAssets, state.notices]);
 
+  const adminNotifications = useMemo(
+    () => state.activityLogs.slice(0, 4).map((log) => ({
+      id: log.id,
+      title: log.title,
+      description: log.description,
+      time: log.time,
+    })),
+    [state.activityLogs],
+  );
+
   const handleSearchSelect = (result) => {
     setActiveSection(result.section);
     if (result.section === "images") {
@@ -487,7 +497,9 @@ export function DaekwangAdminConsole() {
       title: "관리자 로그아웃",
       message: "관리자 콘솔에서 로그아웃하시겠습니까?",
       onConfirm: async () => {
-        await logoutAdmin().catch(() => null);
+        if (authSession?.serverAuth === true) {
+          await logoutAdmin().catch(() => null);
+        }
         clearAdminAuthSession();
         actions.addActivity("logout", "관리자 로그아웃", "관리자가 콘솔에서 로그아웃했습니다.", authSession?.userId || "admin");
         setAuthSession(null);
@@ -524,7 +536,7 @@ export function DaekwangAdminConsole() {
     onOpenPublic: openPublicNoticeList,
   };
 
-  const renderAdminContent = (className = "") => (
+  const renderAdminContent = (className = "", options = {}) => (
     <div className={`dk-content ${className}`.trim()}>
       <label className="dk-mobile-section-select">
         <span>관리 섹션</span>
@@ -557,6 +569,7 @@ export function DaekwangAdminConsole() {
         onToast={notify}
         onToggleNotice={toggleNotice}
         onConfirm={openConfirm}
+        compactDashboard={Boolean(options.compactDashboard)}
       />
     </div>
   );
@@ -572,6 +585,7 @@ export function DaekwangAdminConsole() {
         <main className="dk-main">
           <AdminTopbar
             authSession={authSession}
+            notifications={adminNotifications}
             onLogout={requestLogout}
             onSearchChange={setGlobalQuery}
             onSelectSearchResult={handleSearchSelect}
@@ -591,7 +605,7 @@ export function DaekwangAdminConsole() {
           onLogout={requestLogout}
           onNavigate={setActiveSection}
         />
-        {renderAdminContent("dk-content--mobile")}
+        {renderAdminContent("dk-content--mobile", { compactDashboard: true })}
       </div>
       <AdminToast toast={toast} onClose={() => setToast(null)} />
       <AdminConfirmModal confirm={confirm} onCancel={() => setConfirm(null)} />

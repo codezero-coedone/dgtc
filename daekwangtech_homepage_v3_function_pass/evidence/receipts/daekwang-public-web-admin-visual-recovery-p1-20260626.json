@@ -1,0 +1,54 @@
+{
+  "lock": "DAEKWANG_PUBLIC_WEB_AND_ADMIN_VISUAL_RECOVERY_P1_PATCH",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "date": "2026-06-26",
+  "mode": "visual-recovery-local-verified",
+  "changedFiles": [
+    "src/App.jsx",
+    "src/components/public/PublicMobileAppLayer.jsx",
+    "src/components/daekwang-admin/AdminPreviewModal.jsx",
+    "src/components/daekwang-admin/AdminSectionRenderer.jsx",
+    "src/admin-tokens.css",
+    "styles.css"
+  ],
+  "preserved": [
+    "AdminLoginGate demo fallback",
+    "wrong credential blocking",
+    "AdminTopbar notification panel",
+    "0-1199 responsive admin shell",
+    "1200+ desktop admin shell",
+    "public home notice admin routes",
+    "wrong-dashboard residue NO_MATCH"
+  ],
+  "beforeEvidence": "evidence/daekwang_p1_visual_recovery/before",
+  "afterEvidence": "evidence/daekwang_p1_visual_recovery/after",
+  "commandsRun": [
+    "node scripts/check-static.mjs",
+    "node scripts/check-static.mjs",
+    "node node_modules/vite/bin/vite.js build",
+    "vite preview --host 127.0.0.1 --port 4199",
+    "Playwright local smoke with system Chrome"
+  ],
+  "results": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS_WITH_TAILWIND_CONTENT_WARNING",
+    "publicHome": "PASS",
+    "publicNotice": "PASS",
+    "adminLogin": "PASS",
+    "wrongCredentialBlocked": "PASS",
+    "notificationPanel": "PASS",
+    "admin1024ResponsiveAuthority": "PASS",
+    "adminPreviewPublicStyleFrame": "PASS",
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "deploy": "NOT_RUN"
+  },
+  "remainingHold": [
+    "Cloudflare deployment not run in this patch",
+    "Server auth D1 R2 production remains HOLD",
+    "Tailwind content warning remains P2 cleanup",
+    "Final customer-review PASS still requires user/public device confirmation"
+  ],
+  "judgment": "PASS_HOLD"
+}

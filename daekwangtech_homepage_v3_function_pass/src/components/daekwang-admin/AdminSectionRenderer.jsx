@@ -100,6 +100,7 @@ function EmptyState({ children }) {
 }
 
 function DashboardSection({
+  compact = false,
   summaryCards,
   imageManagerProps,
   noticeCreateProps,
@@ -113,6 +114,21 @@ function DashboardSection({
   onNavigate,
   onCreateBackup,
 }) {
+  if (compact) {
+    return (
+      <>
+        <SummaryCards cards={summaryCards} onNavigate={onNavigate} />
+        <div className="dk-quick-actions dk-panel">
+          <button type="button" onClick={() => onNavigate("images")}>이미지 업로드</button>
+          <button type="button" onClick={() => onNavigate("notices")}>공지 등록</button>
+          <button type="button" onClick={onCreateBackup}>백업 생성</button>
+          <button type="button" onClick={() => onNavigate("seo")}>SEO 설정</button>
+        </div>
+        <RecentActivityPanel logs={activityLogs} />
+      </>
+    );
+  }
+
   return (
     <>
       <SummaryCards cards={summaryCards} onNavigate={onNavigate} />
@@ -475,6 +491,7 @@ export function AdminSectionRenderer({
   onToast,
   onToggleNotice,
   onConfirm,
+  compactDashboard = false,
 }) {
   const [title, description] = sectionMeta[activeSection] ?? sectionMeta.dashboard;
 
@@ -489,6 +506,7 @@ export function AdminSectionRenderer({
   if (activeSection === "dashboard") {
     body = (
       <DashboardSection
+        compact={compactDashboard}
         activityLogs={activityLogs}
         imageManagerProps={imageManagerProps}
         noticeCreateProps={noticeCreateProps}
@@ -497,7 +515,7 @@ export function AdminSectionRenderer({
         onDeleteNotice={onDeleteNotice}
         onEditNotice={onEditNotice}
         onOpenPublicNotice={onOpenPublicNotice}
-        onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content })}
+        onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content, category: notice.category, publishDate: notice.publishDate, status: notice.status })}
         onToggleNotice={onToggleNotice}
         onNavigate={onNavigate}
         summaryCards={summaryCards}
@@ -506,7 +524,7 @@ export function AdminSectionRenderer({
   } else if (activeSection === "images") {
     body = <div className="dk-manager-grid dk-manager-grid-wide"><ImageManagerPanel {...imageManagerProps} /><RecentActivityPanel logs={activityLogs} /></div>;
   } else if (activeSection === "notices") {
-    body = <div className="dk-manager-grid"><NoticeManagementIntro state={state} onNavigate={onNavigate} onPreview={onPreview} /><NoticeCreatePanel {...noticeCreateProps} /><NoticeListTable notices={notices} onDeleteNotice={onDeleteNotice} onEditNotice={onEditNotice} onOpenPublicNotice={onOpenPublicNotice} onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content })} onToggleNotice={onToggleNotice} /><NoticeCtaSettingsPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} /><RecentActivityPanel logs={activityLogs} /></div>;
+    body = <div className="dk-manager-grid"><NoticeManagementIntro state={state} onNavigate={onNavigate} onPreview={onPreview} /><NoticeCreatePanel {...noticeCreateProps} /><NoticeListTable notices={notices} onDeleteNotice={onDeleteNotice} onEditNotice={onEditNotice} onOpenPublicNotice={onOpenPublicNotice} onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content, category: notice.category, publishDate: notice.publishDate, status: notice.status })} onToggleNotice={onToggleNotice} /><NoticeCtaSettingsPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} /><RecentActivityPanel logs={activityLogs} /></div>;
   } else if (activeSection === "pages") {
     body = <PageManagerPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} />;
   } else if (activeSection === "popups") {

@@ -73,11 +73,11 @@ export function PublicMobileAppLayer({ company, facilityCards, homeProducts, pag
             <DaekwangLogoMark size={42} tone="dark" />
             <div className="pm-hero-labels">
               <span>DAE KWANG TECH</span>
-              <em>Mobile App</em>
+              <em>대광테크</em>
             </div>
           </div>
           <p className="pm-eyebrow">PRECISION MANUFACTURING</p>
-          <h2>정밀 제조 역량을<br />한 화면에서 확인합니다</h2>
+          <h2>정밀 제조 역량을<br />신뢰 있게 소개합니다</h2>
           <p>{shortText(company.summary || "대광테크는 정밀가공 기술과 품질 중심의 제조 역량을 소개하는 기업 홈페이지입니다.", 86)}</p>
           <div className="pm-quick-grid">
             <a href="#/company">회사소개</a>

@@ -1,0 +1,46 @@
+{
+  "lock": "DAEKWANG_P1_VISUAL_RECOVERY_DEPLOY_AND_PUBLIC_SMOKE_V1",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/#/",
+  "deploy": {
+    "command": "node ..\\node_modules\\wrangler\\bin\\wrangler.js deploy --config ..\\wrangler.jsonc",
+    "worker": "dgtc",
+    "url": "https://dgtc.ejdzm90.workers.dev",
+    "versionId": "acda26e5-e850-455b-a009-83f7f25d548a",
+    "newAssets": [
+      "/index.html",
+      "/assets/index-C_zP2GRc.css",
+      "/assets/index-MQKdyNFz.js"
+    ]
+  },
+  "checks": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS_WITH_TAILWIND_CONTENT_WARNING",
+    "localSmoke": "PASS",
+    "liveCacheBustedSmoke": "PASS",
+    "liveAssetMatch": "PASS",
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "fakeKrSelectorLive": "REMOVED",
+    "processNestedBandLive": "REMOVED_ON_PROCESS_ROUTE",
+    "adminPreviewPublicFrameLive": "PASS",
+    "adminNotificationPanelLive": "PASS",
+    "admin1024ResponsiveAuthorityLive": "PASS",
+    "wrongCredentialBlockedLive": "PASS",
+    "demoFallbackLoginLive": "PASS"
+  },
+  "evidence": {
+    "local": "evidence/daekwang_p1_deploy_smoke/local",
+    "live": "evidence/daekwang_p1_deploy_smoke/live",
+    "liveSmokeJson": "evidence/daekwang_p1_deploy_smoke/live/live-smoke.json",
+    "localSmokeJson": "evidence/daekwang_p1_deploy_smoke/local/local-smoke.json"
+  },
+  "remainingHold": [
+    "Real physical iPhone/Android/tablet user confirmation",
+    "Server auth D1 R2 production",
+    "Tailwind content warning cleanup",
+    "Git commit/push not requested in this task"
+  ],
+  "judgment": "PASS_HOLD"
+}

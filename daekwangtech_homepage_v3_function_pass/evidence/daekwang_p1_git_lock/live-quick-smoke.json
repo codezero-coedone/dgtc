@@ -1,0 +1,52 @@
+{
+  "lock": "DAEKWANG_P1_DEPLOYED_STATE_GIT_COMMIT_PUSH_LOCK_V1",
+  "checkedAt": "2026-06-26T00:00:00+09:00",
+  "mode": "cache-busted-live-asset-check-plus-existing-live-smoke",
+  "sourceEvidence": [
+    "evidence/daekwang_p1_deploy_smoke/live/live-smoke.json",
+    "Invoke-WebRequest cache-busted live HTML asset check"
+  ],
+  "cacheBustedUrls": [
+    {
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=p1-visual-20260626#/",
+      "status": 200,
+      "css": "/assets/index-C_zP2GRc.css",
+      "js": "/assets/index-MQKdyNFz.js"
+    },
+    {
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=p1-visual-20260626#/process",
+      "status": 200,
+      "css": "/assets/index-C_zP2GRc.css",
+      "js": "/assets/index-MQKdyNFz.js"
+    },
+    {
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=p1-visual-20260626#/notice",
+      "status": 200,
+      "css": "/assets/index-C_zP2GRc.css",
+      "js": "/assets/index-MQKdyNFz.js"
+    },
+    {
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=p1-visual-20260626#/admin",
+      "status": 200,
+      "css": "/assets/index-C_zP2GRc.css",
+      "js": "/assets/index-MQKdyNFz.js"
+    }
+  ],
+  "summary": {
+    "fakeKrRemoved": "PASS_FROM_EXISTING_LIVE_SMOKE",
+    "processNestedDarkBandRemoved": "PASS_FROM_EXISTING_LIVE_SMOKE",
+    "adminLoginDemoFallback": "PASS_FROM_EXISTING_LIVE_SMOKE",
+    "wrongCredentialBlocked": "PASS_FROM_EXISTING_LIVE_SMOKE",
+    "notificationPanel": "PASS_FROM_EXISTING_LIVE_SMOKE",
+    "adminPreviewPublicFrame": "PASS_FROM_EXISTING_LIVE_SMOKE",
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "liveAssets": [
+      "/assets/index-C_zP2GRc.css",
+      "/assets/index-MQKdyNFz.js"
+    ]
+  },
+  "hold": [
+    "Playwright dependency was unavailable during this git-lock run, so interactive checks cite the existing deployed live-smoke evidence from the preceding deploy verification."
+  ]
+}

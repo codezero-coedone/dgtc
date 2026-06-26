@@ -1,0 +1,570 @@
+{
+  "startedAt": "2026-06-26T11:22:11.383Z",
+  "deployVersion": "babb88f6-9b81-4047-b0d8-da404a4fdfda",
+  "base": "https://dgtc.ejdzm90.workers.dev",
+  "admin": {
+    "loginInitial": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": true,
+      "hasLoginForm": true,
+      "hasLoginError": false,
+      "hasAdminConsole": false,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "×\nDAE KWANG\nTECH\n대광테크\nSECURE ADMIN CONSOLE\n관리자 로그인\n\n대광테크 웹사이트 콘텐츠 관리 콘솔에 접속합니다.\n\n관리자 아이디\n비밀번호\n로그인\n\n서버 세션 인증은 운영 secret 구성 후 활성화됩니다. 현재는 관리자 리뷰용 데모 보호 흐름으로만 임시 진입합니다."
+    },
+    "wrong": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": true,
+      "hasLoginForm": true,
+      "hasLoginError": true,
+      "hasAdminConsole": false,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "×\nDAE KWANG\nTECH\n대광테크\nSECURE ADMIN CONSOLE\n관리자 로그인\n\n대광테크 웹사이트 콘텐츠 관리 콘솔에 접속합니다.\n\n관리자 아이디\n비밀번호\n\n아이디 또는 비밀번호가 올바르지 않습니다.\n\n로그인\n\n서버 세션 인증은 운영 secret 구성 후 활성화됩니다. 현재는 관리자 리뷰용 데모 보호 흐름으로만 임시 진입합니다."
+    },
+    "after390": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": true,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": true,
+        "display": "none",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": true,
+        "display": "block",
+        "width": 390,
+        "height": 2745,
+        "visible": true
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "DAE KWANG TECH\n관리자 앱\nAdmin App\n로그아웃\nAUTH\ndemo fallback\nNOTICES\n5건\nIMAGES\n7개\n공지 작성\n이미지 관리\n백업\nRECENT\n최근 작업\n\n관리자 로그인\n20:22\n\n이미지 업로드\n14:30\n\n홈\n공지\n이미지\n설정\n로그\n관리 섹션\n대시보드\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n사용자 관리\n로그 관리\n백업 관리\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수정\n6건\n\n관리자 작업 로그\n\n자세히 보기 >\n이미지 업로드\n공지 등록\n백업 생성\nSEO 설정\n최근 활동\n전체 보기 >\n관리자 로그인\n\ndgtc66 계정으로 로그인했습니다.\n\n관리자\n20:22\n이미지 업로드\n\n메인 배너 01 이미지가 업로드 되었습니다.\n\n관리자\n14:30\n공지사항 등록\n\n새 공지 '홈페이지 리뉴얼 오픈 안내'가 등록되었습니다.\n\n관리자\n14:28\n공지사항 수정\n\n공지 'ISO 45001 인증 획득 안내'가 수정되었습니다.\n\n관리자\n11:20\n이미지 교체\n\n회사소개 이미지가 교체되었습니다.\n\n관리자\n10:15\n사용자 로그인\n\n관리자(admin)가 로그인했습니다.\n\n관리자\n09:02\n로그인 완료\n관리자 콘솔을 사용할 수 있습니다.\n×"
+    },
+    "after768": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": true,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": true,
+        "display": "none",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": true,
+        "display": "block",
+        "width": 768,
+        "height": 2488,
+        "visible": true
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "DAE KWANG TECH\n관리자 앱\nAdmin App\n로그아웃\nAUTH\ndemo fallback\nNOTICES\n5건\nIMAGES\n7개\n공지 작성\n이미지 관리\n백업\nRECENT\n최근 작업\n\n관리자 로그인\n20:22\n\n이미지 업로드\n14:30\n\n홈\n공지\n이미지\n설정\n로그\n관리 섹션\n대시보드\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n사용자 관리\n로그 관리\n백업 관리\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수정\n6건\n\n관리자 작업 로그\n\n자세히 보기 >\n이미지 업로드\n공지 등록\n백업 생성\nSEO 설정\n최근 활동\n전체 보기 >\n관리자 로그인\n\ndgtc66 계정으로 로그인했습니다.\n\n관리자\n20:22\n이미지 업로드\n\n메인 배너 01 이미지가 업로드 되었습니다.\n\n관리자\n14:30\n공지사항 등록\n\n새 공지 '홈페이지 리뉴얼 오픈 안내'가 등록되었습니다.\n\n관리자\n14:28\n공지사항 수정\n\n공지 'ISO 45001 인증 획득 안내'가 수정되었습니다.\n\n관리자\n11:20\n이미지 교체\n\n회사소개 이미지가 교체되었습니다.\n\n관리자\n10:15\n사용자 로그인\n\n관리자(admin)가 로그인했습니다.\n\n관리자\n09:02\n로그인 완료\n관리자 콘솔을 사용할 수 있습니다.\n×"
+    },
+    "after820": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": true,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": true,
+        "display": "none",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": true,
+        "display": "block",
+        "width": 820,
+        "height": 2488,
+        "visible": true
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "DAE KWANG TECH\n관리자 앱\nAdmin App\n로그아웃\nAUTH\ndemo fallback\nNOTICES\n5건\nIMAGES\n7개\n공지 작성\n이미지 관리\n백업\nRECENT\n최근 작업\n\n관리자 로그인\n20:22\n\n이미지 업로드\n14:30\n\n홈\n공지\n이미지\n설정\n로그\n관리 섹션\n대시보드\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n사용자 관리\n로그 관리\n백업 관리\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수정\n6건\n\n관리자 작업 로그\n\n자세히 보기 >\n이미지 업로드\n공지 등록\n백업 생성\nSEO 설정\n최근 활동\n전체 보기 >\n관리자 로그인\n\ndgtc66 계정으로 로그인했습니다.\n\n관리자\n20:22\n이미지 업로드\n\n메인 배너 01 이미지가 업로드 되었습니다.\n\n관리자\n14:30\n공지사항 등록\n\n새 공지 '홈페이지 리뉴얼 오픈 안내'가 등록되었습니다.\n\n관리자\n14:28\n공지사항 수정\n\n공지 'ISO 45001 인증 획득 안내'가 수정되었습니다.\n\n관리자\n11:20\n이미지 교체\n\n회사소개 이미지가 교체되었습니다.\n\n관리자\n10:15\n사용자 로그인\n\n관리자(admin)가 로그인했습니다.\n\n관리자\n09:02"
+    },
+    "after1024": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": true,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": true,
+        "display": "none",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": true,
+        "display": "block",
+        "width": 1024,
+        "height": 2483,
+        "visible": true
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "DAE KWANG TECH\n관리자 앱\nAdmin App\n로그아웃\nAUTH\ndemo fallback\nNOTICES\n5건\nIMAGES\n7개\n공지 작성\n이미지 관리\n백업\nRECENT\n최근 작업\n\n관리자 로그인\n20:22\n\n이미지 업로드\n14:30\n\n홈\n공지\n이미지\n설정\n로그\n관리 섹션\n대시보드\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n사용자 관리\n로그 관리\n백업 관리\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수정\n6건\n\n관리자 작업 로그\n\n자세히 보기 >\n이미지 업로드\n공지 등록\n백업 생성\nSEO 설정\n최근 활동\n전체 보기 >\n관리자 로그인\n\ndgtc66 계정으로 로그인했습니다.\n\n관리자\n20:22\n이미지 업로드\n\n메인 배너 01 이미지가 업로드 되었습니다.\n\n관리자\n14:30\n공지사항 등록\n\n새 공지 '홈페이지 리뉴얼 오픈 안내'가 등록되었습니다.\n\n관리자\n14:28\n공지사항 수정\n\n공지 'ISO 45001 인증 획득 안내'가 수정되었습니다.\n\n관리자\n11:20\n이미지 교체\n\n회사소개 이미지가 교체되었습니다.\n\n관리자\n10:15\n사용자 로그인\n\n관리자(admin)가 로그인했습니다.\n\n관리자\n09:02"
+    },
+    "after1440": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": true,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": true,
+        "display": "block",
+        "width": 1425,
+        "height": 2115,
+        "visible": true
+      },
+      "responsiveAdmin": {
+        "exists": true,
+        "display": "none",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "DAE KWANG\nTECH\n대광테크\n대시보드\n\n콘텐츠 관리\n\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n\n사이트 관리\n\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n\n시스템 관리\n\n사용자 관리\n로그 관리\n백업 관리\nConsole v1.0.0\n대광테크 관리자 콘솔\n\n웹사이트 콘텐츠 및 공지사항을 효율적으로 관리하세요.\n\n⌘ + K\nDemo admin mode\n5\n관\n\n관리자\ndgtc66 · admin@daekwang.co.kr\n\n로그아웃\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수정\n6건\n\n관리자 작업 로그\n\n자세히 보기 >\n이미지 업로드\n공지 등록\n백업 생성\nSEO 설정\n이미지 관리\n정렬 변경\n최신순\n노출순\n메인 배너\n회사소개\n설비 이미지\n제품 이미지\n이미지 업로드 / 드래그 앤 드롭\nJPG, PNG, WEBP 파일 (최대 10MB)\n#1\n메인 배너 01\n1920 x 800\n사용중\n미리보기\n교체\n삭제\n#2\n메인 배너 02\n1920 x 800\n사용중\n미리보기\n교체\n삭제\n#3\n메인 배너 03\n1920 x 800\n사용중\n미리보기\n교체\n삭제\n#4\n메인 배너 04\n1920 x 800\n사용중\n미리보기\n교체\n삭제\n선택 이미지 미리보기\n파일명\nmain-banner-01.jpg\n파일크기\n2.4MB\n해상도\n1920 x 800\n업로드일\n2024-05-20\n사용여부\n사용중\n원본 파일 "
+    },
+    "notification": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": true,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": true,
+        "display": "block",
+        "width": 1425,
+        "height": 2115,
+        "visible": true
+      },
+      "responsiveAdmin": {
+        "exists": true,
+        "display": "none",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": true,
+        "display": "block",
+        "width": 340,
+        "height": 515,
+        "visible": true
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "DAE KWANG\nTECH\n대광테크\n대시보드\n\n콘텐츠 관리\n\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n\n사이트 관리\n\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n\n시스템 관리\n\n사용자 관리\n로그 관리\n백업 관리\nConsole v1.0.0\n대광테크 관리자 콘솔\n\n웹사이트 콘텐츠 및 공지사항을 효율적으로 관리하세요.\n\n⌘ + K\nDemo admin mode\n5\n관리자 알림\n5건\nDemo admin mode\n\n서버 인증이 구성되지 않아 데모 fallback으로 접속 중입니다.\n\nHOLD\n관리자 로그인\n\ndgtc66 계정으로 로그인했습니다.\n\n20:22\n이미지 업로드\n\n메인 배너 01 이미지가 업로드 되었습니다.\n\n14:30\n공지사항 등록\n\n새 공지 '홈페이지 리뉴얼 오픈 안내'가 등록되었습니다.\n\n14:28\n공지사항 수정\n\n공지 'ISO 45001 인증 획득 안내'가 수정되었습니다.\n\n11:20\n관\n\n관리자\ndgtc66 · admin@daekwang.co.kr\n\n로그아웃\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수정\n6건\n\n관리자 작업 로그\n\n자세히 보기 >\n이미지 업로드\n공지 등록\n백업 생성\nSEO 설정\n이미지 관리\n정렬 변경\n최신순\n노출순\n메인 배너\n회사소개\n설비 이미지\n제품 이미지\n이미지 업로드 / 드래그 앤 드롭\nJPG, PNG, WEBP 파일 (최대 10M"
+    },
+    "logoutConfirm": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": true,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": true,
+        "display": "block",
+        "width": 1425,
+        "height": 2115,
+        "visible": true
+      },
+      "responsiveAdmin": {
+        "exists": true,
+        "display": "none",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": true,
+        "display": "block",
+        "width": 340,
+        "height": 515,
+        "visible": true
+      },
+      "confirmModal": {
+        "exists": true,
+        "display": "block",
+        "width": 620,
+        "height": 238,
+        "visible": true
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "DAE KWANG\nTECH\n대광테크\n대시보드\n\n콘텐츠 관리\n\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n\n사이트 관리\n\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n\n시스템 관리\n\n사용자 관리\n로그 관리\n백업 관리\nConsole v1.0.0\n대광테크 관리자 콘솔\n\n웹사이트 콘텐츠 및 공지사항을 효율적으로 관리하세요.\n\n⌘ + K\nDemo admin mode\n5\n관리자 알림\n5건\nDemo admin mode\n\n서버 인증이 구성되지 않아 데모 fallback으로 접속 중입니다.\n\nHOLD\n관리자 로그인\n\ndgtc66 계정으로 로그인했습니다.\n\n20:22\n이미지 업로드\n\n메인 배너 01 이미지가 업로드 되었습니다.\n\n14:30\n공지사항 등록\n\n새 공지 '홈페이지 리뉴얼 오픈 안내'가 등록되었습니다.\n\n14:28\n공지사항 수정\n\n공지 'ISO 45001 인증 획득 안내'가 수정되었습니다.\n\n11:20\n관\n\n관리자\ndgtc66 · admin@daekwang.co.kr\n\n로그아웃\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수정\n6건\n\n관리자 작업 로그\n\n자세히 보기 >\n이미지 업로드\n공지 등록\n백업 생성\nSEO 설정\n이미지 관리\n정렬 변경\n최신순\n노출순\n메인 배너\n회사소개\n설비 이미지\n제품 이미지\n이미지 업로드 / 드래그 앤 드롭\nJPG, PNG, WEBP 파일 (최대 10M"
+    },
+    "afterLogout": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/admin",
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": true,
+      "hasLoginForm": true,
+      "hasLoginError": false,
+      "hasAdminConsole": false,
+      "hasDemoText": true,
+      "desktopAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": false,
+        "visible": false
+      },
+      "snippet": "×\nDAE KWANG\nTECH\n대광테크\nSECURE ADMIN CONSOLE\n관리자 로그인\n\n대광테크 웹사이트 콘텐츠 관리 콘솔에 접속합니다.\n\n관리자 아이디\n비밀번호\n로그인\n\n서버 세션 인증은 운영 secret 구성 후 활성화됩니다. 현재는 관리자 리뷰용 데모 보호 흐름으로만 임시 진입합니다."
+    }
+  },
+  "public": {
+    "home390": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/",
+      "title": "대광테크 기업 홈페이지 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": false,
+      "hasDemoText": false,
+      "desktopAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": true,
+        "display": "block",
+        "width": 390,
+        "height": 3536,
+        "visible": true
+      },
+      "publicBottomNav": {
+        "exists": true,
+        "display": "grid",
+        "width": 366,
+        "height": 66,
+        "visible": true
+      },
+      "snippet": "본문 바로가기\nDAE KWANG TECH\nMobile App\n\nPRECISION MANUFACTURING\n\n정밀 제조 역량을\n한 화면에서 확인합니다\n\n대광테크는 정밀가공 기술과 품질 중심의 제조 역량을 소개하는 기업 홈페이지입니다.\n\n회사소개\n사업영역\n수행영역\n공지사항\n1998\n설립 연도\n200+\n파트너사\n1,000+\n프로젝트 수행\n25+\n산업 분야\nCOMPANY\n회사 개요\n신뢰\n\n정직과 책임을 바탕으로 고객의 신뢰를 지켜갑니다.\n\n정밀\n\n마이크로 단위의 정밀함으로 최고의 품질을 만듭니다.\n\n혁신\n\n지속적인 기술 혁신으로 미래를 선도합니다.\n\n상생\n\n고객, 협력사와 함께 지속 가능한 성장을 추구합니다.\n\nBUSINESS\n사업영역\nBusiness\n정밀 가공 부품\n\n고정밀 CNC 가공으로 완성하는 복잡 형상 부품\n\nBusiness\n금속 처리\n\n표면 처리 및 열처리 기술로 내구성과 품질 향상\n\nBusiness\n지그 & 장비 부품\n\n생산성과 정밀도를 높이는 맞춤형 지그 및 부품\n\nBusiness\n프로토타입 & 소량 생산\n\n신속한 제작과 유연한 대응으로 고객 개발 단계 지원\n\nPROJECTS\n대표 수행 영역\nInfra\n정밀 가공 설비\n\n고정밀 CNC / 복합 가공기\n\nInfra\n자동화 시스템\n\n로봇 자동화 및 무인 운영 시스템\n\nInfra\n측정 & 검사실\n\n전용 측정실 및 항온·항습 관리\n\nNOTICE\n대광테크 소식\n전체\n공지\n대광테크 홈페이지 리뉴얼 오픈 안내\n2024-05-20\n휴무\n2024년 하계 휴가 일정 안내\n2024-05-10\n인증\nISO 45001 인증 획득 안내\n2024-04-25\n홈\n회사\n사업\n프로젝트"
+    },
+    "notice390": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/notice",
+      "title": "공지사항 | 대광테크",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": false,
+      "hasDemoText": false,
+      "desktopAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": true,
+        "display": "grid",
+        "width": 366,
+        "height": 66,
+        "visible": true
+      },
+      "snippet": "본문 바로가기\nDAE KWANG\nTECH\nKR ⌄\nADMIN\n☰\nNOTICE\n홈 > 공지사항\n공지사항\n\n대광테크의 주요 안내와 최신 소식을 확인하실 수 있습니다.\n\nDAE KWANG TECH\n5\n공개 공지\n2024-05-20\n최근 등록일\n1\n중요 공지\n5\n검색 결과\n최근 등록일 2024-05-20\n검색\n최신순\n오래된순\n중요 공지 우선\n전체\n공지\n인증\n설비\n휴무\n기타\n중요\n대광테크 홈페이지 리뉴얼 오픈 안내\n\n대광테크 홈페이지가 새롭게 리뉴얼되었습니다. 정밀가공, 설비 인프라, 품질관리 정보를 더 명확하게 확인하실 수 있도록 화면과 콘텐츠 구조를 정비했습니다.\n\n2024-05-20\n공지\n중요대광테크 홈페이지 리뉴얼 오픈 안내\n\n대광테크 홈페이지가 새롭게 리뉴얼되었습니다. 정밀가공, 설비 인프라, 품질관리 정보를 더 명확하게 확인하실 수 있도록 화면과 콘텐츠 구조를 정비했습니다.\n\n2024-05-20\n자세히 보기\n휴무\n2024년 하계 휴가 일정 안내\n\n2024년 하계 휴가 일정을 안내드립니다. 방문 및 업무 일정 확인이 필요한 경우 사전 일정을 확인해 주시기 바랍니다.\n\n2024-05-10\n자세히 보기\n인증\nISO 45001 인증 획득 안내\n\n대광테크가 ISO 45001 인증을 획득했습니다. 안전한 작업 환경과 체계적인 운영 기준을 바탕으로 안정적인 제조 역량을 유지하겠습니다.\n\n2024-04-25\n자세히 보기\n설비\n설비 증설에 따른 생산 능력 확대 안내\n\n설비 증설로 생산 대응력을 확대했습니다. 정밀 부품 생산과 검사 대응 범위를 안정적으로 확장해 품질 중심 운영을 이어가겠습니다.\n\n2024-04-18\n자세히 "
+    },
+    "process390": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/process",
+      "title": "대광테크 제조 프로세스 | 정밀 생산 흐름",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": false,
+      "hasDemoText": false,
+      "desktopAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": false,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": true,
+        "display": "grid",
+        "width": 366,
+        "height": 66,
+        "visible": true
+      },
+      "snippet": "본문 바로가기\nDAE KWANG\nTECH\nKR ⌄\nADMIN\n☰\n\nMANUFACTURING PROCESS\n\n제조 프로세스\n체계적인 제조 흐름으로\n일관된 품질을 완성합니다\n\n\n요구 분석부터 출하까지 각 단계의 기준을 정리해 안정적인 생산 흐름을 유지합니다.\n\n01\n03\n01\n요구 분석\n고객 요구와 도면 검토\n02\n설계\n가공 전략 수립\n03\n가공\n정밀 장비 생산\n04\n검사\n품질 검증\n05\n출하\n안전한 전달\n\nMANUFACTURING PROCESS\n\n체계적인 제조 흐름으로 일관된 품질을 완성합니다\n\n요구 분석부터 출하까지 각 단계의 기준을 정리해 안정적인 생산 흐름을 유지합니다.\n\n제조 프로세스\n\n체계적인 프로세스로\n일관된 품질을 약속합니다\n프로세스 자세히 보기 →\n01\n⌁\n고객 요구 분석\n\n단계별 기준과 기록 관리\n\n02\n⌁\n설계 & 엔지니어링\n\n단계별 기준과 기록 관리\n\n03\n⌁\n정밀 가공\n\n단계별 기준과 기록 관리\n\n04\n⌁\n표면 처리 / 열처리\n\n단계별 기준과 기록 관리\n\n05\n⌁\n검사 & 품질 검증\n\n단계별 기준과 기록 관리\n\n06\n⌁\n조립 / 포장 / 출하\n\n단계별 기준과 기록 관리\n\n6단계\n표준 프로세스\n100%\n검사 흐름\n체계화\n공정 관리\n기록\n품질 데이터\nDAE KWANG\nTECH\n대광테크\n\n경기도 화성시 마도면 청원산단5길 60-26\n\nT. 031-355-5400\n\nF. 031-355-5402\n\n© DAE KWANG TECH All rights reserved.\n\n회사 소개\n품질 관리\n공지사항\n홈\n회사\n사업\n프로젝트\n소식"
+    },
+    "home1440": {
+      "url": "https://dgtc.ejdzm90.workers.dev/#/",
+      "title": "대광테크 기업 홈페이지 | DAE KWANG TECH",
+      "overflowX": 0,
+      "hasLoginGate": false,
+      "hasLoginForm": false,
+      "hasLoginError": false,
+      "hasAdminConsole": false,
+      "hasDemoText": false,
+      "desktopAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "responsiveAdmin": {
+        "exists": false,
+        "visible": false
+      },
+      "notificationPanel": {
+        "exists": false,
+        "visible": false
+      },
+      "confirmModal": {
+        "exists": false,
+        "visible": false
+      },
+      "publicMobileApp": {
+        "exists": true,
+        "display": "block",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "publicBottomNav": {
+        "exists": true,
+        "display": "none",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      },
+      "snippet": "본문 바로가기\nDAE KWANG\nTECH\n대광테크\n기술력\n제품/서비스\n제조 프로세스\n품질 관리\n설비/시설\n회사 소개\n공지사항\nKR ⌄\nADMIN\n\nPRECISION YOUR SUCCESS\n\nDAE KWANG TECH\n정밀함이 만드는 차이,\n그 차이가 경쟁력입니다\n\n\n초정밀 가공 · 금속 처리 · 품질 관리까지, 완벽을 향한 우리의 기준은 타협하지 않습니다.\n\n01\n03\n◎\nTECHNOLOGY\n초정밀 가공 기술\n⬡\nQUALITY\n신뢰를 만드는 품질\n⚙\nPROCESS\n체계적인 제조 프로세스\n▥\nFACILITY\n최첨단 설비 인프라\n✈\nAPPLICATION\n다양한 산업 분야 적용\n\n제품/서비스\n\n정밀 기술로 완성하는\n최고의 솔루션\n\n다양한 산업의 요구를 충족하는 고정밀 부품 및 금속 가공 솔루션을 제공합니다.\n\n자세히 보기 →\n정밀 가공 부품\n\n고정밀 CNC 가공으로 완성하는 복잡 형상 부품\n\n금속 처리\n\n표면 처리 및 열처리 기술로 내구성과 품질 향상\n\n지그 & 장비 부품\n\n생산성과 정밀도를 높이는 맞춤형 지그 및 부품\n\n프로토타입 & 소량 생산\n\n신속한 제작과 유연한 대응으로 고객 개발 단계 지원\n\n조립 & 모듈\n\n가공부터 조립까지 원스톱 솔루션 제공\n\n제조 프로세스\n\n체계적인 프로세스로\n일관된 품질을 약속합니다\n프로세스 자세히 보기 →\n01\n⌁\n고객 요구 분석\n\n단계별 기준과 기록 관리\n\n02\n⌁\n설계 & 엔지니어링\n\n단계별 기준과 기록 관리\n\n03\n⌁\n정밀 가공\n\n단계별 기준과 기록 관리\n\n04\n⌁\n표면 처리 / 열처리\n\n단계별 기준과 기록 관리\n\n05\n⌁\n검사 & 품질 검증\n\n단계별 기준과 기록 관리\n\n06"
+    }
+  },
+  "consoleErrors": [],
+  "network": []
+}

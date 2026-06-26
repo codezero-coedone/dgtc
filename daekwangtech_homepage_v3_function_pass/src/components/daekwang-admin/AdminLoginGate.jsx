@@ -5,6 +5,7 @@ import { AdminApiError, loginAdmin } from "../../services/adminApiClient.js";
 export const ADMIN_AUTH_STORAGE_KEY = "daekwang.admin.auth.v1";
 const DEMO_FALLBACK_ADMIN_ID = "dgtc66";
 const DEMO_FALLBACK_ADMIN_PASSWORD = "1234";
+const SERVER_AUTH_ATTEMPT_ENABLED = false;
 
 export function readAdminAuthSession() {
   if (typeof window === "undefined") return null;
@@ -49,7 +50,7 @@ export function AdminLoginGate({ onAuthenticated }) {
     () => [
       ["접근 상태", "잠김"],
       ["보호 범위", "콘텐츠 관리 콘솔"],
-      ["인증 방식", "서버 세션 우선"],
+      ["인증 방식", "데모 게이트"],
     ],
     [],
   );
@@ -64,7 +65,7 @@ export function AdminLoginGate({ onAuthenticated }) {
 
   const canUseDemoFallback = (apiError) => {
     if (apiError instanceof AdminApiError) {
-      return apiError.code === "SERVER_AUTH_NOT_CONFIGURED" || apiError.status === 404 || apiError.status === 405;
+      return apiError.code === "SERVER_AUTH_NOT_CONFIGURED" || apiError.status === 404 || apiError.status === 405 || apiError.status === 503;
     }
     return true;
   };
@@ -76,14 +77,33 @@ export function AdminLoginGate({ onAuthenticated }) {
       return;
     }
     setSubmitting(true);
+    const trimmedUserId = userId.trim();
+
+    if (!SERVER_AUTH_ATTEMPT_ENABLED) {
+      if (trimmedUserId !== DEMO_FALLBACK_ADMIN_ID || password !== DEMO_FALLBACK_ADMIN_PASSWORD) {
+        setError("아이디 또는 비밀번호가 올바르지 않습니다.");
+        setSubmitting(false);
+        return;
+      }
+      setError("");
+      setSuccess(true);
+      const session = writeAdminAuthSession(trimmedUserId, {
+        mode: "demo-local-fallback",
+        serverAuth: false,
+        hold: "SERVER_AUTH_DISABLED_DEMO_FALLBACK",
+      });
+      window.setTimeout(() => onAuthenticated(session), 260);
+      return;
+    }
+
     try {
-      const serverSession = await loginAdmin(userId.trim(), password);
+      const serverSession = await loginAdmin(trimmedUserId, password);
       if (serverSession?.authenticated !== true) {
         throw new Error("SERVER_AUTH_UNAVAILABLE");
       }
       setError("");
       setSuccess(true);
-      const session = writeAdminAuthSession(serverSession.userId || userId.trim(), {
+      const session = writeAdminAuthSession(serverSession.userId || trimmedUserId, {
         mode: serverSession.mode || "server-session",
         expiresAt: serverSession.expiresAt,
         serverAuth: true,
@@ -96,17 +116,17 @@ export function AdminLoginGate({ onAuthenticated }) {
         return;
       }
       // Fallback-only path: this preserves the current admin demo while Cloudflare auth secrets are not configured.
-      if (userId.trim() !== DEMO_FALLBACK_ADMIN_ID || password !== DEMO_FALLBACK_ADMIN_PASSWORD) {
+      if (trimmedUserId !== DEMO_FALLBACK_ADMIN_ID || password !== DEMO_FALLBACK_ADMIN_PASSWORD) {
         setError("아이디 또는 비밀번호가 올바르지 않습니다.");
         setSubmitting(false);
         return;
       }
       setError("");
       setSuccess(true);
-      const session = writeAdminAuthSession(userId.trim(), {
+      const session = writeAdminAuthSession(trimmedUserId, {
         mode: "demo-local-fallback",
         serverAuth: false,
-        hold: "SERVER_AUTH_NOT_CONFIGURED_OR_API_UNAVAILABLE",
+        hold: apiError instanceof AdminApiError && apiError.status === 503 ? "SERVER_AUTH_503_DEMO_FALLBACK" : "SERVER_AUTH_NOT_CONFIGURED_OR_API_UNAVAILABLE",
       });
       window.setTimeout(() => onAuthenticated(session), 260);
     }
@@ -140,7 +160,7 @@ export function AdminLoginGate({ onAuthenticated }) {
             {error ? <p className="admin-login-error">{error}</p> : null}
             {success ? <p className="admin-login-success">관리자 인증이 완료되었습니다.</p> : null}
             <button className="admin-login-submit" disabled={submitting} type="submit">{submitting ? "인증 확인 중" : "로그인"}</button>
-            <p className="admin-login-note">서버 세션 인증을 우선 사용합니다. 서버 secret 미구성 시 현재 데모 보호 흐름으로만 임시 진입합니다.</p>
+            <p className="admin-login-note">서버 세션 인증은 운영 secret 구성 후 활성화됩니다. 현재는 관리자 리뷰용 데모 보호 흐름으로만 임시 진입합니다.</p>
           </form>
         </div>
       ) : (

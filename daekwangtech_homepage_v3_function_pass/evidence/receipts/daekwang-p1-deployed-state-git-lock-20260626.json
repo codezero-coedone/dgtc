@@ -1,0 +1,65 @@
+{
+  "lock": "DAEKWANG_P1_DEPLOYED_STATE_GIT_COMMIT_PUSH_LOCK_V1",
+  "repoPath": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "branch": "main",
+  "remote": "https://github.com/codezero-coedone/dgtc.git",
+  "liveUrl": "https://dgtc.ejdzm90.workers.dev",
+  "deployVersionId": "acda26e5-e850-455b-a009-83f7f25d548a",
+  "liveAssets": [
+    "/assets/index-C_zP2GRc.css",
+    "/assets/index-MQKdyNFz.js"
+  ],
+  "buildResult": {
+    "staticCheck": "PASS",
+    "build": "PASS_WITH_TAILWIND_CONTENT_WARNING",
+    "outputAssets": [
+      "dist/assets/index-C_zP2GRc.css",
+      "dist/assets/index-MQKdyNFz.js"
+    ]
+  },
+  "smokeResultSummary": {
+    "source": [
+      "evidence/daekwang_p1_deploy_smoke/live/live-smoke.json",
+      "evidence/daekwang_p1_git_lock/live-quick-smoke.json"
+    ],
+    "cacheBustedUrls": [
+      "https://dgtc.ejdzm90.workers.dev/?v=p1-visual-20260626#/",
+      "https://dgtc.ejdzm90.workers.dev/?v=p1-visual-20260626#/process",
+      "https://dgtc.ejdzm90.workers.dev/?v=p1-visual-20260626#/notice",
+      "https://dgtc.ejdzm90.workers.dev/?v=p1-visual-20260626#/admin"
+    ],
+    "fakeKrRemoved": "PASS",
+    "processNestedDarkBandRemoved": "PASS",
+    "adminLoginDemoFallback": "PASS",
+    "wrongCredentialBlocked": "PASS",
+    "notificationPanel": "PASS",
+    "adminPreviewPublicFrame": "PASS",
+    "consoleErrors": 0,
+    "horizontalOverflow": 0
+  },
+  "committedFiles": [
+    "src/App.jsx",
+    "src/admin-tokens.css",
+    "src/components/daekwang-admin/AdminLoginGate.jsx",
+    "src/components/daekwang-admin/AdminPreviewModal.jsx",
+    "src/components/daekwang-admin/AdminSectionRenderer.jsx",
+    "src/components/daekwang-admin/AdminTopbar.jsx",
+    "src/components/public/PublicMobileAppLayer.jsx",
+    "src/pages/DaekwangAdminConsole.jsx",
+    "styles.css",
+    "evidence/daekwang_p0_admin_fix/",
+    "evidence/daekwang_p1_visual_recovery/",
+    "evidence/daekwang_p1_deploy_smoke/",
+    "evidence/daekwang_p1_git_lock/",
+    "evidence/receipts/daekwang-p0-admin-login-fake-control-responsive-authority-fix-20260626.json",
+    "evidence/receipts/daekwang-public-web-admin-visual-recovery-p1-20260626.json",
+    "evidence/receipts/daekwang-p1-visual-recovery-deploy-public-smoke-20260626.json",
+    "evidence/receipts/daekwang-p1-deployed-state-git-lock-20260626.json"
+  ],
+  "remainingHold": [
+    "real device/customer-review confirmation",
+    "server auth/D1/R2 production",
+    "Tailwind content warning P2"
+  ],
+  "judgment": "PASS_HOLD"
+}

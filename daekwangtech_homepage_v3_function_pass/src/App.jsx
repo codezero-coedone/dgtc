@@ -70,7 +70,6 @@ function Header({ active, menuOpen = false, onMenu }) {
         ))}
       </nav>
       <div className="header-right">
-        <button aria-label="현재 언어: 한국어" className="lang" title="현재 한국어 페이지입니다" type="button">KR <span>⌄</span></button>
         <a className="admin-mini-link" href="#/admin">ADMIN</a>
         <button aria-controls="mobile-menu" aria-expanded={menuOpen ? "true" : "false"} aria-label="메뉴 열기" className="menu-button" type="button" onClick={onMenu}>☰</button>
       </div>
@@ -175,6 +174,32 @@ function ProcessBand() {
   );
 }
 
+function ProcessPageSection() {
+  return (
+    <section className="process-page-section">
+      <div className="process-page-head">
+        <p className="section-kicker">MANUFACTURING FLOW</p>
+        <h3>요구 분석부터 출하까지, 같은 기준으로 움직입니다</h3>
+        <p>각 단계는 도면 검토, 가공 조건 설정, 품질 확인, 출하 기록으로 이어지며 공정별 책임과 검증 흐름을 분명하게 관리합니다.</p>
+      </div>
+      <div className="process-page-steps">
+        {processSteps.map((step, index) => (
+          <article className="process-page-step" key={step}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h4>{step}</h4>
+            <p>{index < 2 ? "요구 조건과 제작 기준을 정리합니다." : index < 4 ? "정밀 장비와 공정 기준에 맞춰 생산합니다." : "검사 결과와 출하 상태를 기록합니다."}</p>
+          </article>
+        ))}
+      </div>
+      <div className="process-page-principles">
+        <article><strong>기준 관리</strong><p>공정별 체크 포인트를 정리해 반복 품질을 유지합니다.</p></article>
+        <article><strong>검사 연계</strong><p>생산 단계와 품질 검증을 분리하지 않고 흐름 안에서 관리합니다.</p></article>
+        <article><strong>기록 기반</strong><p>작업 이력과 결과를 남겨 다음 생산의 기준으로 활용합니다.</p></article>
+      </div>
+    </section>
+  );
+}
+
 function ProductsPreview() {
   return (
     <section className="split-section wrap">
@@ -226,11 +251,12 @@ function TrustPreview({ posts }) {
 }
 
 function SubPage({ page, detail }) {
+  const isProcessPage = page.id === "process";
   return (
     <>
       <section className="sub-main wrap">
         <div className="section-intro"><p className="section-kicker">{page.eyebrow}</p><h2>{page.headline}</h2><p>{page.summary}</p></div>
-        {detail.cards ? <CardGrid cards={detail.cards} /> : <ProcessBand />}
+        {detail.cards ? <CardGrid cards={detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand />}
       </section>
       {detail.metrics ? <MetricRow items={detail.metrics} /> : null}
     </>

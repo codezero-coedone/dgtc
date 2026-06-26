@@ -1,0 +1,101 @@
+{
+  "lock": "DAEKWANG_P0_ADMIN_LOGIN_FAKE_CONTROL_AND_RESPONSIVE_AUTHORITY_FIX",
+  "public": "https://dgtc.ejdzm90.workers.dev/#/",
+  "deployVersion": "babb88f6-9b81-4047-b0d8-da404a4fdfda",
+  "timestamp": "2026-06-26T11:24:33.425Z",
+  "changedFiles": [
+    "src/components/daekwang-admin/AdminLoginGate.jsx",
+    "src/components/daekwang-admin/AdminTopbar.jsx",
+    "src/components/daekwang-admin/AdminSectionRenderer.jsx",
+    "src/pages/DaekwangAdminConsole.jsx",
+    "src/admin-tokens.css",
+    "styles.css"
+  ],
+  "auth": {
+    "before": "server-auth fetch attempted; fresh review blocked/noisy when /api/admin/login returned 503",
+    "after": "explicit demo-local-fallback while server auth remains HOLD; no server auth request is made in demo mode",
+    "wrongCredentialBlocked": true,
+    "serverAuthHold": true,
+    "rawPasswordStored": false
+  },
+  "notification": {
+    "before": "bell badge was hardcoded/fake",
+    "after": "bell opens real notification panel; badge count is derived from visible notification items",
+    "deployedNotificationVisible": true
+  },
+  "responsiveAuthority": {
+    "threshold": "0-1199px responsive admin shell; 1200px+ desktop admin shell",
+    "compactMobileDashboard": true,
+    "admin390Overflow": 0,
+    "admin768Overflow": 0,
+    "admin820Overflow": 0,
+    "admin1024ResponsiveVisible": true,
+    "admin1024DesktopHidden": true,
+    "admin1440DesktopVisible": true
+  },
+  "publicQuickSafety": {
+    "home390Overflow": 0,
+    "notice390Overflow": 0,
+    "process390Overflow": 0,
+    "routePaddingAddedForMobileSubroutes": true,
+    "processDesignStillP1": true,
+    "krSelectorStillP1": true
+  },
+  "commands": [
+    "node scripts/check-static.mjs (typecheck script) PASS",
+    "node scripts/check-static.mjs (lint script) PASS",
+    "node node_modules/vite/bin/vite.js build PASS",
+    "node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4199 smoke 200 PASS",
+    "node node_modules/wrangler/bin/wrangler.js deploy PASS"
+  ],
+  "deployedSmoke": {
+    "loginInitialGate": true,
+    "wrongCredentialBlocked": true,
+    "demoLoginWorked": true,
+    "notificationVisible": true,
+    "logoutReturnedToGate": true,
+    "consoleErrors": [],
+    "adminNetworkCalls": [],
+    "overflow": {
+      "admin390": 0,
+      "admin768": 0,
+      "admin820": 0,
+      "admin1024": 0,
+      "admin1440": 0,
+      "home390": 0,
+      "notice390": 0,
+      "process390": 0,
+      "home1440": 0
+    }
+  },
+  "evidence": {
+    "smokeJson": "evidence/daekwang_p0_admin_fix/final-deployed-smoke.json",
+    "screenshots": [
+      "evidence/daekwang_p0_admin_fix/final-login-390.png",
+      "evidence/daekwang_p0_admin_fix/final-wrong-390.png",
+      "evidence/daekwang_p0_admin_fix/final-after-login-390.png",
+      "evidence/daekwang_p0_admin_fix/final-after-login-768.png",
+      "evidence/daekwang_p0_admin_fix/final-after-login-820.png",
+      "evidence/daekwang_p0_admin_fix/final-after-login-1024.png",
+      "evidence/daekwang_p0_admin_fix/final-after-login-1440.png",
+      "evidence/daekwang_p0_admin_fix/final-notification-1440.png",
+      "evidence/daekwang_p0_admin_fix/final-after-logout-1440.png",
+      "evidence/daekwang_p0_admin_fix/final-home-390.png",
+      "evidence/daekwang_p0_admin_fix/final-notice-390.png",
+      "evidence/daekwang_p0_admin_fix/final-process-390.png",
+      "evidence/daekwang_p0_admin_fix/final-home-1440.png"
+    ]
+  },
+  "remainingP0": [],
+  "remainingP1": [
+    "Public KR language selector remains documented for next cleanup; language switching is not implemented.",
+    "Public process/manufacturing section still needs visual premium cleanup; not redesigned in this P0 patch.",
+    "Server auth/D1/R2 production auth remains HOLD outside this patch."
+  ],
+  "finalJudgment": "PASS_HOLD_P0_FIXED_SERVER_AUTH_OPERATION_HOLD",
+  "preview": {
+    "url": "http://127.0.0.1:4199/#/admin",
+    "status": 200,
+    "verifiedAt": "2026-06-26T11:28:50.884Z"
+  }
+}
