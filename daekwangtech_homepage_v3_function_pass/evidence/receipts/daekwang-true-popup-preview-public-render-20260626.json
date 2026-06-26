@@ -1,0 +1,108 @@
+{
+  "lock": "DAEKWANG_TRUE_POPUP_PREVIEW_PUBLIC_RENDER_FIX_V1",
+  "createdAt": "2026-06-27T00:00:00+09:00",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "rootCause": {
+    "fakePreviewComponent": "src/components/daekwang-admin/AdminSectionRenderer.jsx",
+    "fakePreviewBehavior": "PopupManagerPanel passed POPUP PREVIEW as title, description, and metadata rows only.",
+    "modalLimitation": "src/components/daekwang-admin/AdminPreviewModal.jsx rendered non-notice previews as raw description/rows rather than public-facing popup UI.",
+    "publicRendererMissing": true
+  },
+  "changedFiles": [
+    "src/App.jsx",
+    "src/admin-tokens.css",
+    "src/components/daekwang-admin/AdminPreviewModal.jsx",
+    "src/components/daekwang-admin/AdminSectionRenderer.jsx",
+    "src/components/public/PublicPopupRenderer.jsx",
+    "src/data/daekwangAdminData.js",
+    "styles.css"
+  ],
+  "implementation": {
+    "publicPopupRenderer": "src/components/public/PublicPopupRenderer.jsx",
+    "adminPreviewUsesPublicRenderer": true,
+    "popupManagerPreviewUsesActualPopupData": true,
+    "popupListRowPreviewAdded": true,
+    "publicHomepagePopupLayerAdded": true,
+    "desktopMobilePreviewToggle": true,
+    "imageUrlFieldAdded": true
+  },
+  "commands": {
+    "staticCheck": {
+      "command": "node scripts/check-static.mjs",
+      "result": "PASS"
+    },
+    "build": {
+      "command": "node node_modules/vite/bin/vite.js build",
+      "result": "PASS",
+      "assets": [
+        "dist/assets/index-CKUB4V21.css",
+        "dist/assets/index-BaQIWAQM.js"
+      ],
+      "warning": "Tailwind content warning remains existing P2 HOLD; build passed."
+    },
+    "preview": {
+      "url": "http://127.0.0.1:4199/",
+      "result": "PASS"
+    },
+    "deploy": {
+      "command": "wrangler deploy",
+      "result": "PASS",
+      "versionId": "88f335b1-fd86-4dd4-b8b6-e094d75dd258",
+      "url": "https://dgtc.ejdzm90.workers.dev"
+    }
+  },
+  "localSmoke": {
+    "adminLogin": "PASS",
+    "wrongCredentialBlocked": "PASS",
+    "popupVisualPreview": "PASS",
+    "consoleErrors": 0,
+    "overflow": {
+      "home390": false,
+      "home1440": false,
+      "notice390": false,
+      "admin390": false,
+      "admin1024": false,
+      "admin1440": false
+    }
+  },
+  "liveSmoke": {
+    "cacheBustedBase": "https://dgtc.ejdzm90.workers.dev/?v=true-popup-preview-20260627",
+    "adminLogin": "PASS",
+    "wrongCredentialBlocked": "PASS",
+    "popupVisualPreview": "PASS",
+    "publicPopupRender": "PASS",
+    "consoleErrors": 0,
+    "overflow": {
+      "home390": false,
+      "home1440": false,
+      "notice390": false,
+      "adminPreview390": false
+    }
+  },
+  "screenshots": {
+    "local": [
+      "evidence/daekwang_true_popup_preview_public_render/public-popup-home-390.png",
+      "evidence/daekwang_true_popup_preview_public_render/public-popup-home-1440.png",
+      "evidence/daekwang_true_popup_preview_public_render/admin-popup-section-1440.png",
+      "evidence/daekwang_true_popup_preview_public_render/admin-popup-preview-1440.png",
+      "evidence/daekwang_true_popup_preview_public_render/admin-popup-preview-1024.png",
+      "evidence/daekwang_true_popup_preview_public_render/admin-popup-preview-390.png",
+      "evidence/daekwang_true_popup_preview_public_render/admin-popup-preview-mobile-toggle-1440.png"
+    ],
+    "live": [
+      "evidence/daekwang_true_popup_preview_public_render/live/live-public-popup-home-390.png",
+      "evidence/daekwang_true_popup_preview_public_render/live/live-public-popup-home-1440.png",
+      "evidence/daekwang_true_popup_preview_public_render/live/live-admin-popup-section-1440.png",
+      "evidence/daekwang_true_popup_preview_public_render/live/live-admin-popup-preview-1440.png",
+      "evidence/daekwang_true_popup_preview_public_render/live/live-admin-popup-preview-390.png",
+      "evidence/daekwang_true_popup_preview_public_render/live/live-notice-390.png"
+    ]
+  },
+  "remainingHold": [
+    "Actual server-side popup persistence for all visitors remains dependent on production D1/KV/R2 operation status.",
+    "Real image upload to R2 remains HOLD; imageUrl is currently metadata/url based.",
+    "Admin authentication production server session remains HOLD.",
+    "Unrelated logo source asset issue remains outside this popup patch."
+  ],
+  "finalJudgment": "PASS"
+}

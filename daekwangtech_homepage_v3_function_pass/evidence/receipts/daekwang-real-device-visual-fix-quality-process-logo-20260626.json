@@ -1,0 +1,73 @@
+{
+  "lock": "DAEKWANG_REAL_DEVICE_VISUAL_FIX_QUALITY_PROCESS_LOGO_V1",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "baseCommit": "b0f87cf018e3e94a2675f644e9325059e78dfe20",
+  "date": "2026-06-26",
+  "beforeFindings": {
+    "logo": "Public lockup displayed split DAE KWANG / TECH rhythm and mobile app label could clip on narrow real-device view.",
+    "process": "Mobile process route spent the first screen on oversized hero plus feature rail, and process section rhythm felt generic. Desktop process had a 6-step card grid with uneven final row.",
+    "quality": "Quality route lower metric strip looked like an unfinished/certification panel and connected weakly to footer. Mobile showed cramped lower content under fixed bottom dock."
+  },
+  "changedFiles": [
+    "src/App.jsx",
+    "src/components/brand/DaekwangLogoLockup.jsx",
+    "src/components/public/PublicMobileAppLayer.jsx",
+    "src/styles/brand-tokens.css",
+    "styles.css"
+  ],
+  "fixSummary": {
+    "logo": "Normalized brand lockup text to DAEKWANG TECH, tightened wordmark spacing, and constrained mobile header logo sizing.",
+    "quality": "Replaced the quality lower metric/certification strip with a premium quality checkpoint panel using manufacturing inspection steps.",
+    "process": "Expanded process detail into a practical 7-step manufacturing flow and removed mobile feature rail on process/quality subroutes to reduce first-screen clutter."
+  },
+  "localSmoke": {
+    "staticCheck": "PASS",
+    "build": "PASS_WITH_TAILWIND_CONTENT_WARNING",
+    "databaseMonitoringResidue": "NO_MATCH",
+    "sourceChecks": "PASS",
+    "screenshots": [
+      "evidence/daekwang_real_device_visual_fix_quality_process_logo/before",
+      "evidence/daekwang_real_device_visual_fix_quality_process_logo/after"
+    ]
+  },
+  "deploy": {
+    "command": "node ..\\node_modules\\wrangler\\bin\\wrangler.js deploy --config ..\\wrangler.jsonc",
+    "url": "https://dgtc.ejdzm90.workers.dev",
+    "versionId": "5942c668-2ec6-4409-8608-1ffe12c876d9",
+    "uploadedAssets": [
+      "/index.html",
+      "/assets/index-CJshmM2g.css",
+      "/assets/index-Ct_XAp65.js"
+    ]
+  },
+  "liveSmoke": {
+    "cacheBustedUrls": [
+      "https://dgtc.ejdzm90.workers.dev/?v=quality-process-logo-fix-20260626#/",
+      "https://dgtc.ejdzm90.workers.dev/?v=quality-process-logo-fix-20260626#/process",
+      "https://dgtc.ejdzm90.workers.dev/?v=quality-process-logo-fix-20260626#/quality",
+      "https://dgtc.ejdzm90.workers.dev/?v=quality-process-logo-fix-20260626#/notice",
+      "https://dgtc.ejdzm90.workers.dev/?v=quality-process-logo-fix-20260626#/admin"
+    ],
+    "status": 200,
+    "assets": [
+      "/assets/index-CJshmM2g.css",
+      "/assets/index-Ct_XAp65.js"
+    ],
+    "screenshots": "evidence/daekwang_real_device_visual_fix_quality_process_logo/live"
+  },
+  "regressionProtection": {
+    "adminLoginLogicTouched": false,
+    "notificationLogicTouched": false,
+    "serverAuthD1R2Touched": false,
+    "fakeKrReintroduced": false,
+    "databaseMonitoringResidue": "NO_MATCH",
+    "processNestedBand": "NOT_REINTRODUCED"
+  },
+  "remainingHold": [
+    "Real-device final customer-review confirmation",
+    "Server auth/D1/R2 production",
+    "Tailwind content warning P2",
+    "Chrome headless emitted environment-level USB/webapp messages unrelated to app console"
+  ],
+  "judgment": "PASS_HOLD"
+}

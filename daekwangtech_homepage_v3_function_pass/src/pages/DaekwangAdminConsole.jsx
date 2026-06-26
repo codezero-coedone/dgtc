@@ -6,7 +6,6 @@ import { AdminPreviewModal } from "../components/daekwang-admin/AdminPreviewModa
 import { AdminSectionRenderer } from "../components/daekwang-admin/AdminSectionRenderer.jsx";
 import { AdminSidebar } from "../components/daekwang-admin/AdminSidebar.jsx";
 import { AdminLoginGate, clearAdminAuthSession, readAdminAuthSession } from "../components/daekwang-admin/AdminLoginGate.jsx";
-import { AdminMobileAppLayer } from "../components/daekwang-admin/AdminMobileAppLayer.jsx";
 import { AdminToast } from "../components/daekwang-admin/AdminToast.jsx";
 import { AdminTopbar } from "../components/daekwang-admin/AdminTopbar.jsx";
 import { logoutAdmin } from "../services/adminApiClient.js";
@@ -40,6 +39,8 @@ function imagePreviewPayload(image) {
     kind: "IMAGE PREVIEW",
     title: image.title,
     imageUrl: image.imageUrl,
+    imageCategory: image.category,
+    imageAsset: image,
     rows: [
       ["파일명", image.fileName],
       ["파일크기", image.fileSize],
@@ -594,18 +595,6 @@ export function DaekwangAdminConsole() {
           />
           {renderAdminContent("dk-content--desktop")}
         </main>
-      </div>
-      <div className="responsive-admin-app-shell">
-        <AdminMobileAppLayer
-          activeSection={activeSection}
-          authSession={authSession}
-          imageCount={state.imageAssets.length}
-          noticeCount={state.notices.length}
-          recentLogs={state.activityLogs}
-          onLogout={requestLogout}
-          onNavigate={setActiveSection}
-        />
-        {renderAdminContent("dk-content--mobile", { compactDashboard: true })}
       </div>
       <AdminToast toast={toast} onClose={() => setToast(null)} />
       <AdminConfirmModal confirm={confirm} onCancel={() => setConfirm(null)} />

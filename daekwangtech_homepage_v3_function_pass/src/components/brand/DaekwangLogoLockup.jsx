@@ -10,15 +10,13 @@ export function DaekwangLogoLockup({ variant = "horizontal", tone = "light", siz
   }
 
   return (
-    <div className={classes} aria-label="DAE KWANG TECH 대광테크">
-      <DaekwangLogoMark tone={tone} size={markSize} />
-      <div className="dk-brand-logo__text">
-        <strong>
-          <span>DAE KWANG</span>
-          <em>TECH</em>
-        </strong>
-        <small>대광테크</small>
-      </div>
-    </div>
+    <span className={classes} aria-label="DAEKWANG TECH 대광테크">
+      <img
+        className="dk-brand-logo__asset"
+        src="/brand/daekwang-primary-logo.png"
+        alt="DAEKWANG TECH 대광테크"
+        decoding="async"
+      />
+    </span>
   );
 }

@@ -23,6 +23,7 @@
   gap: 12px;
   min-width: 0;
   color: var(--dk-brand-text);
+  line-height: 0;
 }
 
 .dk-brand-logo.is-dark {
@@ -34,6 +35,26 @@
   align-items: flex-start;
 }
 
+.dk-brand-logo__asset {
+  display: block;
+  width: 230px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.dk-brand-logo.is-sm .dk-brand-logo__asset {
+  width: 210px;
+}
+
+.dk-brand-logo.is-md .dk-brand-logo__asset {
+  width: 240px;
+}
+
+.dk-brand-logo.is-lg .dk-brand-logo__asset {
+  width: 280px;
+}
+
 .dk-brand-logo__text {
   display: grid;
   gap: 2px;
@@ -43,13 +64,13 @@
 .dk-brand-logo__text strong {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 5px;
   margin: 0;
   color: currentColor;
   font-size: 18px;
   line-height: 1;
   font-weight: 950;
-  letter-spacing: .02em;
+  letter-spacing: .005em;
   white-space: nowrap;
 }
 

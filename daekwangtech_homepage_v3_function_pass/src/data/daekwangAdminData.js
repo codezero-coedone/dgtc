@@ -295,6 +295,7 @@ export const popupItems = [
     endDate: "2026-07-05",
     status: "active",
     linkUrl: "/notice/24",
+    imageUrl: "assets/hero-machine.jpg",
     content: "새롭게 정비된 대광테크 홈페이지를 확인해 주세요.",
   },
   {
@@ -305,6 +306,7 @@ export const popupItems = [
     endDate: "2026-08-05",
     status: "inactive",
     linkUrl: "/notice/23",
+    imageUrl: "assets/facility-clean.jpg",
     content: "방문 전 운영 일정을 확인해 주세요.",
   },
 ];

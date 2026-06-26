@@ -1,0 +1,132 @@
+{
+  "lock": "DAEKWANG_LOGO_RENDER_PATH_ROOT_CAUSE_AND_REAL_ASSET_FIX_V1",
+  "status": "HOLD_LOGO_SOURCE_MISSING",
+  "invalidGeneratedLogo": {
+    "path": "assets/daekwang-primary-logo.svg",
+    "status": "INVALID_GENERATED_LOGO_REMOVED",
+    "reason": "This SVG was generated in the previous patch and was not sourced from the uploaded primary logo asset."
+  },
+  "rootCause": {
+    "whyPreviousLogoDidNotChangeVisually": "The visible logo render path did change to assets/daekwang-primary-logo.svg, but that asset was generated/approximated and therefore did not match the real uploaded primary logo the user expected.",
+    "currentRenderAuthority": "Most public/admin full lockup positions flow through src/components/brand/DaekwangLogoLockup.jsx; several decorative/compact positions still use DaekwangLogoMark.jsx."
+  },
+  "actualVisibleRenderersFound": [
+    {
+      "surface": "public desktop header",
+      "file": "src/App.jsx",
+      "component": "Header",
+      "renderer": "DaekwangLogoLockup",
+      "type": "img via component",
+      "currentSrcAfterCleanup": "assets/daekwang-logo-horizontal.svg"
+    },
+    {
+      "surface": "public mobile/header routes",
+      "file": "src/App.jsx",
+      "component": "Header",
+      "renderer": "DaekwangLogoLockup",
+      "type": "img via component",
+      "currentSrcAfterCleanup": "assets/daekwang-logo-horizontal.svg"
+    },
+    {
+      "surface": "mobile home app hero",
+      "file": "src/components/public/PublicMobileAppLayer.jsx",
+      "component": "PublicMobileAppLayer",
+      "renderer": "DaekwangLogoLockup",
+      "type": "img via component",
+      "currentSrcAfterCleanup": "assets/daekwang-logo-horizontal.svg"
+    },
+    {
+      "surface": "notice header route shell",
+      "file": "src/App.jsx",
+      "component": "Header",
+      "renderer": "DaekwangLogoLockup",
+      "type": "img via component",
+      "currentSrcAfterCleanup": "assets/daekwang-logo-horizontal.svg"
+    },
+    {
+      "surface": "technology/company/process page headers",
+      "file": "src/App.jsx",
+      "component": "Header",
+      "renderer": "DaekwangLogoLockup",
+      "type": "img via component",
+      "currentSrcAfterCleanup": "assets/daekwang-logo-horizontal.svg"
+    },
+    {
+      "surface": "admin login",
+      "file": "src/components/daekwang-admin/AdminLoginGate.jsx",
+      "component": "AdminLoginGate",
+      "renderer": "DaekwangLogoLockup",
+      "type": "img via component",
+      "currentSrcAfterCleanup": "assets/daekwang-logo-horizontal.svg"
+    },
+    {
+      "surface": "admin sidebar",
+      "file": "src/components/daekwang-admin/AdminSidebar.jsx",
+      "component": "AdminSidebar",
+      "renderer": "DaekwangLogoLockup",
+      "type": "img via component",
+      "currentSrcAfterCleanup": "assets/daekwang-logo-horizontal.svg"
+    },
+    {
+      "surface": "admin topbar/mobile compact/decorative notice marks",
+      "files": [
+        "src/components/daekwang-admin/AdminTopbar.jsx",
+        "src/components/daekwang-admin/AdminMobileAppLayer.jsx",
+        "src/pages/NoticePages.jsx",
+        "src/components/notice/HomeNoticeSection.jsx"
+      ],
+      "renderer": "DaekwangLogoMark",
+      "type": "svg component mark"
+    }
+  ],
+  "realLogoAssetDecision": {
+    "status": "LOGO_SOURCE_MISSING",
+    "acceptableNeededFile": "transparent PNG or SVG of the uploaded top PRIMARY LOGO",
+    "preferredPath": "public/brand/daekwang-primary-logo.png or public/brand/daekwang-primary-logo.svg",
+    "searchedLocations": [
+      "assets/",
+      "public/",
+      "src/assets/",
+      "src/components/brand/",
+      "C:\\Users\\USER\\.codex\\attachments"
+    ],
+    "foundButRejected": [
+      "assets/daekwang-primary-logo.svg: generated approximation, removed",
+      "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\이거.png: building photo, not brand board/logo",
+      "assets/daekwang-logo-horizontal.svg: existing repo asset, not verified uploaded primary logo"
+    ]
+  },
+  "technologyGap": {
+    "route": "#/technology",
+    "rootCause": "Generic metric-row created a large lower panel feeling before footer.",
+    "currentFixStatus": "kept from previous patch: compact closing panel",
+    "status": "LOCAL_BUILD_OK_NOT_REDEPLOYED_THIS_TASK"
+  },
+  "companyGap": {
+    "route": "#/company",
+    "rootCause": "Generic metric-row created a large lower panel feeling before footer.",
+    "currentFixStatus": "kept from previous patch: compact closing panel",
+    "status": "LOCAL_BUILD_OK_NOT_REDEPLOYED_THIS_TASK"
+  },
+  "proof": {
+    "domProofJson": "evidence/daekwang_logo_root_cause/logo-render-paths.json",
+    "screenshots": [
+      "evidence/daekwang_logo_root_cause/header-logo-home-390.png",
+      "evidence/daekwang_logo_root_cause/header-logo-technology-390.png",
+      "evidence/daekwang_logo_root_cause/header-logo-company-390.png",
+      "evidence/daekwang_logo_root_cause/header-logo-notice-390.png",
+      "evidence/daekwang_logo_root_cause/header-logo-admin-390.png"
+    ]
+  },
+  "commands": {
+    "staticCheck": "PASS",
+    "build": "PASS",
+    "deploy": "NOT_RUN_LOGO_SOURCE_MISSING"
+  },
+  "remainingHold": [
+    "Actual uploaded top PRIMARY LOGO transparent PNG/SVG is required.",
+    "Do not deploy another logo patch until that real asset exists.",
+    "Server auth/D1/R2 production remains HOLD."
+  ],
+  "finalJudgment": "HOLD_LOGO_SOURCE_MISSING"
+}

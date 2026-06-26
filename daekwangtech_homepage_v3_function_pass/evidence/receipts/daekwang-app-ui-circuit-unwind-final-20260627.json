@@ -1,0 +1,56 @@
+{
+  "lock": "DAEKWANG_APP_UI_CIRCUIT_UNWIND_FINAL_20260627",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "deployVersion": "a4690e74-771f-4424-97e5-7ebe0df9fe9b",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/",
+  "diagnosis": {
+    "rootCause": [
+      "public responsive app shell was competing with the normal public company shell",
+      "public fixed bottom dock added global mobile padding and overlap risk",
+      "admin responsive app shell was competing with the working desktop admin renderer",
+      "automatic public popup overlay was blocking route visibility",
+      "dead app-shell CSS remained as a reactivation hazard even after render imports were removed"
+    ],
+    "failureClass": "APP_UI_SHELL_AUTHORITY_CONFLICT"
+  },
+  "removedCircuit": [
+    "src/components/public/PublicMobileAppLayer.jsx",
+    "src/components/daekwang-admin/AdminMobileAppLayer.jsx",
+    "PublicMobileAppLayer imports/usages",
+    "AdminMobileAppLayer imports/usages",
+    "responsive-public-app-shell CSS authority block",
+    "public-mobile-bottom-nav CSS authority block",
+    "responsive-admin-app-shell CSS authority block",
+    "dk-admin-mobile CSS authority block",
+    "automatic public popup overlay call path"
+  ],
+  "remainingKeywordsCheck": {
+    "PublicMobileAppLayer": "NO_MATCH",
+    "PublicMobileBottomNav": "NO_MATCH",
+    "AdminMobileAppLayer": "NO_MATCH",
+    "responsive-public-app-shell": "NO_MATCH",
+    "public-mobile-bottom-nav": "NO_MATCH",
+    "responsive-admin-app-shell": "NO_MATCH",
+    "dk-admin-mobile": "NO_MATCH"
+  },
+  "buildAssets": {
+    "css": "/assets/index-C53BbgKN.css",
+    "js": "/assets/index-DFX2TbOn.js"
+  },
+  "commands": {
+    "staticCheck": "PASS",
+    "build": "PASS with existing Tailwind content warning",
+    "deploy": "PASS"
+  },
+  "evidence": {
+    "screenshots": "evidence/daekwang_circuit_unwind_20260627/live/",
+    "note": "Edge headless emitted browser profile/cache warnings unrelated to Vite build; code and asset checks are primary for this circuit-unwind receipt."
+  },
+  "remainingHold": [
+    "real device visual confirmation remains HOLD",
+    "server auth/D1/R2 production remains HOLD",
+    "Tailwind content warning remains P2 HOLD",
+    "admin full-page preview system remains separate HOLD"
+  ],
+  "finalJudgment": "PASS_HOLD_APP_UI_CIRCUIT_REMOVED_LIVE_DEPLOYED"
+}

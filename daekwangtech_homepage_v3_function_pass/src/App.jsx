@@ -3,9 +3,25 @@ import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
 import { DaekwangLogoLockup } from "./components/brand/DaekwangLogoLockup.jsx";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
-import { PublicMobileAppLayer, PublicMobileBottomNav } from "./components/public/PublicMobileAppLayer.jsx";
 import { NoticeDetailPage, NoticeListPage } from "./pages/NoticePages.jsx";
 import { facilityCards, homeProducts, imageFallback, navItems, pageContent, processSteps, qualityCards, routeAlias } from "./siteData.js";
+
+const manufacturingProcessSteps = [
+  ["요구사항 확인", "제작 목적과 사용 조건, 납품 기준을 먼저 정리합니다."],
+  ["도면·치수 검토", "도면과 공차 기준을 확인하고 가공 리스크를 사전에 점검합니다."],
+  ["자재 준비", "소재 상태와 투입 조건을 확인해 공정 시작 기준을 맞춥니다."],
+  ["정밀 가공", "설정된 조건에 따라 장비와 작업 기준을 일관되게 운용합니다."],
+  ["조립·용접", "후가공과 조립이 필요한 항목은 별도 기준으로 확인합니다."],
+  ["품질 확인", "치수, 형상, 표면 상태를 확인하고 검사 결과를 기록합니다."],
+  ["납품·현장 대응", "포장, 출하, 현장 대응까지 추적 가능한 흐름으로 관리합니다."],
+];
+
+const qualityCheckpoints = [
+  ["입고 확인", "자재와 도면 기준을 대조해 작업 전 조건을 정리합니다."],
+  ["가공 정밀도", "가공 중 주요 치수와 공차를 단계별로 확인합니다."],
+  ["조립·용접 검수", "조립 상태와 후가공 품질을 항목별로 점검합니다."],
+  ["출고 전 확인", "최종 검사 결과와 출하 상태를 기록으로 남깁니다."],
+];
 
 function normalizeRoute() {
   const hash = window.location.hash.replace(/^#\/?/, "");
@@ -155,6 +171,28 @@ function MetricRow({ items }) {
   );
 }
 
+function CompactClosingPanel({ page, items }) {
+  const copy = page.id === "technology"
+    ? ["기술력 운영 기준", "가공 정밀도, 소재 대응, 도면 검토 기준을 한 화면 안에서 간결하게 정리합니다."]
+    : ["회사 운영 기준", "신뢰, 정밀, 혁신, 상생을 중심으로 회사 소개 흐름을 무겁지 않게 마감합니다."];
+  return (
+    <section className={`sub-close-panel wrap sub-close-${page.id}`} aria-label={`${page.label} 핵심 요약`}>
+      <div>
+        <span>{copy[0]}</span>
+        <strong>{copy[1]}</strong>
+      </div>
+      <ul>
+        {items.map(([value, label]) => (
+          <li key={`${page.id}-${value}-${label}`}>
+            <b>{value}</b>
+            <em>{label}</em>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function ProcessBand() {
   return (
     <section className="process-band">
@@ -179,15 +217,15 @@ function ProcessPageSection() {
     <section className="process-page-section">
       <div className="process-page-head">
         <p className="section-kicker">MANUFACTURING FLOW</p>
-        <h3>요구 분석부터 출하까지, 같은 기준으로 움직입니다</h3>
-        <p>각 단계는 도면 검토, 가공 조건 설정, 품질 확인, 출하 기록으로 이어지며 공정별 책임과 검증 흐름을 분명하게 관리합니다.</p>
+        <h3>요구사항 확인부터 현장 대응까지 같은 기준으로 움직입니다</h3>
+        <p>도면 검토, 자재 준비, 정밀 가공, 품질 확인을 하나의 흐름으로 묶어 공정별 책임과 검증 기준을 분명하게 관리합니다.</p>
       </div>
       <div className="process-page-steps">
-        {processSteps.map((step, index) => (
+        {manufacturingProcessSteps.map(([step, desc], index) => (
           <article className="process-page-step" key={step}>
             <span>{String(index + 1).padStart(2, "0")}</span>
             <h4>{step}</h4>
-            <p>{index < 2 ? "요구 조건과 제작 기준을 정리합니다." : index < 4 ? "정밀 장비와 공정 기준에 맞춰 생산합니다." : "검사 결과와 출하 상태를 기록합니다."}</p>
+            <p>{desc}</p>
           </article>
         ))}
       </div>
@@ -195,6 +233,27 @@ function ProcessPageSection() {
         <article><strong>기준 관리</strong><p>공정별 체크 포인트를 정리해 반복 품질을 유지합니다.</p></article>
         <article><strong>검사 연계</strong><p>생산 단계와 품질 검증을 분리하지 않고 흐름 안에서 관리합니다.</p></article>
         <article><strong>기록 기반</strong><p>작업 이력과 결과를 남겨 다음 생산의 기준으로 활용합니다.</p></article>
+      </div>
+    </section>
+  );
+}
+
+function QualityControlPanel() {
+  return (
+    <section className="quality-control-panel wrap">
+      <div className="quality-control-copy">
+        <p className="section-kicker">QUALITY CHECKPOINT</p>
+        <h3>검사 기준을 공정 안에 묶어 품질을 확인합니다</h3>
+        <p>대광테크의 품질 관리는 별도 장식 패널이 아니라 작업 흐름 안에서 반복되는 확인 기준입니다. 입고, 가공, 조립, 출고 단계마다 필요한 항목을 정리해 안정적인 결과를 만듭니다.</p>
+      </div>
+      <div className="quality-check-grid">
+        {qualityCheckpoints.map(([title, desc], index) => (
+          <article key={title}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{title}</strong>
+            <p>{desc}</p>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -252,13 +311,19 @@ function TrustPreview({ posts }) {
 
 function SubPage({ page, detail }) {
   const isProcessPage = page.id === "process";
+  const isQualityPage = page.id === "quality";
+  const isCompactClosingPage = page.id === "technology" || page.id === "company";
   return (
     <>
       <section className="sub-main wrap">
-        <div className="section-intro"><p className="section-kicker">{page.eyebrow}</p><h2>{page.headline}</h2><p>{page.summary}</p></div>
+        <div className="section-intro">
+          <p className="section-kicker">{page.eyebrow}</p>
+          <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
+          <p>{page.summary}</p>
+        </div>
         {detail.cards ? <CardGrid cards={detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand />}
       </section>
-      {detail.metrics ? <MetricRow items={detail.metrics} /> : null}
+      {isQualityPage ? <QualityControlPanel /> : isCompactClosingPage && detail.metrics ? <CompactClosingPanel page={page} items={detail.metrics} /> : detail.metrics ? <MetricRow items={detail.metrics} /> : null}
     </>
   );
 }
@@ -301,7 +366,6 @@ function SiteApp({ content, setContent, route }) {
         <MobilePanel active="notice" open={menuOpen} onClose={() => setMenuOpen(false)} />
         {noticeId ? <NoticeDetailPage noticeId={noticeId} /> : <NoticeListPage />}
         <Footer company={content.company} />
-        <PublicMobileBottomNav active="notice" />
       </div>
     );
   }
@@ -311,20 +375,15 @@ function SiteApp({ content, setContent, route }) {
       <a className="skip-link" href="#main-content">본문 바로가기</a>
       {page.id === "index" ? (
         <>
-          <div className="desktop-public-shell">
-            <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <FeatureRail items={detail.rail} />
-            <ProductsPreview />
-            <ProcessBand />
-            <QualityPreview />
-            <FacilityPreview />
-            <HomeNoticeSection />
-            <TrustPreview posts={content.posts} />
-            <Footer company={content.company} />
-          </div>
-          <div className="responsive-public-app-shell">
-            <PublicMobileAppLayer company={content.company} facilityCards={facilityCards} homeProducts={homeProducts} pageContent={pageContent} />
-          </div>
+          <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <FeatureRail items={detail.rail} />
+          <ProductsPreview />
+          <ProcessBand />
+          <QualityPreview />
+          <FacilityPreview />
+          <HomeNoticeSection />
+          <TrustPreview posts={content.posts} />
+          <Footer company={content.company} />
         </>
       ) : (
         <>
@@ -334,7 +393,6 @@ function SiteApp({ content, setContent, route }) {
           <Footer company={content.company} />
         </>
       )}
-      <PublicMobileBottomNav active={page.id === "facility" ? "projects" : page.id} />
     </div>
   );
 }

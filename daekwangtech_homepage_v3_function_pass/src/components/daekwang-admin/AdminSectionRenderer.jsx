@@ -234,10 +234,22 @@ function PageManagerPanel({ state, actions, onToast, onPreview }) {
 }
 
 function PopupManagerPanel({ state, actions, onToast, onConfirm, onPreview }) {
-  const empty = { id: "", title: "", placement: "메인", startDate: dateOnly(), endDate: dateOnly(), status: "active", linkUrl: "", content: "" };
+  const empty = { id: "", title: "", placement: "메인", startDate: dateOnly(), endDate: dateOnly(), status: "active", linkUrl: "", imageUrl: "", content: "" };
   const [form, setForm] = useState(empty);
   const editing = Boolean(form.id);
   const update = (patch) => setForm((current) => ({ ...current, ...patch }));
+  const hasDraftContent = Boolean(form.title.trim() || form.content.trim() || form.linkUrl.trim() || form.imageUrl.trim());
+  const previewPopup = (popup) => onPreview({
+    kind: "POPUP PREVIEW",
+    title: popup.title || "팝업 미리보기",
+    popup: clone(popup),
+    rows: [
+      ["위치", popup.placement],
+      ["기간", `${popup.startDate} ~ ${popup.endDate}`],
+      ["링크", popup.linkUrl || "-"],
+      ["이미지", popup.imageUrl || "팝업 이미지 없음"],
+    ],
+  });
 
   const savePopup = () => {
     if (!form.title.trim() || !validateDateRange(form.startDate, form.endDate)) {
@@ -278,15 +290,16 @@ function PopupManagerPanel({ state, actions, onToast, onConfirm, onPreview }) {
           <FormField label="노출 위치" value={form.placement} onChange={(value) => update({ placement: value })} />
           <div className="dk-two-col"><FormField label="시작일" type="date" value={form.startDate} onChange={(value) => update({ startDate: value })} /><FormField label="종료일" type="date" value={form.endDate} onChange={(value) => update({ endDate: value })} /></div>
           <FormField label="링크 URL" value={form.linkUrl} onChange={(value) => update({ linkUrl: value })} />
+          <FormField label="이미지 URL" value={form.imageUrl} placeholder="assets/hero-machine.jpg" onChange={(value) => update({ imageUrl: value })} />
           <TextAreaField label="내용" value={form.content} onChange={(value) => update({ content: value })} />
           <ToggleButton active={form.status === "active"} labelOn="노출" labelOff="비노출" onClick={() => update({ status: form.status === "active" ? "inactive" : "active" })} />
-          <div className="dk-form-actions"><button className="dk-secondary-btn" type="button" onClick={() => onPreview({ kind: "POPUP PREVIEW", title: form.title || "팝업 미리보기", description: form.content, rows: [["위치", form.placement], ["기간", `${form.startDate} ~ ${form.endDate}`], ["링크", form.linkUrl || "-"]] })}>미리보기</button><button className="dk-primary-btn" type="button" onClick={savePopup}>{editing ? "수정 완료" : "새 팝업 추가"}</button></div>
+          <div className="dk-form-actions"><button className="dk-secondary-btn" type="button" onClick={() => previewPopup(hasDraftContent ? form : state.popups[0] ?? form)}>미리보기</button><button className="dk-primary-btn" type="button" onClick={savePopup}>{editing ? "수정 완료" : "새 팝업 추가"}</button></div>
         </div>
       </section>
       <section className="dk-panel dk-admin-panel"><h3>팝업 목록</h3>
         <div className="dk-control-list">
           {state.popups.map((popup) => (
-            <article key={popup.id}><div><strong>{popup.title}</strong><span>{popup.placement} · {popup.startDate} ~ {popup.endDate}</span></div><StatusBadge status={popup.status} /><div className="dk-row-actions"><button type="button" onClick={() => setForm(clone(popup))}><AdminIcon name="Edit" size={15} /></button><button type="button" onClick={() => actions.updatePopups((items) => items.map((item) => item.id === popup.id ? { ...item, status: item.status === "active" ? "inactive" : "active" } : item), { type: "popupStatus", title: "팝업 노출 변경", description: `${popup.title} 팝업 상태가 변경되었습니다.`, target: popup.title })}><AdminIcon name="Refresh" size={15} /></button><button className="danger" type="button" onClick={() => deletePopup(popup)}><AdminIcon name="Trash" size={15} /></button></div></article>
+            <article key={popup.id}><div><strong>{popup.title}</strong><span>{popup.placement} · {popup.startDate} ~ {popup.endDate}</span></div><StatusBadge status={popup.status} /><div className="dk-row-actions"><button type="button" aria-label={`${popup.title} 팝업 미리보기`} onClick={() => previewPopup(popup)}><AdminIcon name="Eye" size={15} /></button><button type="button" onClick={() => setForm(clone(popup))}><AdminIcon name="Edit" size={15} /></button><button type="button" onClick={() => actions.updatePopups((items) => items.map((item) => item.id === popup.id ? { ...item, status: item.status === "active" ? "inactive" : "active" } : item), { type: "popupStatus", title: "팝업 노출 변경", description: `${popup.title} 팝업 상태가 변경되었습니다.`, target: popup.title })}><AdminIcon name="Refresh" size={15} /></button><button className="danger" type="button" onClick={() => deletePopup(popup)}><AdminIcon name="Trash" size={15} /></button></div></article>
           ))}
           {!state.popups.length ? <EmptyState>등록된 팝업이 없습니다.</EmptyState> : null}
         </div>

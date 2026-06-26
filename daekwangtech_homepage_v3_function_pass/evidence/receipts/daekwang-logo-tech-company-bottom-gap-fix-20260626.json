@@ -1,0 +1,101 @@
+{
+  "lock": "DAEKWANG_LOGO_AND_TECH_COMPANY_BOTTOM_GAP_FIX_V1",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "logoAssetChosen": "assets/daekwang-primary-logo.svg",
+  "logoAssetMode": "transparent SVG image asset, rendered through DaekwangLogoLockup img",
+  "logoSourceHold": "Original uploaded transparent primary logo file was not found in repo; a primary-structure SVG asset was created to match DAE KWANG / T E C H / 대 광 테 크 layout.",
+  "routes": {
+    "technology": "#/technology",
+    "company": "#/company"
+  },
+  "rootCause": {
+    "technologyBottomGap": "Technology route used the generic metric-row closing block, which read as a large lower blank/panel gap on mobile and desktop.",
+    "companyBottomGap": "Company route used the same generic metric-row closing block, creating an unfinished lower panel before the footer."
+  },
+  "fixSummary": [
+    "DaekwangLogoLockup now renders an image asset instead of assembled text spans.",
+    "Public mobile hero uses the same logo component instead of mark plus text labels.",
+    "Technology and company routes now use a compact closing panel instead of the generic metric-row.",
+    "Public/admin logo sizing rules were normalized for header, footer, mobile, and admin sidebar contexts."
+  ],
+  "changedFiles": [
+    "assets/daekwang-primary-logo.svg",
+    "src/components/brand/DaekwangLogoLockup.jsx",
+    "src/components/public/PublicMobileAppLayer.jsx",
+    "src/App.jsx",
+    "src/styles/brand-tokens.css",
+    "src/admin-tokens.css",
+    "styles.css"
+  ],
+  "localChecks": {
+    "staticCheck": "PASS",
+    "build": "PASS",
+    "tailwindContentWarning": "P2_HOLD_existing_warning",
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "wrongCredentialBlocked": true,
+    "adminLoginDemoFallback": true,
+    "notificationPanel": true,
+    "databaseMonitoringResidue": "NO_MATCH"
+  },
+  "screenshots": [
+    "evidence/daekwang_logo_tech_company_gap_fix/home-390-primary.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/home-1440-primary.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/notice-390-primary.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/technology-390-primary-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/technology-768-primary-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/technology-1440-primary-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/company-390-primary-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/company-768-primary-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/company-1440-primary-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/admin-login-390-primary.png"
+  ],
+  "localResultFiles": [
+    "evidence/daekwang_logo_tech_company_gap_fix/local-smoke-results.json",
+    "evidence/daekwang_logo_tech_company_gap_fix/primary-final-visual-results.json"
+  ],
+  "deploy": {
+    "command": "wrangler deploy from C:\\Users\\USER\\Desktop\\새 폴더 (3)",
+    "worker": "dgtc",
+    "url": "https://dgtc.ejdzm90.workers.dev",
+    "versionId": "40ac8855-d008-4f1f-a707-2d9037f483a6",
+    "uploadedAssets": [
+      "/index.html",
+      "/assets/index-DE674_Md.js",
+      "/assets/daekwang-primary-logo.svg",
+      "/assets/index-BpRD9R6o.css"
+    ]
+  },
+  "liveChecks": {
+    "cacheBustedHome": "https://dgtc.ejdzm90.workers.dev/?v=logo-tech-company-gap-fix-20260626#/",
+    "cacheBustedTechnology": "https://dgtc.ejdzm90.workers.dev/?v=logo-tech-company-gap-fix-20260626#/technology",
+    "cacheBustedCompany": "https://dgtc.ejdzm90.workers.dev/?v=logo-tech-company-gap-fix-20260626#/company",
+    "cacheBustedNotice": "https://dgtc.ejdzm90.workers.dev/?v=logo-tech-company-gap-fix-20260626#/notice",
+    "cacheBustedAdmin": "https://dgtc.ejdzm90.workers.dev/?v=logo-tech-company-gap-fix-20260626#/admin",
+    "logoAssetLoaded": "assets/daekwang-primary-logo.svg",
+    "technologyGap": "PASS",
+    "companyGap": "PASS",
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "adminLogin": "PASS",
+    "wrongCredentialBlocked": true,
+    "notificationPanel": true
+  },
+  "liveScreenshots": [
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-home-390.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-home-1440.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-technology-390-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-technology-1440-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-company-390-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-company-1440-full.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-notice-390.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-admin-login-390.png",
+    "evidence/daekwang_logo_tech_company_gap_fix/live/live-admin-after-login-1440.png"
+  ],
+  "remainingHold": [
+    "Original transparent primary logo source file should replace the reconstructed SVG if provided.",
+    "Server auth/D1/R2 production remains HOLD.",
+    "Admin preview is intentionally outside this patch."
+  ],
+  "finalJudgment": "PASS_WITH_LOGO_SOURCE_HOLD"
+}

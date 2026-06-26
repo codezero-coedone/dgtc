@@ -1,0 +1,94 @@
+{
+  "lock": "DAEKWANG_TRUE_FULL_PAGE_HOMEPAGE_PREVIEW_SYSTEM_V1",
+  "createdAt": "2026-06-27T00:00:00+09:00",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "problem": {
+    "previousPreviewRejected": true,
+    "imagePreviewBefore": "Image preview only showed isolated image/file detail.",
+    "popupPreviewBefore": "Popup preview only showed an isolated popup card inside the admin modal.",
+    "requiredBehavior": "Preview must show a full public homepage/page preview area with the current draft reflected inside it."
+  },
+  "changedFiles": [
+    "src/pages/DaekwangAdminConsole.jsx",
+    "src/components/daekwang-admin/AdminPreviewModal.jsx",
+    "src/admin-tokens.css"
+  ],
+  "implementation": {
+    "fullHomepagePreviewRenderer": "AdminPreviewModal.jsx::FullHomepagePreview",
+    "imagePreviewBehavior": "IMAGE PREVIEW now opens a public homepage shell and injects the selected image into hero/business/facility slots based on imageCategory.",
+    "popupPreviewBehavior": "POPUP PREVIEW now opens a public homepage shell and overlays the draft popup over the page.",
+    "desktopMobileToggle": true,
+    "isolatedImagePreviewRemovedForImageKind": true,
+    "isolatedPopupCardOnlyPreviewRemovedForPopupKind": true
+  },
+  "commands": {
+    "staticCheck": {
+      "command": "node scripts/check-static.mjs",
+      "result": "PASS"
+    },
+    "build": {
+      "command": "node node_modules/vite/bin/vite.js build",
+      "result": "PASS",
+      "assets": [
+        "dist/assets/index-DR5dE2Rr.css",
+        "dist/assets/index-DA00RrjA.js"
+      ],
+      "warning": "Existing Tailwind content warning remains P2 HOLD; Vite build passed."
+    },
+    "preview": {
+      "url": "http://127.0.0.1:4199/",
+      "result": "PASS"
+    },
+    "deploy": {
+      "command": "wrangler deploy",
+      "result": "PASS",
+      "versionId": "120ec40d-0ed5-4115-9bd9-88222eac11ee",
+      "url": "https://dgtc.ejdzm90.workers.dev"
+    }
+  },
+  "localSmoke": {
+    "imageFullPagePreview": true,
+    "popupFullPagePreview": true,
+    "popup390Overflow": false,
+    "routeOverflow": {
+      "home390": false,
+      "notice390": false,
+      "admin1024": false,
+      "admin1440": false
+    },
+    "consoleErrors": 0
+  },
+  "liveSmoke": {
+    "cacheBustedBase": "https://dgtc.ejdzm90.workers.dev/?v=full-homepage-preview-20260627",
+    "imageFullPagePreview": true,
+    "popupFullPagePreview": true,
+    "popup390Overflow": false,
+    "routeOverflow": {
+      "home390": false,
+      "notice390": false,
+      "admin1024": false,
+      "admin1440": false
+    },
+    "consoleErrors": 0
+  },
+  "screenshots": {
+    "local": [
+      "evidence/daekwang_true_full_page_homepage_preview/local-image-fullpage-preview-1440.png",
+      "evidence/daekwang_true_full_page_homepage_preview/local-image-fullpage-preview-mobile-toggle-1440.png",
+      "evidence/daekwang_true_full_page_homepage_preview/local-popup-fullpage-preview-1440.png",
+      "evidence/daekwang_true_full_page_homepage_preview/local-popup-fullpage-preview-mobile-toggle-1440.png",
+      "evidence/daekwang_true_full_page_homepage_preview/local-popup-fullpage-preview-390.png"
+    ],
+    "live": [
+      "evidence/daekwang_true_full_page_homepage_preview/live/live-image-fullpage-preview-1440.png",
+      "evidence/daekwang_true_full_page_homepage_preview/live/live-popup-fullpage-preview-1440.png",
+      "evidence/daekwang_true_full_page_homepage_preview/live/live-popup-fullpage-preview-390.png"
+    ]
+  },
+  "remainingHold": [
+    "This preview is a deterministic public homepage preview shell, not a full iframe of the production SPA route.",
+    "Actual server-side persistence and multi-visitor shared preview data remain dependent on D1/KV/R2 production completion.",
+    "Unrelated primary logo source asset issue remains outside this preview patch."
+  ],
+  "finalJudgment": "PASS"
+}
