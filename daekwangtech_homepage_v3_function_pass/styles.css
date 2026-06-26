@@ -428,6 +428,87 @@ img{max-width:100%;display:block}
   font-weight:800;
   overflow-wrap:anywhere;
 }
+.company-location-action{
+  min-width:210px;
+  display:grid;
+  gap:12px;
+}
+.company-map-card{
+  position:relative;
+  min-height:118px;
+  overflow:hidden;
+  border:1px solid rgba(11,29,58,.10);
+  border-radius:18px;
+  background:
+    linear-gradient(rgba(15,71,175,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,71,175,.08) 1px, transparent 1px),
+    radial-gradient(circle at 58% 42%, rgba(93,165,224,.30), transparent 18%),
+    linear-gradient(145deg,#f8fbff,#eef4fb);
+  background-size:18px 18px,18px 18px,auto,auto;
+  padding:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+}
+.company-map-card::before,
+.company-map-card::after{
+  content:"";
+  position:absolute;
+  border-radius:999px;
+  pointer-events:none;
+}
+.company-map-card::before{
+  width:78px;
+  height:78px;
+  right:22px;
+  top:18px;
+  border:1px solid rgba(15,71,175,.18);
+}
+.company-map-card::after{
+  width:7px;
+  height:7px;
+  right:57px;
+  top:53px;
+  background:#0f47af;
+  box-shadow:0 0 0 8px rgba(93,165,224,.20);
+}
+.company-map-card i{
+  position:absolute;
+  left:20px;
+  top:20px;
+  width:28px;
+  height:28px;
+  border-radius:10px;
+  background:#0b1d3a;
+}
+.company-map-card i::before{
+  content:"";
+  position:absolute;
+  left:8px;
+  top:6px;
+  width:12px;
+  height:12px;
+  border-radius:50% 50% 50% 0;
+  background:#5da5e0;
+  transform:rotate(-45deg);
+}
+.company-map-card b,
+.company-map-card small{
+  position:relative;
+  z-index:1;
+  display:block;
+  padding-left:42px;
+}
+.company-map-card b{
+  color:#0b1d3a;
+  font-size:13px;
+  font-weight:950;
+  letter-spacing:.02em;
+}
+.company-map-card small{
+  margin-top:6px;
+  color:#64748b;
+  font-size:11px;
+  font-weight:850;
+}
 .kakao-map-link{
   min-height:46px;
   display:inline-flex;
@@ -442,6 +523,12 @@ img{max-width:100%;display:block}
   font-size:13px;
   font-weight:950;
   box-shadow:0 14px 34px rgba(11,29,58,.18);
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.kakao-map-link:hover{
+  transform:translateY(-2px);
+  background:#0f47af;
+  box-shadow:0 18px 38px rgba(15,71,175,.22);
 }
 .kakao-map-link span{
   color:#5da5e0;
@@ -579,6 +666,8 @@ img{max-width:100%;display:block}
   .quality-check-grid article{border-left:0;padding:20px}
   .company-location-panel{width:calc(100% - 32px);padding:18px;margin-bottom:24px;border-radius:16px}
   .company-location-list{grid-template-columns:1fr}
+  .company-location-action{min-width:0}
+  .company-map-card{min-height:104px;border-radius:15px}
   .kakao-map-link{width:100%;white-space:normal;text-align:center}
   .sub-close-panel{width:calc(100% - 32px);padding:18px;margin-bottom:22px;border-radius:16px}
   .sub-close-panel ul{grid-template-columns:1fr}

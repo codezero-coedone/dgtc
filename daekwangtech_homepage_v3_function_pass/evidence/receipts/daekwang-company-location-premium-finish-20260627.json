@@ -1,0 +1,30 @@
+{
+  "lock": "DAEKWANG_COMPANY_LOCATION_PREMIUM_FINISH_20260627",
+  "deployVersion": "6008a4db-27f4-40ef-bd2a-915500d4b0aa",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/?v=company-location-premium-20260627#/company",
+  "changedFiles": [
+    "src/App.jsx",
+    "styles.css"
+  ],
+  "finish": [
+    "added CSS-rendered industrial map card beside company location data",
+    "kept Kakao Map CTA as external map action only, no inquiry/quote CTA",
+    "improved CTA hover/shadow and visual hierarchy",
+    "kept mobile single-column safe layout"
+  ],
+  "gates": {
+    "staticCheck": "PASS",
+    "build": "PASS",
+    "deploy": "PASS",
+    "localScreenshots": [
+      "evidence/daekwang_company_location_premium_finish/company-location-premium-1440.png",
+      "evidence/daekwang_company_location_premium_finish/company-location-premium-390.png"
+    ]
+  },
+  "remainingHold": [
+    "real-device final visual confirmation",
+    "server auth/D1/R2 production hardening",
+    "Tailwind content warning P2"
+  ],
+  "finalJudgment": "PASS_HOLD"
+}

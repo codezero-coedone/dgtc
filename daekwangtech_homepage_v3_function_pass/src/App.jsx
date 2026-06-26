@@ -187,10 +187,17 @@ function CompactClosingPanel({ page, items }) {
           <div><dt>팩스</dt><dd>031-355-5402</dd></div>
           <div><dt>이메일</dt><dd>dgtc@daekwangtech.co.kr</dd></div>
         </dl>
-        <a className="kakao-map-link" href={mapHref} target="_blank" rel="noreferrer noopener" aria-label="카카오맵에서 대광테크 위치 보기">
-          카카오맵에서 위치 보기
-          <span>↗</span>
-        </a>
+        <div className="company-location-action" aria-label="대광테크 지도 연결">
+          <div className="company-map-card" aria-hidden="true">
+            <i />
+            <b>DAEKWANG TECH</b>
+            <small>청원산단5길 60-26</small>
+          </div>
+          <a className="kakao-map-link" href={mapHref} target="_blank" rel="noreferrer noopener" aria-label="카카오맵에서 대광테크 위치 보기">
+            카카오맵에서 위치 보기
+            <span>↗</span>
+          </a>
+        </div>
       </section>
     );
   }
