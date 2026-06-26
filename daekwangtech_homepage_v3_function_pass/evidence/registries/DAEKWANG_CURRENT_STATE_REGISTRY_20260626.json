@@ -1,0 +1,47 @@
+{
+  "lock": "DAEKWANG_CURRENT_STATE_REGISTRY_AND_DELIVERY_LOCK_PATCH",
+  "date": "2026-06-26",
+  "publicUrls": {
+    "home": "https://dgtc.ejdzm90.workers.dev/#/",
+    "admin": "https://dgtc.ejdzm90.workers.dev/#/admin",
+    "notice": "https://dgtc.ejdzm90.workers.dev/#/notice"
+  },
+  "deployVersion": "bcee0492-1614-4d92-bae8-879e67c5a7a1",
+  "gitHead": "6af3cd5",
+  "branch": "main",
+  "auth": {
+    "mode": "frontend-demo-gate",
+    "id": "dgtc66",
+    "password": "1234",
+    "securityWarning": "Client-side demo auth only. Replace with Worker server session before real operation."
+  },
+  "storage": {
+    "mode": "localStorage",
+    "key": "daekwang.admin.v1",
+    "hold": "D1/KV/R2 server persistence"
+  },
+  "status": {
+    "publicHomepage": "PASS",
+    "adminConsole": "PASS",
+    "noticeList": "PASS",
+    "noticeDetail": "PASS",
+    "loginGate": "PASS",
+    "logoV2": "PASS",
+    "oldVisualLogoCount": 0,
+    "consoleError": 0,
+    "desktopOverflow": 0,
+    "mobileOverflow": 0
+  },
+  "remainingHold": [
+    "server auth/session",
+    "password hash/server verification",
+    "server-side permission protection",
+    "D1/KV/R2 persistence",
+    "shared data for all visitors",
+    "R2 image upload",
+    "trash restore UX",
+    "original AI/SVG logo source",
+    "SSR SEO"
+  ],
+  "nextCommand": "DAEKWANG_SERVER_AUTH_D1_R2_OPERATION_PATCH"
+}
