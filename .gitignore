@@ -11,3 +11,17 @@ Thumbs.db
 새 폴더/
 private_source/
 new-daekwang/
+
+# Daekwang generated/local artifacts that must not re-enter staging.
+daekwangtech_homepage_v3_function_pass.zip
+이거.png
+daekwangtech_homepage_v3_function_pass/evidence/**/edge-profile-*/
+daekwangtech_homepage_v3_function_pass/evidence/staged-cache-contamination*.txt
+daekwangtech_homepage_v3_function_pass/evidence/daekwang_admin_console/evidence-admin-dashboard-*.png
+daekwangtech_homepage_v3_function_pass/evidence/daekwang_app_shell_disable_logo_fix_20260627/
+daekwangtech_homepage_v3_function_pass/evidence/daekwang_full_circuit_diagnostic_ledger_v1/
+daekwangtech_homepage_v3_function_pass/evidence/daekwang_logo_root_cause/
+daekwangtech_homepage_v3_function_pass/evidence/daekwang_logo_tech_company_gap_fix/
+daekwangtech_homepage_v3_function_pass/evidence/daekwang_real_device_visual_fix_quality_process_logo/
+daekwangtech_homepage_v3_function_pass/evidence/hqfs/
+daekwangtech_homepage_v3_function_pass/evidence/reverse-admin-live/
