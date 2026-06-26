@@ -1,0 +1,150 @@
+{
+  "lock": "DAEKWANG_SERVER_AUTH_D1_R2_OPERATION_PATCH",
+  "date": "2026-06-26",
+  "public": {
+    "home": "https://dgtc.ejdzm90.workers.dev/#/",
+    "admin": "https://dgtc.ejdzm90.workers.dev/#/admin",
+    "notice": "https://dgtc.ejdzm90.workers.dev/#/notice"
+  },
+  "deployVersion": "16f183ec-fc26-46ea-9ff8-7bd17f3ae6c6",
+  "authMode": {
+    "before": "frontend-demo-gate",
+    "after": "worker-server-session-scaffold-plus-demo-fallback",
+    "serverAuthObserved": {
+      "route": "POST /api/admin/login",
+      "status": 503,
+      "code": "SERVER_AUTH_NOT_CONFIGURED"
+    },
+    "holdReason": "Cloudflare ADMIN_ID and ADMIN_PASSWORD or ADMIN_PASSWORD_SHA256 secrets are not configured."
+  },
+  "storageMode": {
+    "before": "localStorage demo/admin store",
+    "after": "D1 public notices plus localStorage admin fallback",
+    "localStorageKey": "daekwang.admin.v1"
+  },
+  "d1KvR2": {
+    "d1": {
+      "binding": "DB",
+      "database": "dgtc_content",
+      "implemented": [
+        "admin_sessions",
+        "admin_audit_logs",
+        "notices",
+        "existing site_content/content_revisions/media_assets"
+      ],
+      "publicNotices": "PASS",
+      "adminUiCrudWiring": "HOLD"
+    },
+    "kv": {
+      "binding": "CONTENT_CACHE",
+      "implemented": [
+        "admin session token lookup",
+        "existing public content cache"
+      ],
+      "status": "SCAFFOLD"
+    },
+    "r2": {
+      "binding": "MEDIA_BUCKET",
+      "bucket": "dgtc-media",
+      "implemented": [
+        "existing media upload",
+        "GET/POST /api/admin/images alias"
+      ],
+      "adminUiWiring": "HOLD"
+    }
+  },
+  "apiRoutesAdded": [
+    "POST /api/admin/login",
+    "POST /api/admin/logout",
+    "GET /api/admin/session",
+    "GET /api/public/notices",
+    "GET /api/public/site",
+    "GET /api/admin/notices",
+    "POST /api/admin/notices",
+    "PUT /api/admin/notices/:id",
+    "PATCH /api/admin/notices/:id/hide",
+    "DELETE /api/admin/notices/:id",
+    "GET /api/admin/images",
+    "POST /api/admin/images",
+    "GET /api/admin/media/*",
+    "protected scaffold /api/admin/popups*"
+  ],
+  "changedFiles": [
+    "worker/index.js",
+    "daekwangtech_homepage_v3_function_pass/src/services/adminApiClient.js",
+    "daekwangtech_homepage_v3_function_pass/src/components/daekwang-admin/AdminLoginGate.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/pages/DaekwangAdminConsole.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/utils/noticePublicData.js",
+    "daekwangtech_homepage_v3_function_pass/src/components/notice/HomeNoticeSection.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/pages/NoticePages.jsx",
+    "daekwangtech_homepage_v3_function_pass/docs/DAEKWANG_NEXT_OPERATION_PATCH_PLAN.md",
+    "daekwangtech_homepage_v3_function_pass/evidence/registries/DAEKWANG_CURRENT_STATE_REGISTRY_20260626.md",
+    "daekwangtech_homepage_v3_function_pass/evidence/registries/DAEKWANG_CURRENT_STATE_REGISTRY_20260626.json",
+    "daekwangtech_homepage_v3_function_pass/evidence/receipts/daekwang-server-auth-d1-r2-operation-20260626.json"
+  ],
+  "commandsRun": [
+    {
+      "command": "node scripts/check-static.mjs",
+      "cwd": "C:/Users/USER/Desktop/새 폴더 (3)/daekwangtech_homepage_v3_function_pass",
+      "result": "PASS"
+    },
+    {
+      "command": "node node_modules/vite/bin/vite.js build",
+      "cwd": "C:/Users/USER/Desktop/새 폴더 (3)/daekwangtech_homepage_v3_function_pass",
+      "result": "PASS"
+    },
+    {
+      "command": "node node_modules/wrangler/bin/wrangler.js deploy --dry-run",
+      "cwd": "C:/Users/USER/Desktop/새 폴더 (3)",
+      "result": "PASS"
+    },
+    {
+      "command": "node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4199",
+      "cwd": "C:/Users/USER/Desktop/새 폴더 (3)/daekwangtech_homepage_v3_function_pass",
+      "result": "PASS"
+    },
+    {
+      "command": "node node_modules/wrangler/bin/wrangler.js deploy",
+      "cwd": "C:/Users/USER/Desktop/새 폴더 (3)",
+      "result": "PASS",
+      "deployVersion": "16f183ec-fc26-46ea-9ff8-7bd17f3ae6c6"
+    }
+  ],
+  "smokeResults": {
+    "localPreview": {
+      "homeOverflow": "PASS",
+      "noticeOverflow": "PASS",
+      "adminLoginGate": "PASS",
+      "wrongCredential": "PASS",
+      "correctCredentialFallback": "PASS",
+      "noticeCreatePublicReflection": "PASS",
+      "noticeHiddenPublicBlock": "PASS",
+      "consoleError": 0,
+      "mobile390Overflow": "PASS"
+    },
+    "public": {
+      "home200": "PASS",
+      "admin200": "PASS",
+      "notice200": "PASS",
+      "publicNoticesApi": "PASS_D1",
+      "adminSessionAnonymous": "PASS",
+      "adminLoginApi": "HOLD_SECRET_NOT_CONFIGURED",
+      "adminFallbackLogin": "PASS",
+      "consoleError": 0,
+      "desktopOverflow": "PASS",
+      "mobileOverflow": "PASS"
+    }
+  },
+  "decision": "HOLD",
+  "remainingHold": [
+    "Cloudflare ADMIN_ID and ADMIN_PASSWORD or ADMIN_PASSWORD_SHA256 secrets are not configured.",
+    "Password validation can still fall back to frontend demo mode when server auth is unavailable.",
+    "Admin write UI still persists primarily to localStorage fallback.",
+    "Notice D1 admin API exists but is not fully wired into the existing admin store actions.",
+    "R2 upload API exists but admin image UI still uses local data URLs by default.",
+    "Popup/menu/footer/SEO/settings/user/backup server CRUD remains staged.",
+    "No real role-based server authorization yet.",
+    "No shared full-site content migration/import executed."
+  ],
+  "finalJudgment": "HOLD"
+}

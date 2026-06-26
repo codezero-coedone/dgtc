@@ -1,4 +1,5 @@
 import { notices as defaultNotices, noticeCtaSettings as defaultNoticeCtaSettings } from "../data/daekwangAdminData.js";
+import { getPublicNotices } from "../services/adminApiClient.js";
 import { ADMIN_STORAGE_KEY, ADMIN_STORE_EVENT, normalizeNotice } from "./adminStorage.js";
 
 export function getNoticeHref(id) {
@@ -30,6 +31,36 @@ export function loadPublicNoticeData() {
     notices,
     visibleNotices,
     noticeCtaSettings: { ...defaultNoticeCtaSettings, ...(adminState?.noticeCtaSettings || {}) },
+    meta: { source: adminState?.notices ? "localStorage-admin-store" : "default" },
+  };
+}
+
+export function hasLocalAdminNoticeState() {
+  if (typeof window === "undefined") return false;
+  try {
+    const raw = window.localStorage.getItem(ADMIN_STORAGE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed?.notices);
+  } catch {
+    return false;
+  }
+}
+
+export async function loadServerPublicNoticeData() {
+  const response = await getPublicNotices();
+  const notices = (Array.isArray(response.notices) ? response.notices : defaultNotices).map(normalizeNotice);
+  const visibleNotices = notices
+    .filter((notice) => notice.status === "visible")
+    .sort((a, b) => {
+      if (a.isPinned !== b.isPinned) return a.isPinned ? -1 : 1;
+      return String(b.publishDate).localeCompare(String(a.publishDate));
+    });
+  return {
+    notices,
+    visibleNotices,
+    noticeCtaSettings: { ...defaultNoticeCtaSettings, ...(response.noticeCtaSettings || {}) },
+    meta: response.meta || { source: "server" },
   };
 }
 

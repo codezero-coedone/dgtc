@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DaekwangLogoMark } from "../brand/DaekwangLogoMark.jsx";
-import { getNoticeHref, getNoticeListHref, loadPublicNoticeData, subscribeNoticePublicData } from "../../utils/noticePublicData.js";
+import { getNoticeHref, getNoticeListHref, hasLocalAdminNoticeState, loadPublicNoticeData, loadServerPublicNoticeData, subscribeNoticePublicData } from "../../utils/noticePublicData.js";
 
 function excerpt(content) {
   return String(content || "").replace(/\s+/g, " ").slice(0, 86);
@@ -22,7 +22,13 @@ export function NoticeCtaBlock({ settings }) {
 
 export function HomeNoticeSection() {
   const [data, setData] = useState(() => loadPublicNoticeData());
-  useEffect(() => subscribeNoticePublicData(setData), []);
+  useEffect(() => {
+    const unsubscribe = subscribeNoticePublicData(setData);
+    if (!hasLocalAdminNoticeState()) {
+      loadServerPublicNoticeData().then(setData).catch(() => null);
+    }
+    return unsubscribe;
+  }, []);
   const latest = [...data.visibleNotices].sort((a, b) => Number(b.isPinned) - Number(a.isPinned)).slice(0, 4);
   if (!latest.length) return null;
 

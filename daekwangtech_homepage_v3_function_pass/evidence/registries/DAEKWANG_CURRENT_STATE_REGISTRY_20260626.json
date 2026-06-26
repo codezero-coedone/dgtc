@@ -6,42 +6,84 @@
     "admin": "https://dgtc.ejdzm90.workers.dev/#/admin",
     "notice": "https://dgtc.ejdzm90.workers.dev/#/notice"
   },
-  "deployVersion": "bcee0492-1614-4d92-bae8-879e67c5a7a1",
+  "deployVersion": "16f183ec-fc26-46ea-9ff8-7bd17f3ae6c6",
   "gitHead": "6af3cd5",
   "branch": "main",
   "auth": {
-    "mode": "frontend-demo-gate",
-    "id": "dgtc66",
-    "password": "1234",
-    "securityWarning": "Client-side demo auth only. Replace with Worker server session before real operation."
+    "mode": "worker-server-session-scaffold-plus-demo-fallback",
+    "serverRoutes": [
+      "POST /api/admin/login",
+      "POST /api/admin/logout",
+      "GET /api/admin/session"
+    ],
+    "serverStatus": "HOLD_SECRET_NOT_CONFIGURED",
+    "loginApiObserved": {
+      "status": 503,
+      "code": "SERVER_AUTH_NOT_CONFIGURED"
+    },
+    "fallback": {
+      "mode": "frontend-demo-fallback",
+      "id": "dgtc66",
+      "password": "1234",
+      "reason": "Preserve current admin UX until Cloudflare admin auth secrets are configured."
+    },
+    "securityWarning": "Frontend fallback credentials are not production security. Configure Worker secrets and remove fallback after server auth PASS."
   },
   "storage": {
-    "mode": "localStorage",
-    "key": "daekwang.admin.v1",
-    "hold": "D1/KV/R2 server persistence"
+    "mode": "D1 public notices plus localStorage admin fallback",
+    "localStorageKey": "daekwang.admin.v1",
+    "d1": {
+      "implementedTables": [
+        "site_content",
+        "content_revisions",
+        "media_assets",
+        "admin_sessions",
+        "admin_audit_logs",
+        "notices"
+      ],
+      "publicNotices": "PASS",
+      "adminCrudWiring": "HOLD"
+    },
+    "kv": {
+      "binding": "CONTENT_CACHE",
+      "usedFor": [
+        "public content cache",
+        "admin session token lookup"
+      ],
+      "status": "SCAFFOLD"
+    },
+    "r2": {
+      "binding": "MEDIA_BUCKET",
+      "bucket": "dgtc-media",
+      "status": "SCAFFOLD_ALIAS_ADDED"
+    }
   },
   "status": {
     "publicHomepage": "PASS",
-    "adminConsole": "PASS",
+    "adminConsole": "PASS_WITH_DEMO_FALLBACK",
     "noticeList": "PASS",
     "noticeDetail": "PASS",
-    "loginGate": "PASS",
+    "loginGate": "PASS_WITH_DEMO_FALLBACK",
+    "serverAuth": "HOLD",
+    "d1PublicNotices": "PASS",
     "logoV2": "PASS",
     "oldVisualLogoCount": 0,
     "consoleError": 0,
     "desktopOverflow": 0,
     "mobileOverflow": 0
   },
+  "lastReceipt": "evidence/receipts/daekwang-server-auth-d1-r2-operation-20260626.json",
   "remainingHold": [
-    "server auth/session",
-    "password hash/server verification",
-    "server-side permission protection",
-    "D1/KV/R2 persistence",
-    "shared data for all visitors",
-    "R2 image upload",
+    "Cloudflare ADMIN_ID and ADMIN_PASSWORD or ADMIN_PASSWORD_SHA256 secret configuration",
+    "server login PASS after secret configuration",
+    "remove or hard-disable frontend demo fallback for production",
+    "server-side permission protection by role",
+    "admin UI CRUD wiring to D1/KV/R2 APIs",
+    "shared admin changes for all visitors",
+    "real R2 image upload from admin UI",
     "trash restore UX",
     "original AI/SVG logo source",
     "SSR SEO"
   ],
-  "nextCommand": "DAEKWANG_SERVER_AUTH_D1_R2_OPERATION_PATCH"
+  "nextCommand": "DAEKWANG_SERVER_AUTH_SECRET_AND_ADMIN_CRUD_WIRING_PATCH"
 }

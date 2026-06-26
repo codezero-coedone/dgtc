@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { DaekwangLogoLockup } from "../brand/DaekwangLogoLockup.jsx";
+import { AdminApiError, loginAdmin } from "../../services/adminApiClient.js";
 
 export const ADMIN_AUTH_STORAGE_KEY = "daekwang.admin.auth.v1";
-const DEMO_ADMIN_ID = "dgtc66";
-const DEMO_ADMIN_PASSWORD = "1234";
+const DEMO_FALLBACK_ADMIN_ID = "dgtc66";
+const DEMO_FALLBACK_ADMIN_PASSWORD = "1234";
 
 export function readAdminAuthSession() {
   if (typeof window === "undefined") return null;
@@ -24,12 +25,13 @@ export function clearAdminAuthSession() {
   }
 }
 
-function writeAdminAuthSession(userId) {
+function writeAdminAuthSession(userId, patch = {}) {
   const session = {
     authenticated: true,
     userId,
     loginAt: new Date().toISOString(),
-    mode: "demo-local",
+    mode: "server-session",
+    ...patch,
   };
   window.sessionStorage.setItem(ADMIN_AUTH_STORAGE_KEY, JSON.stringify(session));
   return session;
@@ -41,12 +43,13 @@ export function AdminLoginGate({ onAuthenticated }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const lockSummary = useMemo(
     () => [
       ["접근 상태", "잠김"],
       ["보호 범위", "콘텐츠 관리 콘솔"],
-      ["인증 방식", "임시 로컬 게이트"],
+      ["인증 방식", "서버 세션 우선"],
     ],
     [],
   );
@@ -59,21 +62,54 @@ export function AdminLoginGate({ onAuthenticated }) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  const submit = (event) => {
+  const canUseDemoFallback = (apiError) => {
+    if (apiError instanceof AdminApiError) {
+      return apiError.code === "SERVER_AUTH_NOT_CONFIGURED" || apiError.status === 404 || apiError.status === 405;
+    }
+    return true;
+  };
+
+  const submit = async (event) => {
     event.preventDefault();
     if (!userId.trim() || !password.trim()) {
       setError("아이디와 비밀번호를 입력하세요.");
       return;
     }
-    // Demo-only gate: credentials are client-visible and must be replaced by server session auth before production operation.
-    if (userId.trim() !== DEMO_ADMIN_ID || password !== DEMO_ADMIN_PASSWORD) {
-      setError("아이디 또는 비밀번호가 올바르지 않습니다.");
-      return;
+    setSubmitting(true);
+    try {
+      const serverSession = await loginAdmin(userId.trim(), password);
+      if (serverSession?.authenticated !== true) {
+        throw new Error("SERVER_AUTH_UNAVAILABLE");
+      }
+      setError("");
+      setSuccess(true);
+      const session = writeAdminAuthSession(serverSession.userId || userId.trim(), {
+        mode: serverSession.mode || "server-session",
+        expiresAt: serverSession.expiresAt,
+        serverAuth: true,
+      });
+      window.setTimeout(() => onAuthenticated(session), 260);
+    } catch (apiError) {
+      if (!canUseDemoFallback(apiError)) {
+        setError("아이디 또는 비밀번호가 올바르지 않습니다.");
+        setSubmitting(false);
+        return;
+      }
+      // Fallback-only path: this preserves the current admin demo while Cloudflare auth secrets are not configured.
+      if (userId.trim() !== DEMO_FALLBACK_ADMIN_ID || password !== DEMO_FALLBACK_ADMIN_PASSWORD) {
+        setError("아이디 또는 비밀번호가 올바르지 않습니다.");
+        setSubmitting(false);
+        return;
+      }
+      setError("");
+      setSuccess(true);
+      const session = writeAdminAuthSession(userId.trim(), {
+        mode: "demo-local-fallback",
+        serverAuth: false,
+        hold: "SERVER_AUTH_NOT_CONFIGURED_OR_API_UNAVAILABLE",
+      });
+      window.setTimeout(() => onAuthenticated(session), 260);
     }
-    setError("");
-    setSuccess(true);
-    const session = writeAdminAuthSession(userId.trim());
-    window.setTimeout(() => onAuthenticated(session), 260);
   };
 
   return (
@@ -103,8 +139,8 @@ export function AdminLoginGate({ onAuthenticated }) {
             </label>
             {error ? <p className="admin-login-error">{error}</p> : null}
             {success ? <p className="admin-login-success">관리자 인증이 완료되었습니다.</p> : null}
-            <button className="admin-login-submit" type="submit">로그인</button>
-            <p className="admin-login-note">임시 관리자 게이트입니다. 실제 운영 인증은 서버 세션으로 전환 예정입니다.</p>
+            <button className="admin-login-submit" disabled={submitting} type="submit">{submitting ? "인증 확인 중" : "로그인"}</button>
+            <p className="admin-login-note">서버 세션 인증을 우선 사용합니다. 서버 secret 미구성 시 현재 데모 보호 흐름으로만 임시 진입합니다.</p>
           </form>
         </div>
       ) : (

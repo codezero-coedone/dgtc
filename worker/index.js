@@ -1,6 +1,10 @@
 import { defaultAdminContent, normalizeContent } from "../daekwangtech_homepage_v3_function_pass/src/adminContentSeed.js";
+import { notices as defaultNotices, noticeCtaSettings as defaultNoticeCtaSettings } from "../daekwangtech_homepage_v3_function_pass/src/data/daekwangAdminData.js";
 
 const CONTENT_KEY = "published-site-content";
+const ADMIN_SESSION_COOKIE = "dk_admin_session";
+const ADMIN_SESSION_TTL_SECONDS = 60 * 60 * 8;
+
 const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
   "cache-control": "no-store",
@@ -20,31 +24,160 @@ function now() {
 }
 
 function safeName(name) {
-  return String(name || "upload")
-    .toLowerCase()
-    .replace(/[^a-z0-9._-]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 96) || "upload";
+  return (
+    String(name || "upload")
+      .toLowerCase()
+      .replace(/[^a-z0-9._-]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 96) || "upload"
+  );
+}
+
+function parseCookies(cookieHeader = "") {
+  return Object.fromEntries(
+    cookieHeader
+      .split(";")
+      .map((part) => part.trim())
+      .filter(Boolean)
+      .map((part) => {
+        const index = part.indexOf("=");
+        if (index < 0) return [part, ""];
+        return [part.slice(0, index), decodeURIComponent(part.slice(index + 1))];
+      }),
+  );
+}
+
+function sessionKey(token) {
+  return `admin-session:${token}`;
+}
+
+function sessionCookie(request, token, maxAge) {
+  const secure = new URL(request.url).protocol === "https:" ? "; Secure" : "";
+  return `${ADMIN_SESSION_COOKIE}=${encodeURIComponent(token)}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${maxAge}${secure}`;
+}
+
+function clearSessionCookie(request) {
+  return sessionCookie(request, "", 0);
+}
+
+async function sha256Hex(value) {
+  const input = new TextEncoder().encode(value);
+  const hash = await crypto.subtle.digest("SHA-256", input);
+  return [...new Uint8Array(hash)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function configuredAdminAuth(env) {
+  const adminId = String(env.ADMIN_ID || "").trim();
+  const password = String(env.ADMIN_PASSWORD || "");
+  const passwordHash = String(env.ADMIN_PASSWORD_SHA256 || "").trim().toLowerCase();
+  return {
+    adminId,
+    password,
+    passwordHash,
+    ready: Boolean(adminId && (password || passwordHash)),
+  };
+}
+
+async function verifyAdminPassword(inputPassword, env) {
+  const configured = configuredAdminAuth(env);
+  if (!configured.ready) return false;
+  if (configured.password && inputPassword === configured.password) return true;
+  if (configured.passwordHash) return (await sha256Hex(inputPassword)) === configured.passwordHash;
+  return false;
 }
 
 async function ensureSchema(env) {
   if (schemaReady || !env.DB) return;
-  const existing = await env.DB.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'site_content'").first();
-  if (!existing) {
-    await env.DB.batch([
-      env.DB.prepare("CREATE TABLE IF NOT EXISTS site_content (id TEXT PRIMARY KEY, status TEXT NOT NULL, content_json TEXT NOT NULL, revision INTEGER NOT NULL DEFAULT 1, updated_at TEXT NOT NULL, updated_by TEXT)"),
-      env.DB.prepare("CREATE TABLE IF NOT EXISTS content_revisions (revision_id INTEGER PRIMARY KEY AUTOINCREMENT, status TEXT NOT NULL, content_json TEXT NOT NULL, created_at TEXT NOT NULL, created_by TEXT, note TEXT)"),
-      env.DB.prepare("CREATE TABLE IF NOT EXISTS media_assets (id TEXT PRIMARY KEY, object_key TEXT, src TEXT NOT NULL, label TEXT, alt TEXT, usage TEXT, content_type TEXT, size INTEGER, status TEXT NOT NULL DEFAULT 'active', created_at TEXT NOT NULL, updated_at TEXT NOT NULL)"),
-    ]);
-  }
+  await env.DB.batch([
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS site_content (id TEXT PRIMARY KEY, status TEXT NOT NULL, content_json TEXT NOT NULL, revision INTEGER NOT NULL DEFAULT 1, updated_at TEXT NOT NULL, updated_by TEXT)",
+    ),
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS content_revisions (revision_id INTEGER PRIMARY KEY AUTOINCREMENT, status TEXT NOT NULL, content_json TEXT NOT NULL, created_at TEXT NOT NULL, created_by TEXT, note TEXT)",
+    ),
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS media_assets (id TEXT PRIMARY KEY, object_key TEXT, src TEXT NOT NULL, label TEXT, alt TEXT, usage TEXT, content_type TEXT, size INTEGER, status TEXT NOT NULL DEFAULT 'active', created_at TEXT NOT NULL, updated_at TEXT NOT NULL)",
+    ),
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS admin_sessions (id TEXT PRIMARY KEY, user_id TEXT NOT NULL, created_at TEXT NOT NULL, expires_at TEXT NOT NULL, revoked_at TEXT)",
+    ),
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS admin_audit_logs (id TEXT PRIMARY KEY, actor TEXT, action TEXT NOT NULL, target TEXT, status TEXT NOT NULL, detail TEXT, created_at TEXT NOT NULL)",
+    ),
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS notices (id INTEGER PRIMARY KEY, title TEXT NOT NULL, status TEXT NOT NULL, publish_date TEXT NOT NULL, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, category TEXT, is_pinned INTEGER NOT NULL DEFAULT 0, author TEXT, view_count INTEGER NOT NULL DEFAULT 0, content TEXT)",
+    ),
+  ]);
   schemaReady = true;
+}
+
+async function recordAudit(env, { actor = "system", action, target = "", status = "success", detail = "" }) {
+  if (!env.DB) return;
+  try {
+    await ensureSchema(env);
+    await env.DB.prepare(
+      "INSERT INTO admin_audit_logs (id, actor, action, target, status, detail, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    )
+      .bind(`audit-${Date.now()}-${crypto.randomUUID()}`, actor, action, target, status, detail, now())
+      .run();
+  } catch {
+    // Audit failure must not break the user-facing admin flow.
+  }
+}
+
+async function createAdminSession(request, env, userId) {
+  await ensureSchema(env);
+  const token = crypto.randomUUID();
+  const createdAt = now();
+  const expiresAt = new Date(Date.now() + ADMIN_SESSION_TTL_SECONDS * 1000).toISOString();
+  const payload = { authenticated: true, userId, mode: "server-session", createdAt, expiresAt };
+  if (env.CONTENT_CACHE) {
+    await env.CONTENT_CACHE.put(sessionKey(token), JSON.stringify(payload), { expirationTtl: ADMIN_SESSION_TTL_SECONDS });
+  }
+  if (env.DB) {
+    await env.DB.prepare("INSERT INTO admin_sessions (id, user_id, created_at, expires_at, revoked_at) VALUES (?, ?, ?, ?, NULL)")
+      .bind(token, userId, createdAt, expiresAt)
+      .run();
+  }
+  await recordAudit(env, { actor: userId, action: "admin.login", target: "session", detail: "server session issued" });
+  return { token, payload, cookie: sessionCookie(request, token, ADMIN_SESSION_TTL_SECONDS) };
+}
+
+async function readAdminSession(request, env) {
+  const token = parseCookies(request.headers.get("cookie") || "")[ADMIN_SESSION_COOKIE];
+  if (!token) return null;
+  if (env.CONTENT_CACHE) {
+    const cached = await env.CONTENT_CACHE.get(sessionKey(token), { type: "json" });
+    if (cached?.authenticated && new Date(cached.expiresAt).getTime() > Date.now()) return { token, ...cached };
+  }
+  if (!env.DB) return null;
+  await ensureSchema(env);
+  const row = await env.DB.prepare("SELECT id, user_id, created_at, expires_at, revoked_at FROM admin_sessions WHERE id = ?").bind(token).first();
+  if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return null;
+  return {
+    token,
+    authenticated: true,
+    userId: row.user_id,
+    mode: "server-session",
+    createdAt: row.created_at,
+    expiresAt: row.expires_at,
+  };
+}
+
+async function revokeAdminSession(request, env) {
+  const token = parseCookies(request.headers.get("cookie") || "")[ADMIN_SESSION_COOKIE];
+  if (!token) return;
+  if (env.CONTENT_CACHE) await env.CONTENT_CACHE.delete(sessionKey(token));
+  if (env.DB) {
+    await ensureSchema(env);
+    await env.DB.prepare("UPDATE admin_sessions SET revoked_at = ? WHERE id = ?").bind(now(), token).run();
+  }
 }
 
 async function getContentRow(env, status) {
   await ensureSchema(env);
-  const row = await env.DB.prepare("SELECT content_json, revision, updated_at FROM site_content WHERE id = ?")
-    .bind(status)
-    .first();
+  if (!env.DB) return null;
+  const row = await env.DB.prepare("SELECT content_json, revision, updated_at FROM site_content WHERE id = ?").bind(status).first();
   if (!row) return null;
   return {
     content: normalizeContent(JSON.parse(row.content_json)),
@@ -55,6 +188,7 @@ async function getContentRow(env, status) {
 
 async function saveContent(env, status, content, actor, note) {
   await ensureSchema(env);
+  if (!env.DB) throw new Error("D1 binding is missing.");
   const normalized = normalizeContent(content);
   const contentJson = JSON.stringify(normalized);
   const existing = await env.DB.prepare("SELECT revision FROM site_content WHERE id = ?").bind(status).first();
@@ -69,24 +203,30 @@ async function saveContent(env, status, content, actor, note) {
       revision = excluded.revision,
       updated_at = excluded.updated_at,
       updated_by = excluded.updated_by
-  `).bind(status, status, contentJson, revision, timestamp, actor).run();
+  `)
+    .bind(status, status, contentJson, revision, timestamp, actor)
+    .run();
   await env.DB.prepare(`
     INSERT INTO content_revisions (status, content_json, created_at, created_by, note)
     VALUES (?, ?, ?, ?, ?)
-  `).bind(status, contentJson, timestamp, actor, note ?? "").run();
+  `)
+    .bind(status, contentJson, timestamp, actor, note ?? "")
+    .run();
   return { content: normalized, meta: { status, revision, updatedAt: timestamp } };
 }
 
 async function auth(request, env) {
   const expected = env.ADMIN_TOKEN;
-  if (!expected) return false;
   const header = request.headers.get("authorization") || "";
   const token = header.startsWith("Bearer ") ? header.slice(7).trim() : request.headers.get("x-admin-token") || "";
-  return token && token === expected;
+  if (expected && token && token === expected) return { actor: "token-admin", mode: "admin-token" };
+  const session = await readAdminSession(request, env);
+  return session ? { actor: session.userId, mode: session.mode, session } : null;
 }
 
 async function requireAuth(request, env) {
-  if (await auth(request, env)) return;
+  const session = await auth(request, env);
+  if (session) return session;
   throw json({ error: "관리자 인증이 필요합니다." }, { status: 401 });
 }
 
@@ -108,6 +248,137 @@ async function adminContent(env) {
   const published = await getContentRow(env, "published");
   if (published) return { content: published.content, meta: { source: "D1:published", revision: published.revision, updatedAt: published.updatedAt } };
   return { content: normalizeContent(defaultAdminContent), meta: { source: "default" } };
+}
+
+function normalizeNoticeRecord(notice) {
+  const title = notice.title || "제목 없는 공지사항";
+  return {
+    id: Number(notice.id),
+    title,
+    status: notice.status === "hidden" ? "hidden" : "visible",
+    publishDate: notice.publishDate || notice.publish_date || now().slice(0, 10),
+    createdAt: notice.createdAt || notice.created_at || now(),
+    updatedAt: notice.updatedAt || notice.updated_at || notice.createdAt || notice.created_at || now(),
+    category: notice.category || "공지",
+    isPinned: Boolean(notice.isPinned ?? notice.is_pinned),
+    author: notice.author || "대광테크",
+    viewCount: Number(notice.viewCount ?? notice.view_count ?? 0),
+    content:
+      notice.content ||
+      `${title}\n\n대광테크에서 안내드리는 공지사항입니다. 세부 내용은 관리자 콘솔에서 보강할 수 있습니다.`,
+  };
+}
+
+async function seedNotices(env) {
+  if (!env.DB) return;
+  await ensureSchema(env);
+  const count = await env.DB.prepare("SELECT COUNT(*) AS count FROM notices").first();
+  if (Number(count?.count || 0) > 0) return;
+  for (const notice of defaultNotices.map(normalizeNoticeRecord)) {
+    await env.DB.prepare(`
+      INSERT INTO notices (id, title, status, publish_date, created_at, updated_at, category, is_pinned, author, view_count, content)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `)
+      .bind(
+        notice.id,
+        notice.title,
+        notice.status,
+        notice.publishDate,
+        notice.createdAt,
+        notice.updatedAt,
+        notice.category,
+        notice.isPinned ? 1 : 0,
+        notice.author,
+        notice.viewCount,
+        notice.content,
+      )
+      .run();
+  }
+}
+
+async function listNoticeRows(env, { includeHidden = false } = {}) {
+  if (!env.DB) {
+    const rows = defaultNotices.map(normalizeNoticeRecord).filter((notice) => includeHidden || notice.status === "visible");
+    return { notices: rows, meta: { source: "default", persistence: "fallback-no-d1" } };
+  }
+  await ensureSchema(env);
+  await seedNotices(env);
+  const condition = includeHidden ? "" : "WHERE status = 'visible'";
+  const result = await env.DB.prepare(`
+    SELECT id, title, status, publish_date, created_at, updated_at, category, is_pinned, author, view_count, content
+    FROM notices
+    ${condition}
+    ORDER BY is_pinned DESC, publish_date DESC, id DESC
+  `).all();
+  return { notices: (result.results || []).map(normalizeNoticeRecord), meta: { source: "D1:notices" } };
+}
+
+async function createNotice(request, env, actor) {
+  if (!env.DB) return json({ error: "D1 binding is missing." }, { status: 503 });
+  await ensureSchema(env);
+  const body = await request.json();
+  const maxRow = await env.DB.prepare("SELECT MAX(id) AS max_id FROM notices").first();
+  const id = Number(maxRow?.max_id || 0) + 1;
+  const notice = normalizeNoticeRecord({ ...body, id, createdAt: now(), updatedAt: now() });
+  await env.DB.prepare(`
+    INSERT INTO notices (id, title, status, publish_date, created_at, updated_at, category, is_pinned, author, view_count, content)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `)
+    .bind(
+      notice.id,
+      notice.title,
+      notice.status,
+      notice.publishDate,
+      notice.createdAt,
+      notice.updatedAt,
+      notice.category,
+      notice.isPinned ? 1 : 0,
+      notice.author,
+      notice.viewCount,
+      notice.content,
+    )
+    .run();
+  await recordAudit(env, { actor, action: "notice.create", target: notice.title });
+  return json({ notice, meta: { source: "D1:notices" } });
+}
+
+async function updateNotice(request, env, actor, id, patch = null) {
+  if (!env.DB) return json({ error: "D1 binding is missing." }, { status: 503 });
+  await ensureSchema(env);
+  const existing = await env.DB.prepare("SELECT * FROM notices WHERE id = ?").bind(id).first();
+  if (!existing) return json({ error: "공지사항을 찾을 수 없습니다." }, { status: 404 });
+  const body = patch ?? (await request.json());
+  const notice = normalizeNoticeRecord({ ...normalizeNoticeRecord(existing), ...body, id: Number(id), updatedAt: now() });
+  await env.DB.prepare(`
+    UPDATE notices
+    SET title = ?, status = ?, publish_date = ?, updated_at = ?, category = ?, is_pinned = ?, author = ?, view_count = ?, content = ?
+    WHERE id = ?
+  `)
+    .bind(
+      notice.title,
+      notice.status,
+      notice.publishDate,
+      notice.updatedAt,
+      notice.category,
+      notice.isPinned ? 1 : 0,
+      notice.author,
+      notice.viewCount,
+      notice.content,
+      Number(id),
+    )
+    .run();
+  await recordAudit(env, { actor, action: "notice.update", target: notice.title });
+  return json({ notice, meta: { source: "D1:notices" } });
+}
+
+async function deleteNotice(env, actor, id) {
+  if (!env.DB) return json({ error: "D1 binding is missing." }, { status: 503 });
+  await ensureSchema(env);
+  const existing = await env.DB.prepare("SELECT title FROM notices WHERE id = ?").bind(id).first();
+  if (!existing) return json({ error: "공지사항을 찾을 수 없습니다." }, { status: 404 });
+  await env.DB.prepare("DELETE FROM notices WHERE id = ?").bind(id).run();
+  await recordAudit(env, { actor, action: "notice.delete", target: existing.title });
+  return json({ ok: true, id: Number(id), meta: { source: "D1:notices" } });
 }
 
 async function uploadMedia(request, env) {
@@ -136,16 +407,27 @@ async function uploadMedia(request, env) {
     size: file.size,
   };
   await ensureSchema(env);
-  await env.DB.prepare(`
-    INSERT INTO media_assets (id, object_key, src, label, alt, usage, content_type, size, status, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `).bind(media.id, key, media.src, media.label, media.alt, media.usage, media.contentType, media.size, media.status, now(), now()).run();
+  if (env.DB) {
+    await env.DB.prepare(`
+      INSERT INTO media_assets (id, object_key, src, label, alt, usage, content_type, size, status, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `)
+      .bind(media.id, key, media.src, media.label, media.alt, media.usage, media.contentType, media.size, media.status, now(), now())
+      .run();
+  }
   return json({ media });
+}
+
+async function listMedia(env) {
+  if (!env.DB) return json({ media: [], meta: { source: "fallback-no-d1" } });
+  await ensureSchema(env);
+  const rows = await env.DB.prepare("SELECT id, object_key, src, label, alt, usage, content_type, size, status, created_at, updated_at FROM media_assets ORDER BY created_at DESC").all();
+  return json({ media: rows.results || [], meta: { source: "D1:media_assets" } });
 }
 
 async function serveMedia(pathname, env) {
   if (!env.MEDIA_BUCKET) return json({ error: "R2 bucket binding is missing." }, { status: 503 });
-  const key = decodeURIComponent(pathname.replace("/api/cms/media/", ""));
+  const key = decodeURIComponent(pathname.replace("/api/cms/media/", "").replace("/api/admin/media/", ""));
   const object = await env.MEDIA_BUCKET.get(key);
   if (!object) return json({ error: "이미지를 찾을 수 없습니다." }, { status: 404 });
   const headers = new Headers();
@@ -155,24 +437,113 @@ async function serveMedia(pathname, env) {
   return new Response(object.body, { headers });
 }
 
+async function handleAdminAuth(request, env) {
+  const url = new URL(request.url);
+  if (url.pathname === "/api/admin/login" && request.method === "POST") {
+    const configured = configuredAdminAuth(env);
+    if (!configured.ready) {
+      return json(
+        {
+          error: "SERVER_AUTH_NOT_CONFIGURED",
+          code: "SERVER_AUTH_NOT_CONFIGURED",
+          hold: true,
+          message: "Cloudflare ADMIN_ID and ADMIN_PASSWORD or ADMIN_PASSWORD_SHA256 secrets are not configured.",
+        },
+        { status: 503 },
+      );
+    }
+    const body = await request.json();
+    const userId = String(body.userId || body.id || "").trim();
+    const password = String(body.password || "");
+    if (userId !== configured.adminId || !(await verifyAdminPassword(password, env))) {
+      await recordAudit(env, { actor: userId || "unknown", action: "admin.login", target: "session", status: "fail", detail: "invalid credential" });
+      return json({ error: "아이디 또는 비밀번호가 올바르지 않습니다." }, { status: 401 });
+    }
+    const session = await createAdminSession(request, env, userId);
+    return json({ authenticated: true, userId, mode: "server-session", expiresAt: session.payload.expiresAt }, { headers: { "set-cookie": session.cookie } });
+  }
+
+  if (url.pathname === "/api/admin/logout" && request.method === "POST") {
+    const session = await readAdminSession(request, env);
+    await revokeAdminSession(request, env);
+    await recordAudit(env, { actor: session?.userId || "unknown", action: "admin.logout", target: "session" });
+    return json({ ok: true }, { headers: { "set-cookie": clearSessionCookie(request) } });
+  }
+
+  if (url.pathname === "/api/admin/session" && request.method === "GET") {
+    const session = await readAdminSession(request, env);
+    if (!session) return json({ authenticated: false, mode: "anonymous" });
+    return json({ authenticated: true, userId: session.userId, mode: session.mode, expiresAt: session.expiresAt });
+  }
+
+  return null;
+}
+
 async function handleApi(request, env) {
   const url = new URL(request.url);
   if (request.method === "OPTIONS") return new Response(null, { status: 204 });
   try {
+    const authResponse = await handleAdminAuth(request, env);
+    if (authResponse) return authResponse;
+
+    if (url.pathname === "/api/public/site" && request.method === "GET") return json(await publicContent(env));
+    if (url.pathname === "/api/public/notices" && request.method === "GET") {
+      const payload = await listNoticeRows(env, { includeHidden: false });
+      return json({ ...payload, noticeCtaSettings: defaultNoticeCtaSettings });
+    }
+
+    if (url.pathname === "/api/admin/notices" && request.method === "GET") {
+      await requireAuth(request, env);
+      return json(await listNoticeRows(env, { includeHidden: true }));
+    }
+    if (url.pathname === "/api/admin/notices" && request.method === "POST") {
+      const session = await requireAuth(request, env);
+      return createNotice(request, env, session.actor);
+    }
+    const noticeMatch = url.pathname.match(/^\/api\/admin\/notices\/(\d+)$/);
+    if (noticeMatch && request.method === "PUT") {
+      const session = await requireAuth(request, env);
+      return updateNotice(request, env, session.actor, noticeMatch[1]);
+    }
+    if (noticeMatch && request.method === "DELETE") {
+      const session = await requireAuth(request, env);
+      return deleteNotice(env, session.actor, noticeMatch[1]);
+    }
+    const noticeHideMatch = url.pathname.match(/^\/api\/admin\/notices\/(\d+)\/hide$/);
+    if (noticeHideMatch && request.method === "PATCH") {
+      const session = await requireAuth(request, env);
+      return updateNotice(request, env, session.actor, noticeHideMatch[1], { status: "hidden" });
+    }
+
+    if (url.pathname === "/api/admin/images" && request.method === "GET") {
+      await requireAuth(request, env);
+      return listMedia(env);
+    }
+    if (url.pathname === "/api/admin/images" && request.method === "POST") {
+      await requireAuth(request, env);
+      return uploadMedia(request, env);
+    }
+    if (url.pathname.startsWith("/api/admin/media/") && request.method === "GET") return serveMedia(url.pathname, env);
+
+    if (url.pathname.startsWith("/api/admin/popups") && ["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
+      await requireAuth(request, env);
+      return json({ error: "POPUP_SERVER_PERSISTENCE_SCAFFOLD_ONLY", hold: true }, { status: 501 });
+    }
+
     if (url.pathname === "/api/cms/content" && request.method === "GET") return json(await publicContent(env));
     if (url.pathname === "/api/cms/admin/content" && request.method === "GET") {
       await requireAuth(request, env);
       return json(await adminContent(env));
     }
     if (url.pathname === "/api/cms/admin/content" && request.method === "PUT") {
-      await requireAuth(request, env);
+      const session = await requireAuth(request, env);
       const body = await request.json();
-      return json(await saveContent(env, "draft", body.content, "admin", "draft save"));
+      return json(await saveContent(env, "draft", body.content, session.actor, "draft save"));
     }
     if (url.pathname === "/api/cms/admin/publish" && request.method === "POST") {
-      await requireAuth(request, env);
+      const session = await requireAuth(request, env);
       const body = await request.json();
-      const saved = await saveContent(env, "published", body.content, "admin", "publish");
+      const saved = await saveContent(env, "published", body.content, session.actor, "publish");
       await env.CONTENT_CACHE?.put(CONTENT_KEY, JSON.stringify({ content: saved.content, cachedAt: now() }));
       return json(saved);
     }
@@ -181,6 +552,7 @@ async function handleApi(request, env) {
       return uploadMedia(request, env);
     }
     if (url.pathname.startsWith("/api/cms/media/") && request.method === "GET") return serveMedia(url.pathname, env);
+
     return json({ error: "API route not found" }, { status: 404 });
   } catch (error) {
     if (error instanceof Response) return error;
@@ -191,7 +563,7 @@ async function handleApi(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (url.pathname.startsWith("/api/cms/")) return handleApi(request, env);
+    if (url.pathname.startsWith("/api/")) return handleApi(request, env);
     return env.ASSETS.fetch(request);
   },
 };

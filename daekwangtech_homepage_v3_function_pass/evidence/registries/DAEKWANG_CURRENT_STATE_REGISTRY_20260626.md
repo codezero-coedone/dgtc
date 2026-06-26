@@ -14,21 +14,24 @@
 - 모바일 390px overflow: PASS
 - console error: 0
 - build/lint/typecheck/deploy: PASS
+- 서버 인증 API scaffold: HOLD
+- D1 public notices API: PASS
+- R2 image API alias: SCAFFOLD
 
 ## 2. SSOT
 
 - Public Home: https://dgtc.ejdzm90.workers.dev/#/
 - Public Admin: https://dgtc.ejdzm90.workers.dev/#/admin
 - Public Notice: https://dgtc.ejdzm90.workers.dev/#/notice
-- Deploy version: bcee0492-1614-4d92-bae8-879e67c5a7a1
+- Deploy version: 16f183ec-fc26-46ea-9ff8-7bd17f3ae6c6
 - Product baseline Git HEAD: 6af3cd5
 - Branch: main
-- Storage mode: localStorage demo/admin store
-- Auth mode: frontend demo gate
+- Storage mode: D1 public notices + localStorage admin fallback
+- Auth mode: Worker server-session scaffold + frontend demo fallback when server secrets are missing
 - Admin login ID: dgtc66
 - Admin login PW: 1234
 
-주의: 위 로그인은 프론트 데모 게이트다. 실제 운영 보안은 Worker server session으로 교체해야 한다.
+주의: public Worker에는 `/api/admin/login|logout|session`이 추가되었으나, 현재 Cloudflare `ADMIN_ID` / `ADMIN_PASSWORD` 또는 `ADMIN_PASSWORD_SHA256` secret이 없어 `/api/admin/login`은 `SERVER_AUTH_NOT_CONFIGURED`를 반환한다. 기존 관리자 접근성 보존을 위해 이 경우에만 프론트 demo fallback이 동작한다.
 
 ## 3. FEATURE STATUS
 
@@ -77,6 +80,7 @@
 - `evidence/receipts/real-browser-admin-ux-audit-logo-fix-gap-20260626.json`: exists
 - `evidence/receipts/admin-login-gate-hologram-modal-20260626.json`: exists
 - `evidence/receipts/daekwang-current-state-delivery-lock-20260626.json`: created by this lock
+- `evidence/receipts/daekwang-server-auth-d1-r2-operation-20260626.json`: created by server operation patch
 
 ## 5. EVIDENCE FOLDERS
 
@@ -88,26 +92,27 @@
 
 ## 6. REMAINING HOLD
 
-- 실제 서버 인증/세션
-- 비밀번호 해시/서버 검증
+- Cloudflare admin auth secret 주입
+- 서버 로그인 PASS 재검증
 - 권한별 서버 보호
-- D1/KV/R2 서버 저장
-- 모든 방문자 공통 데이터 반영
-- 실제 R2 이미지 업로드
+- 관리자 전체 CRUD의 D1/KV/R2 서버 저장 연결
+- 모든 방문자 공통 데이터 완전 반영
+- 실제 R2 이미지 업로드 UI 연결
 - 이미지/공지/팝업 삭제 휴지통 복원 UX
 - 원본 AI/SVG 로고 파일 수급
 - SSR SEO 완전 대응
 
 ## 7. NEXT COMMAND
 
-다음 대형 패치명: `DAEKWANG_SERVER_AUTH_D1_R2_OPERATION_PATCH`
+다음 대형 패치명: `DAEKWANG_SERVER_AUTH_SECRET_AND_ADMIN_CRUD_WIRING_PATCH`
 
 목표:
 
-- 프론트 데모 로그인 제거
-- Worker 서버 인증/세션 적용
-- D1에 공지/메뉴/푸터/SEO/설정 저장
-- R2에 이미지 저장
+- Cloudflare `ADMIN_ID` / `ADMIN_PASSWORD` 또는 `ADMIN_PASSWORD_SHA256` secret 주입
+- Worker 서버 인증/세션을 실제 PASS로 전환
+- 관리자 공지 CRUD를 D1 API에 연결
+- R2 이미지 저장을 관리자 이미지 UI에 연결
+- 메뉴/푸터/SEO/설정 D1 저장 확장
 - Public API로 모든 방문자에게 동일 데이터 반영
 - 관리자 권한 보호
 - localStorage는 fallback/migration 용도로 격하

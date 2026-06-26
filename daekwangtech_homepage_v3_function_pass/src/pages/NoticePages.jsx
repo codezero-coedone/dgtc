@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { DaekwangBrandBadge } from "../components/brand/DaekwangBrandBadge.jsx";
 import { DaekwangLogoMark } from "../components/brand/DaekwangLogoMark.jsx";
 import { NoticeCtaBlock } from "../components/notice/HomeNoticeSection.jsx";
-import { getNoticeHref, getNoticeListHref, loadPublicNoticeData, subscribeNoticePublicData } from "../utils/noticePublicData.js";
+import { getNoticeHref, getNoticeListHref, hasLocalAdminNoticeState, loadPublicNoticeData, loadServerPublicNoticeData, subscribeNoticePublicData } from "../utils/noticePublicData.js";
 
 const categories = ["전체", "공지", "인증", "설비", "휴무", "기타"];
 const sortOptions = [
@@ -44,7 +44,13 @@ export function NoticeListPage() {
   const [category, setCategory] = useState("전체");
   const [sort, setSort] = useState("pinned");
   const [page, setPage] = useState(1);
-  useEffect(() => subscribeNoticePublicData(setData), []);
+  useEffect(() => {
+    const unsubscribe = subscribeNoticePublicData(setData);
+    if (!hasLocalAdminNoticeState()) {
+      loadServerPublicNoticeData().then(setData).catch(() => null);
+    }
+    return unsubscribe;
+  }, []);
 
   const filtered = useMemo(() => {
     const rows = data.visibleNotices.filter((notice) => {
@@ -140,7 +146,13 @@ function NoticeEmpty({ onReset }) {
 
 export function NoticeDetailPage({ noticeId }) {
   const [data, setData] = useState(() => loadPublicNoticeData());
-  useEffect(() => subscribeNoticePublicData(setData), []);
+  useEffect(() => {
+    const unsubscribe = subscribeNoticePublicData(setData);
+    if (!hasLocalAdminNoticeState()) {
+      loadServerPublicNoticeData().then(setData).catch(() => null);
+    }
+    return unsubscribe;
+  }, []);
   const notice = data.visibleNotices.find((item) => String(item.id) === String(noticeId));
   const index = data.visibleNotices.findIndex((item) => String(item.id) === String(noticeId));
   const prev = index > 0 ? data.visibleNotices[index - 1] : null;

@@ -8,6 +8,7 @@ import { AdminSidebar } from "../components/daekwang-admin/AdminSidebar.jsx";
 import { AdminLoginGate, clearAdminAuthSession, readAdminAuthSession } from "../components/daekwang-admin/AdminLoginGate.jsx";
 import { AdminToast } from "../components/daekwang-admin/AdminToast.jsx";
 import { AdminTopbar } from "../components/daekwang-admin/AdminTopbar.jsx";
+import { logoutAdmin } from "../services/adminApiClient.js";
 import { fileSizeLabel, isImageFile, isUnderImageLimit, readFileAsDataUrl } from "../utils/adminValidation.js";
 import { nowStamp } from "../utils/adminStorage.js";
 
@@ -484,7 +485,8 @@ export function DaekwangAdminConsole() {
     openConfirm({
       title: "관리자 로그아웃",
       message: "관리자 콘솔에서 로그아웃하시겠습니까?",
-      onConfirm: () => {
+      onConfirm: async () => {
+        await logoutAdmin().catch(() => null);
         clearAdminAuthSession();
         actions.addActivity("logout", "관리자 로그아웃", "관리자가 콘솔에서 로그아웃했습니다.", authSession?.userId || "admin");
         setAuthSession(null);
