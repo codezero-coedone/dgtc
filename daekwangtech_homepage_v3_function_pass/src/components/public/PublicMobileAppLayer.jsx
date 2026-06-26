@@ -30,8 +30,8 @@ function MobileImageCard({ title, desc, image, href, tag }) {
 export function PublicMobileBottomNav({ active = "index" }) {
   const items = [
     ["index", "#/", "홈"],
-    ["company", "#/company", "회사"],
-    ["products", "#/products", "사업"],
+    ["company", "#mobile-company", "회사"],
+    ["products", "#mobile-business", "사업"],
     ["projects", "#mobile-projects", "프로젝트"],
     ["notice", getNoticeListHref(), "소식"],
   ];
@@ -66,7 +66,7 @@ export function PublicMobileAppLayer({ company, facilityCards, homeProducts, pag
   const metrics = pageContent.company.metrics.slice(0, 4);
 
   return (
-    <section className="public-mobile-app-layer" aria-label="대광테크 모바일 앱형 홈">
+    <section className="public-mobile-app-layer public-mobile-app-shell" aria-label="대광테크 모바일 앱형 홈">
       <div className="pm-phone-shell">
         <div className="pm-hero-card">
           <div className="pm-hero-mark">
@@ -93,7 +93,7 @@ export function PublicMobileAppLayer({ company, facilityCards, homeProducts, pag
           ))}
         </div>
 
-        <div className="pm-section-card">
+        <div className="pm-section-card" id="mobile-company">
           <div className="pm-section-head">
             <span>COMPANY</span>
             <h3>회사 개요</h3>
@@ -108,7 +108,7 @@ export function PublicMobileAppLayer({ company, facilityCards, homeProducts, pag
           </div>
         </div>
 
-        <div className="pm-section-card">
+        <div className="pm-section-card" id="mobile-business">
           <div className="pm-section-head">
             <span>BUSINESS</span>
             <h3>사업영역</h3>

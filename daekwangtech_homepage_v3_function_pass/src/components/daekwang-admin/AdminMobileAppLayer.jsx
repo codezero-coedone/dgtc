@@ -19,7 +19,7 @@ export function AdminMobileAppLayer({ activeSection, authSession, imageCount, no
 
   return (
     <>
-      <section className="dk-admin-mobile-layer" aria-label="대광테크 관리자 모바일 앱 레이어">
+      <section className="dk-admin-mobile-layer admin-mobile-app-shell" aria-label="대광테크 관리자 모바일 앱 레이어">
         <div className="dk-admin-mobile-hero">
           <div className="dk-admin-mobile-brand">
             <DaekwangLogoMark size={38} tone="dark" />

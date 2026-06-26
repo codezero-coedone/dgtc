@@ -524,22 +524,64 @@ export function DaekwangAdminConsole() {
     onOpenPublic: openPublicNoticeList,
   };
 
+  const renderAdminContent = (className = "") => (
+    <div className={`dk-content ${className}`.trim()}>
+      <label className="dk-mobile-section-select">
+        <span>관리 섹션</span>
+        <select value={activeSection} onChange={(event) => setActiveSection(event.target.value)}>
+          {adminSectionOptions.map((section) => (
+            <option key={section.key} value={section.key}>
+              {section.label}
+            </option>
+          ))}
+        </select>
+      </label>
+      <AdminSectionRenderer
+        activeSection={activeSection}
+        actions={actions}
+        activityLogs={state.activityLogs}
+        auditLogs={state.auditLogs}
+        imageManagerProps={imageManagerProps}
+        noticeCreateProps={noticeCreateProps}
+        notices={state.notices}
+        state={state}
+        summaryCards={dashboardCards}
+        onAddActivity={actions.addActivity}
+        onDeleteNotice={deleteNotice}
+        onEditNotice={editNotice}
+        onNavigate={setActiveSection}
+        onOpenPublicNotice={openPublicNotice}
+        onOpenPublicNoticeList={openPublicNoticeList}
+        onPreview={(payload) => setPreview(payload)}
+        onReset={resetAdminData}
+        onToast={notify}
+        onToggleNotice={toggleNotice}
+        onConfirm={openConfirm}
+      />
+    </div>
+  );
+
   if (!authSession?.authenticated) {
     return <AdminLoginGate onAuthenticated={handleAuthenticated} />;
   }
 
   return (
     <div className="dk-admin-page">
-      <AdminSidebar activeSection={activeSection} onSelectSection={setActiveSection} />
-      <main className="dk-main">
-        <AdminTopbar
-          authSession={authSession}
-          onLogout={requestLogout}
-          onSearchChange={setGlobalQuery}
-          onSelectSearchResult={handleSearchSelect}
-          searchResults={adminSearchResults}
-          searchValue={globalQuery}
-        />
+      <div className="desktop-admin-shell">
+        <AdminSidebar activeSection={activeSection} onSelectSection={setActiveSection} />
+        <main className="dk-main">
+          <AdminTopbar
+            authSession={authSession}
+            onLogout={requestLogout}
+            onSearchChange={setGlobalQuery}
+            onSelectSearchResult={handleSearchSelect}
+            searchResults={adminSearchResults}
+            searchValue={globalQuery}
+          />
+          {renderAdminContent("dk-content--desktop")}
+        </main>
+      </div>
+      <div className="responsive-admin-app-shell">
         <AdminMobileAppLayer
           activeSection={activeSection}
           authSession={authSession}
@@ -549,41 +591,8 @@ export function DaekwangAdminConsole() {
           onLogout={requestLogout}
           onNavigate={setActiveSection}
         />
-        <div className="dk-content">
-          <label className="dk-mobile-section-select">
-            <span>관리 섹션</span>
-            <select value={activeSection} onChange={(event) => setActiveSection(event.target.value)}>
-              {adminSectionOptions.map((section) => (
-                <option key={section.key} value={section.key}>
-                  {section.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <AdminSectionRenderer
-            activeSection={activeSection}
-            actions={actions}
-            activityLogs={state.activityLogs}
-            auditLogs={state.auditLogs}
-            imageManagerProps={imageManagerProps}
-            noticeCreateProps={noticeCreateProps}
-            notices={state.notices}
-            state={state}
-            summaryCards={dashboardCards}
-            onAddActivity={actions.addActivity}
-            onDeleteNotice={deleteNotice}
-            onEditNotice={editNotice}
-            onNavigate={setActiveSection}
-            onOpenPublicNotice={openPublicNotice}
-            onOpenPublicNoticeList={openPublicNoticeList}
-            onPreview={(payload) => setPreview(payload)}
-            onReset={resetAdminData}
-            onToast={notify}
-            onToggleNotice={toggleNotice}
-            onConfirm={openConfirm}
-          />
-        </div>
-      </main>
+        {renderAdminContent("dk-content--mobile")}
+      </div>
       <AdminToast toast={toast} onClose={() => setToast(null)} />
       <AdminConfirmModal confirm={confirm} onCancel={() => setConfirm(null)} />
       <AdminPreviewModal preview={preview} onClose={() => setPreview(null)} />

@@ -283,22 +283,31 @@ function SiteApp({ content, setContent, route }) {
   return (
     <div className={`site-shell route-${page.id}`}>
       <a className="skip-link" href="#main-content">본문 바로가기</a>
-      <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <FeatureRail items={detail.rail} />
       {page.id === "index" ? (
         <>
-          <PublicMobileAppLayer company={content.company} facilityCards={facilityCards} homeProducts={homeProducts} pageContent={pageContent} />
-          <ProductsPreview />
-          <ProcessBand />
-          <QualityPreview />
-          <FacilityPreview />
-          <HomeNoticeSection />
-          <TrustPreview posts={content.posts} />
+          <div className="desktop-public-shell">
+            <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <FeatureRail items={detail.rail} />
+            <ProductsPreview />
+            <ProcessBand />
+            <QualityPreview />
+            <FacilityPreview />
+            <HomeNoticeSection />
+            <TrustPreview posts={content.posts} />
+            <Footer company={content.company} />
+          </div>
+          <div className="responsive-public-app-shell">
+            <PublicMobileAppLayer company={content.company} facilityCards={facilityCards} homeProducts={homeProducts} pageContent={pageContent} />
+          </div>
         </>
       ) : (
-        <SubPage page={page} detail={detail} />
+        <>
+          <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <FeatureRail items={detail.rail} />
+          <SubPage page={page} detail={detail} />
+          <Footer company={content.company} />
+        </>
       )}
-      <Footer company={content.company} />
       <PublicMobileBottomNav active={page.id === "facility" ? "projects" : page.id} />
     </div>
   );
