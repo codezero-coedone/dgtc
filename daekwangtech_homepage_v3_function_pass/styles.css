@@ -362,6 +362,91 @@ img{max-width:100%;display:block}
   padding-bottom:16px;
 }
 
+.company-location-panel{
+  display:grid;
+  grid-template-columns:minmax(220px,.62fr) minmax(0,1.25fr) auto;
+  gap:22px;
+  align-items:center;
+  margin-top:0;
+  margin-bottom:34px;
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:var(--soft-shadow);
+  padding:22px;
+}
+.company-location-copy{
+  min-width:0;
+  display:grid;
+  gap:7px;
+}
+.company-location-copy span{
+  color:#0f47af;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.1em;
+}
+.company-location-copy strong{
+  color:#111827;
+  font-size:24px;
+  line-height:1.1;
+  font-weight:950;
+  letter-spacing:-.06em;
+}
+.company-location-copy p{
+  margin:0;
+  color:#64748b;
+  font-size:13px;
+  line-height:1.65;
+}
+.company-location-list{
+  min-width:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 12px;
+  margin:0;
+}
+.company-location-list div{
+  min-width:0;
+  border:1px solid #e5eaf0;
+  border-radius:14px;
+  background:#f7f9fc;
+  padding:12px 14px;
+}
+.company-location-list dt{
+  margin:0 0 5px;
+  color:#0b3b7d;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.08em;
+}
+.company-location-list dd{
+  margin:0;
+  color:#1f2937;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:800;
+  overflow-wrap:anywhere;
+}
+.kakao-map-link{
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  white-space:nowrap;
+  border-radius:999px;
+  background:#0b1d3a;
+  color:#fff;
+  padding:0 18px;
+  font-size:13px;
+  font-weight:950;
+  box-shadow:0 14px 34px rgba(11,29,58,.18);
+}
+.kakao-map-link span{
+  color:#5da5e0;
+}
+
 .process-page-section{
   display:grid;
   gap:26px;
@@ -464,6 +549,7 @@ img{max-width:100%;display:block}
   .quality-check-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .quality-check-grid article:nth-child(odd){border-left:0}
   .quality-check-grid article{border-top:1px solid var(--line)}
+  .company-location-panel{grid-template-columns:1fr}
   .sub-close-panel{grid-template-columns:1fr}
   .sub-close-panel ul{grid-template-columns:repeat(2,minmax(0,1fr))}
   .site-footer{height:auto;flex-wrap:wrap;padding:22px 24px}
@@ -491,6 +577,9 @@ img{max-width:100%;display:block}
   .quality-control-copy h3{font-size:22px}
   .quality-check-grid{grid-template-columns:1fr}
   .quality-check-grid article{border-left:0;padding:20px}
+  .company-location-panel{width:calc(100% - 32px);padding:18px;margin-bottom:24px;border-radius:16px}
+  .company-location-list{grid-template-columns:1fr}
+  .kakao-map-link{width:100%;white-space:normal;text-align:center}
   .sub-close-panel{width:calc(100% - 32px);padding:18px;margin-bottom:22px;border-radius:16px}
   .sub-close-panel ul{grid-template-columns:1fr}
   .sub-close-panel b{font-size:20px}

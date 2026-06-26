@@ -172,6 +172,28 @@ function MetricRow({ items }) {
 }
 
 function CompactClosingPanel({ page, items }) {
+  const mapHref = "https://map.kakao.com/link/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%ED%99%94%EC%84%B1%EC%8B%9C%20%EB%A7%88%EB%8F%84%EB%A9%B4%20%EC%B2%AD%EC%9B%90%EC%82%B0%EB%8B%A85%EA%B8%B8%2060-26";
+  if (page.id === "company") {
+    return (
+      <section className="company-location-panel wrap" aria-label="대광테크 오시는 길">
+        <div className="company-location-copy">
+          <span>LOCATION</span>
+          <strong>오시는 길</strong>
+          <p>방문 전 주소와 연락처를 확인하실 수 있습니다. 지도는 카카오맵 검색 결과로 연결됩니다.</p>
+        </div>
+        <dl className="company-location-list">
+          <div><dt>주소</dt><dd>경기도 화성시 마도면 청원산단5길 60-26</dd></div>
+          <div><dt>전화</dt><dd>031-355-5400</dd></div>
+          <div><dt>팩스</dt><dd>031-355-5402</dd></div>
+          <div><dt>이메일</dt><dd>dgtc@daekwangtech.co.kr</dd></div>
+        </dl>
+        <a className="kakao-map-link" href={mapHref} target="_blank" rel="noreferrer noopener" aria-label="카카오맵에서 대광테크 위치 보기">
+          카카오맵에서 위치 보기
+          <span>↗</span>
+        </a>
+      </section>
+    );
+  }
   const copy = page.id === "technology"
     ? ["기술력 운영 기준", "가공 정밀도, 소재 대응, 도면 검토 기준을 한 화면 안에서 간결하게 정리합니다."]
     : ["회사 운영 기준", "신뢰, 정밀, 혁신, 상생을 중심으로 회사 소개 흐름을 무겁지 않게 마감합니다."];
