@@ -1,0 +1,25 @@
+{
+  "at": "2026-06-26T00:22:20.983Z",
+  "consoleErrors": [],
+  "checks": {
+    "loginGateVisible": true,
+    "adminHiddenBeforeLogin": true,
+    "emptyValidation": true,
+    "escLockScreen": true,
+    "adminHiddenAfterEsc": true,
+    "wrongValidation": true,
+    "correctLogin": true,
+    "searchResults": 7,
+    "searchNavigate": true,
+    "refreshKeepsLogin": true,
+    "logoutLocks": true
+  },
+  "overflow": {
+    "home1440": 0,
+    "admin1440": 0,
+    "notice1440": 0,
+    "home390": 0,
+    "admin390": 0,
+    "notice390": 0
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "patchLock": "DAEKWANG_ADMIN_LOGIN_GATE_HOLOGRAM_MODAL_PATCH",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/#/admin",
+  "deployVersion": "bcee0492-1614-4d92-bae8-879e67c5a7a1",
+  "gitCommit": "AMENDED_COMMIT_REPORTED_IN_FINAL",
+  "authStorageKey": "daekwang.admin.auth.v1",
+  "passwordStored": false,
+  "demoClientGate": true,
+  "checks": {
+    "loginGateVisible": true,
+    "adminHiddenBeforeLogin": true,
+    "emptyValidation": true,
+    "escLockScreen": true,
+    "adminHiddenAfterEsc": true,
+    "wrongValidation": true,
+    "correctLogin": true,
+    "searchResults": 7,
+    "searchNavigate": true,
+    "refreshKeepsLogin": true,
+    "logoutLocks": true
+  },
+  "overflow": {
+    "home1440": 0,
+    "admin1440": 0,
+    "notice1440": 0,
+    "home390": 0,
+    "admin390": 0,
+    "notice390": 0
+  },
+  "consoleErrors": [],
+  "captures": [
+    "evidence/daekwang_admin_login_gate/login-gate-desktop-1440.png",
+    "evidence/daekwang_admin_login_gate/login-modal-error.png",
+    "evidence/daekwang_admin_login_gate/login-modal-esc-closed-lockscreen.png",
+    "evidence/daekwang_admin_login_gate/admin-after-login.png",
+    "evidence/daekwang_admin_login_gate/admin-after-logout.png",
+    "evidence/daekwang_admin_login_gate/login-gate-mobile-390.png"
+  ],
+  "remainingHold": [
+    "Server session authentication",
+    "Password hashing and server verification",
+    "Role-based server authorization",
+    "Login rate limiting",
+    "2FA",
+    "Server-side audit log persistence"
+  ]
+}

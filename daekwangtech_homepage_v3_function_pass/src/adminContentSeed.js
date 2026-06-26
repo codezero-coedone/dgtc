@@ -122,7 +122,7 @@ export const defaultAdminContent = {
     {
       id: "media-logo",
       label: "대광테크 로고",
-      src: "assets/daekwang-logo-horizontal.svg",
+      src: "assets/daekwang-logo-v2.svg",
       alt: "DAE KWANG TECH 대광테크 로고",
       usage: "헤더 / 푸터 / 관리자",
       status: "active",

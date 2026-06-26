@@ -1,0 +1,37 @@
+{
+  "patchLock": "DAEKWANG_REAL_BROWSER_ADMIN_UX_AUDIT_LOGO_FIX_AND_GAP_PATCH",
+  "publicUrl": "https://dgtc.ejdzm90.workers.dev/#/",
+  "deployVersion": "bcee0492-1614-4d92-bae8-879e67c5a7a1",
+  "gitCommit": "AMENDED_COMMIT_REPORTED_IN_FINAL",
+  "beforeLogoStatus": "new",
+  "oldLogoLocations": [],
+  "afterOldVisualLogoVisibleCount": 0,
+  "afterConsoleErrorCount": 0,
+  "desktopOverflowZero": true,
+  "mobileOverflowZero": true,
+  "adminMenuAllPass": true,
+  "adminNoticePublicReflection": {
+    "noticeCreatedToast": true,
+    "publicShowsCreated": true,
+    "hiddenRemovedFromPublic": true,
+    "consoleErrors": 0
+  },
+  "immediateFixes": [
+    "Admin login gate added",
+    "Header/footer/admin/notice logo authority kept on brand components",
+    "v2 favicon/manifest assets deployed",
+    "Admin topbar search now returns results and navigates",
+    "Home mobile root overflow closed"
+  ],
+  "nextPatchCandidates": [
+    "Trash and restore workflow for image/notice/popup deletes",
+    "Wire menu/footer/image admin settings to all public visitors through server storage",
+    "Real D1/KV/R2 persistence and administrator auth"
+  ],
+  "evidence": [
+    "evidence/daekwang_real_admin_ux_audit/before-audit.json",
+    "evidence/daekwang_real_admin_ux_audit/public-after-smoke.json",
+    "evidence/daekwang_real_admin_ux_audit/public-admin-menu-smoke.json",
+    "evidence/daekwang_real_admin_ux_audit/public-admin-reflection-smoke.json"
+  ]
+}

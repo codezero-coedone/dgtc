@@ -301,7 +301,7 @@ img{max-width:100%;display:block}
 
 
 /* V3 operation hardening: responsive interaction, lightbox, accessibility, deployment polish */
-html, body{max-width:100%;overflow-x:hidden;}
+html, body, #root{max-width:100%;overflow-x:hidden;}
 body.nav-open{overflow:hidden;}
 .skip-link{position:fixed;left:14px;top:12px;z-index:9999;transform:translateY(-140%);background:#fff;color:#07111f;border:1px solid rgba(15,23,42,.16);border-radius:10px;padding:10px 14px;font-weight:900;box-shadow:var(--shadow);}
 .skip-link:focus{transform:translateY(0);}
@@ -983,5 +983,23 @@ body.lightbox-open{overflow:hidden;}
   .menu-button {
     min-width: 40px;
     min-height: 40px;
+  }
+
+  .home-notice-section {
+    width: calc(100% - 32px);
+    max-width: calc(100vw - 32px);
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 34px 0 24px;
+  }
+
+  .home-notice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notice-cta {
+    grid-column: auto;
+    display: grid;
+    padding: 20px;
   }
 }

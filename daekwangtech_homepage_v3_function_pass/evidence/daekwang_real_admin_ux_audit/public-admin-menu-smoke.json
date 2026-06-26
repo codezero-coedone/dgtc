@@ -1,0 +1,80 @@
+{
+  "at": "2026-06-26T00:29:43.898Z",
+  "results": [
+    {
+      "label": "대시보드",
+      "heading": "대시보드",
+      "active": "대시보드",
+      "pass": true
+    },
+    {
+      "label": "이미지 관리",
+      "heading": "이미지 관리",
+      "active": "이미지 관리",
+      "pass": true
+    },
+    {
+      "label": "공지사항 관리",
+      "heading": "공지사항 관리",
+      "active": "공지사항 관리",
+      "pass": true
+    },
+    {
+      "label": "페이지 관리",
+      "heading": "페이지 관리",
+      "active": "페이지 관리",
+      "pass": true
+    },
+    {
+      "label": "팝업 관리",
+      "heading": "팝업 관리",
+      "active": "팝업 관리",
+      "pass": true
+    },
+    {
+      "label": "메뉴 관리",
+      "heading": "메뉴 관리",
+      "active": "메뉴 관리",
+      "pass": true
+    },
+    {
+      "label": "푸터 관리",
+      "heading": "푸터 관리",
+      "active": "푸터 관리",
+      "pass": true
+    },
+    {
+      "label": "기본 설정",
+      "heading": "기본 설정",
+      "active": "기본 설정",
+      "pass": true
+    },
+    {
+      "label": "SEO 설정",
+      "heading": "SEO 설정",
+      "active": "SEO 설정",
+      "pass": true
+    },
+    {
+      "label": "사용자 관리",
+      "heading": "사용자 관리",
+      "active": "사용자 관리",
+      "pass": true
+    },
+    {
+      "label": "로그 관리",
+      "heading": "로그 관리",
+      "active": "로그 관리",
+      "pass": true
+    },
+    {
+      "label": "백업 관리",
+      "heading": "백업 관리",
+      "active": "백업 관리",
+      "pass": true
+    }
+  ],
+  "allPass": true,
+  "consoleErrors": [],
+  "overflow": 0
+}

@@ -1,0 +1,463 @@
+{
+  "campaign": {
+    "safeToApply": true,
+    "steps": [
+      "protocol-heart-gate",
+      "route-entry-prover",
+      "apply-blast-radius",
+      "patch-dry-run",
+      "owner-approved apply",
+      "post-apply-validate",
+      "build-test-runner",
+      "receipt-seal"
+    ]
+  },
+  "counts": {
+    "ledgerEntries": 11,
+    "repoFiles": 111
+  },
+  "directOrganCall": "NO",
+  "futureline": {
+    "mandatoryNextGate": "route-entry-prover + build/smoke + receipt",
+    "riskScore": 30,
+    "risks": [
+      {
+        "code": "giant_source_file_risk",
+        "pathRef": "PATH#b0c6d5c2",
+        "severity": "HIGH",
+        "size": 239312
+      }
+    ],
+    "safeToApply": true
+  },
+  "nutritionPack": {
+    "markers": [
+      {
+        "path": "assets/blueprint-ghost.jpg",
+        "pathRef": "PATH#3baaaf1e",
+        "sha8": "958702fe",
+        "size": 11471
+      },
+      {
+        "path": "assets/daekwang-logo-app-icon.svg",
+        "pathRef": "PATH#eac24878",
+        "sha8": "e5fa854f",
+        "size": 589
+      },
+      {
+        "path": "assets/daekwang-logo-horizontal.svg",
+        "pathRef": "PATH#c4e396b5",
+        "sha8": "ee7574e2",
+        "size": 1217
+      },
+      {
+        "path": "assets/dk-logo.svg",
+        "pathRef": "PATH#f142965e",
+        "sha8": "c0804a3c",
+        "size": 760
+      },
+      {
+        "path": "assets/facility-auto.jpg",
+        "pathRef": "PATH#9ea13270",
+        "sha8": "e8c9eaf4",
+        "size": 11497
+      },
+      {
+        "path": "assets/facility-clean.jpg",
+        "pathRef": "PATH#8dabe9f4",
+        "sha8": "46ae92c3",
+        "size": 8950
+      },
+      {
+        "path": "assets/facility-cnc.jpg",
+        "pathRef": "PATH#3fe479d5",
+        "sha8": "6eb89a3b",
+        "size": 10169
+      },
+      {
+        "path": "assets/facility-lab.jpg",
+        "pathRef": "PATH#865dd4e9",
+        "sha8": "e7986dca",
+        "size": 8961
+      },
+      {
+        "path": "assets/facility-logistics.jpg",
+        "pathRef": "PATH#a2040939",
+        "sha8": "65bbdde7",
+        "size": 10474
+      },
+      {
+        "path": "assets/favicon.svg",
+        "pathRef": "PATH#3520b708",
+        "sha8": "fc888ba2",
+        "size": 489
+      },
+      {
+        "path": "assets/hero-machine.jpg",
+        "pathRef": "PATH#eac236c2",
+        "sha8": "d841125c",
+        "size": 45740
+      },
+      {
+        "path": "assets/image-fallback.svg",
+        "pathRef": "PATH#9bfe33e1",
+        "sha8": "a611a3ca",
+        "size": 1022
+      },
+      {
+        "path": "assets/inspection-cmm.jpg",
+        "pathRef": "PATH#dd621022",
+        "sha8": "8b7fe817",
+        "size": 6817
+      },
+      {
+        "path": "assets/inspection-hardness.jpg",
+        "pathRef": "PATH#a1cbe2f5",
+        "sha8": "20992868",
+        "size": 6449
+      },
+      {
+        "path": "assets/inspection-profile.jpg",
+        "pathRef": "PATH#efd549ce",
+        "sha8": "83524644",
+        "size": 6329
+      },
+      {
+        "path": "assets/inspection-surface.jpg",
+        "pathRef": "PATH#10414a21",
+        "sha8": "755020aa",
+        "size": 6113
+      },
+      {
+        "path": "assets/map.jpg",
+        "pathRef": "PATH#5947c009",
+        "sha8": "85f9123b",
+        "size": 6755
+      },
+      {
+        "path": "assets/product-1.jpg",
+        "pathRef": "PATH#ff0e26ff",
+        "sha8": "6157a9df",
+        "size": 6332
+      },
+      {
+        "path": "assets/product-2.jpg",
+        "pathRef": "PATH#8c099025",
+        "sha8": "752ece05",
+        "size": 6057
+      },
+      {
+        "path": "assets/product-3.jpg",
+        "pathRef": "PATH#cbaa13d7",
+        "sha8": "29b2a1e9",
+        "size": 8089
+      },
+      {
+        "path": "assets/product-4.jpg",
+        "pathRef": "PATH#d2afd291",
+        "sha8": "5c21491b",
+        "size": 5578
+      },
+      {
+        "path": "assets/product-5.jpg",
+        "pathRef": "PATH#964b3d94",
+        "sha8": "1ed6e057",
+        "size": 7491
+      },
+      {
+        "path": "evidence/admin-full-preview.err.log",
+        "pathRef": "PATH#06e602fd",
+        "sha8": "e3b0c442",
+        "size": 0
+      },
+      {
+        "path": "evidence/admin-full-preview.out.log",
+        "pathRef": "PATH#fb21a329",
+        "sha8": "69b3d615",
+        "size": 260
+      },
+      {
+        "path": "evidence/admin-sidebar-preview.err.log",
+        "pathRef": "PATH#c5df9a29",
+        "sha8": "e3b0c442",
+        "size": 0
+      },
+      {
+        "path": "evidence/admin-sidebar-preview.out.log",
+        "pathRef": "PATH#cae13829",
+        "sha8": "4f9bebe8",
+        "size": 260
+      },
+      {
+        "path": "evidence/daekwang_admin_console/evidence-admin-dashboard-1440-viewport-final.png",
+        "pathRef": "PATH#07e76d0f",
+        "sha8": "84e2f518",
+        "size": 127856
+      },
+      {
+        "path": "evidence/daekwang_admin_console/evidence-admin-dashboard-1440-viewport-top.png",
+        "pathRef": "PATH#57653c76",
+        "sha8": "c61bcfb7",
+        "size": 83603
+      },
+      {
+        "path": "evidence/daekwang_admin_console/evidence-admin-dashboard-1440-viewport.png",
+        "pathRef": "PATH#29556e29",
+        "sha8": "6a930cd1",
+        "size": 83631
+      },
+      {
+        "path": "evidence/daekwang_admin_console/evidence-admin-dashboard-1440.png",
+        "pathRef": "PATH#1303c69c",
+        "sha8": "fbabd3d2",
+        "size": 205887
+      },
+      {
+        "path": "evidence/daekwang_admin_console/evidence-admin-dashboard-390.png",
+        "pathRef": "PATH#7d01750a",
+        "sha8": "18206751",
+        "size": 139568
+      },
+      {
+        "path": "evidence/daekwang_admin_console/full-function/dashboard-state-summary.png",
+        "pathRef": "PATH#bd6838b8",
+        "sha8": "9b67ae41",
+        "size": 168087
+      },
+      {
+        "path": "evidence/daekwang_admin_console/full-function/mobile-390-full-function.png",
+        "pathRef": "PATH#78717237",
+        "sha8": "61b02983",
+        "size": 132878
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/admin-notice-premium-ui.png",
+        "pathRef": "PATH#92282be3",
+        "sha8": "9452ee2a",
+        "size": 336141
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/mobile-390-notice-detail.png",
+        "pathRef": "PATH#e6a338da",
+        "sha8": "8545cd05",
+        "size": 145297
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/mobile-390-notice-list.png",
+        "pathRef": "PATH#f29a1a27",
+        "sha8": "e7b54094",
+        "size": 250061
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/new-logo-admin-sidebar.png",
+        "pathRef": "PATH#1b1dd775",
+        "sha8": "8dfc7479",
+        "size": 276298
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/new-logo-public-footer.png",
+        "pathRef": "PATH#12f66129",
+        "sha8": "308e566f",
+        "size": 164008
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/new-logo-public-header.png",
+        "pathRef": "PATH#8ed5a9b7",
+        "sha8": "e40f8e26",
+        "size": 896358
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/notice-cta-premium.png",
+        "pathRef": "PATH#eb018ff2",
+        "sha8": "5f5ec289",
+        "size": 357083
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/notice-detail-premium-desktop.png",
+        "pathRef": "PATH#60dcc3f1",
+        "sha8": "1ff0b184",
+        "size": 277470
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/notice-home-section-premium.png",
+        "pathRef": "PATH#8e283525",
+        "sha8": "57fbb827",
+        "size": 158296
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/notice-list-premium-desktop.png",
+        "pathRef": "PATH#e96f20b6",
+        "sha8": "c006edbd",
+        "size": 403639
+      },
+      {
+        "path": "evidence/daekwang_notice_brand_premium/notice-notfound-new-logo.png",
+        "pathRef": "PATH#81d9c665",
+        "sha8": "0c76a513",
+        "size": 252384
+      },
+      {
+        "path": "evidence/daekwang_notice_public/admin-notice-public-link.png",
+        "pathRef": "PATH#56c23191",
+        "sha8": "5f09117d",
+        "size": 244220
+      },
+      {
+        "path": "evidence/daekwang_notice_public/home-notice-section.png",
+        "pathRef": "PATH#10c78aea",
+        "sha8": "b5f661f8",
+        "size": 1189305
+      },
+      {
+        "path": "evidence/daekwang_notice_public/notice-detail-desktop.png",
+        "pathRef": "PATH#bb6aa4eb",
+        "sha8": "a551b35b",
+        "size": 202245
+      },
+      {
+        "path": "evidence/daekwang_notice_public/notice-hidden-notfound.png",
+        "pathRef": "PATH#78376c88",
+        "sha8": "a4a68fb6",
+        "size": 189467
+      },
+      {
+        "path": "evidence/daekwang_notice_public/notice-list-desktop.png",
+        "pathRef": "PATH#740415fe",
+        "sha8": "53ae31bb",
+        "size": 277561
+      },
+      {
+        "path": "evidence/daekwang_notice_public/notice-mobile-390.png",
+        "pathRef": "PATH#2d5dec02",
+        "sha8": "9f8afddd",
+        "size": 138587
+      }
+    ],
+    "maxFilesScanned": 8000
+  },
+  "ok": true,
+  "physicalApply": "NO_COMPILE_ONLY",
+  "pipeline": [
+    "protocol_heart_gate",
+    "owner_ro_shard_index",
+    "dk_hq_nutrition_pack_compile",
+    "battlefield_decompose",
+    "super_grep_matrix",
+    "super_diff_matrix",
+    "auto_correction_plan",
+    "receipt_lineage_graph",
+    "duplicate_ledger_synth",
+    "kst_hourly_ledger_rollup",
+    "futureline_guard",
+    "campaign_plan",
+    "dashboard_snapshot"
+  ],
+  "protocolHeartGate": {
+    "context": "origin-battlefield-compile",
+    "directOrganCall": "NO",
+    "directOrganPathHits": [],
+    "embeddedGrammar": {
+      "primeEcho": [
+        "pbmf_port_path_binding",
+        "port_owner_binding",
+        "evidence_receipt_gate",
+        "hbdfm_dump_hash_forward_mapping_bind_splice_compile_restart_health",
+        "deterministic_bridge_policy",
+        "write_gate_owner"
+      ],
+      "rDahfsc": [
+        "lineage_recovery",
+        "dna_extraction",
+        "atomic_deconstruction",
+        "hybrid_merge_synthesis",
+        "fusion_core_recomposition",
+        "synergy_chain_amplification",
+        "lineage_before_delete",
+        "no_overwrite"
+      ],
+      "ssot": [
+        "disk_truth",
+        "receipt_required",
+        "drift_guard_required",
+        "latest_not_historical"
+      ],
+      "tsel": [
+        "timeline",
+        "ssot",
+        "evidence",
+        "loop",
+        "fact_interpretation_hypothesis_risk_directive_split",
+        "no_direct_organ_call",
+        "fail_closed_apply"
+      ]
+    },
+    "gateRows": [
+      {
+        "name": "r_dahfsc_recovery_first",
+        "ok": true
+      },
+      {
+        "name": "r_dahfsc_lineage_before_delete",
+        "ok": true
+      },
+      {
+        "name": "r_dahfsc_atomic_hold_decompose",
+        "ok": true
+      },
+      {
+        "name": "primeecho_port_owner_binding",
+        "ok": true
+      },
+      {
+        "name": "primeecho_evidence_receipt_gate",
+        "ok": true
+      },
+      {
+        "name": "primeecho_hbdfm_bridge_loop",
+        "ok": true
+      },
+      {
+        "name": "tsel_no_direct_organ_call",
+        "ok": true
+      },
+      {
+        "name": "origin_owner_approval_required_for_apply",
+        "ok": true
+      },
+      {
+        "name": "ssot_drift_guard_required",
+        "ok": true
+      },
+      {
+        "name": "fail_closed_futureline_guard",
+        "ok": true
+      }
+    ],
+    "hqfsRoot": "PATH#479eb52b",
+    "ledgerSignals": {
+      "entries": 11,
+      "evidence": 7,
+      "receipts": 4
+    },
+    "mandatoryIn": [
+      "origin-battlefield-compile",
+      "origin-battlefield-execute",
+      "remote-campaign-execute",
+      "r-dahfsc-fusion-plan",
+      "hbdfm-bridge-loop-plan",
+      "port-owner-binding-map"
+    ],
+    "ok": true,
+    "root": "PATH#e739ca59",
+    "sTxtRead": "NO",
+    "schema": "HQFSCore.ProtocolHeartGate@1",
+    "targetMutation": "NO",
+    "tokenRawPrinted": "NO",
+    "verdict": "PASS_PROTOCOL_HEART_GATE"
+  },
+  "root": "PATH#e739ca59",
+  "sTxtRead": "NO",
+  "schema": "HQFSCore.OriginBattlefieldCompile@1",
+  "tokenRawPrinted": "NO",
+  "verdict": "PASS_ORIGIN_BATTLEFIELD_COMPILE"
+}

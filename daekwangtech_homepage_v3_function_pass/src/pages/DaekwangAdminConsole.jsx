@@ -5,6 +5,7 @@ import { AdminConfirmModal } from "../components/daekwang-admin/AdminConfirmModa
 import { AdminPreviewModal } from "../components/daekwang-admin/AdminPreviewModal.jsx";
 import { AdminSectionRenderer } from "../components/daekwang-admin/AdminSectionRenderer.jsx";
 import { AdminSidebar } from "../components/daekwang-admin/AdminSidebar.jsx";
+import { AdminLoginGate, clearAdminAuthSession, readAdminAuthSession } from "../components/daekwang-admin/AdminLoginGate.jsx";
 import { AdminToast } from "../components/daekwang-admin/AdminToast.jsx";
 import { AdminTopbar } from "../components/daekwang-admin/AdminTopbar.jsx";
 import { fileSizeLabel, isImageFile, isUnderImageLimit, readFileAsDataUrl } from "../utils/adminValidation.js";
@@ -58,12 +59,14 @@ function noticePreviewPayload(notice) {
 
 export function DaekwangAdminConsole() {
   const { state, actions } = useAdminStore();
+  const [authSession, setAuthSession] = useState(() => readAdminAuthSession());
   const [activeSection, setActiveSectionState] = useState(state.uiPreferences.activeSection || "dashboard");
   const [activeCategory, setActiveCategoryState] = useState(state.uiPreferences.activeCategory || "mainBanner");
   const [selectedImageId, setSelectedImageId] = useState(state.imageAssets[0]?.id ?? "");
   const [noticeDraft, setNoticeDraft] = useState(() => normalizeNoticeDraft(state.uiPreferences.noticeDraft));
   const [noticeError, setNoticeError] = useState("");
   const [editingNoticeId, setEditingNoticeId] = useState(null);
+  const [globalQuery, setGlobalQuery] = useState("");
   const [sortReverse, setSortReverse] = useState(false);
   const [toast, setToast] = useState(null);
   const [confirm, setConfirm] = useState(null);
@@ -92,6 +95,60 @@ export function DaekwangAdminConsole() {
     actions.updateUiPreferences((prefs) => ({ ...prefs, activeCategory: category }));
     const firstAsset = state.imageAssets.find((asset) => asset.category === category);
     if (firstAsset) setSelectedImageId(firstAsset.id);
+  };
+
+  const adminSearchResults = useMemo(() => {
+    const query = globalQuery.trim().toLowerCase();
+    if (!query) return [];
+    const rows = [
+      ...adminSectionOptions.map((section) => ({
+        id: `section-${section.key}`,
+        label: section.label,
+        meta: `${section.group} 메뉴`,
+        section: section.key,
+        kind: "관리 메뉴",
+      })),
+      ...state.notices.map((notice) => ({
+        id: `notice-${notice.id}`,
+        label: notice.title,
+        meta: `${notice.category || "공지"} · ${notice.publishDate}`,
+        section: "notices",
+        kind: "공지사항",
+      })),
+      ...state.imageAssets.map((asset) => ({
+        id: asset.id,
+        label: asset.title,
+        meta: `${asset.fileName} · ${asset.category}`,
+        section: "images",
+        category: asset.category,
+        kind: "이미지",
+      })),
+      ...state.adminUsers.map((user) => ({
+        id: user.id,
+        label: user.name,
+        meta: `${user.email} · ${user.role}`,
+        section: "users",
+        kind: "사용자",
+      })),
+      ...state.auditLogs.slice(0, 30).map((log) => ({
+        id: log.id,
+        label: log.action,
+        meta: `${log.target} · ${log.timestamp}`,
+        section: "logs",
+        kind: "로그",
+      })),
+    ];
+    return rows.filter((row) => `${row.label} ${row.meta} ${row.kind}`.toLowerCase().includes(query)).slice(0, 9);
+  }, [globalQuery, state.adminUsers, state.auditLogs, state.imageAssets, state.notices]);
+
+  const handleSearchSelect = (result) => {
+    setActiveSection(result.section);
+    if (result.section === "images") {
+      if (result.category) setActiveCategory(result.category);
+      setSelectedImageId(result.id);
+    }
+    setGlobalQuery("");
+    notify("검색 결과로 이동", `${result.kind}: ${result.label}`);
   };
 
   const openConfirm = (nextConfirm) => {
@@ -417,6 +474,25 @@ export function DaekwangAdminConsole() {
     });
   };
 
+  const handleAuthenticated = (session) => {
+    setAuthSession(session);
+    actions.addActivity("login", "관리자 로그인", `${session.userId} 계정으로 로그인했습니다.`, session.userId);
+    notify("로그인 완료", "관리자 콘솔을 사용할 수 있습니다.");
+  };
+
+  const requestLogout = () => {
+    openConfirm({
+      title: "관리자 로그아웃",
+      message: "관리자 콘솔에서 로그아웃하시겠습니까?",
+      onConfirm: () => {
+        clearAdminAuthSession();
+        actions.addActivity("logout", "관리자 로그아웃", "관리자가 콘솔에서 로그아웃했습니다.", authSession?.userId || "admin");
+        setAuthSession(null);
+        notify("로그아웃 완료", "관리자 콘솔이 잠겼습니다.");
+      },
+    });
+  };
+
   const imageManagerProps = {
     activeCategory,
     assets: orderedAssets,
@@ -445,11 +521,22 @@ export function DaekwangAdminConsole() {
     onOpenPublic: openPublicNoticeList,
   };
 
+  if (!authSession?.authenticated) {
+    return <AdminLoginGate onAuthenticated={handleAuthenticated} />;
+  }
+
   return (
     <div className="dk-admin-page">
       <AdminSidebar activeSection={activeSection} onSelectSection={setActiveSection} />
       <main className="dk-main">
-        <AdminTopbar />
+        <AdminTopbar
+          authSession={authSession}
+          onLogout={requestLogout}
+          onSearchChange={setGlobalQuery}
+          onSelectSearchResult={handleSearchSelect}
+          searchResults={adminSearchResults}
+          searchValue={globalQuery}
+        />
         <div className="dk-content">
           <label className="dk-mobile-section-select">
             <span>관리 섹션</span>

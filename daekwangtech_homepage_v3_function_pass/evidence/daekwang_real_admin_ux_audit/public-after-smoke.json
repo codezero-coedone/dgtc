@@ -1,0 +1,177 @@
+{
+  "at": "2026-06-26T00:25:32.729Z",
+  "deployUrl": "https://dgtc.ejdzm90.workers.dev/#/",
+  "consoleErrors": [],
+  "overflow": {
+    "after-home-1440.png": 0,
+    "after-home-390.png": 0,
+    "after-notice-list-1440.png": 0,
+    "after-notice-list-390.png": 0,
+    "after-notice-detail-1440.png": 0,
+    "after-admin-dashboard-1440.png": 0,
+    "after-admin-390.png": 0
+  },
+  "logo": {
+    "after-home-1440.png": {
+      "title": "대광테크 기업 홈페이지 | DAE KWANG TECH",
+      "hasNewText": true,
+      "oldVisibleCount": 0,
+      "oldImgs": [],
+      "faviconLinks": [
+        {
+          "rel": "icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/favicon-v2-CAsi0AJi.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-app-icon-v2-DSWo0lWD.svg"
+        },
+        {
+          "rel": "manifest",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/site-DsbLCX0A.webmanifest"
+        }
+      ],
+      "overflowX": 0
+    },
+    "after-home-390.png": {
+      "title": "대광테크 기업 홈페이지 | DAE KWANG TECH",
+      "hasNewText": true,
+      "oldVisibleCount": 0,
+      "oldImgs": [],
+      "faviconLinks": [
+        {
+          "rel": "icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/favicon-v2-CAsi0AJi.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-app-icon-v2-DSWo0lWD.svg"
+        },
+        {
+          "rel": "manifest",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/site-DsbLCX0A.webmanifest"
+        }
+      ],
+      "overflowX": 0
+    },
+    "after-notice-list-1440.png": {
+      "title": "공지사항 | 대광테크",
+      "hasNewText": true,
+      "oldVisibleCount": 0,
+      "oldImgs": [],
+      "faviconLinks": [
+        {
+          "rel": "icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/favicon-v2-CAsi0AJi.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-app-icon-v2-DSWo0lWD.svg"
+        },
+        {
+          "rel": "manifest",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/site-DsbLCX0A.webmanifest"
+        }
+      ],
+      "overflowX": 0
+    },
+    "after-notice-list-390.png": {
+      "title": "공지사항 | 대광테크",
+      "hasNewText": true,
+      "oldVisibleCount": 0,
+      "oldImgs": [],
+      "faviconLinks": [
+        {
+          "rel": "icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/favicon-v2-CAsi0AJi.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-app-icon-v2-DSWo0lWD.svg"
+        },
+        {
+          "rel": "manifest",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/site-DsbLCX0A.webmanifest"
+        }
+      ],
+      "overflowX": 0
+    },
+    "after-notice-detail-1440.png": {
+      "title": "공지사항 | 대광테크",
+      "hasNewText": true,
+      "oldVisibleCount": 0,
+      "oldImgs": [],
+      "faviconLinks": [
+        {
+          "rel": "icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/favicon-v2-CAsi0AJi.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-app-icon-v2-DSWo0lWD.svg"
+        },
+        {
+          "rel": "manifest",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/site-DsbLCX0A.webmanifest"
+        }
+      ],
+      "overflowX": 0
+    },
+    "after-admin-dashboard-1440.png": {
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "hasNewText": true,
+      "oldVisibleCount": 0,
+      "oldImgs": [],
+      "faviconLinks": [
+        {
+          "rel": "icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/favicon-v2-CAsi0AJi.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-app-icon-v2-DSWo0lWD.svg"
+        },
+        {
+          "rel": "manifest",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/site-DsbLCX0A.webmanifest"
+        }
+      ],
+      "overflowX": 0
+    },
+    "after-admin-390.png": {
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+      "hasNewText": true,
+      "oldVisibleCount": 0,
+      "oldImgs": [],
+      "faviconLinks": [
+        {
+          "rel": "icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/favicon-v2-CAsi0AJi.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-app-icon-v2-DSWo0lWD.svg"
+        },
+        {
+          "rel": "manifest",
+          "href": "https://dgtc.ejdzm90.workers.dev/assets/site-DsbLCX0A.webmanifest"
+        }
+      ],
+      "overflowX": 0
+    }
+  },
+  "checks": {
+    "noticeDetailVisible": true,
+    "adminGateVisible": true,
+    "adminHiddenBeforeLogin": true,
+    "adminLogin": true,
+    "adminSearchResults": 7,
+    "adminSearchNavigate": true,
+    "manifestHasV2": true,
+    "consoleErrorCount": 0,
+    "desktopOverflowZero": true,
+    "mobileOverflowZero": true,
+    "oldVisualLogoVisibleCount": 0
+  },
+  "oldVisualLogoVisibleCount": 0
+}
