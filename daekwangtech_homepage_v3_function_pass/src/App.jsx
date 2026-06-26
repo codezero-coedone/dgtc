@@ -3,6 +3,7 @@ import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
 import { DaekwangLogoLockup } from "./components/brand/DaekwangLogoLockup.jsx";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
+import { PublicMobileAppLayer, PublicMobileBottomNav } from "./components/public/PublicMobileAppLayer.jsx";
 import { NoticeDetailPage, NoticeListPage } from "./pages/NoticePages.jsx";
 import { facilityCards, homeProducts, imageFallback, navItems, pageContent, processSteps, qualityCards, routeAlias } from "./siteData.js";
 
@@ -54,7 +55,7 @@ function applySeo(page) {
   setMeta('meta[property="og:image"]', "content", page.heroImage);
 }
 
-function Header({ active, onMenu }) {
+function Header({ active, menuOpen = false, onMenu }) {
   const publicNavItems = [...navItems, { id: "notice", label: "공지사항" }];
   return (
     <header className="site-header">
@@ -71,7 +72,7 @@ function Header({ active, onMenu }) {
       <div className="header-right">
         <button aria-label="현재 언어: 한국어" className="lang" title="현재 한국어 페이지입니다" type="button">KR <span>⌄</span></button>
         <a className="admin-mini-link" href="#/admin">ADMIN</a>
-        <button aria-controls="mobile-menu" aria-expanded="false" aria-label="메뉴 열기" className="menu-button" type="button" onClick={onMenu}>☰</button>
+        <button aria-controls="mobile-menu" aria-expanded={menuOpen ? "true" : "false"} aria-label="메뉴 열기" className="menu-button" type="button" onClick={onMenu}>☰</button>
       </div>
     </header>
   );
@@ -96,7 +97,7 @@ function Hero({ page, active, menuOpen, setMenuOpen }) {
         <img alt={`${page.label} 대표 이미지`} data-fallback-src={imageFallback} decoding="async" fetchPriority="high" loading="eager" src={page.heroImage} />
       </div>
       <div className="hero-blueprint" />
-      <Header active={active} onMenu={() => setMenuOpen((value) => !value)} />
+      <Header active={active} menuOpen={menuOpen} onMenu={() => setMenuOpen((value) => !value)} />
       <MobilePanel active={active} open={menuOpen} onClose={() => setMenuOpen(false)} />
       <div className="hero-content">
         <p className="eyebrow">{page.eyebrow}</p>
@@ -268,24 +269,38 @@ function SiteApp({ content, setContent, route }) {
   if (route === "notice" || route.startsWith("notice/")) {
     const noticeId = route.startsWith("notice/") ? route.split("/")[1] : null;
     return (
-      <>
+      <div className="site-shell route-notice">
         <a className="skip-link" href="#main-content">본문 바로가기</a>
-        <Header active="notice" onMenu={() => setMenuOpen((value) => !value)} />
+        <Header active="notice" menuOpen={menuOpen} onMenu={() => setMenuOpen((value) => !value)} />
         <MobilePanel active="notice" open={menuOpen} onClose={() => setMenuOpen(false)} />
         {noticeId ? <NoticeDetailPage noticeId={noticeId} /> : <NoticeListPage />}
         <Footer company={content.company} />
-      </>
+        <PublicMobileBottomNav active="notice" />
+      </div>
     );
   }
 
   return (
-    <>
+    <div className={`site-shell route-${page.id}`}>
       <a className="skip-link" href="#main-content">본문 바로가기</a>
       <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <FeatureRail items={detail.rail} />
-      {page.id === "index" ? <><ProductsPreview /><ProcessBand /><QualityPreview /><FacilityPreview /><HomeNoticeSection /><TrustPreview posts={content.posts} /></> : <SubPage page={page} detail={detail} />}
+      {page.id === "index" ? (
+        <>
+          <PublicMobileAppLayer company={content.company} facilityCards={facilityCards} homeProducts={homeProducts} pageContent={pageContent} />
+          <ProductsPreview />
+          <ProcessBand />
+          <QualityPreview />
+          <FacilityPreview />
+          <HomeNoticeSection />
+          <TrustPreview posts={content.posts} />
+        </>
+      ) : (
+        <SubPage page={page} detail={detail} />
+      )}
       <Footer company={content.company} />
-    </>
+      <PublicMobileBottomNav active={page.id === "facility" ? "projects" : page.id} />
+    </div>
   );
 }
 

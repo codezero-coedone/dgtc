@@ -6,6 +6,7 @@ import { AdminPreviewModal } from "../components/daekwang-admin/AdminPreviewModa
 import { AdminSectionRenderer } from "../components/daekwang-admin/AdminSectionRenderer.jsx";
 import { AdminSidebar } from "../components/daekwang-admin/AdminSidebar.jsx";
 import { AdminLoginGate, clearAdminAuthSession, readAdminAuthSession } from "../components/daekwang-admin/AdminLoginGate.jsx";
+import { AdminMobileAppLayer } from "../components/daekwang-admin/AdminMobileAppLayer.jsx";
 import { AdminToast } from "../components/daekwang-admin/AdminToast.jsx";
 import { AdminTopbar } from "../components/daekwang-admin/AdminTopbar.jsx";
 import { logoutAdmin } from "../services/adminApiClient.js";
@@ -538,6 +539,15 @@ export function DaekwangAdminConsole() {
           onSelectSearchResult={handleSearchSelect}
           searchResults={adminSearchResults}
           searchValue={globalQuery}
+        />
+        <AdminMobileAppLayer
+          activeSection={activeSection}
+          authSession={authSession}
+          imageCount={state.imageAssets.length}
+          noticeCount={state.notices.length}
+          recentLogs={state.activityLogs}
+          onLogout={requestLogout}
+          onNavigate={setActiveSection}
         />
         <div className="dk-content">
           <label className="dk-mobile-section-select">
