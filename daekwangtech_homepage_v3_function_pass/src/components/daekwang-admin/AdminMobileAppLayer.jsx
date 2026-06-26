@@ -26,6 +26,7 @@ export function AdminMobileAppLayer({ activeSection, authSession, imageCount, no
             <div>
               <span>DAE KWANG TECH</span>
               <strong>관리자 앱</strong>
+              <em>Admin App</em>
             </div>
           </div>
           <button className="dk-admin-mobile-logout" type="button" onClick={onLogout}>로그아웃</button>

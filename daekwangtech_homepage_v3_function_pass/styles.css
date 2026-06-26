@@ -1009,12 +1009,13 @@ body.lightbox-open{overflow:hidden;}
   display: none;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .site-shell {
     overflow-x: clip;
     padding-bottom: 76px;
   }
 
+  .route-index .hero,
   .route-index .feature-rail,
   .route-index .split-section,
   .route-index .process-band,
@@ -1025,43 +1026,23 @@ body.lightbox-open{overflow:hidden;}
   }
 
   .route-index .hero {
-    min-height: 620px;
-    border-radius: 0 0 30px 30px;
-    overflow: hidden;
-  }
-
-  .route-index .hero-content {
-    padding: 112px 18px 34px;
-    align-items: flex-start;
-  }
-
-  .route-index .hero-content h1 {
-    font-size: 14px;
-    letter-spacing: .02em;
-  }
-
-  .route-index .hero-content h2 {
-    max-width: 330px;
-    font-size: clamp(34px, 10vw, 42px);
-    line-height: 1.12;
-  }
-
-  .route-index .hero-copy {
-    max-width: 315px;
-    font-size: 15px;
+    display: none !important;
   }
 
   .public-mobile-app-layer {
     display: block;
-    background: linear-gradient(180deg, #f5f7fb 0%, #ffffff 54%, #f8fafc 100%);
-    padding: 18px 14px 36px;
+    min-height: 100svh;
+    background:
+      radial-gradient(circle at 82% 0%, rgba(93, 165, 224, .18), transparent 36%),
+      linear-gradient(180deg, #eef4fb 0%, #ffffff 42%, #f8fafc 100%);
+    padding: 16px 14px 36px;
   }
 
   .pm-phone-shell {
     display: grid;
     gap: 16px;
     width: min(100%, 430px);
-    margin: -78px auto 0;
+    margin: 0 auto;
     position: relative;
     z-index: 5;
   }
@@ -1089,6 +1070,12 @@ body.lightbox-open{overflow:hidden;}
     margin-bottom: 22px;
   }
 
+  .pm-hero-labels {
+    display: grid;
+    justify-items: end;
+    gap: 5px;
+  }
+
   .pm-hero-mark span,
   .pm-eyebrow,
   .pm-section-head span {
@@ -1096,6 +1083,18 @@ body.lightbox-open{overflow:hidden;}
     font-size: 11px;
     font-weight: 950;
     letter-spacing: .12em;
+  }
+
+  .pm-hero-labels em {
+    width: max-content;
+    border-radius: 999px;
+    background: #0b1d3a;
+    color: #ffffff;
+    padding: 5px 9px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 950;
+    letter-spacing: .08em;
   }
 
   .pm-hero-card h2 {

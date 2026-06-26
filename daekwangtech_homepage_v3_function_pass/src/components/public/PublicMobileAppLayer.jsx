@@ -71,7 +71,10 @@ export function PublicMobileAppLayer({ company, facilityCards, homeProducts, pag
         <div className="pm-hero-card">
           <div className="pm-hero-mark">
             <DaekwangLogoMark size={42} tone="dark" />
-            <span>DAE KWANG TECH</span>
+            <div className="pm-hero-labels">
+              <span>DAE KWANG TECH</span>
+              <em>Mobile App</em>
+            </div>
           </div>
           <p className="pm-eyebrow">PRECISION MANUFACTURING</p>
           <h2>정밀 제조 역량을<br />한 화면에서 확인합니다</h2>
