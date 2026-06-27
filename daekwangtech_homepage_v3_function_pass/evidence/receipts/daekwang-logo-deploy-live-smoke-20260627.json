@@ -1,0 +1,74 @@
+{
+  "lockName": "DAEKWANG_LOGO_DEPLOY_AND_LIVE_SMOKE_CODEX_V1",
+  "activeCircuit": "BRAND_LOGO_DEPLOY_AND_LIVE_SMOKE_ONLY",
+  "commitHashDeployed": "fe58c1b",
+  "previousCommit": "20a69c9",
+  "cloudflareVersionId": "bdd1d1b0-e47a-4ed1-8478-63d21156a003",
+  "deployUrl": "https://dgtc.ejdzm90.workers.dev",
+  "liveCacheBustedUrls": {
+    "home": "https://dgtc.ejdzm90.workers.dev/?v=logo-fix-20260627#/",
+    "notice": "https://dgtc.ejdzm90.workers.dev/?v=logo-fix-20260627#/notice",
+    "admin": "https://dgtc.ejdzm90.workers.dev/?v=logo-fix-20260627#/admin"
+  },
+  "buildStaticResult": {
+    "staticCheck": "PASS",
+    "viteBuild": "PASS",
+    "tailwindContentWarning": "P2_HOLD_EXISTING"
+  },
+  "deployResult": {
+    "workerName": "dgtc",
+    "status": "PASS",
+    "updatedAssetFilesUploaded": 0,
+    "sourceModified": false,
+    "extraCommitCreated": false,
+    "extraPushPerformed": false
+  },
+  "assetComparison": {
+    "localCss": "assets/index-pbKJ1Tnc.css",
+    "localJs": "assets/index-CVnQNVWH.js",
+    "liveCss": "assets/index-pbKJ1Tnc.css",
+    "liveJs": "assets/index-CVnQNVWH.js",
+    "liveAssetStale": false
+  },
+  "liveSmokeResult": {
+    "home390": "PASS",
+    "home1440": "PASS",
+    "notice390": "PASS",
+    "notice1440": "PASS",
+    "adminLogin390": "PASS",
+    "adminAfterLogin1440": "PASS",
+    "adminNoticeManagement1440": "PASS",
+    "wrongCredentialBlocked": true,
+    "demoLoginWorked": true,
+    "notificationOpened": true,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "horizontalOverflow": 0,
+    "fakeKrReintroduced": false,
+    "bottomDockReintroduced": false,
+    "publicAdminPillReintroduced": false,
+    "primaryLogoPathObserved": "https://dgtc.ejdzm90.workers.dev/brand/daekwang-primary-logo.png"
+  },
+  "evidencePaths": [
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/deploy-summary.md",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/live-smoke-summary.md",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/asset-comparison.md",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/logo-visual-checklist.md",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/live-smoke-result.json",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/home-390.png",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/home-1440.png",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/notice-390.png",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/notice-1440.png",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/admin-login-390.png",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/admin-after-login-1440.png",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/admin-notification-1440.png",
+    "evidence/daekwang_logo_deploy_live_smoke_20260627/admin-notice-management-1440.png"
+  ],
+  "remainingHold": [
+    "owner real-device visual confirmation",
+    "final customer PASS",
+    "server auth/D1/R2 production",
+    "Tailwind content warning P2"
+  ],
+  "finalDecision": "LOGO_DEPLOY_LIVE_SMOKE_PASS_HOLD"
+}
