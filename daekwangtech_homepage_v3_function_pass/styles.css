@@ -2059,3 +2059,398 @@ body.lightbox-open{overflow:hidden;}
   }
 }
 
+/* 2026-06-27 public mobile premium finish: compact responsive web, no app shell. */
+@media (max-width: 1023px) {
+  body {
+    background:
+      linear-gradient(180deg, #f7f9fc 0%, #eef3f8 48%, #f7f9fc 100%);
+  }
+
+  .site-header {
+    height: 64px;
+    padding: 0 clamp(14px, 4vw, 24px);
+    background: linear-gradient(180deg, rgba(3, 9, 18, .78), rgba(3, 9, 18, .18));
+  }
+
+  .brand .dk-brand-logo {
+    min-height: 44px;
+    border-radius: 12px;
+    padding: 4px 8px;
+    box-shadow: 0 10px 24px rgba(3, 9, 18, .18);
+  }
+
+  .brand .dk-brand-logo__asset {
+    width: clamp(154px, 38vw, 194px);
+    max-height: 40px;
+  }
+
+  .menu-button {
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .10);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+  }
+
+  .menu-button:focus-visible,
+  .mobile-panel .nav-link:focus-visible,
+  .notice-chip-row button:focus-visible,
+  .kakao-map-link:focus-visible,
+  .notice-detail-foot a:focus-visible,
+  .notice-detail-foot button:focus-visible {
+    outline: 3px solid rgba(93, 165, 224, .62);
+    outline-offset: 3px;
+  }
+
+  .mobile-panel {
+    top: 72px;
+    padding: 8px;
+    border-color: rgba(255, 255, 255, .14);
+    box-shadow: 0 22px 62px rgba(3, 9, 18, .32);
+  }
+
+  .mobile-panel .nav-link {
+    letter-spacing: -.02em;
+  }
+
+  .hero {
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+  }
+
+  .hero-bg {
+    opacity: .32;
+  }
+
+  .hero-content {
+    padding-top: 108px;
+    padding-bottom: 54px;
+  }
+
+  .hero h1 {
+    max-width: 760px;
+    line-height: .98;
+    text-wrap: balance;
+  }
+
+  .hero h2 {
+    max-width: 660px;
+    line-height: 1.19;
+    text-wrap: balance;
+  }
+
+  .hero-copy {
+    color: rgba(255, 255, 255, .80);
+    word-break: keep-all;
+  }
+
+  .hero-progress {
+    width: max-content;
+    max-width: 100%;
+    min-height: 34px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .06);
+  }
+
+  .feature-rail {
+    box-shadow: 0 18px 46px rgba(15, 23, 42, .10);
+  }
+
+  .rail-item {
+    gap: 14px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(15, 23, 42, .07);
+  }
+
+  .rail-item:nth-last-child(-n+2) {
+    border-bottom: 0;
+  }
+
+  .rail-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+  }
+
+  .split-section,
+  .trust-section,
+  .sub-main {
+    gap: 20px;
+    padding-top: 46px;
+  }
+
+  .section-intro h2 {
+    font-weight: 920;
+    letter-spacing: -.055em;
+    text-wrap: balance;
+  }
+
+  .section-intro p {
+    color: #5b6677;
+    word-break: keep-all;
+  }
+
+  .section-intro .detail-link,
+  .detail-link {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    color: #0f47af;
+    font-weight: 920;
+  }
+
+  .product-card,
+  .image-card,
+  .stat-card,
+  .map-card,
+  .metric,
+  .cert-card,
+  .home-notice-card,
+  .notice-row,
+  .notice-toolbar.premium,
+  .notice-pinned-card,
+  .notice-detail-head,
+  .notice-detail-body,
+  .notice-neighbor,
+  .company-location-panel,
+  .sub-close-panel,
+  .process-page-section,
+  .quality-control-panel {
+    border-color: rgba(11, 29, 58, .10);
+    box-shadow: 0 14px 34px rgba(11, 29, 58, .07);
+  }
+
+  .product-card,
+  .image-card,
+  .home-notice-card,
+  .notice-row {
+    overflow: hidden;
+  }
+
+  .process-band {
+    margin-top: 44px;
+    background:
+      radial-gradient(circle at 88% 4%, rgba(93, 165, 224, .20), transparent 28%),
+      linear-gradient(135deg, #06111f 0%, #0b1d3a 64%, #08234a 100%);
+  }
+
+  .step-row {
+    border-left: 0;
+  }
+
+  .step {
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(255, 255, 255, .055);
+  }
+
+  .process-page-section {
+    background:
+      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  }
+
+  .process-page-head h3,
+  .quality-control-copy h3 {
+    text-wrap: balance;
+  }
+
+  .process-page-step {
+    border-radius: 18px;
+  }
+
+  .process-page-step span,
+  .quality-check-grid span {
+    flex: 0 0 auto;
+  }
+
+  .quality-control-panel {
+    background:
+      radial-gradient(circle at 98% 0%, rgba(93, 165, 224, .18), transparent 30%),
+      linear-gradient(135deg, #07111f 0%, #0b1d3a 100%);
+  }
+
+  .quality-check-grid article {
+    background: linear-gradient(180deg, #ffffff 0%, #f9fbfe 100%);
+  }
+
+  .company-location-panel {
+    background:
+      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  }
+
+  .company-location-list dd {
+    line-height: 1.45;
+  }
+
+  .home-notice-section {
+    margin-top: 4px;
+  }
+
+  .notice-hero {
+    padding-top: 92px;
+  }
+
+  .notice-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .notice-chip-row button {
+    flex: 0 0 auto;
+    border-radius: 999px;
+  }
+
+  .notice-row h2,
+  .home-notice-card h3 {
+    text-wrap: balance;
+  }
+
+  .site-footer {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    background: linear-gradient(180deg, #111923 0%, #08111f 100%);
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-rail {
+    grid-template-columns: 1fr;
+  }
+
+  .rail-item:nth-last-child(-n+2) {
+    border-bottom: 1px solid rgba(15, 23, 42, .07);
+  }
+
+  .rail-item:last-child {
+    border-bottom: 0;
+  }
+
+  .product-card img,
+  .facility img,
+  .image-card.small img,
+  .deep-card img {
+    height: clamp(164px, 48vw, 204px);
+  }
+
+  .process-layout {
+    padding: 38px 0;
+  }
+
+  .process-page-section,
+  .quality-control-panel,
+  .company-location-panel,
+  .sub-close-panel {
+    border-radius: 18px;
+  }
+
+  .quality-check-grid article {
+    min-height: 0;
+  }
+
+  .notice-hero-card {
+    display: none;
+  }
+
+  .notice-list-wrap,
+  .notice-detail-wrap {
+    width: min(100% - 30px, 760px);
+  }
+}
+
+@media (max-width: 430px) {
+  .site-header {
+    height: 60px;
+  }
+
+  .brand .dk-brand-logo {
+    padding: 4px 7px;
+  }
+
+  .brand .dk-brand-logo__asset {
+    width: 152px;
+    max-height: 39px;
+  }
+
+  .hero-content {
+    padding-top: 96px;
+    padding-bottom: 48px;
+  }
+
+  .hero h1 {
+    font-size: clamp(35px, 12.8vw, 46px);
+    margin-bottom: 12px;
+  }
+
+  .hero h2 {
+    font-size: clamp(22px, 6.6vw, 27px);
+    line-height: 1.2;
+  }
+
+  .hero-copy {
+    font-size: 13.5px;
+    line-height: 1.68;
+  }
+
+  .hero-progress {
+    margin-top: 18px;
+  }
+
+  .split-section,
+  .trust-section,
+  .sub-main {
+    padding-top: 40px;
+  }
+
+  .section-intro h2 {
+    font-size: clamp(24px, 7vw, 29px);
+  }
+
+  .product-card,
+  .image-card,
+  .stat-card,
+  .map-card,
+  .metric,
+  .cert-card,
+  .home-notice-card,
+  .notice-row {
+    border-radius: 16px;
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  .process-page-section,
+  .quality-control-panel,
+  .company-location-panel,
+  .sub-close-panel,
+  .notice-toolbar.premium,
+  .notice-detail-head,
+  .notice-detail-body {
+    padding: 20px;
+  }
+
+  .process-page-step {
+    padding: 17px;
+  }
+
+  .quality-control-copy {
+    padding: 0 0 18px;
+  }
+
+  .quality-check-grid article {
+    padding: 18px 0 0;
+  }
+
+  .company-map-card {
+    min-height: 112px;
+  }
+
+  .notice-row {
+    padding: 17px;
+  }
+
+  .site-footer {
+    padding: 22px 16px 28px;
+  }
+}
+

@@ -1,0 +1,75 @@
+{
+  "lockName": "DAEKWANG_PUBLIC_MOBILE_WEB_UI_PREMIUM_FINISH_CODEX_V1",
+  "activeCircuit": "PUBLIC_MOBILE_WEB_UI_PREMIUM_FINISH_ONLY",
+  "changedFiles": [
+    "styles.css",
+    "evidence/daekwang_public_mobile_premium_finish_20260627/mobile-ui-audit.md",
+    "evidence/daekwang_public_mobile_premium_finish_20260627/patch-summary.md",
+    "evidence/daekwang_public_mobile_premium_finish_20260627/build-result.md",
+    "evidence/daekwang_public_mobile_premium_finish_20260627/local-visual-smoke.md",
+    "evidence/daekwang_public_mobile_premium_finish_20260627/regression-check.md",
+    "evidence/daekwang_public_mobile_premium_finish_20260627/local-smoke-result.json",
+    "evidence/daekwang_public_mobile_premium_finish_20260627/admin-responsive-smoke.json",
+    "evidence/receipts/daekwang-public-mobile-premium-finish-20260627.json"
+  ],
+  "forbiddenCircuitsRespected": {
+    "serverAuthD1R2": true,
+    "adminPreview": true,
+    "adminShellStructure": true,
+    "logoAuthority": true,
+    "appShell": true,
+    "bottomDock": true,
+    "fakeKr": true,
+    "publicAdminPill": true,
+    "newDependency": true,
+    "routeStructure": true
+  },
+  "buildStaticResult": {
+    "staticCheck": "PASS",
+    "viteBuild": "PASS",
+    "tailwindContentWarning": "P2_HOLD_EXISTING"
+  },
+  "localSmokeResult": {
+    "publicRoutes": {
+      "home360": "PASS",
+      "home390": "PASS",
+      "home430": "PASS",
+      "home768": "PASS",
+      "company390": "PASS",
+      "technology390": "PASS",
+      "process390": "PASS",
+      "quality390": "PASS",
+      "notice390": "PASS",
+      "home1440": "PASS",
+      "notice1440": "PASS"
+    },
+    "adminSmoke": {
+      "login390": "PASS",
+      "wrongCredentialBlocked": true,
+      "demoLoginWorked": true,
+      "notificationOpened": true,
+      "afterLogin390": "PASS",
+      "afterLogin1024": "PASS",
+      "afterLogin1440": "PASS"
+    },
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "fakeKr": false,
+    "bottomDock": false,
+    "publicAdminPill": false,
+    "processRouteHasProcessBand": false,
+    "processRouteHasProcessPage": true
+  },
+  "commitDeployRecommendation": {
+    "commit": "recommended and allowed after staged path check",
+    "deploy": "not allowed in this lock",
+    "push": "not allowed in this lock"
+  },
+  "remainingHold": [
+    "owner real-device visual confirmation",
+    "live deploy proof for this premium finish patch",
+    "server auth/D1/R2 production",
+    "Tailwind content warning P2"
+  ],
+  "finalDecision": "MOBILE_PREMIUM_FINISH_COMMIT_READY"
+}

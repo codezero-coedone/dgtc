@@ -1,0 +1,36 @@
+[
+  {
+    "name": "admin-after-login-390",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "screenshot": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass\\evidence\\daekwang_public_mobile_premium_finish_20260627\\admin-after-login-390.png",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "loggedIn": true,
+    "innerWidth": 390,
+    "scrollWidth": 390,
+    "overflowX": false,
+    "hasDesktopSidebar": true,
+    "hasMobileShell": false,
+    "bodySample": "대시보드\n\n콘텐츠 관리\n\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n\n사이트 관리\n\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n\n시스템 관리\n\n사용자 관리\n로그 관리\n백업 관리\n대광테크 관리자 콘솔\n\n웹사이트 콘텐츠 및 공지사항을 효율적으로 관리하세요.\n\n5\n관\n로그아웃\n관리 섹션\n대시보드\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n사용자 관리\n로그 관리\n백업 관리\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수"
+  },
+  {
+    "name": "admin-after-login-1024",
+    "viewport": {
+      "width": 1024,
+      "height": 900
+    },
+    "screenshot": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass\\evidence\\daekwang_public_mobile_premium_finish_20260627\\admin-after-login-1024.png",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "loggedIn": true,
+    "innerWidth": 1024,
+    "scrollWidth": 1024,
+    "overflowX": false,
+    "hasDesktopSidebar": true,
+    "hasMobileShell": false,
+    "bodySample": "대시보드\n\n콘텐츠 관리\n\n이미지 관리\n공지사항 관리\n페이지 관리\n팝업 관리\n\n사이트 관리\n\n메뉴 관리\n푸터 관리\n기본 설정\nSEO 설정\n\n시스템 관리\n\n사용자 관리\n로그 관리\n백업 관리\nConsole v1.0.0\n대광테크 관리자 콘솔\n\n웹사이트 콘텐츠 및 공지사항을 효율적으로 관리하세요.\n\n⌘ + K\nDemo admin mode\n5\n관\n\n관리자\ndgtc66 · admin@daekwang.co.kr\n\n로그아웃\n대시보드\n\n웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다.\n\n공지 공개페이지\n기본값으로 초기화\n총 이미지\n7개\n\n전체 이미지 파일 수\n\n자세히 보기 >\n활성 배너\n4개\n\n사용 중인 메인 배너\n\n자세히 보기 >\n공지사항\n5건\n\n전체 공지사항 수\n\n자세히 보기 >\n최근 수정\n6건\n\n관리자 "
+  }
+]
