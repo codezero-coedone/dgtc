@@ -1,0 +1,66 @@
+{
+  "lock": "DAEKWANG_LOGO_WORKTREE_RESOLUTION_AND_VISUAL_CONFIRM_CODEX_V1",
+  "activeCircuit": "BRAND_LOGO_WORKTREE_RESOLUTION_ONLY",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "baseCommit": "20a69c9a4ecd97d88d2cb970dbec6209f11929c0",
+  "safePublicDeploy": "https://dgtc.ejdzm90.workers.dev",
+  "safeCloudflareVersion": "89ee6eb8-f8e4-4202-85a4-e902ca7265bf",
+  "filesReviewed": [
+    "src/admin-tokens.css",
+    "src/adminContentSeed.js",
+    "src/components/daekwang-admin/AdminTopbar.jsx",
+    "src/pages/NoticePages.jsx",
+    "src/styles/brand-tokens.css",
+    "evidence/daekwang_logo_final_fix/*"
+  ],
+  "filesModifiedByThisLock": [
+    "evidence/daekwang_logo_worktree_resolution_20260627/logo-diff-summary.md",
+    "evidence/daekwang_logo_worktree_resolution_20260627/logo-authority-decision.md",
+    "evidence/daekwang_logo_worktree_resolution_20260627/visual-checklist.md",
+    "evidence/daekwang_logo_worktree_resolution_20260627/build-result.md",
+    "evidence/daekwang_logo_worktree_resolution_20260627/commit-recommendation.md",
+    "evidence/receipts/daekwang-logo-worktree-resolution-20260627.json"
+  ],
+  "logoAuthorityDecision": "LOGO_FIX_VALID",
+  "logoAuthority": {
+    "source": "/brand/daekwang-primary-logo.png",
+    "type": "primary PNG full logo",
+    "textLogoAssemblyRemoved": true,
+    "markOnlyStillAllowedForDecorativeUse": true
+  },
+  "visualCheck": {
+    "result": "PASS",
+    "localPreview": "http://127.0.0.1:4201",
+    "surfaces": [
+      "public home 390",
+      "public home 1440",
+      "public notice 390",
+      "public notice 1440",
+      "admin login 390",
+      "admin topbar after login 1440",
+      "admin notice management 1440"
+    ],
+    "horizontalOverflow": 0,
+    "consoleErrors": 0,
+    "badLogoDetections": 0,
+    "fakeKrHits": 0,
+    "bottomDockHits": 0,
+    "publicAdminHits": 0
+  },
+  "buildResult": {
+    "staticCheck": "PASS",
+    "viteBuild": "PASS",
+    "tailwindContentWarning": "existing warning, non-blocking"
+  },
+  "commitRecommended": true,
+  "deployRecommended": false,
+  "gitCommitCreated": false,
+  "gitPushRun": false,
+  "wranglerDeployRun": false,
+  "remainingHold": [
+    "No deploy/live proof for logo worktree because deploy was forbidden",
+    "Physical device visual confirmation remains owner-side",
+    "Actual commit requires explicit approval or next lock"
+  ],
+  "finalDecision": "LOGO_WORKTREE_COMMIT_READY"
+}

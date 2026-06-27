@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { DaekwangBrandBadge } from "../components/brand/DaekwangBrandBadge.jsx";
-import { DaekwangLogoMark } from "../components/brand/DaekwangLogoMark.jsx";
+import { DaekwangLogoLockup } from "../components/brand/DaekwangLogoLockup.jsx";
 import { NoticeCtaBlock } from "../components/notice/HomeNoticeSection.jsx";
 import { getNoticeHref, getNoticeListHref, hasLocalAdminNoticeState, loadPublicNoticeData, loadServerPublicNoticeData, subscribeNoticePublicData } from "../utils/noticePublicData.js";
 
@@ -27,8 +27,7 @@ function NoticeShell({ children, title = "공지사항", description = "대광�
             <p>{description}</p>
           </div>
           <div className="notice-hero-card">
-            <DaekwangLogoMark size={62} />
-            <span>DAE KWANG TECH</span>
+            <DaekwangLogoLockup size="md" tone="dark" />
             {summary || <p>정밀 제조 기업의 주요 안내를 공식 문서 톤으로 정리합니다.</p>}
           </div>
         </div>
@@ -136,7 +135,7 @@ export function NoticeListPage() {
 function NoticeEmpty({ onReset }) {
   return (
     <div className="notice-empty">
-      <DaekwangLogoMark size={48} />
+      <DaekwangLogoLockup size="sm" tone="dark" />
       <strong>검색 결과가 없습니다.</strong>
       <p>조건을 조정하거나 전체 공지 목록을 다시 확인하세요.</p>
       <button type="button" onClick={onReset}>전체 공지 보기</button>
@@ -159,11 +158,11 @@ export function NoticeDetailPage({ noticeId }) {
   const next = index >= 0 && index < data.visibleNotices.length - 1 ? data.visibleNotices[index + 1] : null;
 
   if (!notice) {
-    return (
+      return (
       <NoticeShell title="공지사항을 찾을 수 없습니다" description="비노출되었거나 삭제된 공지사항입니다.">
         <section className="notice-detail-wrap wrap">
           <div className="notice-empty detail">
-            <DaekwangLogoMark size={56} />
+            <DaekwangLogoLockup size="sm" tone="dark" />
             <strong>공지사항을 찾을 수 없습니다.</strong>
             <p>비노출되었거나 삭제된 공지사항입니다.</p>
             <a href={getNoticeListHref()}>목록으로 돌아가기</a>

@@ -2600,6 +2600,21 @@ button:disabled {
   gap: 12px;
 }
 
+.dk-topbar-brandline .dk-brand-logo {
+  flex: 0 0 auto;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dk-topbar-brandline .dk-brand-logo__asset {
+  width: 164px;
+  max-width: min(32vw, 164px);
+  height: auto;
+  max-height: 34px;
+  object-fit: contain;
+}
+
 .dk-notice-command {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(220px, .7fr) auto;
