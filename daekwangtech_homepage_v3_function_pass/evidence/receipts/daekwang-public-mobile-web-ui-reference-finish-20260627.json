@@ -1,0 +1,93 @@
+{
+  "lock": "DAEKWANG_PUBLIC_MOBILE_WEB_UI_REFERENCE_FINISH_V1",
+  "activeCircuit": "PUBLIC_MOBILE_WEB_UI_ONLY",
+  "referenceUsage": "Attached mobile UI reference was used as visual direction only. No fake address, phone, CTA, logo detail, or inaccurate content was copied.",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "forbiddenCircuitsRespected": {
+    "appShell": true,
+    "publicBottomDock": true,
+    "adminPreview": true,
+    "popupImagePreview": true,
+    "serverAuthD1R2": true,
+    "logoAsset": true,
+    "fakeKrSelector": true,
+    "databaseMonitoring": true
+  },
+  "changedFiles": [
+    "src/App.jsx",
+    "styles.css",
+    "evidence/daekwang_public_mobile_web_ui_reference_finish_20260627/*",
+    "evidence/receipts/daekwang-public-mobile-web-ui-reference-finish-20260627.json"
+  ],
+  "appShellGuard": {
+    "PublicMobileAppLayerActive": false,
+    "bottomDockActive": false,
+    "adminPillOnPublic": false,
+    "mobileAppShellTextHits": 0,
+    "publicAdminTextHits": 0,
+    "krHits": 0
+  },
+  "mobileRouteResults": {
+    "home390": "PASS",
+    "home430": "PASS",
+    "company390": "PASS",
+    "company430": "PASS",
+    "technology390": "PASS",
+    "process390": "PASS",
+    "quality390": "PASS",
+    "notice390": "PASS",
+    "mobileMenu390": "PASS",
+    "footer390": "PASS"
+  },
+  "tabletRouteResults": {
+    "home768": "PASS",
+    "company768": "PASS",
+    "technology768": "PASS"
+  },
+  "desktopRegressionResults": {
+    "home1440": "PASS",
+    "company1440": "PASS",
+    "technology1440": "PASS",
+    "process1440": "PASS",
+    "quality1440": "PASS",
+    "notice1440": "PASS"
+  },
+  "adminSmoke": {
+    "adminLogin390": "PASS",
+    "adminAfterLogin390": "PASS",
+    "adminAfterLogin1440": "PASS",
+    "notificationPanel": "PASS"
+  },
+  "commands": {
+    "staticCheck": "PASS: node scripts/check-static.mjs via bundled Node",
+    "build": "PASS: vite build via bundled Node",
+    "localPreview": "PASS: vite preview on 127.0.0.1:4199",
+    "deploy": "PASS: wrangler deploy"
+  },
+  "deploy": {
+    "url": "https://dgtc.ejdzm90.workers.dev",
+    "versionId": "89ee6eb8-f8e4-4202-85a4-e902ca7265bf",
+    "assets": [
+      "/assets/index-pbKJ1Tnc.css",
+      "/assets/index-CVnQNVWH.js"
+    ]
+  },
+  "evidence": {
+    "localSmokeJson": "evidence/daekwang_public_mobile_web_ui_reference_finish_20260627/local-visual-smoke.json",
+    "liveSmokeJson": "evidence/daekwang_public_mobile_web_ui_reference_finish_20260627/live-visual-smoke.json",
+    "screenshotsDir": "evidence/daekwang_public_mobile_web_ui_reference_finish_20260627"
+  },
+  "qualityGates": {
+    "consoleError": 0,
+    "horizontalOverflow": 0,
+    "inquiryQuoteContactCtaAdded": false,
+    "fakeCompanyDataAdded": false
+  },
+  "remainingHold": [
+    "BRAND_LOGO_HOLD: approved logo asset/design detail remains separate by instruction and was not modified",
+    "ADMIN_PREVIEW_HOLD: admin preview circuit was forbidden in this patch",
+    "SERVER_AUTH_D1_R2_HOLD: production server persistence/auth was forbidden in this patch",
+    "REAL_DEVICE_FINAL_CONFIRMATION_HOLD: live browser smoke passed, physical device confirmation remains owner-side"
+  ],
+  "finalJudgment": "PASS_HOLD"
+}

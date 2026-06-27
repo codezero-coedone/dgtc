@@ -86,7 +86,6 @@ function Header({ active, menuOpen = false, onMenu }) {
         ))}
       </nav>
       <div className="header-right">
-        <a className="admin-mini-link" href="#/admin">ADMIN</a>
         <button aria-controls="mobile-menu" aria-expanded={menuOpen ? "true" : "false"} aria-label="메뉴 열기" className="menu-button" type="button" onClick={onMenu}>☰</button>
       </div>
     </header>
@@ -100,7 +99,6 @@ function MobilePanel({ active, open, onClose }) {
       {publicNavItems.map((item) => (
         <a key={item.id} aria-current={active === item.id ? "page" : undefined} className={active === item.id ? "nav-link active" : "nav-link"} href={routeHref(item.id)} onClick={onClose}>{item.label}</a>
       ))}
-      <a className="nav-link" href="#/admin" onClick={onClose}>관리자</a>
     </div>
   );
 }

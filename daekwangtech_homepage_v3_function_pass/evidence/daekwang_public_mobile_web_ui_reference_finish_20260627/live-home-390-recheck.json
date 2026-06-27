@@ -1,0 +1,17 @@
+{
+  "innerWidth": 390,
+  "scrollWidth": 390,
+  "bodyScrollWidth": 390,
+  "logoComplete": true,
+  "logoNaturalWidth": 1036,
+  "logoRect": {
+    "x": 19,
+    "y": 10,
+    "width": 210,
+    "height": 38,
+    "top": 10,
+    "right": 229,
+    "bottom": 48,
+    "left": 19
+  }
+}
