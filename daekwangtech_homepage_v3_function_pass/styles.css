@@ -2486,3 +2486,81 @@ body.lightbox-open{overflow:hidden;}
   }
 }
 
+/* 2026-06-29 stronger real-device editorial reduction: homepage stays concise on phones. */
+@media (max-width: 640px) {
+  .route-index .hero {
+    min-height: 450px;
+  }
+
+  .route-index .hero-content {
+    padding-top: 82px;
+    padding-bottom: 62px;
+  }
+
+  .route-index .hero h1 {
+    font-size: clamp(36px, 10vw, 42px);
+    line-height: 1.02;
+  }
+
+  .route-index .hero h2 {
+    font-size: clamp(23px, 7vw, 28px);
+    line-height: 1.16;
+  }
+
+  .route-index .hero p {
+    max-width: 30em;
+    font-size: 13px;
+    line-height: 1.62;
+  }
+
+  .route-index .feature-rail {
+    margin-top: -42px;
+  }
+
+  .route-index .feature-rail .rail-item:nth-child(n+3),
+  .route-index .home-products-section .product-grid > article:nth-child(n+3),
+  .route-index .home-quality-section .quality-grid > article:nth-child(n+2),
+  .route-index .home-notice-grid > a:nth-child(n+4),
+  .route-index .home-facility-section,
+  .route-index .trust-section,
+  .route-index .home-notice-section .notice-cta {
+    display: none;
+  }
+
+  .route-index .home-products-section,
+  .route-index .home-quality-section,
+  .route-index .home-notice-section {
+    padding-top: 28px;
+  }
+
+  .route-index .process-band {
+    margin-top: 30px;
+  }
+
+  .route-index .process-layout {
+    padding: 28px 0;
+    gap: 18px;
+  }
+
+  .route-index .process-band .step-row {
+    gap: 8px;
+  }
+
+  .route-index .process-band .step:nth-child(n+4) {
+    display: none;
+  }
+
+  .route-index .process-band .step {
+    min-height: 92px;
+    padding: 13px 15px;
+  }
+
+  .route-index .home-notice-section {
+    padding-bottom: 18px;
+  }
+
+  .route-index .site-footer {
+    margin-top: 0;
+  }
+}
+

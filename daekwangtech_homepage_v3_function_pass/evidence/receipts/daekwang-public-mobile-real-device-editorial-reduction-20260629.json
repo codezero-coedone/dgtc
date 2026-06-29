@@ -40,5 +40,32 @@
     "owner real-device visual confirmation",
     "server auth/D1/R2 production",
     "inherited static design smell remains HIGH"
-  ]
+  ],
+  "strongerReduction": {
+    "applied": true,
+    "homeMobileVisible": {
+      "products": 2,
+      "quality": 1,
+      "facilitySection": 0,
+      "processSteps": 3,
+      "notices": 3,
+      "trustSection": 0
+    },
+    "desktopPreserved": {
+      "products": 5,
+      "quality": 4,
+      "facilitySection": 1,
+      "processSteps": 6,
+      "notices": 4
+    },
+    "hqfsScore": 461,
+    "staticCheck": "PASS",
+    "build": "PASS",
+    "screenshots": [
+      "stronger/home-390-stronger.png",
+      "stronger/home-430-stronger.png",
+      "stronger/process-390-stronger.png",
+      "stronger/notice-390-stronger.png"
+    ]
+  }
 }
