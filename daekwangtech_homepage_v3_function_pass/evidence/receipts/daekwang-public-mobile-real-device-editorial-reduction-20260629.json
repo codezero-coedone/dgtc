@@ -1,0 +1,44 @@
+{
+  "lockName": "DAEKWANG_PUBLIC_MOBILE_REAL_DEVICE_EDITORIAL_REDUCTION_PATCH_V1",
+  "activeCircuit": "PUBLIC_MOBILE_WEB_UI_EDITORIAL_REDUCTION_ONLY",
+  "changedFiles": [
+    "src/App.jsx",
+    "styles.css"
+  ],
+  "hqfs": {
+    "beforeScore": 478,
+    "firstAttemptScore": 502,
+    "finalScore": 461,
+    "finalRisk": "HIGH"
+  },
+  "staticCheck": "PASS",
+  "build": "PASS",
+  "localPreview": "http://127.0.0.1:4199",
+  "localSmoke": {
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "fakeKr": 0,
+    "bottomDock": 0,
+    "publicAdminPill": 0,
+    "adminLogin": "PASS",
+    "notificationPanel": "PASS"
+  },
+  "screenshots": [
+    "home-390.png",
+    "home-430.png",
+    "company-390.png",
+    "technology-390.png",
+    "process-390.png",
+    "quality-390.png",
+    "notice-390.png",
+    "home-1440.png",
+    "notice-1440.png",
+    "admin-login-390.png",
+    "admin-after-login-1440.png"
+  ],
+  "remainingHold": [
+    "owner real-device visual confirmation",
+    "server auth/D1/R2 production",
+    "inherited static design smell remains HIGH"
+  ]
+}

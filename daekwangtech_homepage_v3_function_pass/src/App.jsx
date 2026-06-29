@@ -288,7 +288,7 @@ function QualityControlPanel() {
 
 function ProductsPreview() {
   return (
-    <section className="split-section wrap">
+    <section className="split-section wrap home-products-section">
       <div className="section-intro"><p className="section-kicker">제품/서비스</p><h2>정밀 기술로 완성하는<br />최고의 솔루션</h2><p>다양한 산업의 요구를 충족하는 고정밀 부품 및 금속 가공 솔루션을 제공합니다.</p><a className="detail-link" href="#/products">자세히 보기 →</a></div>
       <CardGrid cards={homeProducts} className="product-grid" />
     </section>
@@ -297,7 +297,7 @@ function ProductsPreview() {
 
 function QualityPreview() {
   return (
-    <section className="split-section wrap quality-home">
+    <section className="split-section wrap quality-home home-quality-section">
       <div className="section-intro"><p className="section-kicker">품질 관리</p><h2>정밀한 검증이<br />신뢰를 만듭니다</h2><p>품질 관리 시스템과 측정 장비로 안정적인 품질을 보장합니다.</p><a className="detail-link" href="#/quality">품질 관리 자세히 보기 →</a></div>
       <CardGrid cards={qualityCards} className="quality-grid" />
     </section>
@@ -306,7 +306,7 @@ function QualityPreview() {
 
 function FacilityPreview() {
   return (
-    <section className="split-section wrap">
+    <section className="split-section wrap home-facility-section">
       <div className="section-intro"><p className="section-kicker">설비 / 시설</p><h2>최첨단 설비와<br />강력한 생산 인프라</h2><p>고품질 가공을 위한 설비와 생산 시스템을 구축하고 있습니다.</p><a className="detail-link" href="#/facility">설비 현황 자세히 보기 →</a></div>
       <CardGrid cards={facilityCards} className="facility-grid" />
     </section>

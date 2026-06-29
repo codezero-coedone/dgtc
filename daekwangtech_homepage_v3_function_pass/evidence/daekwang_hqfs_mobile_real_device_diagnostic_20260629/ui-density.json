@@ -1,0 +1,128 @@
+{
+  "deleteExecuted": "NO",
+  "filesScanned": 42,
+  "panels": [
+    {
+      "charsPerLine": 30,
+      "controlsPerKChars": 1,
+      "panel": "center",
+      "summary": {
+        "badges": 27,
+        "chars": 16825,
+        "controls": 32,
+        "examples": [
+          {
+            "path": "src/components/daekwang-admin/ImageManagerPanel.jsx",
+            "pathRef": "PATH#3e4325a0"
+          },
+          {
+            "path": "src/components/daekwang-admin/ImagePreviewPanel.jsx",
+            "pathRef": "PATH#9fe69f2d"
+          },
+          {
+            "path": "src/components/daekwang-admin/NoticeCreatePanel.jsx",
+            "pathRef": "PATH#226a9ca1"
+          },
+          {
+            "path": "src/components/daekwang-admin/RecentActivityPanel.jsx",
+            "pathRef": "PATH#17ed8851"
+          },
+          {
+            "path": "src/panelState.js",
+            "pathRef": "PATH#03ac6e9a"
+          }
+        ],
+        "files": 5,
+        "lines": 545
+      }
+    },
+    {
+      "charsPerLine": 36,
+      "controlsPerKChars": 1,
+      "panel": "left",
+      "summary": {
+        "badges": 0,
+        "chars": 2080,
+        "controls": 3,
+        "examples": [
+          {
+            "path": "src/components/daekwang-admin/AdminSidebar.jsx",
+            "pathRef": "PATH#e26d0ec3"
+          }
+        ],
+        "files": 1,
+        "lines": 57
+      }
+    },
+    {
+      "charsPerLine": 40,
+      "controlsPerKChars": 0,
+      "panel": "shell",
+      "summary": {
+        "badges": 1,
+        "chars": 18022,
+        "controls": 16,
+        "examples": [
+          {
+            "path": "src/App.jsx",
+            "pathRef": "PATH#97c9af1c"
+          },
+          {
+            "path": "src/main.jsx",
+            "pathRef": "PATH#295339a9"
+          }
+        ],
+        "files": 2,
+        "lines": 442
+      }
+    },
+    {
+      "charsPerLine": 29,
+      "controlsPerKChars": 0,
+      "panel": "unknown",
+      "summary": {
+        "badges": 250,
+        "chars": 275050,
+        "controls": 122,
+        "examples": [
+          {
+            "path": "index.html",
+            "pathRef": "PATH#fa0babab"
+          },
+          {
+            "path": "src/admin-tokens.css",
+            "pathRef": "PATH#ff3b3b88"
+          },
+          {
+            "path": "src/admin.jsx",
+            "pathRef": "PATH#0e7b91d5"
+          },
+          {
+            "path": "src/adminContentSeed.js",
+            "pathRef": "PATH#bd56a05e"
+          },
+          {
+            "path": "src/cmsClient.js",
+            "pathRef": "PATH#204531b3"
+          },
+          {
+            "path": "src/components/brand/DaekwangBrandBadge.jsx",
+            "pathRef": "PATH#29db2ec1"
+          },
+          {
+            "path": "src/components/brand/DaekwangLogo.jsx",
+            "pathRef": "PATH#1a46c247"
+          },
+          {
+            "path": "src/components/brand/DaekwangLogoLockup.jsx",
+            "pathRef": "PATH#b8f83731"
+          }
+        ],
+        "files": 34,
+        "lines": 9271
+      }
+    }
+  ],
+  "schema": "HQFSCore.UiDensityMeter@1",
+  "targetRoot": "PATH#1d4611ef"
+}

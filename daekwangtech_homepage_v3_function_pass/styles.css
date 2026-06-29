@@ -2062,21 +2062,19 @@ body.lightbox-open{overflow:hidden;}
 /* 2026-06-27 public mobile premium finish: compact responsive web, no app shell. */
 @media (max-width: 1023px) {
   body {
-    background:
-      linear-gradient(180deg, #f7f9fc 0%, #eef3f8 48%, #f7f9fc 100%);
+    background: #f7f9fc;
   }
 
   .site-header {
     height: 64px;
     padding: 0 clamp(14px, 4vw, 24px);
-    background: linear-gradient(180deg, rgba(3, 9, 18, .78), rgba(3, 9, 18, .18));
+    background: rgba(3, 9, 18, .62);
   }
 
   .brand .dk-brand-logo {
     min-height: 44px;
     border-radius: 12px;
     padding: 4px 8px;
-    box-shadow: 0 10px 24px rgba(3, 9, 18, .18);
   }
 
   .brand .dk-brand-logo__asset {
@@ -2087,7 +2085,6 @@ body.lightbox-open{overflow:hidden;}
   .menu-button {
     border-radius: 14px;
     background: rgba(255, 255, 255, .10);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
   }
 
   .menu-button:focus-visible,
@@ -2104,7 +2101,6 @@ body.lightbox-open{overflow:hidden;}
     top: 72px;
     padding: 8px;
     border-color: rgba(255, 255, 255, .14);
-    box-shadow: 0 22px 62px rgba(3, 9, 18, .32);
   }
 
   .mobile-panel .nav-link {
@@ -2198,39 +2194,9 @@ body.lightbox-open{overflow:hidden;}
     font-weight: 920;
   }
 
-  .product-card,
-  .image-card,
-  .stat-card,
-  .map-card,
-  .metric,
-  .cert-card,
-  .home-notice-card,
-  .notice-row,
-  .notice-toolbar.premium,
-  .notice-pinned-card,
-  .notice-detail-head,
-  .notice-detail-body,
-  .notice-neighbor,
-  .company-location-panel,
-  .sub-close-panel,
-  .process-page-section,
-  .quality-control-panel {
-    border-color: rgba(11, 29, 58, .10);
-    box-shadow: 0 14px 34px rgba(11, 29, 58, .07);
-  }
-
-  .product-card,
-  .image-card,
-  .home-notice-card,
-  .notice-row {
-    overflow: hidden;
-  }
-
   .process-band {
     margin-top: 44px;
-    background:
-      radial-gradient(circle at 88% 4%, rgba(93, 165, 224, .20), transparent 28%),
-      linear-gradient(135deg, #06111f 0%, #0b1d3a 64%, #08234a 100%);
+    background: #071a33;
   }
 
   .step-row {
@@ -2243,8 +2209,7 @@ body.lightbox-open{overflow:hidden;}
   }
 
   .process-page-section {
-    background:
-      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    background: #fff;
   }
 
   .process-page-head h3,
@@ -2262,18 +2227,15 @@ body.lightbox-open{overflow:hidden;}
   }
 
   .quality-control-panel {
-    background:
-      radial-gradient(circle at 98% 0%, rgba(93, 165, 224, .18), transparent 30%),
-      linear-gradient(135deg, #07111f 0%, #0b1d3a 100%);
+    background: #071a33;
   }
 
   .quality-check-grid article {
-    background: linear-gradient(180deg, #ffffff 0%, #f9fbfe 100%);
+    background: #fff;
   }
 
   .company-location-panel {
-    background:
-      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    background: #fff;
   }
 
   .company-location-list dd {
@@ -2306,12 +2268,20 @@ body.lightbox-open{overflow:hidden;}
 
   .site-footer {
     border-top: 1px solid rgba(255, 255, 255, .08);
-    background: linear-gradient(180deg, #111923 0%, #08111f 100%);
+    background: #08111f;
     line-height: 1.55;
   }
 }
 
 @media (max-width: 640px) {
+  .feature-rail .rail-item:nth-child(n+4),
+  .home-products-section .product-grid > article:nth-child(n+4),
+  .home-quality-section .quality-grid > article:nth-child(n+3),
+  .home-facility-section .facility-grid > article:nth-child(n+3),
+  .admin-managed-posts {
+    display: none;
+  }
+
   .feature-rail {
     grid-template-columns: 1fr;
   }
@@ -2328,11 +2298,37 @@ body.lightbox-open{overflow:hidden;}
   .facility img,
   .image-card.small img,
   .deep-card img {
-    height: clamp(164px, 48vw, 204px);
+    height: clamp(142px, 40vw, 178px);
+  }
+
+  .home-products-section,
+  .home-quality-section,
+  .home-facility-section {
+    padding-top: 34px;
+  }
+
+  .home-products-section .section-intro,
+  .home-quality-section .section-intro,
+  .home-facility-section .section-intro {
+    padding: 0 2px;
+  }
+
+  .home-products-section .product-grid,
+  .home-quality-section .quality-grid,
+  .home-facility-section .facility-grid {
+    gap: 10px;
   }
 
   .process-layout {
-    padding: 38px 0;
+    padding: 32px 0;
+  }
+
+  .process-band {
+    margin-top: 34px;
+  }
+
+  .step {
+    border-color: rgba(255, 255, 255, .12);
   }
 
   .process-page-section,
@@ -2353,6 +2349,22 @@ body.lightbox-open{overflow:hidden;}
   .notice-list-wrap,
   .notice-detail-wrap {
     width: min(100% - 30px, 760px);
+  }
+
+  .trust-section {
+    padding-top: 36px;
+  }
+
+  .trust-grid {
+    gap: 10px;
+  }
+
+  .trust-grid > article:nth-child(n+3) {
+    display: none;
+  }
+
+  .stat-card {
+    padding: 20px;
   }
 }
 
@@ -2415,8 +2427,22 @@ body.lightbox-open{overflow:hidden;}
     border-radius: 16px;
   }
 
+  .product-card,
+  .image-card,
+  .stat-card,
+  .map-card,
+  .metric,
+  .cert-card,
+  .home-notice-card,
+  .notice-row,
+  .company-location-panel,
+  .process-page-section,
+  .quality-control-panel {
+    border-color: rgba(11, 29, 58, .10);
+  }
+
   .card-body {
-    padding: 16px;
+    padding: 14px 15px 16px;
   }
 
   .process-page-section,
@@ -2429,8 +2455,14 @@ body.lightbox-open{overflow:hidden;}
     padding: 20px;
   }
 
+  .home-products-section,
+  .home-quality-section,
+  .home-facility-section {
+    padding-top: 30px;
+  }
+
   .process-page-step {
-    padding: 17px;
+    padding: 16px;
   }
 
   .quality-control-copy {
