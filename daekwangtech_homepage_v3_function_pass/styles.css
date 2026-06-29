@@ -2564,3 +2564,232 @@ body.lightbox-open{overflow:hidden;}
   }
 }
 
+/* 2026-06-29 premium editorial finish: quieter hierarchy, sharper mobile rhythm. */
+@media (max-width: 640px) {
+  .route-index {
+    background: #f4f7fb;
+  }
+
+  .route-index .site-header {
+    height: 58px;
+    padding: 0 12px;
+    background: rgba(4, 12, 25, .78);
+    backdrop-filter: blur(14px);
+  }
+
+  .route-index .brand .dk-brand-logo {
+    min-height: 38px;
+    padding: 3px 7px;
+    border-radius: 10px;
+  }
+
+  .route-index .brand .dk-brand-logo__asset {
+    width: 150px;
+    max-height: 36px;
+  }
+
+  .route-index .menu-button {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+  }
+
+  .route-index .hero {
+    min-height: 418px;
+  }
+
+  .route-index .hero-content {
+    width: calc(100% - 34px);
+    padding-top: 74px;
+    padding-bottom: 54px;
+  }
+
+  .route-index .hero .eyebrow {
+    margin-bottom: 12px;
+    font-size: 10px;
+    letter-spacing: .08em;
+  }
+
+  .route-index .hero h1 {
+    max-width: 9.2em;
+    font-size: clamp(34px, 9.2vw, 39px);
+    letter-spacing: -.035em;
+  }
+
+  .route-index .hero h2 {
+    max-width: 11.2em;
+    font-size: clamp(22px, 6.2vw, 25px);
+    letter-spacing: -.025em;
+  }
+
+  .route-index .hero-copy {
+    max-width: 27em;
+    color: rgba(226, 232, 240, .78);
+    font-size: 12.5px;
+  }
+
+  .route-index .hero-progress {
+    width: 132px;
+    margin-top: 15px;
+  }
+
+  .route-index .feature-rail {
+    width: calc(100% - 32px);
+    margin-top: -34px;
+    border-radius: 17px;
+    background: rgba(255, 255, 255, .98);
+  }
+
+  .route-index .rail-item {
+    min-height: 58px;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .route-index .rail-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  .route-index .rail-item strong {
+    font-size: 10px;
+    letter-spacing: .04em;
+  }
+
+  .route-index .rail-item span {
+    font-size: 12px;
+  }
+
+  .route-index .split-section,
+  .route-index .home-notice-section {
+    width: calc(100% - 34px);
+  }
+
+  .route-index .section-intro {
+    gap: 8px;
+  }
+
+  .route-index .section-kicker {
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+
+  .route-index .section-intro h2 {
+    font-size: clamp(25px, 7.2vw, 30px);
+    line-height: 1.16;
+    letter-spacing: -.035em;
+  }
+
+  .route-index .section-intro p {
+    max-width: 30em;
+    font-size: 13px;
+    line-height: 1.68;
+  }
+
+  .route-index .detail-link {
+    margin-top: 8px;
+    min-height: 32px;
+    font-size: 12px;
+  }
+
+  .route-index .product-card,
+  .route-index .image-card,
+  .route-index .home-notice-card {
+    border-radius: 18px;
+    border-color: rgba(11, 29, 58, .09);
+    background: #fff;
+  }
+
+  .route-index .product-card img,
+  .route-index .image-card.small img {
+    height: 136px;
+  }
+
+  .route-index .card-body {
+    padding: 13px 14px 15px;
+  }
+
+  .route-index .card-body h3,
+  .route-index .home-notice-card h3 {
+    font-size: 16px;
+    line-height: 1.32;
+    letter-spacing: -.025em;
+  }
+
+  .route-index .card-body p,
+  .route-index .home-notice-card p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .route-index .process-band {
+    background: #07192f;
+  }
+
+  .route-index .process-layout {
+    width: calc(100% - 34px);
+  }
+
+  .route-index .process-layout .section-intro h2 {
+    color: #f8fafc;
+  }
+
+  .route-index .process-layout .section-intro p {
+    color: rgba(226, 232, 240, .72);
+  }
+
+  .route-index .process-band .step {
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .045);
+  }
+
+  .route-index .step-icon {
+    display: none;
+  }
+
+  .route-index .step h3 {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .route-index .step p {
+    font-size: 11.5px;
+    line-height: 1.45;
+  }
+
+  .route-index .home-notice-section {
+    gap: 16px;
+  }
+
+  .route-index .home-notice-head {
+    gap: 12px;
+  }
+
+  .route-index .home-notice-grid {
+    gap: 12px;
+  }
+
+  .route-index .home-notice-card {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .route-index .home-notice-meta span,
+  .route-index .home-notice-meta em {
+    min-height: 22px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .route-index .home-notice-card time {
+    margin-top: 10px;
+    font-size: 11px;
+  }
+}
+

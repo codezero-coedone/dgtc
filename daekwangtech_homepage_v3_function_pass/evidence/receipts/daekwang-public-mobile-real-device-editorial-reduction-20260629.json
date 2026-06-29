@@ -67,5 +67,28 @@
       "stronger/process-390-stronger.png",
       "stronger/notice-390-stronger.png"
     ]
+  },
+  "premiumFinish": {
+    "applied": true,
+    "changedFiles": [
+      "styles.css"
+    ],
+    "hqfsScore": 473,
+    "staticCheck": "PASS",
+    "build": "PASS",
+    "localSmoke": {
+      "consoleErrors": 0,
+      "horizontalOverflow": 0,
+      "fakeKr": 0,
+      "bottomDock": 0,
+      "publicAdminPill": 0,
+      "forbiddenCta": 0
+    },
+    "screenshots": [
+      "premium/home-390-premium.png",
+      "premium/home-430-premium.png",
+      "premium/notice-390-premium.png"
+    ],
+    "deployStatus": "NOT_DEPLOYED"
   }
 }
