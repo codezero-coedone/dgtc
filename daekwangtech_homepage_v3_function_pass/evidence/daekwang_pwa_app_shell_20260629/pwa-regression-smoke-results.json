@@ -1,0 +1,19 @@
+{
+  "admin": {
+    "errors": [],
+    "wrongBlocked": true,
+    "loginWorks": true,
+    "metrics": {
+      "overflowX": 0,
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH"
+    }
+  },
+  "publicRoutes": {
+    "errors": [],
+    "metrics": {
+      "overflowX": 0,
+      "fakeKr": false,
+      "bottomDock": false
+    }
+  }
+}
