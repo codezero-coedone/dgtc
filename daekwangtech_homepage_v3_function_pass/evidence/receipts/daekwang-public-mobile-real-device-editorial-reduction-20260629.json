@@ -90,5 +90,38 @@
       "premium/notice-390-premium.png"
     ],
     "deployStatus": "NOT_DEPLOYED"
+  },
+  "functionPolish": {
+    "applied": true,
+    "changedFiles": [
+      "styles.css"
+    ],
+    "hqfsFirstScore": 480,
+    "hqfsSelectorReducedScore": 463,
+    "staticCheck": "PASS",
+    "build": "PASS",
+    "mobileMenu": {
+      "panelVisible": true,
+      "display": "grid",
+      "navLinks": 7,
+      "ariaExpanded": "true"
+    },
+    "routeClicks": {
+      "companyFromMenu": "PASS",
+      "productDetailFromHome": "PASS"
+    },
+    "localSmoke": {
+      "consoleErrors": 0,
+      "horizontalOverflow": 0,
+      "fakeKr": 0,
+      "bottomDock": 0,
+      "publicAdminPill": 0,
+      "forbiddenCta": 0
+    },
+    "screenshots": [
+      "function-polish/mobile-menu-open-390.png",
+      "function-polish/after-detail-link-390.png"
+    ],
+    "deployStatus": "NOT_DEPLOYED"
   }
 }

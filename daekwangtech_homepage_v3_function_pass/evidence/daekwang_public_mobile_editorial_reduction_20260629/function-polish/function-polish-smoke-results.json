@@ -1,0 +1,16 @@
+{
+  "errors": [],
+  "menuOpen": false,
+  "companyRouteWorks": true,
+  "detailRouteWorks": true,
+  "metrics": {
+    "hash": "#/products",
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "overflowX": 0,
+    "fakeKr": false,
+    "bottomDock": false,
+    "publicAdmin": false,
+    "forbiddenCta": false
+  }
+}

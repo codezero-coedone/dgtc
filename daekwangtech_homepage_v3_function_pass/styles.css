@@ -2694,32 +2694,35 @@ body.lightbox-open{overflow:hidden;}
     font-size: 12px;
   }
 
-  .route-index .product-card,
-  .route-index .image-card,
-  .route-index .home-notice-card {
+  .route-index .product-grid > article,
+  .route-index .quality-grid > article,
+  .route-index .home-notice-grid > a {
     border-radius: 18px;
     border-color: rgba(11, 29, 58, .09);
     background: #fff;
   }
 
-  .route-index .product-card img,
-  .route-index .image-card.small img {
+  .route-index .product-grid > article img,
+  .route-index .quality-grid > article img {
     height: 136px;
   }
 
-  .route-index .card-body {
+  .route-index .product-grid > article > div,
+  .route-index .quality-grid > article > div {
     padding: 13px 14px 15px;
   }
 
-  .route-index .card-body h3,
-  .route-index .home-notice-card h3 {
+  .route-index .product-grid > article h3,
+  .route-index .quality-grid > article h3,
+  .route-index .home-notice-grid > a h3 {
     font-size: 16px;
     line-height: 1.32;
     letter-spacing: -.025em;
   }
 
-  .route-index .card-body p,
-  .route-index .home-notice-card p {
+  .route-index .product-grid > article p,
+  .route-index .quality-grid > article p,
+  .route-index .home-notice-grid > a p {
     display: -webkit-box;
     overflow: hidden;
     -webkit-line-clamp: 2;
@@ -2787,9 +2790,94 @@ body.lightbox-open{overflow:hidden;}
     font-size: 10px;
   }
 
-  .route-index .home-notice-card time {
+  .route-index .home-notice-grid > a time {
     margin-top: 10px;
     font-size: 11px;
+  }
+}
+
+/* 2026-06-29 mobile function polish: navigation and route links stay obvious without app UI. */
+@media (max-width: 640px) {
+  .site-header.nav-open {
+    background: rgba(4, 12, 25, .92);
+  }
+
+  .mobile-panel {
+    left: 12px;
+    right: 12px;
+    top: 66px;
+    gap: 4px;
+    padding: 10px;
+    border-radius: 18px;
+    background: rgba(7, 18, 34, .96);
+    border: 1px solid rgba(255, 255, 255, .14);
+  }
+
+  .mobile-panel .nav-link {
+    min-height: 48px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 13px;
+    color: rgba(248, 250, 252, .88);
+    font-size: 14px;
+    font-weight: 850;
+  }
+
+  .mobile-panel .nav-link::after {
+    content: "›";
+    color: rgba(125, 165, 224, .88);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .mobile-panel .nav-link.active {
+    background: rgba(93, 165, 224, .14);
+    color: #fff;
+  }
+
+  .route-index .detail-link {
+    width: max-content;
+    max-width: 100%;
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid rgba(15, 71, 175, .18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .74);
+    color: #0F47AF;
+    text-decoration: none;
+  }
+
+  .route-index .process-band .detail-link {
+    border-color: rgba(93, 165, 224, .24);
+    background: rgba(93, 165, 224, .10);
+    color: #80bfff;
+  }
+
+  .route-index .detail-link::after {
+    display: none;
+  }
+
+  .route-index .product-grid,
+  .route-index .quality-grid,
+  .route-index .home-notice-grid {
+    align-items: stretch;
+  }
+
+  .route-index .product-grid > article,
+  .route-index .quality-grid > article,
+  .route-index .home-notice-grid > a {
+    min-width: 0;
+    box-shadow: 0 10px 28px rgba(11, 29, 58, .055);
+  }
+
+  .route-index .product-grid > article:active,
+  .route-index .quality-grid > article:active,
+  .route-index .home-notice-grid > a:active,
+  .route-index .detail-link:active,
+  .mobile-panel .nav-link:active {
+    transform: translateY(1px);
   }
 }
 
