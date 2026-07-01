@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { DaekwangBrandBadge } from "../components/brand/DaekwangBrandBadge.jsx";
 import { DaekwangLogoLockup } from "../components/brand/DaekwangLogoLockup.jsx";
 import { NoticeCtaBlock } from "../components/notice/HomeNoticeSection.jsx";
-import { getNoticeHref, getNoticeListHref, hasLocalAdminNoticeState, loadPublicNoticeData, loadServerPublicNoticeData, subscribeNoticePublicData } from "../utils/noticePublicData.js";
+import { getNoticeHref, getNoticeListHref, loadPublicNoticeData, loadServerPublicNoticeData, subscribeNoticePublicData } from "../utils/noticePublicData.js";
 
 const categories = ["전체", "공지", "인증", "설비", "휴무", "기타"];
 const sortOptions = [
@@ -45,9 +45,7 @@ export function NoticeListPage() {
   const [page, setPage] = useState(1);
   useEffect(() => {
     const unsubscribe = subscribeNoticePublicData(setData);
-    if (!hasLocalAdminNoticeState()) {
-      loadServerPublicNoticeData().then(setData).catch(() => null);
-    }
+    loadServerPublicNoticeData().then(setData).catch(() => null);
     return unsubscribe;
   }, []);
 
@@ -147,9 +145,7 @@ export function NoticeDetailPage({ noticeId }) {
   const [data, setData] = useState(() => loadPublicNoticeData());
   useEffect(() => {
     const unsubscribe = subscribeNoticePublicData(setData);
-    if (!hasLocalAdminNoticeState()) {
-      loadServerPublicNoticeData().then(setData).catch(() => null);
-    }
+    loadServerPublicNoticeData().then(setData).catch(() => null);
     return unsubscribe;
   }, []);
   const notice = data.visibleNotices.find((item) => String(item.id) === String(noticeId));

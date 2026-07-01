@@ -1,0 +1,11 @@
+{
+  "bellCount": 1,
+  "notification": {
+    "overflowX": 0,
+    "panelText": true
+  },
+  "admin1440": {
+    "adminShellVisible": true,
+    "overflowX": 0
+  }
+}

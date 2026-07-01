@@ -8,7 +8,20 @@ import { AdminSidebar } from "../components/daekwang-admin/AdminSidebar.jsx";
 import { AdminLoginGate, clearAdminAuthSession, readAdminAuthSession } from "../components/daekwang-admin/AdminLoginGate.jsx";
 import { AdminToast } from "../components/daekwang-admin/AdminToast.jsx";
 import { AdminTopbar } from "../components/daekwang-admin/AdminTopbar.jsx";
-import { logoutAdmin } from "../services/adminApiClient.js";
+import {
+  createNotice as createNoticeOnServer,
+  deleteImageAsset,
+  deleteOrArchiveNotice,
+  getAdminState,
+  getAdminSession,
+  hideNotice as hideNoticeOnServer,
+  listImages,
+  listNotices,
+  logoutAdmin,
+  saveAdminState,
+  updateNotice as updateNoticeOnServer,
+  uploadImage as uploadImageToServer,
+} from "../services/adminApiClient.js";
 import { fileSizeLabel, isImageFile, isUnderImageLimit, readFileAsDataUrl } from "../utils/adminValidation.js";
 import { nowStamp } from "../utils/adminStorage.js";
 
@@ -32,6 +45,66 @@ function normalizeNoticeDraft(draft = {}) {
 
 function nextNumberId(items) {
   return Math.max(0, ...items.map((item) => Number(item.id) || 0)) + 1;
+}
+
+function isServerAuth(session) {
+  return session?.authenticated === true && session.serverAuth === true;
+}
+
+function serverNoticePayload(draft) {
+  return {
+    title: draft.title.trim(),
+    status: draft.visible ? "visible" : "hidden",
+    publishDate: draft.publishDate,
+    category: draft.category || "공지",
+    isPinned: Boolean(draft.isPinned),
+    author: draft.author || "대광테크",
+    viewCount: Number(draft.viewCount || 0),
+    content: draft.content.trim(),
+  };
+}
+
+function mediaToImageAsset(media, category = "products", order = 1) {
+  const objectKey = media.object_key || media.key || "";
+  const name = objectKey.split("/").pop() || media.label || "r2-upload";
+  return {
+    id: media.id,
+    title: media.label || name,
+    category: media.usage || category,
+    fileName: name,
+    fileSize: fileSizeLabel(Number(media.size || 0)),
+    resolution: "R2 저장 이미지",
+    uploadDate: String(media.created_at || media.createdAt || today()).slice(0, 10),
+    status: media.status === "inactive" ? "inactive" : "active",
+    order,
+    imageUrl: media.src,
+  };
+}
+
+function sanitizeAdminStateForServer(state) {
+  const imageAssets = state.imageAssets.map((asset) => ({
+    ...asset,
+    imageUrl: String(asset.imageUrl || "").startsWith("data:") ? "" : asset.imageUrl,
+  }));
+  return {
+    pages: state.pages,
+    popups: state.popups,
+    menus: state.menus,
+    footerInfo: state.footerInfo,
+    siteSettings: state.siteSettings,
+    seoSettings: state.seoSettings,
+    noticeCtaSettings: state.noticeCtaSettings,
+    adminUsers: state.adminUsers,
+    backupItems: state.backupItems.map((item) => ({ ...item, snapshot: undefined })),
+    uiPreferences: state.uiPreferences,
+    imageAssets,
+  };
+}
+
+function mergeServerAdminState(currentState, serverState) {
+  if (!serverState || typeof serverState !== "object") return currentState;
+  const keys = ["pages", "popups", "menus", "footerInfo", "siteSettings", "seoSettings", "noticeCtaSettings", "adminUsers", "backupItems", "uiPreferences"];
+  return keys.reduce((next, key) => (serverState[key] === undefined ? next : { ...next, [key]: serverState[key] }), currentState);
 }
 
 function imagePreviewPayload(image) {
@@ -78,6 +151,100 @@ export function DaekwangAdminConsole() {
   useEffect(() => {
     document.title = "대광테크 관리자 콘솔 | DAE KWANG TECH";
   }, []);
+
+  useEffect(() => {
+    const stored = readAdminAuthSession();
+    if (!stored?.serverAuth) return;
+    let active = true;
+    getAdminSession()
+      .then((session) => {
+        if (!active) return;
+        if (session?.authenticated === true) {
+          setAuthSession({
+            ...stored,
+            userId: session.userId || stored.userId,
+            mode: session.mode || "server-session",
+            expiresAt: session.expiresAt,
+            serverAuth: true,
+          });
+          return;
+        }
+        clearAdminAuthSession();
+        setAuthSession(null);
+      })
+      .catch(() => {
+        if (!active) return;
+        clearAdminAuthSession();
+        setAuthSession(null);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isServerAuth(authSession)) return;
+    let active = true;
+    getAdminState()
+      .then((payload) => {
+        if (!active || !payload.state) return;
+        actions.restoreState(mergeServerAdminState(state, payload.state));
+      })
+      .catch(() => notify("관리자 설정 동기화 보류", "D1 관리자 설정을 불러오지 못했습니다.", "error"));
+    listNotices()
+      .then((payload) => {
+        if (!active || !Array.isArray(payload.notices)) return;
+        actions.updateNotices(payload.notices, {
+          type: "noticeServerSync",
+          title: "공지 서버 동기화",
+          description: "D1 공지사항 데이터를 관리자 콘솔에 반영했습니다.",
+          target: "D1:notices",
+        });
+      })
+      .catch(() => notify("공지 서버 동기화 보류", "D1 공지 목록을 불러오지 못했습니다.", "error"));
+    listImages()
+      .then((payload) => {
+        if (!active || !Array.isArray(payload.media) || !payload.media.length) return;
+        const existingIds = new Set(state.imageAssets.map((asset) => asset.id));
+        const serverAssets = payload.media
+          .filter((media) => !existingIds.has(media.id))
+          .map((media, index) => mediaToImageAsset(media, media.usage || activeCategory, index + 1));
+        if (!serverAssets.length) return;
+        actions.updateImages((current) => [...serverAssets, ...current], {
+          type: "imageServerSync",
+          title: "이미지 서버 동기화",
+          description: "R2 이미지 메타데이터를 관리자 콘솔에 반영했습니다.",
+          target: "D1:media_assets",
+        });
+      })
+      .catch(() => notify("이미지 서버 동기화 보류", "R2 이미지 목록을 불러오지 못했습니다.", "error"));
+    return () => {
+      active = false;
+    };
+  }, [authSession]);
+
+  useEffect(() => {
+    if (!isServerAuth(authSession)) return;
+    const timer = window.setTimeout(() => {
+      saveAdminState(sanitizeAdminStateForServer(state)).catch(() => {
+        notify("관리자 설정 서버 저장 보류", "D1 관리자 설정 스냅샷 저장이 완료되지 않았습니다.", "error");
+      });
+    }, 900);
+    return () => window.clearTimeout(timer);
+  }, [
+    authSession,
+    state.pages,
+    state.popups,
+    state.menus,
+    state.footerInfo,
+    state.siteSettings,
+    state.seoSettings,
+    state.noticeCtaSettings,
+    state.adminUsers,
+    state.backupItems,
+    state.uiPreferences,
+    state.imageAssets,
+  ]);
 
   useEffect(() => {
     if (!state.imageAssets.some((asset) => asset.id === selectedImageId)) {
@@ -259,11 +426,27 @@ export function DaekwangAdminConsole() {
       return;
     }
     const order = state.imageAssets.filter((asset) => asset.category === activeCategory).length + 1;
-    const asset = await createImageAsset(file, activeCategory, order);
+    let asset;
+    if (isServerAuth(authSession)) {
+      try {
+        const payload = await uploadImageToServer(file, {
+          label: file.name,
+          alt: file.name,
+          usage: activeCategory,
+        });
+        asset = mediaToImageAsset(payload.media, activeCategory, order);
+      } catch {
+        notify("서버 업로드 실패", "R2 업로드가 완료되지 않았습니다.", "error");
+        actions.addActivity("imageUploadFail", "R2 이미지 업로드 실패", "서버 이미지 저장에 실패했습니다.", file.name, "fail");
+        return;
+      }
+    } else {
+      asset = await createImageAsset(file, activeCategory, order);
+    }
     actions.updateImages((current) => [asset, ...current], {
-      type: "imageUpload",
-      title: "이미지 업로드",
-      description: `${asset.title} 이미지가 업로드되었습니다.`,
+      type: isServerAuth(authSession) ? "imageUploadR2" : "imageUpload",
+      title: isServerAuth(authSession) ? "R2 이미지 업로드" : "이미지 업로드",
+      description: `${asset.title} 이미지가 ${isServerAuth(authSession) ? "R2에 저장" : "업로드"}되었습니다.`,
       target: asset.fileName,
     });
     setSelectedImageId(asset.id);
@@ -275,18 +458,41 @@ export function DaekwangAdminConsole() {
       notify("교체 실패", "JPG, PNG, WEBP / 10MB 이하 파일만 사용할 수 있습니다.", "error");
       return;
     }
-    const imageUrl = await readFileAsDataUrl(file);
     const target = state.imageAssets.find((asset) => asset.id === assetId);
+    let patch;
+    if (isServerAuth(authSession)) {
+      try {
+        const payload = await uploadImageToServer(file, {
+          label: file.name,
+          alt: target?.title || file.name,
+          usage: target?.category || activeCategory,
+        });
+        const serverAsset = mediaToImageAsset(payload.media, target?.category || activeCategory, target?.order || 1);
+        patch = {
+          fileName: serverAsset.fileName,
+          fileSize: serverAsset.fileSize,
+          imageUrl: serverAsset.imageUrl,
+          uploadDate: serverAsset.uploadDate,
+          status: "active",
+        };
+      } catch {
+        notify("서버 교체 실패", "R2 이미지 교체 업로드가 완료되지 않았습니다.", "error");
+        return;
+      }
+    } else {
+      const imageUrl = await readFileAsDataUrl(file);
+      patch = { fileName: file.name, fileSize: fileSizeLabel(file.size), imageUrl, uploadDate: today(), status: "active" };
+    }
     actions.updateImages(
       (current) =>
         current.map((asset) =>
           asset.id === assetId
-            ? { ...asset, fileName: file.name, fileSize: fileSizeLabel(file.size), imageUrl, uploadDate: today(), status: "active" }
+            ? { ...asset, ...patch }
             : asset,
         ),
       {
-        type: "imageReplace",
-        title: "이미지 교체",
+        type: isServerAuth(authSession) ? "imageReplaceR2" : "imageReplace",
+        title: isServerAuth(authSession) ? "R2 이미지 교체" : "이미지 교체",
         description: `${target?.title || "선택 이미지"}가 교체되었습니다.`,
         target: file.name,
       },
@@ -301,11 +507,19 @@ export function DaekwangAdminConsole() {
     openConfirm({
       title: "이미지 삭제",
       message: `${target.title} 이미지를 삭제할까요?`,
-      onConfirm: () => {
+      onConfirm: async () => {
+        if (isServerAuth(authSession) && String(target.id).startsWith("media-")) {
+          try {
+            await deleteImageAsset(target.id);
+          } catch {
+            notify("서버 이미지 삭제 실패", "R2 이미지 삭제가 완료되지 않았습니다.", "error");
+            return;
+          }
+        }
         const nextAssets = state.imageAssets.filter((asset) => asset.id !== assetId);
         actions.updateImages(nextAssets, {
-          type: "imageDelete",
-          title: "이미지 삭제",
+          type: isServerAuth(authSession) ? "imageDeleteR2" : "imageDelete",
+          title: isServerAuth(authSession) ? "R2 이미지 삭제" : "이미지 삭제",
           description: `${target.title} 이미지가 삭제되었습니다.`,
           target: target.fileName,
         });
@@ -349,7 +563,7 @@ export function DaekwangAdminConsole() {
     );
   };
 
-  const submitNotice = (event) => {
+  const submitNotice = async (event) => {
     event.preventDefault();
     if (!noticeDraft.title.trim() || !noticeDraft.content.trim() || !noticeDraft.publishDate) {
       setNoticeError("제목, 게시일, 내용을 입력하세요.");
@@ -358,48 +572,51 @@ export function DaekwangAdminConsole() {
     }
     setNoticeError("");
     if (editingNoticeId) {
+      let savedNotice = {
+        ...state.notices.find((notice) => notice.id === editingNoticeId),
+        ...serverNoticePayload(noticeDraft),
+        updatedAt: nowStamp(),
+      };
+      if (isServerAuth(authSession)) {
+        try {
+          const payload = await updateNoticeOnServer(editingNoticeId, savedNotice);
+          savedNotice = payload.notice || savedNotice;
+        } catch {
+          notify("공지 서버 저장 실패", "D1 공지 수정이 완료되지 않았습니다.", "error");
+          return;
+        }
+      }
       actions.updateNotices(
         (current) =>
-          current.map((notice) =>
-            notice.id === editingNoticeId
-              ? {
-                  ...notice,
-                  title: noticeDraft.title.trim(),
-                  status: noticeDraft.visible ? "visible" : "hidden",
-                  publishDate: noticeDraft.publishDate,
-                  category: noticeDraft.category || "공지",
-                  isPinned: Boolean(noticeDraft.isPinned),
-                  content: noticeDraft.content.trim(),
-                  updatedAt: nowStamp(),
-                }
-              : notice,
-          ),
+          current.map((notice) => (notice.id === editingNoticeId ? { ...notice, ...savedNotice } : notice)),
         {
-          type: "noticeEdit",
-          title: "공지사항 수정",
-          description: `공지 '${noticeDraft.title.trim()}'가 수정되었습니다.`,
+          type: isServerAuth(authSession) ? "noticeEditD1" : "noticeEdit",
+          title: isServerAuth(authSession) ? "D1 공지사항 수정" : "공지사항 수정",
+          description: `공지 '${savedNotice.title}'가 수정되었습니다.`,
           target: noticeDraft.title.trim(),
         },
       );
-      notify("공지사항 수정 완료", noticeDraft.title.trim());
+      notify("공지사항 수정 완료", savedNotice.title);
     } else {
       const nextId = nextNumberId(state.notices);
-      const notice = {
+      let notice = {
         id: nextId,
-        title: noticeDraft.title.trim(),
-        status: noticeDraft.visible ? "visible" : "hidden",
-        publishDate: noticeDraft.publishDate,
+        ...serverNoticePayload(noticeDraft),
         createdAt: `${today()} ${timeOnly()}`,
         updatedAt: `${today()} ${timeOnly()}`,
-        category: noticeDraft.category || "공지",
-        isPinned: Boolean(noticeDraft.isPinned),
-        author: "대광테크",
-        viewCount: 0,
-        content: noticeDraft.content.trim(),
       };
+      if (isServerAuth(authSession)) {
+        try {
+          const payload = await createNoticeOnServer(notice);
+          notice = payload.notice || notice;
+        } catch {
+          notify("공지 서버 등록 실패", "D1 공지 등록이 완료되지 않았습니다.", "error");
+          return;
+        }
+      }
       actions.updateNotices((current) => [notice, ...current], {
-        type: "noticeCreate",
-        title: "공지사항 등록",
+        type: isServerAuth(authSession) ? "noticeCreateD1" : "noticeCreate",
+        title: isServerAuth(authSession) ? "D1 공지사항 등록" : "공지사항 등록",
         description: `새 공지 '${notice.title}'가 등록되었습니다.`,
         target: notice.title,
       });
@@ -433,10 +650,18 @@ export function DaekwangAdminConsole() {
     openConfirm({
       title: "공지사항 삭제",
       message: `${notice.title} 공지를 삭제할까요? 공개 페이지에서도 제거됩니다.`,
-      onConfirm: () => {
+      onConfirm: async () => {
+        if (isServerAuth(authSession)) {
+          try {
+            await deleteOrArchiveNotice(notice.id);
+          } catch {
+            notify("공지 서버 삭제 실패", "D1 공지 삭제가 완료되지 않았습니다.", "error");
+            return;
+          }
+        }
         actions.updateNotices((current) => current.filter((item) => item.id !== notice.id), {
-          type: "noticeDelete",
-          title: "공지사항 삭제",
+          type: isServerAuth(authSession) ? "noticeDeleteD1" : "noticeDelete",
+          title: isServerAuth(authSession) ? "D1 공지사항 삭제" : "공지사항 삭제",
           description: `${notice.title} 공지가 삭제되었습니다.`,
           target: notice.title,
         });
@@ -445,13 +670,25 @@ export function DaekwangAdminConsole() {
     });
   };
 
-  const toggleNotice = (notice) => {
+  const toggleNotice = async (notice) => {
     const nextStatus = notice.status === "visible" ? "hidden" : "visible";
+    if (isServerAuth(authSession)) {
+      try {
+        if (nextStatus === "hidden") {
+          await hideNoticeOnServer(notice.id);
+        } else {
+          await updateNoticeOnServer(notice.id, { ...notice, status: "visible", updatedAt: nowStamp() });
+        }
+      } catch {
+        notify("공지 서버 상태 변경 실패", "D1 공지 노출 상태가 저장되지 않았습니다.", "error");
+        return;
+      }
+    }
     actions.updateNotices(
       (current) => current.map((item) => (item.id === notice.id ? { ...item, status: nextStatus, updatedAt: nowStamp() } : item)),
       {
-        type: "noticeStatus",
-        title: "공지 노출 변경",
+        type: isServerAuth(authSession) ? "noticeStatusD1" : "noticeStatus",
+        title: isServerAuth(authSession) ? "D1 공지 노출 변경" : "공지 노출 변경",
         description: `${notice.title} 공지가 ${nextStatus === "visible" ? "노출" : "비노출"} 처리되었습니다.`,
         target: notice.title,
       },

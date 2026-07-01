@@ -74,7 +74,7 @@ function applySeo(page) {
 function Header({ active, menuOpen = false, onMenu }) {
   const publicNavItems = [...navItems, { id: "notice", label: "공지사항" }];
   return (
-    <header className="site-header">
+    <header className={menuOpen ? "site-header nav-open" : "site-header"}>
       <a aria-label="DAE KWANG TECH home" className="brand" href="#/">
         <DaekwangLogoLockup tone="dark" size="sm" />
       </a>
@@ -382,6 +382,10 @@ function SiteApp({ content, setContent, route }) {
     document.body.classList.toggle("nav-open", menuOpen);
     return () => document.body.classList.remove("nav-open");
   }, [page, menuOpen, route]);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [route]);
 
   if (route === "admin") return <AdminApp content={content} onContentChange={setContent} />;
   if (route === "notice" || route.startsWith("notice/")) {

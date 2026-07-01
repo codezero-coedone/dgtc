@@ -5,7 +5,7 @@ import { AdminApiError, loginAdmin } from "../../services/adminApiClient.js";
 export const ADMIN_AUTH_STORAGE_KEY = "daekwang.admin.auth.v1";
 const DEMO_FALLBACK_ADMIN_ID = "dgtc66";
 const DEMO_FALLBACK_ADMIN_PASSWORD = "1234";
-const SERVER_AUTH_ATTEMPT_ENABLED = false;
+const SERVER_AUTH_ATTEMPT_ENABLED = true;
 
 export function readAdminAuthSession() {
   if (typeof window === "undefined") return null;
@@ -50,7 +50,7 @@ export function AdminLoginGate({ onAuthenticated }) {
     () => [
       ["접근 상태", "잠김"],
       ["보호 범위", "콘텐츠 관리 콘솔"],
-      ["인증 방식", "데모 게이트"],
+      ["인증 방식", "서버 세션 우선"],
     ],
     [],
   );
@@ -160,7 +160,7 @@ export function AdminLoginGate({ onAuthenticated }) {
             {error ? <p className="admin-login-error">{error}</p> : null}
             {success ? <p className="admin-login-success">관리자 인증이 완료되었습니다.</p> : null}
             <button className="admin-login-submit" disabled={submitting} type="submit">{submitting ? "인증 확인 중" : "로그인"}</button>
-            <p className="admin-login-note">서버 세션 인증은 운영 secret 구성 후 활성화됩니다. 현재는 관리자 리뷰용 데모 보호 흐름으로만 임시 진입합니다.</p>
+            <p className="admin-login-note">Cloudflare 서버 세션 인증을 우선 사용합니다. 서버 secret이 없을 때만 리뷰용 데모 fallback으로 제한 진입합니다.</p>
           </form>
         </div>
       ) : (

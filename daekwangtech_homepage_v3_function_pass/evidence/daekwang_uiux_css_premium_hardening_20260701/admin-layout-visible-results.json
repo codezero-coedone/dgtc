@@ -1,0 +1,29 @@
+[
+  {
+    "adminMobileVisible": false,
+    "bodyTextStart": "×\nSECURE ADMIN CONSOLE\n관리자 로그인\n\n대광테크 웹사이트 콘텐츠 관리 콘솔에 접속합니다.\n\n관리자 아이디\n비밀번호\n로그인\n\n서",
+    "dkAdminPageVisible": false,
+    "loginVisible": true,
+    "overflowX": 0,
+    "sidebarVisible": false,
+    "width": 390
+  },
+  {
+    "adminMobileVisible": false,
+    "bodyTextStart": "×\nSECURE ADMIN CONSOLE\n관리자 로그인\n\n대광테크 웹사이트 콘텐츠 관리 콘솔에 접속합니다.\n\n관리자 아이디\n비밀번호\n로그인\n\n서",
+    "dkAdminPageVisible": false,
+    "loginVisible": true,
+    "overflowX": 0,
+    "sidebarVisible": false,
+    "width": 1024
+  },
+  {
+    "adminMobileVisible": false,
+    "bodyTextStart": "×\nSECURE ADMIN CONSOLE\n관리자 로그인\n\n대광테크 웹사이트 콘텐츠 관리 콘솔에 접속합니다.\n\n관리자 아이디\n비밀번호\n로그인\n\n서",
+    "dkAdminPageVisible": false,
+    "loginVisible": true,
+    "overflowX": 0,
+    "sidebarVisible": false,
+    "width": 1440
+  }
+]

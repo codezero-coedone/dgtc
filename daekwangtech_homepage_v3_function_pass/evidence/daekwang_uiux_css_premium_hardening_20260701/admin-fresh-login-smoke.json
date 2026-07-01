@@ -1,0 +1,29 @@
+{
+  "counts": {
+    "id": 1,
+    "pw": 1,
+    "login": 1
+  },
+  "wrong": {
+    "hasError": true,
+    "loginVisible": true,
+    "overflowX": 0
+  },
+  "afterCorrect390": {
+    "loginVisible": false,
+    "overflowX": 0,
+    "shellVisible": true
+  },
+  "afterCorrect1024": {
+    "loginVisible": false,
+    "overflowX": 0,
+    "shellVisible": true,
+    "sidebarVisible": true
+  },
+  "afterCorrect1440": {
+    "loginVisible": false,
+    "overflowX": 0,
+    "shellVisible": true,
+    "sidebarVisible": true
+  }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "adminShellVisible": true,
+    "desktopShell": true,
+    "loginVisible": false,
+    "overflowX": 0,
+    "responsiveShell": false,
+    "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+    "width": 390,
+    "screenshot": "admin-layout-390.png"
+  },
+  {
+    "adminShellVisible": true,
+    "desktopShell": true,
+    "loginVisible": false,
+    "overflowX": 0,
+    "responsiveShell": false,
+    "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+    "width": 1024,
+    "screenshot": "admin-layout-1024.png"
+  },
+  {
+    "adminShellVisible": true,
+    "desktopShell": true,
+    "loginVisible": false,
+    "overflowX": 0,
+    "responsiveShell": false,
+    "title": "대광테크 관리자 콘솔 | DAE KWANG TECH",
+    "width": 1440,
+    "screenshot": "admin-layout-1440.png"
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "lockName": "DAEKWANG_PUBLIC_MOBILE_PREMIUM_DEPLOY_AND_LIVE_SMOKE_CODEX_V1",
+  "activeCircuit": "PUBLIC_MOBILE_WEB_UI_PREMIUM_DEPLOY_AND_LIVE_SMOKE_ONLY",
+  "commitHashDeployed": "8672c11",
+  "cloudflareVersionId": "b745ce86-116b-400d-b5ca-8a7ffa419e82",
+  "deployUrl": "https://dgtc.ejdzm90.workers.dev",
+  "liveCacheBustedUrls": {
+    "home": "https://dgtc.ejdzm90.workers.dev/?v=mobile-premium-20260627#/",
+    "company": "https://dgtc.ejdzm90.workers.dev/?v=mobile-premium-20260627#/company",
+    "technology": "https://dgtc.ejdzm90.workers.dev/?v=mobile-premium-20260627#/technology",
+    "process": "https://dgtc.ejdzm90.workers.dev/?v=mobile-premium-20260627#/process",
+    "quality": "https://dgtc.ejdzm90.workers.dev/?v=mobile-premium-20260627#/quality",
+    "notice": "https://dgtc.ejdzm90.workers.dev/?v=mobile-premium-20260627#/notice",
+    "admin": "https://dgtc.ejdzm90.workers.dev/?v=mobile-premium-20260627#/admin"
+  },
+  "buildStaticResult": {
+    "staticCheck": "PASS",
+    "viteBuild": "PASS",
+    "tailwindContentWarning": "P2_HOLD_EXISTING"
+  },
+  "deployResult": {
+    "workerName": "dgtc",
+    "status": "PASS",
+    "uploadedChangedAssets": [
+      "/index.html",
+      "/assets/index-DNe2gdY5.css"
+    ]
+  },
+  "assetComparison": {
+    "localCss": "assets/index-DNe2gdY5.css",
+    "localJs": "assets/index-0Z781kr4.js",
+    "liveCss": "assets/index-DNe2gdY5.css",
+    "liveJs": "assets/index-0Z781kr4.js",
+    "liveAssetStale": false
+  },
+  "publicMobileSmokeResult": {
+    "routes": [
+      "#/",
+      "#/company",
+      "#/technology",
+      "#/process",
+      "#/quality",
+      "#/notice"
+    ],
+    "widths": [
+      360,
+      390,
+      430,
+      768
+    ],
+    "status": "PASS",
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "horizontalOverflow": 0,
+    "fakeKr": false,
+    "bottomDockOrAppShell": false,
+    "publicAdminPill": false,
+    "forbiddenCta": false
+  },
+  "desktopRegressionResult": {
+    "width": 1440,
+    "status": "PASS",
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "horizontalOverflow": 0,
+    "processRouteHasProcessBand": false,
+    "processRouteHasProcessPage": true
+  },
+  "adminRegressionResult": {
+    "status": "PASS",
+    "loginGate390": "PASS",
+    "wrongCredentialBlocked": true,
+    "demoLoginWorked": true,
+    "notificationOpened1440": true,
+    "consoleErrors": 0,
+    "horizontalOverflow": 0
+  },
+  "evidencePaths": [
+    "evidence/daekwang_public_mobile_premium_deploy_live_smoke_20260627/",
+    "evidence/receipts/daekwang-public-mobile-premium-deploy-live-smoke-20260627.json"
+  ],
+  "remainingHold": [
+    "owner real-device visual confirmation",
+    "final customer PASS",
+    "server auth/D1/R2 production",
+    "Tailwind content warning P2",
+    "evidence commit pending"
+  ],
+  "finalDecision": "MOBILE_PREMIUM_DEPLOY_LIVE_SMOKE_PASS_HOLD"
+}

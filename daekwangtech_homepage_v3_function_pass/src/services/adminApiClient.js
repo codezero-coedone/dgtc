@@ -86,6 +86,21 @@ export function uploadImage(file, fields = {}) {
   return request("/api/admin/images", { method: "POST", body: form });
 }
 
+export function deleteImageAsset(id) {
+  return request(`/api/admin/images/${encodeURIComponent(id)}`, { method: "DELETE" });
+}
+
+export function getAdminState() {
+  return request("/api/admin/state");
+}
+
+export function saveAdminState(state) {
+  return request("/api/admin/state", {
+    method: "PUT",
+    body: JSON.stringify({ state }),
+  });
+}
+
 export function updatePopup(id, patch) {
   return request(`/api/admin/popups/${id}`, {
     method: "PUT",

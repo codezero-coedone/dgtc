@@ -4,6 +4,10 @@ import { notices as defaultNotices, noticeCtaSettings as defaultNoticeCtaSetting
 const CONTENT_KEY = "published-site-content";
 const ADMIN_SESSION_COOKIE = "dk_admin_session";
 const ADMIN_SESSION_TTL_SECONDS = 60 * 60 * 8;
+const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
+const LOGIN_FAIL_LIMIT = 8;
+const LOGIN_FAIL_WINDOW_SECONDS = 10 * 60;
 
 const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
@@ -51,6 +55,11 @@ function sessionKey(token) {
   return `admin-session:${token}`;
 }
 
+function loginAttemptKey(request, userId) {
+  const forwarded = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for") || "unknown-ip";
+  return `admin-login-fail:${forwarded}:${String(userId || "unknown").trim()}`;
+}
+
 function sessionCookie(request, token, maxAge) {
   const secure = new URL(request.url).protocol === "https:" ? "; Secure" : "";
   return `${ADMIN_SESSION_COOKIE}=${encodeURIComponent(token)}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${maxAge}${secure}`;
@@ -81,9 +90,57 @@ function configuredAdminAuth(env) {
 async function verifyAdminPassword(inputPassword, env) {
   const configured = configuredAdminAuth(env);
   if (!configured.ready) return false;
-  if (configured.password && inputPassword === configured.password) return true;
   if (configured.passwordHash) return (await sha256Hex(inputPassword)) === configured.passwordHash;
+  if (configured.password && inputPassword === configured.password) return true;
   return false;
+}
+
+async function readLoginFailures(request, env, userId) {
+  if (env.DB) {
+    await ensureSchema(env);
+    const row = await env.DB.prepare("SELECT count, expires_at FROM admin_login_attempts WHERE id = ?")
+      .bind(loginAttemptKey(request, userId))
+      .first();
+    if (!row || new Date(row.expires_at).getTime() <= Date.now()) return 0;
+    return Number(row.count || 0);
+  }
+  if (!env.CONTENT_CACHE) return 0;
+  const value = await env.CONTENT_CACHE.get(loginAttemptKey(request, userId));
+  return Number(value || 0);
+}
+
+async function recordLoginFailure(request, env, userId) {
+  if (env.DB) {
+    await ensureSchema(env);
+    const key = loginAttemptKey(request, userId);
+    const count = (await readLoginFailures(request, env, userId)) + 1;
+    const expiresAt = new Date(Date.now() + LOGIN_FAIL_WINDOW_SECONDS * 1000).toISOString();
+    await env.DB.prepare(`
+      INSERT INTO admin_login_attempts (id, count, expires_at, updated_at)
+      VALUES (?, ?, ?, ?)
+      ON CONFLICT(id) DO UPDATE SET
+        count = excluded.count,
+        expires_at = excluded.expires_at,
+        updated_at = excluded.updated_at
+    `)
+      .bind(key, count, expiresAt, now())
+      .run();
+    return;
+  }
+  if (!env.CONTENT_CACHE) return;
+  const key = loginAttemptKey(request, userId);
+  const count = (await readLoginFailures(request, env, userId)) + 1;
+  await env.CONTENT_CACHE.put(key, String(count), { expirationTtl: LOGIN_FAIL_WINDOW_SECONDS });
+}
+
+async function clearLoginFailures(request, env, userId) {
+  if (env.DB) {
+    await ensureSchema(env);
+    await env.DB.prepare("DELETE FROM admin_login_attempts WHERE id = ?").bind(loginAttemptKey(request, userId)).run();
+    return;
+  }
+  if (!env.CONTENT_CACHE) return;
+  await env.CONTENT_CACHE.delete(loginAttemptKey(request, userId));
 }
 
 async function ensureSchema(env) {
@@ -106,6 +163,12 @@ async function ensureSchema(env) {
     ),
     env.DB.prepare(
       "CREATE TABLE IF NOT EXISTS notices (id INTEGER PRIMARY KEY, title TEXT NOT NULL, status TEXT NOT NULL, publish_date TEXT NOT NULL, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, category TEXT, is_pinned INTEGER NOT NULL DEFAULT 0, author TEXT, view_count INTEGER NOT NULL DEFAULT 0, content TEXT)",
+    ),
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS admin_state (id TEXT PRIMARY KEY, content_json TEXT NOT NULL, updated_at TEXT NOT NULL, updated_by TEXT)",
+    ),
+    env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS admin_login_attempts (id TEXT PRIMARY KEY, count INTEGER NOT NULL DEFAULT 0, expires_at TEXT NOT NULL, updated_at TEXT NOT NULL)",
     ),
   ]);
   schemaReady = true;
@@ -386,6 +449,12 @@ async function uploadMedia(request, env) {
   const form = await request.formData();
   const file = form.get("file");
   if (!(file instanceof File)) return json({ error: "업로드 파일이 없습니다." }, { status: 400 });
+  if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
+    return json({ error: "JPG, PNG, WEBP 파일만 업로드할 수 있습니다.", code: "UNSUPPORTED_MEDIA_TYPE" }, { status: 400 });
+  }
+  if (file.size > MAX_IMAGE_BYTES) {
+    return json({ error: "이미지는 최대 10MB까지 업로드할 수 있습니다.", code: "MEDIA_TOO_LARGE" }, { status: 400 });
+  }
   const key = `uploads/${Date.now()}-${crypto.randomUUID()}-${safeName(file.name)}`;
   await env.MEDIA_BUCKET.put(key, file.stream(), {
     httpMetadata: { contentType: file.type || "application/octet-stream" },
@@ -425,6 +494,46 @@ async function listMedia(env) {
   return json({ media: rows.results || [], meta: { source: "D1:media_assets" } });
 }
 
+async function deleteMedia(env, actor, id) {
+  if (!env.DB || !env.MEDIA_BUCKET) return json({ error: "D1/R2 binding is missing." }, { status: 503 });
+  await ensureSchema(env);
+  const row = await env.DB.prepare("SELECT id, object_key, label FROM media_assets WHERE id = ?").bind(id).first();
+  if (!row) return json({ error: "이미지를 찾을 수 없습니다." }, { status: 404 });
+  if (row.object_key) await env.MEDIA_BUCKET.delete(row.object_key);
+  await env.DB.prepare("UPDATE media_assets SET status = 'deleted', updated_at = ? WHERE id = ?").bind(now(), id).run();
+  await recordAudit(env, { actor, action: "media.delete", target: row.label || id, detail: row.object_key || "" });
+  return json({ ok: true, id, meta: { source: "R2+D1:media_assets" } });
+}
+
+async function readAdminState(env) {
+  if (!env.DB) return json({ state: null, meta: { source: "fallback-no-d1" } });
+  await ensureSchema(env);
+  const row = await env.DB.prepare("SELECT content_json, updated_at, updated_by FROM admin_state WHERE id = 'primary'").first();
+  if (!row) return json({ state: null, meta: { source: "D1:admin_state", empty: true } });
+  return json({ state: JSON.parse(row.content_json), meta: { source: "D1:admin_state", updatedAt: row.updated_at, updatedBy: row.updated_by } });
+}
+
+async function saveAdminStateSnapshot(request, env, actor) {
+  if (!env.DB) return json({ error: "D1 binding is missing." }, { status: 503 });
+  await ensureSchema(env);
+  const body = await request.json();
+  const state = body.state || {};
+  const contentJson = JSON.stringify(state);
+  const timestamp = now();
+  await env.DB.prepare(`
+    INSERT INTO admin_state (id, content_json, updated_at, updated_by)
+    VALUES ('primary', ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      content_json = excluded.content_json,
+      updated_at = excluded.updated_at,
+      updated_by = excluded.updated_by
+  `)
+    .bind(contentJson, timestamp, actor)
+    .run();
+  await recordAudit(env, { actor, action: "admin_state.save", target: "primary", detail: "admin settings snapshot persisted" });
+  return json({ ok: true, meta: { source: "D1:admin_state", updatedAt: timestamp } });
+}
+
 async function serveMedia(pathname, env) {
   if (!env.MEDIA_BUCKET) return json({ error: "R2 bucket binding is missing." }, { status: 503 });
   const key = decodeURIComponent(pathname.replace("/api/cms/media/", "").replace("/api/admin/media/", ""));
@@ -455,10 +564,16 @@ async function handleAdminAuth(request, env) {
     const body = await request.json();
     const userId = String(body.userId || body.id || "").trim();
     const password = String(body.password || "");
+    if ((await readLoginFailures(request, env, userId)) >= LOGIN_FAIL_LIMIT) {
+      await recordAudit(env, { actor: userId || "unknown", action: "admin.login", target: "session", status: "fail", detail: "rate limited" });
+      return json({ error: "로그인 시도가 너무 많습니다. 잠시 후 다시 시도하세요.", code: "ADMIN_LOGIN_RATE_LIMITED" }, { status: 429 });
+    }
     if (userId !== configured.adminId || !(await verifyAdminPassword(password, env))) {
+      await recordLoginFailure(request, env, userId);
       await recordAudit(env, { actor: userId || "unknown", action: "admin.login", target: "session", status: "fail", detail: "invalid credential" });
       return json({ error: "아이디 또는 비밀번호가 올바르지 않습니다." }, { status: 401 });
     }
+    await clearLoginFailures(request, env, userId);
     const session = await createAdminSession(request, env, userId);
     return json({ authenticated: true, userId, mode: "server-session", expiresAt: session.payload.expiresAt }, { headers: { "set-cookie": session.cookie } });
   }
@@ -523,7 +638,21 @@ async function handleApi(request, env) {
       await requireAuth(request, env);
       return uploadMedia(request, env);
     }
+    const mediaMatch = url.pathname.match(/^\/api\/admin\/images\/([^/]+)$/);
+    if (mediaMatch && request.method === "DELETE") {
+      const session = await requireAuth(request, env);
+      return deleteMedia(env, session.actor, decodeURIComponent(mediaMatch[1]));
+    }
     if (url.pathname.startsWith("/api/admin/media/") && request.method === "GET") return serveMedia(url.pathname, env);
+
+    if (url.pathname === "/api/admin/state" && request.method === "GET") {
+      await requireAuth(request, env);
+      return readAdminState(env);
+    }
+    if (url.pathname === "/api/admin/state" && request.method === "PUT") {
+      const session = await requireAuth(request, env);
+      return saveAdminStateSnapshot(request, env, session.actor);
+    }
 
     if (url.pathname.startsWith("/api/admin/popups") && ["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
       await requireAuth(request, env);
