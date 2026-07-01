@@ -27,7 +27,8 @@ function normalizeRoute() {
   const hash = window.location.hash.replace(/^#\/?/, "");
   const path = window.location.pathname.split("/").pop() ?? "";
   if (hash === "notice" || hash.startsWith("notice/")) return hash;
-  return routeAlias[hash || path || "index"] ?? "index";
+  const routeKey = hash || path || "index";
+  return routeAlias[routeKey] ?? "not-found";
 }
 
 function routeHref(id) {
@@ -365,6 +366,28 @@ function Footer({ company }) {
   );
 }
 
+function NotFoundPage({ company, menuOpen, setMenuOpen }) {
+  return (
+    <div className="site-shell route-not-found">
+      <a className="skip-link" href="#main-content">본문 바로가기</a>
+      <Header active="" menuOpen={menuOpen} onMenu={() => setMenuOpen((value) => !value)} />
+      <MobilePanel active="" open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <main className="not-found-page wrap" id="main-content">
+        <section className="not-found-panel" aria-labelledby="not-found-title">
+          <p className="section-kicker">PAGE NOT FOUND</p>
+          <h1 id="not-found-title">페이지를 찾을 수 없습니다</h1>
+          <p>요청하신 주소가 변경되었거나 존재하지 않습니다. 대광테크 주요 페이지로 다시 이동해 주세요.</p>
+          <div className="not-found-actions">
+            <a className="detail-link" href="#/">홈으로 이동</a>
+            <a className="detail-link" href="#/notice">공지사항 보기</a>
+          </div>
+        </section>
+      </main>
+      <Footer company={company} />
+    </div>
+  );
+}
+
 function SiteApp({ content, setContent, route }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const page = useMemo(() => content.pages.find((item) => item.id === route) ?? content.pages[0], [content.pages, route]);
@@ -372,6 +395,11 @@ function SiteApp({ content, setContent, route }) {
 
   useEffect(() => {
     if (route === "admin") return;
+    if (route === "not-found") {
+      document.title = "페이지를 찾을 수 없습니다 | 대광테크";
+      const node = document.querySelector('meta[name="description"]');
+      if (node) node.setAttribute("content", "요청하신 대광테크 페이지를 찾을 수 없습니다.");
+    } else
     if (route === "notice" || route.startsWith("notice/")) {
       document.title = "공지사항 | 대광테크";
       const node = document.querySelector('meta[name="description"]');
@@ -388,6 +416,7 @@ function SiteApp({ content, setContent, route }) {
   }, [route]);
 
   if (route === "admin") return <AdminApp content={content} onContentChange={setContent} />;
+  if (route === "not-found") return <NotFoundPage company={content.company} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />;
   if (route === "notice" || route.startsWith("notice/")) {
     const noticeId = route.startsWith("notice/") ? route.split("/")[1] : null;
     return (

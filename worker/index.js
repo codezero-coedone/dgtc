@@ -209,22 +209,24 @@ async function createAdminSession(request, env, userId) {
 async function readAdminSession(request, env) {
   const token = parseCookies(request.headers.get("cookie") || "")[ADMIN_SESSION_COOKIE];
   if (!token) return null;
+  if (env.DB) {
+    await ensureSchema(env);
+    const row = await env.DB.prepare("SELECT id, user_id, created_at, expires_at, revoked_at FROM admin_sessions WHERE id = ?").bind(token).first();
+    if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return null;
+    return {
+      token,
+      authenticated: true,
+      userId: row.user_id,
+      mode: "server-session",
+      createdAt: row.created_at,
+      expiresAt: row.expires_at,
+    };
+  }
   if (env.CONTENT_CACHE) {
     const cached = await env.CONTENT_CACHE.get(sessionKey(token), { type: "json" });
     if (cached?.authenticated && new Date(cached.expiresAt).getTime() > Date.now()) return { token, ...cached };
   }
-  if (!env.DB) return null;
-  await ensureSchema(env);
-  const row = await env.DB.prepare("SELECT id, user_id, created_at, expires_at, revoked_at FROM admin_sessions WHERE id = ?").bind(token).first();
-  if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return null;
-  return {
-    token,
-    authenticated: true,
-    userId: row.user_id,
-    mode: "server-session",
-    createdAt: row.created_at,
-    expiresAt: row.expires_at,
-  };
+  return null;
 }
 
 async function revokeAdminSession(request, env) {

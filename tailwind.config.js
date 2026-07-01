@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./daekwangtech_homepage_v3_function_pass/index.html",
+    "./daekwangtech_homepage_v3_function_pass/styles.css",
+    "./daekwangtech_homepage_v3_function_pass/src/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     extend: {
       colors: {

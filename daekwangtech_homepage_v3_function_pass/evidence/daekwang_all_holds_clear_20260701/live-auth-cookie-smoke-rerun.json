@@ -1,0 +1,25 @@
+{
+  "wrongStatus": 401,
+  "correctStatus": 200,
+  "loginBody": {
+    "authenticated": true,
+    "userId": "dgtc66",
+    "mode": "server-session",
+    "expiresAt": "2026-07-01T10:40:20.278Z"
+  },
+  "hasCookie": true,
+  "sessionStatus": 200,
+  "sessionBody": {
+    "authenticated": true,
+    "userId": "dgtc66",
+    "mode": "server-session",
+    "expiresAt": "2026-07-01T10:40:20.278Z"
+  },
+  "logoutStatus": 200,
+  "afterLogoutStatus": 200,
+  "afterLogoutBody": {
+    "authenticated": false,
+    "mode": "anonymous"
+  },
+  "pass": true
+}

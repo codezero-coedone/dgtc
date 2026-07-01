@@ -1,0 +1,69 @@
+{
+  "checks": [
+    {
+      "name": "live-home-390",
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=all-holds-clear-20260701#/",
+      "expected": "대광테크",
+      "hasExpected": true,
+      "consoleErrors": [],
+      "overflow": 0,
+      "title": "대광테크 기업 홈페이지 | DAE KWANG TECH"
+    },
+    {
+      "name": "live-notice-390",
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=all-holds-clear-20260701#/notice",
+      "expected": "공지사항",
+      "hasExpected": true,
+      "consoleErrors": [],
+      "overflow": 0,
+      "title": "공지사항 | 대광테크"
+    },
+    {
+      "name": "live-notfound-390",
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=all-holds-clear-20260701#/noticez",
+      "expected": "페이지를 찾을 수 없습니다",
+      "hasExpected": true,
+      "consoleErrors": [],
+      "overflow": 0,
+      "title": "페이지를 찾을 수 없습니다 | 대광테크"
+    },
+    {
+      "name": "live-home-1440",
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=all-holds-clear-20260701#/",
+      "expected": "대광테크",
+      "hasExpected": true,
+      "consoleErrors": [],
+      "overflow": 0,
+      "title": "대광테크 기업 홈페이지 | DAE KWANG TECH"
+    },
+    {
+      "name": "live-notfound-1440",
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=all-holds-clear-20260701#/noticez",
+      "expected": "페이지를 찾을 수 없습니다",
+      "hasExpected": true,
+      "consoleErrors": [],
+      "overflow": 0,
+      "title": "페이지를 찾을 수 없습니다 | 대광테크"
+    },
+    {
+      "name": "live-admin-login-390",
+      "url": "https://dgtc.ejdzm90.workers.dev/?v=all-holds-clear-20260701#/admin",
+      "expected": "관리자 로그인",
+      "hasExpected": true,
+      "consoleErrors": [],
+      "overflow": 0,
+      "title": "대광테크 관리자 콘솔 | DAE KWANG TECH"
+    },
+    {
+      "name": "live-admin-auth-1440",
+      "wrongBlocked": true,
+      "correctLoggedIn": true,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 ()"
+      ],
+      "overflow": 0
+    }
+  ],
+  "base": "https://dgtc.ejdzm90.workers.dev/?v=all-holds-clear-20260701",
+  "cloudflareVersionId": "8547c9f9-4007-453d-a080-2f0ee85d5650"
+}
