@@ -18,6 +18,7 @@ export function ImageManagerPanel({
   onUpdateImage,
   onMoveImage,
   onPreviewImage,
+  onImageError,
 }) {
   const uploadRef = useRef(null);
   const replaceRef = useRef(null);
@@ -94,6 +95,7 @@ export function ImageManagerPanel({
                     replaceRef.current?.click();
                   }}
                   onDelete={() => onDeleteImage(asset.id)}
+                  onImageError={onImageError}
                 />
               ))}
             </div>
@@ -102,7 +104,7 @@ export function ImageManagerPanel({
           )}
         </div>
 
-        <ImagePreviewPanel image={selectedImage} />
+        <ImagePreviewPanel image={selectedImage} onImageError={onImageError} />
       </div>
       {selectedImage && onUpdateImage ? (
         <div className="dk-image-edit-panel">

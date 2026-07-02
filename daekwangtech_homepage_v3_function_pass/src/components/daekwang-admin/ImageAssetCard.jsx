@@ -1,11 +1,11 @@
 import React from "react";
 import { AdminIcon } from "./AdminIcons.jsx";
 
-export function ImageAssetCard({ asset, selected, onSelect, onPreview, onReplace, onDelete }) {
+export function ImageAssetCard({ asset, selected, onSelect, onPreview, onReplace, onDelete, onImageError }) {
   return (
     <article className={selected ? "dk-image-card is-selected" : "dk-image-card"} onClick={onSelect}>
       <div className="dk-thumb">
-        <img src={asset.imageUrl} alt={`${asset.title} 썸네일`} />
+        <img src={asset.imageUrl} alt={`${asset.title} 썸네일`} onError={() => onImageError?.(asset)} />
         <span className="dk-order-badge">#{asset.order}</span>
       </div>
       <div className="dk-image-meta">

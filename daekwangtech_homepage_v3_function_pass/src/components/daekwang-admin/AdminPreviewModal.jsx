@@ -17,10 +17,14 @@ function DetailRows({ rows }) {
 
 function FullHomepagePreview({ preview, mode, popup }) {
   const isImage = (preview.kind || "").includes("IMAGE");
+  const isNotice = (preview.kind || "").includes("NOTICE");
   const heroImage = isImage && preview.imageCategory === "mainBanner" ? preview.imageUrl : "assets/hero-machine.jpg";
   const businessImage = isImage && ["product", "company"].includes(preview.imageCategory) ? preview.imageUrl : "assets/product-1.jpg";
   const facilityImage = isImage && preview.imageCategory === "facility" ? preview.imageUrl : "assets/facility-cnc.jpg";
-  const badge = isImage ? "이미지 변경 반영" : "팝업 변경 반영";
+  const noticeCategory = preview.category || preview.description?.split("·")?.[0]?.trim() || "공지";
+  const noticeDate = preview.publishDate || preview.description?.split("·")?.[1]?.trim() || "게시일 확인";
+  const noticeBody = preview.content || preview.description || "공지사항 내용을 입력하세요.";
+  const badge = isNotice ? "공지 draft 반영" : isImage ? "이미지 변경 반영" : "팝업 변경 반영";
 
   return (
     <div className={`dk-fullpage-preview-shell is-${mode}`}>
@@ -71,8 +75,25 @@ function FullHomepagePreview({ preview, mode, popup }) {
           <section className="dk-fullpage-notice">
             <small>NOTICE</small>
             <strong>대광테크 소식</strong>
-            <p>홈페이지 리뉴얼 안내</p>
+            <article className={isNotice ? "dk-fullpage-notice-card is-reflected" : "dk-fullpage-notice-card"}>
+              <div>
+                <span>{noticeCategory}</span>
+                <time>{noticeDate}</time>
+                {preview.status ? <em>{preview.status === "hidden" ? "비노출" : "노출"}</em> : null}
+              </div>
+              <h4>{isNotice ? preview.title : "홈페이지 리뉴얼 안내"}</h4>
+              <p>{isNotice ? noticeBody : "대광테크의 주요 안내와 기업 소식을 확인하실 수 있습니다."}</p>
+            </article>
           </section>
+          {isNotice ? (
+            <section className="dk-fullpage-notice-article">
+              <small>PUBLIC NOTICE DETAIL</small>
+              <h3>{preview.title}</h3>
+              <div><span>{noticeCategory}</span><time>{noticeDate}</time></div>
+              <p>{noticeBody}</p>
+              <b>대광테크 공지사항</b>
+            </section>
+          ) : null}
         </main>
         {popup ? (
           <div className="dk-fullpage-popup-overlay">
@@ -92,10 +113,9 @@ export function AdminPreviewModal({ preview, onClose }) {
   const isNotice = kind.includes("NOTICE");
   const isPopup = kind.includes("POPUP");
   const isImage = kind.includes("IMAGE");
-  const isFullHomepage = isPopup || isImage;
+  const isFullHomepage = isPopup || isImage || isNotice;
   const category = preview.category || preview.description?.split("·")?.[0]?.trim() || "공지";
   const date = preview.publishDate || preview.description?.split("·")?.[1]?.trim() || "게시일 확인";
-  const body = preview.content || preview.description || "미리보기할 본문 정보가 없습니다.";
   const popup = preview.popup || null;
 
   return (
@@ -106,7 +126,7 @@ export function AdminPreviewModal({ preview, onClose }) {
         </button>
         <p className="dk-modal-kicker">{kind}</p>
         <h2 id="dk-preview-title">{isFullHomepage ? "공개 홈페이지 전체 미리보기" : preview.title}</h2>
-        {isFullHomepage ? <p className="dk-modal-helper">관리자에서 선택한 변경사항이 공개 홈페이지 전체 화면 안에 반영되는 기준으로 확인합니다.</p> : null}
+        {isFullHomepage ? <p className="dk-modal-helper">관리자에서 선택한 변경사항이 공개 홈페이지/공지 페이지 전체 화면 안에 반영되는 기준으로 확인합니다.</p> : null}
         {isFullHomepage ? (
           <div className="dk-popup-preview-frame" aria-label="공개 팝업 예상 미리보기">
             <div className="dk-popup-preview-toolbar">
@@ -122,22 +142,10 @@ export function AdminPreviewModal({ preview, onClose }) {
             {preview.rows?.length ? <DetailRows rows={preview.rows} /> : null}
           </div>
         ) : null}
-        {isNotice ? (
-          <div className="dk-public-preview-frame" aria-label="공개 화면 예상 미리보기">
-            <div className="dk-public-preview-top">
-              <span>PUBLIC NOTICE PREVIEW</span>
-              <b>미리보기</b>
-            </div>
-            <article className="dk-public-notice-mock">
-              <div className="dk-public-notice-meta">
-                <span>{category}</span>
-                <time>{date}</time>
-                {preview.status ? <em>{preview.status === "hidden" ? "비노출" : "노출"}</em> : null}
-              </div>
-              <h3>{preview.title}</h3>
-              <p>{body}</p>
-            </article>
-          </div>
+        {isNotice && isFullHomepage ? (
+          <p className="dk-preview-inline-note">
+            현재 draft: {category} · {date} · {preview.status === "hidden" ? "비노출" : "노출"} 상태로 전체 public preview 안에 반영됩니다.
+          </p>
         ) : null}
         {!isFullHomepage && preview.imageUrl ? (
           <div className="dk-modal-image">

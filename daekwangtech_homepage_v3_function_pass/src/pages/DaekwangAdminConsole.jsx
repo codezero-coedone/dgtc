@@ -130,12 +130,16 @@ function noticePreviewPayload(notice) {
     title: notice.title || "공지사항 미리보기",
     description: `${notice.category || "공지"} · ${notice.publishDate || today()} · ${notice.visible === false || notice.status === "hidden" ? "비노출" : "노출"}`,
     content: notice.content || "공지사항 내용을 입력하세요.",
+    category: notice.category || "공지",
+    publishDate: notice.publishDate || today(),
+    status: notice.visible === false || notice.status === "hidden" ? "hidden" : "visible",
   };
 }
 
 export function DaekwangAdminConsole() {
   const { state, actions } = useAdminStore();
   const [authSession, setAuthSession] = useState(() => readAdminAuthSession());
+  const [isResponsiveAdmin, setIsResponsiveAdmin] = useState(false);
   const [activeSection, setActiveSectionState] = useState(state.uiPreferences.activeSection || "dashboard");
   const [activeCategory, setActiveCategoryState] = useState(state.uiPreferences.activeCategory || "mainBanner");
   const [selectedImageId, setSelectedImageId] = useState(state.imageAssets[0]?.id ?? "");
@@ -150,6 +154,14 @@ export function DaekwangAdminConsole() {
 
   useEffect(() => {
     document.title = "대광테크 관리자 콘솔 | DAE KWANG TECH";
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 1199px)");
+    const sync = () => setIsResponsiveAdmin(media.matches);
+    sync();
+    media.addEventListener?.("change", sync);
+    return () => media.removeEventListener?.("change", sync);
   }, []);
 
   useEffect(() => {
@@ -207,6 +219,7 @@ export function DaekwangAdminConsole() {
         if (!active || !Array.isArray(payload.media) || !payload.media.length) return;
         const existingIds = new Set(state.imageAssets.map((asset) => asset.id));
         const serverAssets = payload.media
+          .filter((media) => media.status !== "deleted")
           .filter((media) => !existingIds.has(media.id))
           .map((media, index) => mediaToImageAsset(media, media.usage || activeCategory, index + 1));
         if (!serverAssets.length) return;
@@ -529,6 +542,24 @@ export function DaekwangAdminConsole() {
     });
   };
 
+  const removeBrokenImageAsset = (asset) => {
+    if (!asset?.id) return;
+    actions.updateImages(
+      (current) => current.filter((item) => item.id !== asset.id),
+      {
+        type: "imageMissingPruned",
+        title: "깨진 이미지 제외",
+        description: `${asset.title || asset.fileName || "이미지"} 파일이 존재하지 않아 관리자 목록에서 제외했습니다.`,
+        target: asset.fileName || asset.imageUrl || asset.id,
+      },
+    );
+    if (selectedImageId === asset.id) {
+      const next = state.imageAssets.find((item) => item.id !== asset.id && item.category === activeCategory) ?? state.imageAssets.find((item) => item.id !== asset.id);
+      setSelectedImageId(next?.id ?? "");
+    }
+    notify("깨진 이미지 제외", asset.title || asset.fileName || "이미지");
+  };
+
   const updateImage = (assetId, patch) => {
     const target = state.imageAssets.find((asset) => asset.id === assetId);
     actions.updateImages(
@@ -760,6 +791,7 @@ export function DaekwangAdminConsole() {
     onUpdateImage: updateImage,
     onMoveImage: moveImage,
     onPreviewImage: (image) => setPreview(imagePreviewPayload(image)),
+    onImageError: removeBrokenImageAsset,
   };
 
   const noticeCreateProps = {
@@ -807,7 +839,7 @@ export function DaekwangAdminConsole() {
         onToast={notify}
         onToggleNotice={toggleNotice}
         onConfirm={openConfirm}
-        compactDashboard={Boolean(options.compactDashboard)}
+        compactDashboard={Boolean(options.compactDashboard) || isResponsiveAdmin}
       />
     </div>
   );

@@ -2,6 +2,20 @@ import React, { useMemo, useState } from "react";
 import { DaekwangLogoLockup } from "../brand/DaekwangLogoLockup.jsx";
 import { AdminIcon } from "./AdminIcons.jsx";
 
+function classifyNotification(item = {}) {
+  const text = `${item.title || ""} ${item.description || ""} ${item.time || ""}`.toLowerCase();
+  if (/실패|오류|fail|error|404|missing|보류|hold/.test(text)) {
+    return { label: "실패", tone: "fail" };
+  }
+  if (/로그인|로그아웃|인증|세션|보안|auth|session|security/.test(text)) {
+    return { label: "보안", tone: "security" };
+  }
+  if (/동기화|서버|d1|r2|sync|저장/.test(text)) {
+    return { label: "동기화", tone: "sync" };
+  }
+  return { label: "처리 필요", tone: "action" };
+}
+
 export function AdminTopbar({
   authSession,
   notifications = [],
@@ -23,7 +37,10 @@ export function AdminTopbar({
           time: "HOLD",
         }]
       : [];
-    return [...operational, ...notifications].slice(0, 5);
+    return [...operational, ...notifications].slice(0, 5).map((item) => ({
+      ...item,
+      notificationType: classifyNotification(item),
+    }));
   }, [isDemoMode, notifications]);
   const notificationCount = notificationItems.length;
 
@@ -81,6 +98,7 @@ export function AdminTopbar({
               {notificationItems.length ? (
                 notificationItems.map((item) => (
                   <article key={item.id}>
+                    <span className={`dk-notification-type is-${item.notificationType.tone}`}>{item.notificationType.label}</span>
                     <b>{item.title}</b>
                     <p>{item.description}</p>
                     <time>{item.time}</time>

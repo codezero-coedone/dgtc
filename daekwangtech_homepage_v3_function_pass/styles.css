@@ -3597,3 +3597,32 @@ body.lightbox-open{overflow:hidden;}
   }
 }
 
+/* 2026-07-02 logo render correction: public header logo sits on the
+   hero/background instead of looking like a CTA card. */
+.site-header .brand .dk-brand-logo,
+.route-index .site-header .brand .dk-brand-logo {
+  min-height: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.site-header .brand .dk-brand-logo__asset,
+.route-index .site-header .brand .dk-brand-logo__asset {
+  width: clamp(154px, 17vw, 224px) !important;
+  max-height: 58px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .26));
+}
+
+@media (max-width: 768px) {
+  .site-header .brand .dk-brand-logo__asset,
+  .route-index .site-header .brand .dk-brand-logo__asset {
+    width: clamp(128px, 38vw, 158px) !important;
+    max-height: 42px !important;
+  }
+}
+

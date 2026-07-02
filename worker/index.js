@@ -493,7 +493,33 @@ async function listMedia(env) {
   if (!env.DB) return json({ media: [], meta: { source: "fallback-no-d1" } });
   await ensureSchema(env);
   const rows = await env.DB.prepare("SELECT id, object_key, src, label, alt, usage, content_type, size, status, created_at, updated_at FROM media_assets ORDER BY created_at DESC").all();
-  return json({ media: rows.results || [], meta: { source: "D1:media_assets" } });
+  const activeRows = (rows.results || []).filter((row) => row.status !== "deleted");
+  if (!env.MEDIA_BUCKET) {
+    return json({ media: activeRows, meta: { source: "D1:media_assets", r2Checked: false } });
+  }
+  const visibleRows = [];
+  const missingRows = [];
+  for (const row of activeRows) {
+    if (!row.object_key) {
+      visibleRows.push(row);
+      continue;
+    }
+    const object = await env.MEDIA_BUCKET.head(row.object_key);
+    if (object) {
+      visibleRows.push(row);
+    } else {
+      missingRows.push(row);
+    }
+  }
+  if (missingRows.length) {
+    const timestamp = now();
+    await Promise.all(
+      missingRows.map((row) =>
+        env.DB.prepare("UPDATE media_assets SET status = 'deleted', updated_at = ? WHERE id = ?").bind(timestamp, row.id).run(),
+      ),
+    );
+  }
+  return json({ media: visibleRows, meta: { source: "D1:media_assets", r2Checked: true, missingExcluded: missingRows.length } });
 }
 
 async function deleteMedia(env, actor, id) {

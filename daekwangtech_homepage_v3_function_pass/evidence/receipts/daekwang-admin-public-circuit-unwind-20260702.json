@@ -1,0 +1,49 @@
+{
+  "lockName": "DAEKWANG_ADMIN_PUBLIC_CIRCUIT_UNWIND_20260702",
+  "deployedVersion": "a42a4302-7789-4d84-ad1d-bbd590d550bc",
+  "liveUrl": "https://dgtc.ejdzm90.workers.dev/?v=circuit-unwind-20260702#/",
+  "changedFiles": [
+    "worker/index.js",
+    "daekwangtech_homepage_v3_function_pass/styles.css",
+    "daekwangtech_homepage_v3_function_pass/src/admin-tokens.css",
+    "daekwangtech_homepage_v3_function_pass/src/components/daekwang-admin/AdminLoginGate.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/components/daekwang-admin/AdminPreviewModal.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/components/daekwang-admin/AdminSectionRenderer.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/components/daekwang-admin/AdminTopbar.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/components/daekwang-admin/ImageAssetCard.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/components/daekwang-admin/ImageManagerPanel.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/components/daekwang-admin/ImagePreviewPanel.jsx",
+    "daekwangtech_homepage_v3_function_pass/src/pages/DaekwangAdminConsole.jsx"
+  ],
+  "fixes": [
+    "Public header logo white card/CTA styling removed; logo now transparent over hero background.",
+    "R2 media list now excludes missing objects and marks stale D1 rows deleted.",
+    "Admin image cards/previews prune broken image assets on load error.",
+    "Notice/image/popup previews use full public homepage preview frame with draft reflection.",
+    "Admin notification panel classifies visible items into action/failure/sync/security.",
+    "Admin dashboard is compact on responsive widths through 1199px.",
+    "Icon-only admin row buttons received aria-label/title cleanup."
+  ],
+  "checks": {
+    "static": "PASS: node scripts/check-static.mjs",
+    "localSmoke": "PASS: console error 0, overflow 0, transparent public logo, compact admin, fullpage preview",
+    "liveSmoke": "PASS: console error 0, failed responses 0, overflow 0, transparent public logo, compact admin, fullpage preview",
+    "build": "PASS: vite build"
+  },
+  "evidenceDir": "evidence/daekwang_admin_circuit_unwind_20260702",
+  "screenshots": [
+    "local-home-1440-logo.png",
+    "local-home-390-logo.png",
+    "local-admin-1024-dashboard.png",
+    "local-admin-preview-fullpage.png",
+    "live-home-1440-logo.png",
+    "live-home-390-logo.png",
+    "live-admin-1024-dashboard.png",
+    "live-admin-preview-fullpage.png"
+  ],
+  "remainingHold": [
+    "owner real-device visual confirmation",
+    "server auth production secrets/session hardening if not fully configured",
+    "admin visual polish beyond functional compacting"
+  ]
+}

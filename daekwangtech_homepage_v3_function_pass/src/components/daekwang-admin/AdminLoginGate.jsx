@@ -7,6 +7,12 @@ const DEMO_FALLBACK_ADMIN_ID = "dgtc66";
 const DEMO_FALLBACK_ADMIN_PASSWORD = "1234";
 const SERVER_AUTH_ATTEMPT_ENABLED = true;
 
+function shouldAttemptServerAuth() {
+  if (!SERVER_AUTH_ATTEMPT_ENABLED) return false;
+  if (typeof window === "undefined") return true;
+  return !["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+}
+
 export function readAdminAuthSession() {
   if (typeof window === "undefined") return null;
   try {
@@ -79,7 +85,7 @@ export function AdminLoginGate({ onAuthenticated }) {
     setSubmitting(true);
     const trimmedUserId = userId.trim();
 
-    if (!SERVER_AUTH_ATTEMPT_ENABLED) {
+    if (!shouldAttemptServerAuth()) {
       if (trimmedUserId !== DEMO_FALLBACK_ADMIN_ID || password !== DEMO_FALLBACK_ADMIN_PASSWORD) {
         setError("아이디 또는 비밀번호가 올바르지 않습니다.");
         setSubmitting(false);
@@ -90,7 +96,7 @@ export function AdminLoginGate({ onAuthenticated }) {
       const session = writeAdminAuthSession(trimmedUserId, {
         mode: "demo-local-fallback",
         serverAuth: false,
-        hold: "SERVER_AUTH_DISABLED_DEMO_FALLBACK",
+        hold: "LOCAL_PREVIEW_DEMO_FALLBACK",
       });
       window.setTimeout(() => onAuthenticated(session), 260);
       return;

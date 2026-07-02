@@ -1,7 +1,7 @@
 import React from "react";
 import { AdminIcon } from "./AdminIcons.jsx";
 
-export function ImagePreviewPanel({ image }) {
+export function ImagePreviewPanel({ image, onImageError }) {
   if (!image) {
     return (
       <aside className="dk-preview-panel">
@@ -15,7 +15,7 @@ export function ImagePreviewPanel({ image }) {
     <aside className="dk-preview-panel">
       <h3>선택 이미지 미리보기</h3>
       <div className="dk-preview-frame">
-        <img src={image.imageUrl} alt={`${image.title} 미리보기`} />
+        <img src={image.imageUrl} alt={`${image.title} 미리보기`} onError={() => onImageError?.(image)} />
       </div>
       <dl className="dk-file-details">
         <div>
