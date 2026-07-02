@@ -1,0 +1,82 @@
+{
+  "lockName": "DAEKWANG_ADMIN_PREVIEW_DRAFT_COPY_REPAIR_AND_POPUP_MOBILE_SMOKE_V1",
+  "timestamp": "2026-07-02T23:14:47.4223914+09:00",
+  "beforeCommit": "d090333 Remove public NEWS admin copy leakage",
+  "repoPath": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "modifiedFiles": [
+    "src/components/daekwang-admin/AdminPreviewModal.jsx",
+    "src/admin-tokens.css"
+  ],
+  "exactRemovedOrReplacedInternalCopy": [
+    "공지 draft 반영 -> 공지사항 미리보기",
+    "현재 draft: ... -> 게시 전 점검: ...",
+    "PUBLIC HOMEPAGE FULL PAGE PREVIEW -> 공개 화면 미리보기",
+    "관리자에서 선택한 변경사항... -> 저장 전 화면이 공개 홈페이지와 공지 영역에서 보이는 흐름..."
+  ],
+  "staticCheck": "PASS",
+  "build": {
+    "result": "PASS",
+    "cssAsset": "dist/assets/index-GvdrvVDl.css",
+    "jsAsset": "dist/assets/index-DWOzLn0g.js"
+  },
+  "noticePreviewAssertion": {
+    "result": "PASS",
+    "selectedContentReflected": true,
+    "forbiddenInternalCopyInFrame": [],
+    "mobileForbiddenInternalCopyInFrame": [],
+    "overflow1440": 0,
+    "overflow390": 0
+  },
+  "imagePreviewAssertion": {
+    "result": "PASS",
+    "imageChangeReflected": true,
+    "metadataInsideFrame": [],
+    "forbiddenInternalCopyInFrame": [],
+    "mobileMetadataInsideFrame": [],
+    "mobileForbiddenInternalCopyInFrame": []
+  },
+  "popupPreviewSmoke": {
+    "result": "PASS_SMOKE",
+    "popup1440ModalOpen": true,
+    "popup1440ForbiddenInFrame": [],
+    "popup390ModalOpen": true,
+    "popup390ForbiddenInFrame": []
+  },
+  "mobile390PreviewSmoke": {
+    "result": "PASS_SMOKE",
+    "notice390ForbiddenInFrame": [],
+    "image390ForbiddenInFrame": [],
+    "popup390ForbiddenInFrame": [],
+    "notice390Overflow": 0,
+    "image390Overflow": 0,
+    "popup390Overflow": 0
+  },
+  "publicSanityAssertion": {
+    "result": "PASS",
+    "public390ForbiddenFound": [],
+    "public1440ForbiddenFound": [],
+    "public390Overflow": 0,
+    "public1440Overflow": 0
+  },
+  "screenshotPaths": [
+    "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/screenshots/notice-preview-1440-after.png",
+    "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/screenshots/notice-preview-390-after.png",
+    "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/screenshots/image-preview-1440-after.png",
+    "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/screenshots/image-preview-390-after.png",
+    "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/screenshots/popup-preview-1440-smoke.png",
+    "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/screenshots/popup-preview-390-smoke.png",
+    "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/screenshots/public-home-390-sanity-after.png",
+    "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/screenshots/public-home-1440-sanity-after.png"
+  ],
+  "untrackedEvidenceClassification": {
+    "previousReportOnly": "evidence/daekwang_live_asset_public_visual_smoke_20260702/ and evidence/daekwang_admin_preview_separate_qa_20260702/ remain untracked and are not staged for this lock.",
+    "currentEvidence": "evidence/daekwang_admin_preview_draft_copy_repair_popup_mobile_smoke_20260702/ will be staged for this lock."
+  },
+  "remainingUnknown": [
+    "Owner real-device final QA",
+    "Server auth/D1/R2 production verification",
+    "PWA installed behavior",
+    "Credential hygiene/server auth hardening"
+  ],
+  "finalRecommendation": "PASS_PARTIAL_COMMIT_PUSH_ALLOWED_NO_DEPLOY"
+}

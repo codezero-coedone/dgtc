@@ -24,7 +24,7 @@ function FullHomepagePreview({ preview, mode, popup }) {
   const noticeCategory = preview.category || preview.description?.split("·")?.[0]?.trim() || "공지";
   const noticeDate = preview.publishDate || preview.description?.split("·")?.[1]?.trim() || "게시일 확인";
   const noticeBody = preview.content || preview.description || "공지사항 내용을 입력하세요.";
-  const badge = isNotice ? "공지 draft 반영" : isImage ? "이미지 변경 반영" : "팝업 변경 반영";
+  const badge = isNotice ? "공지사항 미리보기" : isImage ? "이미지 반영 화면" : "팝업 표시 화면";
 
   return (
     <div className={`dk-fullpage-preview-shell is-${mode}`}>
@@ -126,11 +126,11 @@ export function AdminPreviewModal({ preview, onClose }) {
         </button>
         <p className="dk-modal-kicker">{kind}</p>
         <h2 id="dk-preview-title">{isFullHomepage ? "공개 홈페이지 전체 미리보기" : preview.title}</h2>
-        {isFullHomepage ? <p className="dk-modal-helper">관리자에서 선택한 변경사항이 공개 홈페이지/공지 페이지 전체 화면 안에 반영되는 기준으로 확인합니다.</p> : null}
+        {isFullHomepage ? <p className="dk-modal-helper">저장 전 화면이 공개 홈페이지와 공지 영역에서 보이는 흐름을 기준으로 확인합니다.</p> : null}
         {isFullHomepage ? (
           <div className="dk-popup-preview-frame" aria-label="공개 팝업 예상 미리보기">
             <div className="dk-popup-preview-toolbar">
-              <span>PUBLIC HOMEPAGE FULL PAGE PREVIEW</span>
+              <span>공개 화면 미리보기</span>
               <div role="group" aria-label="팝업 미리보기 화면 크기">
                 <button className={popupMode === "desktop" ? "is-active" : ""} type="button" onClick={() => setPopupMode("desktop")}>Desktop</button>
                 <button className={popupMode === "mobile" ? "is-active" : ""} type="button" onClick={() => setPopupMode("mobile")}>Mobile</button>
@@ -139,13 +139,18 @@ export function AdminPreviewModal({ preview, onClose }) {
             <div className={`dk-popup-preview-canvas is-${popupMode}`}>
               <FullHomepagePreview preview={preview} mode={popupMode} popup={popup} />
             </div>
-            {preview.rows?.length ? <DetailRows rows={preview.rows} /> : null}
           </div>
         ) : null}
         {isNotice && isFullHomepage ? (
           <p className="dk-preview-inline-note">
-            현재 draft: {category} · {date} · {preview.status === "hidden" ? "비노출" : "노출"} 상태로 전체 public preview 안에 반영됩니다.
+            게시 전 점검: {category} · {date} · {preview.status === "hidden" ? "비노출" : "노출"} 기준으로 확인 중입니다.
           </p>
+        ) : null}
+        {isFullHomepage && preview.rows?.length ? (
+          <details className="dk-preview-admin-details">
+            <summary>관리자 확인용 변경 정보</summary>
+            <DetailRows rows={preview.rows} />
+          </details>
         ) : null}
         {!isFullHomepage && preview.imageUrl ? (
           <div className="dk-modal-image">

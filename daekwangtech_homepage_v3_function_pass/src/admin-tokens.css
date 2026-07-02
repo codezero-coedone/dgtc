@@ -2612,6 +2612,32 @@ button {
   background: rgba(255,255,255,.72);
 }
 
+.dk-preview-admin-details {
+  margin: 14px 0 0;
+  border: 1px solid rgba(11, 29, 58, .1);
+  border-radius: 16px;
+  background: rgba(247, 249, 252, .9);
+  overflow: hidden;
+}
+
+.dk-preview-admin-details summary {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 14px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.dk-preview-admin-details .dk-preview-details {
+  margin: 0;
+  padding: 0 14px 14px;
+  background: transparent;
+  border-top: 1px solid rgba(11, 29, 58, .08);
+}
+
 .dk-public-notice-mock {
   padding: 24px;
 }
