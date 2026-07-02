@@ -1,0 +1,20 @@
+{
+  "accessible": false,
+  "judgment": "AUTH_BLOCKED_HOLD",
+  "login": "BLOCKED_OR_PENDING",
+  "noticePreview": "UNKNOWN",
+  "imagePreview": "UNKNOWN",
+  "popupPreview": "UNKNOWN",
+  "forbiddenInternalCopy": "NONE_DETECTED",
+  "consoleErrors": [],
+  "screenshots": {
+    "login": "admin-login-1440-live.png",
+    "afterLoginAttempt": "admin-after-login-1440-live.png"
+  },
+  "notes": [
+    "Admin route was reachable.",
+    "Login gate rendered, but automated smoke did not reach the admin console in this deploy-only lock.",
+    "No source/auth changes were made.",
+    "Admin preview regression remains separate from public mobile CT1 live smoke."
+  ]
+}

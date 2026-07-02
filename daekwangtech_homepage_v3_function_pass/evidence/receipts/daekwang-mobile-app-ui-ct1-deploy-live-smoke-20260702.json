@@ -1,0 +1,93 @@
+{
+  "lockName": "DAEKWANG_MOBILE_APP_UI_CT1_DEPLOY_AND_LIVE_SMOKE_V1",
+  "timestamp": "2026-07-03T00:00:00+09:00",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "branch": "main",
+  "commitDeployed": "8bad549 Implement Daekwang approved mobile app UI reference",
+  "deploy": {
+    "command": "node ..\\node_modules\\wrangler\\bin\\wrangler.js deploy --config ..\\wrangler.jsonc",
+    "result": "PASS",
+    "worker": "dgtc",
+    "liveUrl": "https://dgtc.ejdzm90.workers.dev",
+    "cloudflareVersionId": "73ba2b16-900b-41e7-a155-0e99116c2e1b",
+    "uploadedAssets": [
+      "/index.html",
+      "/assets/index-BS7gbdGF.css",
+      "/assets/index-0VXwozht.js"
+    ]
+  },
+  "build": {
+    "staticCheck": "PASS",
+    "viteBuild": "PASS",
+    "distCss": "assets/index-BS7gbdGF.css",
+    "distJs": "assets/index-0VXwozht.js"
+  },
+  "liveAssetFreshness": {
+    "liveCss": "assets/index-BS7gbdGF.css",
+    "liveJs": "assets/index-0VXwozht.js",
+    "fresh": "YES",
+    "evidence": "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/asset-freshness.json"
+  },
+  "publicRouteSmoke": {
+    "result": "PASS",
+    "mobileHome360": "PASS",
+    "mobileHome390": "PASS",
+    "mobileHome430": "PASS",
+    "company390": "PASS",
+    "process390": "PASS",
+    "quality390": "PASS",
+    "facility390": "PASS",
+    "products390": "PASS",
+    "notice390": "PASS",
+    "tablet768": "PASS",
+    "desktop1440": "PASS"
+  },
+  "textAssertion": {
+    "forbiddenPublicAdminDraftWords": "PASS",
+    "forbiddenCtaWords": "PASS",
+    "productsEcommerceWords": "PASS"
+  },
+  "visualAssertion": {
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "bottomDock": "PASS_STICKY_NOT_COVERING_IMPORTANT_CONTENT",
+    "desktopRegression": 0,
+    "publicAdminPillLeakage": 0
+  },
+  "adminPreviewSanity": {
+    "result": "AUTH_BLOCKED_HOLD",
+    "routeReachable": true,
+    "noticePreview": "UNKNOWN",
+    "imagePreview": "UNKNOWN",
+    "popupPreview": "UNKNOWN",
+    "consoleErrors": 0,
+    "evidence": "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/admin-preview-sanity-live.json"
+  },
+  "screenshots": [
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/home-360x800-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/home-390x844-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/home-430x932-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/company-390x844-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/process-390x844-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/quality-390x844-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/facility-390x844-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/products-390x844-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/notice-390x844-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/menu-390x844-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/home-768x1024-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/home-1440x1000-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/products-1440x1000-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/notice-1440x1000-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/admin-login-1440-live.png",
+    "evidence/daekwang_mobile_app_ui_ct1_deploy_live_smoke_20260702/screenshots/admin-after-login-1440-live.png"
+  ],
+  "oldUntrackedEvidenceClassification": "Existing unrelated untracked evidence folders were left unstaged and untouched.",
+  "sourceFilesChangedInThisLock": false,
+  "passHoldRecommendation": "PASS_PARTIAL_WITH_ADMIN_PREVIEW_AUTH_BLOCKED_HOLD",
+  "remainingUnknown": [
+    "owner cross-device real-device QA",
+    "admin preview full smoke after auth access is available",
+    "server auth/D1/R2 production verification",
+    "PWA installed behavior"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "forbidden": [
+    "문의",
+    "견적",
+    "상담",
+    "리드폼",
+    "quote",
+    "contact us",
+    "운영 관리자",
+    "관리자 초안",
+    "draft",
+    "초안",
+    "admin draft"
+  ],
+  "productForbidden": [
+    "구매",
+    "장바구니",
+    "주문",
+    "견적 요청",
+    "문의하기"
+  ],
+  "routesChecked": [
+    "#/",
+    "#/company",
+    "#/process",
+    "#/quality",
+    "#/facility",
+    "#/products",
+    "#/notice"
+  ],
+  "failures": [],
+  "pass": true
+}
