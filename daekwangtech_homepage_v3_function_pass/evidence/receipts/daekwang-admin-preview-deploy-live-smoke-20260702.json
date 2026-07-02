@@ -1,0 +1,85 @@
+{
+  "lockName": "DAEKWANG_ADMIN_PREVIEW_DEPLOY_AND_LIVE_SMOKE_V1",
+  "timestamp": "2026-07-02T23:33:55.3600321+09:00",
+  "commitDeployed": "b7e691a Fix Daekwang admin preview draft copy leakage",
+  "deployCommand": "node ..\\node_modules\\wrangler\\bin\\wrangler.js deploy --config ..\\wrangler.jsonc",
+  "deployResult": "PASS",
+  "cloudflareVersionId": "374640ee-515e-4547-9157-a20b42987839",
+  "deployUrl": "https://dgtc.ejdzm90.workers.dev",
+  "liveUrl": "https://dgtc.ejdzm90.workers.dev/?v=admin-preview-fix-b7e691a#/",
+  "distLiveAssetComparison": {
+    "distRefs": "assets/hero-machine-lVpXGaKJ.jpg, assets/favicon-v2-CAsi0AJi.svg, assets/daekwang-app-icon-v2-DSWo0lWD.svg, assets/site-CAdj7jqS.webmanifest, assets/index-DWOzLn0g.js, assets/index-GvdrvVDl.css",
+    "liveRefs": "assets/hero-machine-lVpXGaKJ.jpg, assets/favicon-v2-CAsi0AJi.svg, assets/daekwang-app-icon-v2-DSWo0lWD.svg, assets/site-CAdj7jqS.webmanifest, assets/index-DWOzLn0g.js, assets/index-GvdrvVDl.css",
+    "liveAssetFresh": "YES"
+  },
+  "livePublicSanity": {
+    "result": "PASS",
+    "public390Forbidden": [],
+    "public1440Forbidden": [],
+    "public390Overflow": 0,
+    "public1440Overflow": 0,
+    "consoleErrors390": [],
+    "consoleErrors1440": []
+  },
+  "liveAdminPreviewSmoke": {
+    "result": "PASS",
+    "notice1440Forbidden": [],
+    "notice390Forbidden": [],
+    "image1440MetadataInsideFrame": [],
+    "image390MetadataInsideFrame": [],
+    "image1440Forbidden": [],
+    "image390Forbidden": [],
+    "popup1440Forbidden": [],
+    "popup390Forbidden": [],
+    "allOverflow0": true
+  },
+  "screenshots": [
+    "evidence/daekwang_admin_preview_deploy_live_smoke_20260702/screenshots/public-home-390-live.png",
+    "evidence/daekwang_admin_preview_deploy_live_smoke_20260702/screenshots/public-home-1440-live.png",
+    "evidence/daekwang_admin_preview_deploy_live_smoke_20260702/screenshots/admin-notice-preview-1440-live.png",
+    "evidence/daekwang_admin_preview_deploy_live_smoke_20260702/screenshots/admin-notice-preview-390-live.png",
+    "evidence/daekwang_admin_preview_deploy_live_smoke_20260702/screenshots/admin-image-preview-1440-live.png",
+    "evidence/daekwang_admin_preview_deploy_live_smoke_20260702/screenshots/admin-image-preview-390-live.png",
+    "evidence/daekwang_admin_preview_deploy_live_smoke_20260702/screenshots/admin-popup-preview-1440-live.png",
+    "evidence/daekwang_admin_preview_deploy_live_smoke_20260702/screenshots/admin-popup-preview-390-live.png"
+  ],
+  "forbiddenTextAssertion": {
+    "publicForbiddenWords": [
+      "운영 관리자",
+      "관리자 초안",
+      "draft",
+      "초안",
+      "문의",
+      "견적",
+      "상담",
+      "리드폼",
+      "quote",
+      "contact us"
+    ],
+    "previewForbiddenWords": [
+      "공지 draft 반영",
+      "현재 draft",
+      "draft",
+      "초안",
+      "admin draft",
+      "관리자 초안",
+      "운영 관리자"
+    ],
+    "publicFound": "NONE",
+    "previewFrameFound": "NONE"
+  },
+  "consoleErrorResult": "0 blocking runtime errors observed in smoke results",
+  "oldUntrackedEvidenceClassification": [
+    "evidence/daekwang_admin_preview_separate_qa_20260702/ remains untracked old report-only evidence; not staged.",
+    "evidence/daekwang_live_asset_public_visual_smoke_20260702/ remains untracked old report-only evidence; not staged.",
+    "evidence/receipts/daekwang-admin-preview-separate-qa-20260702.json remains untracked old report-only receipt; not staged."
+  ],
+  "remainingUnknown": [
+    "owner real-device final QA",
+    "server auth/D1/R2 production",
+    "PWA installed behavior",
+    "credential hygiene",
+    "old evidence hygiene closeout"
+  ],
+  "passHoldRecommendation": "PASS_PARTIAL_DEPLOY_LIVE_SMOKE_COMMIT_PUSH_ALLOWED"
+}
