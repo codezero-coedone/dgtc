@@ -1,0 +1,96 @@
+{
+  "errors": [],
+  "failedResponses": [],
+  "pages": {
+    "home390": {
+      "href": "http://127.0.0.1:4302/#/",
+      "width": 390,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "home1440": {
+      "href": "http://127.0.0.1:4302/#/",
+      "width": 1440,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "company390": {
+      "href": "http://127.0.0.1:4302/#/company",
+      "width": 390,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "technology390": {
+      "href": "http://127.0.0.1:4302/#/technology",
+      "width": 390,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "process390": {
+      "href": "http://127.0.0.1:4302/#/process",
+      "width": 390,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "quality390": {
+      "href": "http://127.0.0.1:4302/#/quality",
+      "width": 390,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "notice390": {
+      "href": "http://127.0.0.1:4302/#/notice",
+      "width": 390,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "notice1440": {
+      "href": "http://127.0.0.1:4302/#/notice",
+      "width": 1440,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "admin1024": {
+      "href": "http://127.0.0.1:4302/#/admin",
+      "width": 1024,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    },
+    "admin1440": {
+      "href": "http://127.0.0.1:4302/#/admin",
+      "width": 1440,
+      "overflow": 0,
+      "appShell": false,
+      "bottomDock": false,
+      "fakeKr": false,
+      "adminPillPublic": false
+    }
+  }
+}

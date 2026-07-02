@@ -1,0 +1,31 @@
+{
+  "lockName": "DAEKWANG_PREMIUM_SURFACE_FINISH_V2_20260702",
+  "deployVersion": "34d550f3-b9bd-46a9-bc6a-6a2bf43fa071",
+  "liveUrl": "https://dgtc.ejdzm90.workers.dev/?v=premium-v2-20260702#/",
+  "changedFiles": [
+    "styles.css",
+    "src/admin-tokens.css"
+  ],
+  "scope": "second-pass public/admin premium CSS finish only",
+  "forbiddenCircuits": {
+    "logoAsset": "not changed",
+    "publicAdminPill": "not reintroduced",
+    "serverAuthD1R2": "not touched",
+    "appShell": "not reintroduced",
+    "bottomDock": "not reintroduced",
+    "routes": "not changed",
+    "fakeKR": "not reintroduced"
+  },
+  "checks": {
+    "build": "PASS",
+    "localSmoke": "PASS console error 0 failed response 0 overflow 0",
+    "static": "PASS",
+    "liveSmoke": "PASS console error 0 failed response 0 overflow 0",
+    "deploy": "PASS"
+  },
+  "evidenceDir": "evidence/daekwang_premium_surface_finish_v2_20260702",
+  "remainingHold": [
+    "owner real-device taste confirmation",
+    "full content/copywriting polish if requested"
+  ]
+}
