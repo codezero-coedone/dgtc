@@ -104,6 +104,157 @@ function MobilePanel({ active, open, onClose }) {
   );
 }
 
+const mobileDockItems = [
+  ["index", "홈", "⌂"],
+  ["company", "회사", "◇"],
+  ["process", "공정", "↬"],
+  ["quality", "품질", "◎"],
+  ["notice", "소식", "□"],
+];
+
+const mobileMenuItems = [
+  ["index", "홈"],
+  ["company", "회사소개"],
+  ["process", "공정소개"],
+  ["quality", "품질관리"],
+  ["facility", "설비현황"],
+  ["products", "제품소개"],
+  ["notice", "공지사항"],
+];
+
+const mobileCapabilities = [
+  ["정밀 제조", "CNC 기반 고정밀 부품 가공"],
+  ["품질 관리", "공정별 검사와 기록 관리"],
+  ["설비 역량", "안정적인 생산 인프라"],
+];
+
+const mobileProcessCards = [
+  ["01", "설계·검토", "도면과 요구 조건을 먼저 확인합니다."],
+  ["02", "정밀가공", "가공 기준에 맞춰 반복 품질을 유지합니다."],
+  ["03", "검사", "치수와 표면 상태를 단계별로 확인합니다."],
+  ["04", "출하", "포장과 전달 흐름까지 기록합니다."],
+];
+
+const mobileQualityCards = [
+  ["ISO 9001", "품질경영 기준"],
+  ["측정 장비", "CMM 및 형상 측정"],
+  ["검사 체계", "입고부터 출하 전 확인"],
+  ["품질 보증", "기록 기반 반복 관리"],
+];
+
+const mobileProductCards = [
+  ["자동차 부품", "정밀 치수와 반복 품질이 필요한 부품"],
+  ["산업기계 부품", "장비 운용 환경을 고려한 금속 가공"],
+  ["건설기계 부품", "내구성과 형상 안정성이 중요한 부품"],
+  ["기타 정밀 부품", "도면 조건에 맞춘 다품종 가공 대응"],
+];
+
+function MobilePublicShell({ route, page, detail, content, menuOpen, setMenuOpen }) {
+  const active = route.startsWith("notice") ? "notice" : page.id;
+  const isHome = page.id === "index" && route !== "notice" && !route.startsWith("notice/");
+  const noticeItems = (content.posts || []).filter((post) => post.status === "published" || post.pinned).slice(0, 3);
+  const cards = detail.cards || [];
+  const facilityItems = pageContent.facility.cards.slice(0, 4);
+  const pageTitle = isHome ? "정밀한 기술로 가치를 만듭니다" : page.headline.replace(/\n/g, " ");
+  const pageSummary = isHome ? "정밀 제조, 품질 관리, 설비 역량을 하나의 기준으로 관리하는 대광테크의 제조 역량을 소개합니다." : page.summary;
+
+  const renderPageCards = () => {
+    if (active === "process") {
+      return <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body]) => <article key={title}><span>{num}</span><strong>{title}</strong><p>{body}</p></article>)}</div>;
+    }
+    if (active === "quality") {
+      return <div className="mobile-app-list">{mobileQualityCards.map(([title, body]) => <article key={title}><span>◎</span><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
+    }
+    if (active === "facility") {
+      return <div className="mobile-app-card-grid">{facilityItems.map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
+    }
+    if (active === "products") {
+      return <div className="mobile-app-card-grid">{mobileProductCards.map(([title, body]) => <article className="mobile-app-card" key={title}><span>▥</span><strong>{title}</strong><p>{body}</p></article>)}</div>;
+    }
+    if (active === "notice") {
+      return (
+        <div className="mobile-app-news-list">
+          <div className="mobile-app-chip-row"><span>전체</span><span>공지사항</span><span>뉴스</span></div>
+          {noticeItems.length ? noticeItems.map((post) => (
+            <a href="#/notice" className="mobile-app-news-card" key={post.id}>
+              <em>{post.category || "공지사항"}</em>
+              <strong>{post.title}</strong>
+              <p>{post.summary}</p>
+              <time>{post.publishedAt}</time>
+            </a>
+          )) : <a href="#/notice" className="mobile-app-news-card"><em>공지사항</em><strong>대광테크 소식</strong><p>주요 안내와 기업 소식을 확인하실 수 있습니다.</p><time>최근 공지</time></a>}
+        </div>
+      );
+    }
+    if (active === "company") {
+      return (
+        <div className="mobile-app-card-grid">
+          {["회사 개요", "경영 철학", "인력/역량"].map((title, index) => <article className="mobile-app-card" key={title}><span>{String(index + 1).padStart(2, "0")}</span><strong>{title}</strong><p>{["정밀 가공 기반의 제조 역량을 축적해 왔습니다.", "신뢰와 정밀을 기준으로 지속적인 개선을 이어갑니다.", "도면 검토부터 품질 확인까지 내부 기준으로 관리합니다."][index]}</p></article>)}
+        </div>
+      );
+    }
+    return <div className="mobile-app-card-grid">{cards.slice(0, 4).map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
+  };
+
+  return (
+    <div className={`mobile-app-public-shell route-${active}`} aria-label="대광테크 모바일 웹">
+      <header className="mobile-app-topbar">
+        <a href="#/" aria-label="대광테크 홈"><DaekwangLogoLockup tone="light" size="sm" /></a>
+        <button type="button" aria-label="메뉴 열기" aria-expanded={menuOpen ? "true" : "false"} onClick={() => setMenuOpen((value) => !value)}>☰</button>
+      </header>
+      {menuOpen ? (
+        <aside className="mobile-app-menu" aria-label="모바일 전체 메뉴">
+          <div><strong>DAEKWANG TECH</strong><span>Precision Makes Value</span></div>
+          {mobileMenuItems.map(([id, label]) => <a key={id} href={routeHref(id)} className={active === id ? "is-active" : ""} onClick={() => setMenuOpen(false)}>{label}</a>)}
+          <p>경기도 화성시 마도면 청원산단5길 60-26</p>
+        </aside>
+      ) : null}
+      <main className="mobile-app-main" id="main-content">
+        {isHome ? (
+          <>
+            <section className="mobile-app-hero">
+              <img src="assets/hero-machine.jpg" alt="대광테크 정밀 제조 이미지" />
+              <div>
+                <span>Precision Makes Value</span>
+                <h1>정밀한 기술로<br />가치를 만듭니다</h1>
+                <p>{pageSummary}</p>
+              </div>
+            </section>
+            <section className="mobile-app-capabilities" aria-label="핵심 역량">
+              {mobileCapabilities.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
+            </section>
+            <section className="mobile-app-section">
+              <div className="mobile-app-section-head"><span>PROCESS</span><h2>제조 흐름</h2></div>
+              <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body]) => <article key={title}><span>{num}</span><strong>{title}</strong><p>{body}</p></article>)}</div>
+            </section>
+            <section className="mobile-app-section">
+              <div className="mobile-app-section-head"><span>NEWS</span><h2>대광테크 소식</h2><a href="#/notice">전체 보기</a></div>
+              <div className="mobile-app-news-list">
+                {noticeItems.length ? noticeItems.map((post) => <a className="mobile-app-news-card" href="#/notice" key={post.id}><em>{post.category || "공지사항"}</em><strong>{post.title}</strong><p>{post.summary}</p><time>{post.publishedAt}</time></a>) : <a className="mobile-app-news-card" href="#/notice"><em>공지사항</em><strong>대광테크 소식</strong><p>주요 안내와 기업 소식을 확인하실 수 있습니다.</p><time>최근 공지</time></a>}
+              </div>
+            </section>
+          </>
+        ) : (
+          <>
+            <section className="mobile-app-page-hero">
+              <span>{page.eyebrow}</span>
+              <h1>{page.title}</h1>
+              <p>{pageSummary}</p>
+            </section>
+            <section className="mobile-app-section">
+              <div className="mobile-app-section-head"><span>{page.eyebrow}</span><h2>{pageTitle}</h2></div>
+              {renderPageCards()}
+            </section>
+          </>
+        )}
+      </main>
+      <nav className="mobile-app-dock" aria-label="모바일 하단 내비게이션">
+        {mobileDockItems.map(([id, label, icon]) => <a key={id} href={routeHref(id)} className={active === id ? "is-active" : ""}><span>{icon}</span><b>{label}</b></a>)}
+      </nav>
+    </div>
+  );
+}
+
 function Hero({ page, active, menuOpen, setMenuOpen }) {
   return (
     <section className="hero">
@@ -422,10 +573,13 @@ function SiteApp({ content, setContent, route }) {
     return (
       <div className="site-shell route-notice">
         <a className="skip-link" href="#main-content">본문 바로가기</a>
-        <Header active="notice" menuOpen={menuOpen} onMenu={() => setMenuOpen((value) => !value)} />
-        <MobilePanel active="notice" open={menuOpen} onClose={() => setMenuOpen(false)} />
-        {noticeId ? <NoticeDetailPage noticeId={noticeId} /> : <NoticeListPage />}
-        <Footer company={content.company} />
+        <MobilePublicShell route={route} page={page} detail={detail} content={content} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <div className="desktop-public-render">
+          <Header active="notice" menuOpen={menuOpen} onMenu={() => setMenuOpen((value) => !value)} />
+          <MobilePanel active="notice" open={menuOpen} onClose={() => setMenuOpen(false)} />
+          {noticeId ? <NoticeDetailPage noticeId={noticeId} /> : <NoticeListPage />}
+          <Footer company={content.company} />
+        </div>
       </div>
     );
   }
@@ -433,8 +587,10 @@ function SiteApp({ content, setContent, route }) {
   return (
     <div className={`site-shell route-${page.id}`}>
       <a className="skip-link" href="#main-content">본문 바로가기</a>
-      {page.id === "index" ? (
-        <>
+      <MobilePublicShell route={route} page={page} detail={detail} content={content} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <div className="desktop-public-render">
+        {page.id === "index" ? (
+          <>
           <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <FeatureRail items={detail.rail} />
           <ProductsPreview />
@@ -444,15 +600,16 @@ function SiteApp({ content, setContent, route }) {
           <HomeNoticeSection />
           <TrustPreview posts={content.posts} />
           <Footer company={content.company} />
-        </>
-      ) : (
-        <>
+          </>
+        ) : (
+          <>
           <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <FeatureRail items={detail.rail} />
           <SubPage page={page} detail={detail} />
           <Footer company={content.company} />
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

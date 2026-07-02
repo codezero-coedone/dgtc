@@ -2059,6 +2059,456 @@ body.lightbox-open{overflow:hidden;}
   }
 }
 
+/* 2026-07-02 mobile app UI approved reference CT1 */
+.mobile-app-public-shell {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .desktop-public-render {
+    display: none !important;
+  }
+
+  .mobile-app-public-shell {
+    --app-navy: #0f172a;
+    --app-blue: #1e3a8a;
+    --app-sky: #3b82f6;
+    --app-line: rgba(15, 23, 42, .10);
+    --app-muted: #64748b;
+    display: block;
+    min-height: 100dvh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(59, 130, 246, .14), transparent 28%),
+      linear-gradient(180deg, #f7f9fc 0%, #eef3f9 100%);
+    color: #111827;
+    padding: max(12px, env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+  }
+
+  .mobile-app-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 58px;
+    margin: -12px -14px 14px;
+    padding: max(8px, env(safe-area-inset-top)) 14px 8px;
+    background: rgba(247, 249, 252, .92);
+    border-bottom: 1px solid rgba(15, 23, 42, .08);
+    backdrop-filter: blur(16px);
+  }
+
+  .mobile-app-topbar .dk-brand-logo {
+    padding: 0;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .mobile-app-topbar .dk-brand-logo__asset {
+    width: clamp(136px, 40vw, 168px);
+    max-height: 40px;
+    object-fit: contain;
+  }
+
+  .mobile-app-topbar button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(15, 23, 42, .11);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--app-navy);
+    font-size: 20px;
+    font-weight: 950;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, .08);
+  }
+
+  .mobile-app-menu {
+    position: fixed;
+    inset: calc(70px + env(safe-area-inset-top)) 14px auto;
+    z-index: 100;
+    display: grid;
+    gap: 8px;
+    max-height: calc(100dvh - 92px);
+    overflow: auto;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 22px;
+    background:
+      radial-gradient(circle at 88% 8%, rgba(59, 130, 246, .22), transparent 32%),
+      linear-gradient(145deg, #08111f, #10254a);
+    box-shadow: 0 28px 80px rgba(2, 6, 23, .34);
+  }
+
+  .mobile-app-menu div {
+    display: grid;
+    gap: 4px;
+    padding: 0 4px 10px;
+    color: #fff;
+  }
+
+  .mobile-app-menu strong {
+    font-size: 17px;
+    font-weight: 950;
+    letter-spacing: -.03em;
+  }
+
+  .mobile-app-menu span,
+  .mobile-app-menu p {
+    margin: 0;
+    color: rgba(255, 255, 255, .66);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .mobile-app-menu a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border-radius: 15px;
+    padding: 0 14px;
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .mobile-app-menu a.is-active {
+    background: #fff;
+    color: var(--app-blue);
+  }
+
+  .mobile-app-main {
+    display: grid;
+    gap: 18px;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .mobile-app-hero,
+  .mobile-app-page-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #07111f, #0c2751);
+    color: #fff;
+    box-shadow: 0 24px 68px rgba(15, 23, 42, .20);
+  }
+
+  .mobile-app-hero {
+    min-height: 324px;
+  }
+
+  .mobile-app-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .32;
+  }
+
+  .mobile-app-hero::after,
+  .mobile-app-page-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 16%, rgba(59, 130, 246, .34), transparent 28%),
+      linear-gradient(180deg, rgba(4, 12, 24, .1), rgba(4, 12, 24, .72));
+  }
+
+  .mobile-app-hero > div,
+  .mobile-app-page-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .mobile-app-hero > div {
+    display: grid;
+    align-content: end;
+    min-height: 324px;
+    padding: 24px 22px;
+  }
+
+  .mobile-app-hero span,
+  .mobile-app-page-hero span,
+  .mobile-app-section-head span {
+    color: #60a5fa;
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .mobile-app-hero h1,
+  .mobile-app-page-hero h1 {
+    margin: 10px 0 12px;
+    font-size: clamp(32px, 9vw, 45px);
+    line-height: 1.04;
+    font-weight: 950;
+    letter-spacing: -.07em;
+    word-break: keep-all;
+  }
+
+  .mobile-app-hero p,
+  .mobile-app-page-hero p {
+    margin: 0;
+    color: rgba(255, 255, 255, .78);
+    font-size: 14px;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+
+  .mobile-app-page-hero {
+    display: grid;
+    gap: 8px;
+    padding: 26px 22px;
+  }
+
+  .mobile-app-capabilities,
+  .mobile-app-card-grid,
+  .mobile-app-list,
+  .mobile-app-timeline,
+  .mobile-app-news-list {
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .mobile-app-capabilities {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mobile-app-capabilities article,
+  .mobile-app-card,
+  .mobile-app-image-card,
+  .mobile-app-list article,
+  .mobile-app-timeline article,
+  .mobile-app-news-card {
+    min-width: 0;
+    border: 1px solid var(--app-line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, .08);
+  }
+
+  .mobile-app-capabilities article {
+    padding: 15px 12px;
+  }
+
+  .mobile-app-capabilities strong,
+  .mobile-app-card strong,
+  .mobile-app-image-card strong,
+  .mobile-app-list strong,
+  .mobile-app-timeline strong,
+  .mobile-app-news-card strong {
+    display: block;
+    color: #111827;
+    font-size: 15px;
+    font-weight: 950;
+    letter-spacing: -.04em;
+    word-break: keep-all;
+  }
+
+  .mobile-app-capabilities p,
+  .mobile-app-card p,
+  .mobile-app-image-card p,
+  .mobile-app-list p,
+  .mobile-app-timeline p,
+  .mobile-app-news-card p {
+    margin: 7px 0 0;
+    color: var(--app-muted);
+    font-size: 12.5px;
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+
+  .mobile-app-section {
+    display: grid;
+    gap: 13px;
+    padding: 16px 0 0;
+  }
+
+  .mobile-app-section-head {
+    display: grid;
+    gap: 4px;
+  }
+
+  .mobile-app-section-head h2 {
+    margin: 0;
+    color: #111827;
+    font-size: 24px;
+    line-height: 1.15;
+    font-weight: 950;
+    letter-spacing: -.06em;
+  }
+
+  .mobile-app-section-head a {
+    justify-self: start;
+    color: var(--app-blue);
+    font-size: 13px;
+    font-weight: 950;
+  }
+
+  .mobile-app-card,
+  .mobile-app-list article,
+  .mobile-app-timeline article,
+  .mobile-app-news-card {
+    padding: 16px;
+  }
+
+  .mobile-app-card span,
+  .mobile-app-timeline span,
+  .mobile-app-list span {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    background: #eaf2ff;
+    color: var(--app-blue);
+    font-size: 12px;
+    font-weight: 950;
+  }
+
+  .mobile-app-image-card {
+    overflow: hidden;
+  }
+
+  .mobile-app-image-card img {
+    width: 100%;
+    height: 164px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mobile-app-image-card div {
+    padding: 16px 18px 18px;
+  }
+
+  .mobile-app-list article {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .mobile-app-list span {
+    margin-bottom: 0;
+  }
+
+  .mobile-app-chip-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .mobile-app-chip-row span,
+  .mobile-app-news-card em {
+    display: inline-flex;
+    width: max-content;
+    border-radius: 999px;
+    background: #eaf2ff;
+    color: var(--app-blue);
+    padding: 6px 10px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 950;
+  }
+
+  .mobile-app-news-card {
+    display: grid;
+    gap: 8px;
+    color: inherit;
+  }
+
+  .mobile-app-news-card time {
+    color: #334155;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .mobile-app-dock {
+    position: sticky;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    z-index: 90;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    max-width: 560px;
+    width: 100%;
+    margin: 18px auto 0;
+    padding: 6px;
+    border: 1px solid rgba(15, 23, 42, .12);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 18px 60px rgba(15, 23, 42, .22);
+    backdrop-filter: blur(18px);
+  }
+
+  .mobile-app-dock a {
+    display: grid;
+    place-items: center;
+    gap: 3px;
+    min-height: 44px;
+    border-radius: 16px;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .mobile-app-dock a span {
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .mobile-app-dock a.is-active {
+    background: #102a5c;
+    color: #fff;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktop-public-render {
+    display: contents;
+  }
+}
+
+@media (max-width: 430px) {
+  .mobile-app-public-shell {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .mobile-app-hero,
+  .mobile-app-hero > div {
+    min-height: 292px;
+  }
+
+  .mobile-app-page-hero {
+    padding: 24px 22px;
+  }
+
+  .mobile-app-capabilities {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-app-image-card img {
+    height: 148px;
+  }
+}
+
 /* 2026-06-27 public mobile premium finish: compact responsive web, no app shell. */
 @media (max-width: 1023px) {
   body {

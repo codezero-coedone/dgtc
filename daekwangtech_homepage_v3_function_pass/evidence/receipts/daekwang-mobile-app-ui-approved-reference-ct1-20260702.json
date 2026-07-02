@@ -1,0 +1,67 @@
+{
+  "lockName": "DAEKWANG_MOBILE_APP_UI_APPROVED_REFERENCE_CT1_IMPLEMENT_V1",
+  "activeCircuit": "PUBLIC_MOBILE_APP_UI_APPROVED_REFERENCE_CT1_ONLY",
+  "timestamp": "2026-07-03T00:00:00+09:00",
+  "repo": "C:\\Users\\USER\\Desktop\\새 폴더 (3)\\daekwangtech_homepage_v3_function_pass",
+  "baseHead": "1997bc2 Seal Daekwang admin preview live smoke evidence",
+  "sourceFilesChanged": [
+    "src/App.jsx",
+    "styles.css"
+  ],
+  "forbiddenCircuitsRespected": {
+    "serverAuthD1R2": true,
+    "pwaRuntime": true,
+    "logoAssets": true,
+    "adminPreview": true,
+    "packageDependencies": true,
+    "cloudflareDeployConfig": true
+  },
+  "implementationSummary": [
+    "Added mobile/tablet-only public app-like shell below 1024px.",
+    "Kept existing desktop public shell at 1024px and above.",
+    "Added compact top brand bar, dark manufacturing hero, dark full menu, card-based public sections, products capability cards, notice cards, and bottom dock.",
+    "Adjusted bottom dock to sticky/flow placement so it remains usable without covering important content."
+  ],
+  "build": {
+    "staticCheck": "PASS",
+    "viteBuild": "PASS",
+    "cssAsset": "dist/assets/index-BS7gbdGF.css",
+    "jsAsset": "dist/assets/index-0VXwozht.js"
+  },
+  "localSmoke": {
+    "previewUrl": "http://127.0.0.1:4203/",
+    "textAssertion": "PASS",
+    "visualSmoke": "PASS",
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "adminDraftLeakage": 0,
+    "forbiddenCtaLeakage": 0,
+    "productsEcommerceLeakage": 0,
+    "publicAdminPillLeakage": 0,
+    "desktopRegression": 0
+  },
+  "screenshots": [
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/home-360x800.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/home-390x844.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/home-430x932.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/company-390x844.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/process-390x844.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/quality-390x844.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/facility-390x844.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/products-390x844.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/notice-390x844.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/menu-390x844.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/home-768x1024.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/home-1440x1000.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/products-1440x1000.png",
+    "evidence/daekwang_mobile_app_ui_approved_reference_ct1_20260702/screenshots/notice-1440x1000.png"
+  ],
+  "oldUntrackedEvidenceClassification": "Left unstaged and untouched; unrelated prior evidence remains outside this commit scope.",
+  "deploy": "NOT_RUN",
+  "passHoldRecommendation": "PASS_PARTIAL",
+  "remainingHold": [
+    "Cloudflare deploy and live smoke for this CT1 commit",
+    "owner cross-device real-device QA",
+    "server auth/D1/R2 production verification"
+  ]
+}
