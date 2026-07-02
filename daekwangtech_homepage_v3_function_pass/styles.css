@@ -3947,6 +3947,53 @@ body.lightbox-open{overflow:hidden;}
   box-shadow: none;
 }
 
+.site-header .brand .dk-brand-logo.header-mark-crop,
+.route-index .site-header .brand .dk-brand-logo.header-mark-crop {
+  display: block !important;
+  width: 62px !important;
+  min-width: 62px !important;
+  max-width: 62px !important;
+  height: 54px !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, .28));
+}
+
+.site-header .brand .dk-brand-logo.header-mark-crop .dk-brand-logo__asset,
+.route-index .site-header .brand .dk-brand-logo.header-mark-crop .dk-brand-logo__asset {
+  display: block !important;
+  width: 190px !important;
+  max-width: none !important;
+  height: 54px !important;
+  max-height: 54px !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  transform: translateX(-2px);
+  filter: none !important;
+}
+
+.process-band .section-intro.invert .section-kicker {
+  color: rgba(185, 223, 255, .86) !important;
+}
+
+.process-band .section-intro.invert h2 {
+  color: #ffffff !important;
+  text-shadow: 0 18px 48px rgba(0, 0, 0, .42) !important;
+}
+
+.process-band .section-intro.invert p {
+  color: rgba(235, 245, 255, .8) !important;
+}
+
+.process-band .detail-link {
+  color: #b9dfff !important;
+}
+
 .product-card,
 .image-card,
 .home-notice-card,
@@ -4075,6 +4122,22 @@ body.lightbox-open{overflow:hidden;}
 
   .process-layout::after {
     display: none;
+  }
+
+  .site-header .brand .dk-brand-logo.header-mark-crop,
+  .route-index .site-header .brand .dk-brand-logo.header-mark-crop {
+    width: 48px !important;
+    min-width: 48px !important;
+    max-width: 48px !important;
+    height: 42px !important;
+  }
+
+  .site-header .brand .dk-brand-logo.header-mark-crop .dk-brand-logo__asset,
+  .route-index .site-header .brand .dk-brand-logo.header-mark-crop .dk-brand-logo__asset {
+    width: 148px !important;
+    height: 42px !important;
+    max-height: 42px !important;
+    transform: translateX(-2px);
   }
 
   .product-card:hover,

@@ -77,7 +77,7 @@ function Header({ active, menuOpen = false, onMenu }) {
   return (
     <header className={menuOpen ? "site-header nav-open" : "site-header"}>
       <a aria-label="DAE KWANG TECH home" className="brand" href="#/">
-        <DaekwangLogoLockup tone="dark" size="sm" />
+        <DaekwangLogoLockup className="header-mark-crop" tone="dark" size="sm" />
       </a>
       <nav className="desktop-nav">
         {publicNavItems.map((item) => (
