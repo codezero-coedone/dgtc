@@ -329,7 +329,7 @@ function TrustPreview({ posts }) {
       </section>
       {visiblePosts.length ? (
         <section className="admin-managed-posts wrap">
-          <div className="section-intro"><p className="section-kicker">NEWS</p><h2>공지사항</h2><p>운영 관리자가 발행한 대광테크 소식입니다.</p></div>
+          <div className="section-intro"><p className="section-kicker">NEWS</p><h2>공지사항</h2><p>대광테크의 주요 안내와 기업 소식을 전합니다.</p></div>
           <div className="admin-post-grid">{visiblePosts.map((post) => <article className="admin-post-card" key={post.id}><span>{post.category}</span><h3>{post.title}</h3><p>{post.summary}</p><small>{post.publishedAt}</small></article>)}</div>
         </section>
       ) : null}

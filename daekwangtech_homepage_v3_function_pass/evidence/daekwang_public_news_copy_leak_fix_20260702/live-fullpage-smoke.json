@@ -1,0 +1,152 @@
+[
+  {
+    "name": "live-home-full-390",
+    "url": "https://dgtc.ejdzm90.workers.dev/?v=news-copy-leak-fix-20260702#/",
+    "w": 390,
+    "h": 844,
+    "full": true,
+    "screenshot": "screenshots/live-home-full-390.png",
+    "css": [
+      "https://dgtc.ejdzm90.workers.dev/assets/index-BHkxGOnM.css"
+    ],
+    "forbiddenContexts": [
+      {
+        "context": null,
+        "found": false,
+        "term": "운영 관리자"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "관리자 초안"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "관리자 페이지에서 작성"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "admin"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "draft"
+      }
+    ],
+    "hasAdminUiLeak": false,
+    "hasInquiryCta": false,
+    "href": "https://dgtc.ejdzm90.workers.dev/?v=news-copy-leak-fix-20260702#/",
+    "logoClass": "dk-brand-logo is-horizontal is-dark is-sm header-mark-crop",
+    "newsText": "NEWS공지사항대광테크의 주요 안내와 기업 소식을 전합니다.공지품질 관리 기준 정비 안내공정별 품질 확인 기준을 정리해 안정적인 제조 품질을 유지합니다.2026-06-26",
+    "overflow": 0,
+    "processColor": "rgb(255, 255, 255)",
+    "scripts": [
+      "https://dgtc.ejdzm90.workers.dev/assets/index-XlN1UAFg.js"
+    ],
+    "title": "대광테크 기업 홈페이지 | DAE KWANG TECH",
+    "consoleErrors": []
+  },
+  {
+    "name": "live-home-full-1440",
+    "url": "https://dgtc.ejdzm90.workers.dev/?v=news-copy-leak-fix-20260702#/",
+    "w": 1440,
+    "h": 1000,
+    "full": true,
+    "screenshot": "screenshots/live-home-full-1440.png",
+    "css": [
+      "https://dgtc.ejdzm90.workers.dev/assets/index-BHkxGOnM.css"
+    ],
+    "forbiddenContexts": [
+      {
+        "context": null,
+        "found": false,
+        "term": "운영 관리자"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "관리자 초안"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "관리자 페이지에서 작성"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "admin"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "draft"
+      }
+    ],
+    "hasAdminUiLeak": false,
+    "hasInquiryCta": false,
+    "href": "https://dgtc.ejdzm90.workers.dev/?v=news-copy-leak-fix-20260702#/",
+    "logoClass": "dk-brand-logo is-horizontal is-dark is-sm header-mark-crop",
+    "newsText": "NEWS\n\n공지사항\n\n대광테크의 주요 안내와 기업 소식을 전합니다.\n\n공지\n품질 관리 기준 정비 안내\n\n공정별 품질 확인 기준을 정리해 안정적인 제조 품질을 유지합니다.\n\n2026-06-26",
+    "overflow": 0,
+    "processColor": "rgb(255, 255, 255)",
+    "scripts": [
+      "https://dgtc.ejdzm90.workers.dev/assets/index-XlN1UAFg.js"
+    ],
+    "title": "대광테크 기업 홈페이지 | DAE KWANG TECH",
+    "consoleErrors": []
+  },
+  {
+    "name": "live-notice-390",
+    "url": "https://dgtc.ejdzm90.workers.dev/?v=news-copy-leak-fix-20260702#/notice",
+    "w": 390,
+    "h": 844,
+    "full": false,
+    "screenshot": "screenshots/live-notice-390.png",
+    "css": [
+      "https://dgtc.ejdzm90.workers.dev/assets/index-BHkxGOnM.css"
+    ],
+    "forbiddenContexts": [
+      {
+        "context": null,
+        "found": false,
+        "term": "운영 관리자"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "관리자 초안"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "관리자 페이지에서 작성"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "admin"
+      },
+      {
+        "context": null,
+        "found": false,
+        "term": "draft"
+      }
+    ],
+    "hasAdminUiLeak": false,
+    "hasInquiryCta": false,
+    "href": "https://dgtc.ejdzm90.workers.dev/?v=news-copy-leak-fix-20260702#/notice",
+    "logoClass": "dk-brand-logo is-horizontal is-dark is-sm header-mark-crop",
+    "newsText": null,
+    "overflow": -15,
+    "processColor": null,
+    "scripts": [
+      "https://dgtc.ejdzm90.workers.dev/assets/index-XlN1UAFg.js"
+    ],
+    "title": "공지사항 | 대광테크",
+    "consoleErrors": []
+  }
+]
