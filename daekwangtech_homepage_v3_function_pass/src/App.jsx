@@ -182,10 +182,10 @@ const mobileMenuItems = [
 ];
 
 const mobileCapabilities = [
-  ["정밀 가공", "최신 설비와 기술력으로 정밀한 제품을 생산"],
-  ["품질 관리", "공정별 검증과 관리로 최고의 품질 보장"],
-  ["기술 혁신", "지속적인 연구개발로 기술 경쟁력 강화"],
-  ["고객 중심", "고객 만족을 최우선으로 신뢰를 구축"],
+  ["precision", "정밀 가공", "최신 설비와 기술력으로 정밀한 제품을 생산"],
+  ["quality", "품질 관리", "공정별 검증과 관리로 최고의 품질 보장"],
+  ["innovation", "기술 혁신", "지속적인 연구개발로 기술 경쟁력 강화"],
+  ["customer", "고객 중심", "고객 만족을 최우선으로 신뢰를 구축"],
 ];
 
 const mobileProofImages = [
@@ -197,11 +197,11 @@ const mobileProofImages = [
 const mobileProcessCards = premiumProcessSteps.map(({ num, title, body, image }) => [num, title, body, image]);
 
 const mobileProductCards = [
-  ["유압 피팅", "고압 환경에서도 안정적인 성능을 확보하는 유압 피팅 제품군", "assets/real-black-valve-core.jpg"],
-  ["밸브 컴포넌트", "정밀한 가공 기술로 제작된 각종 밸브 구성 부품", "assets/real-silver-valve-core.jpg"],
-  ["정밀 부품", "자동차, 반도체, 의료기기 등 다양한 산업용 정밀 부품", "assets/real-stepped-shaft-vertical.jpg"],
-  ["연결 부품", "견고한 체결력과 내구성을 갖춘 연결 부품", "assets/real-process-shaft-detail.jpg"],
-  ["기타 특수 부품", "고객 맞춤형 특수 사양 제품 및 가공 부품", "assets/real-precision-threaded-pair.jpg"],
+  ["유압 피팅", "Hydraulic Fitting", "고압 환경에서도 안정적인 성능을 확보하는 유압 피팅 제품군", "assets/real-black-valve-core.jpg"],
+  ["밸브 컴포넌트", "Valve Component", "정밀한 가공 기술로 제작된 각종 밸브 구성 부품", "assets/real-silver-valve-core.jpg"],
+  ["정밀 샤프트", "Precision Shaft", "자동차, 반도체, 의료기기 등 다양한 산업용 정밀 샤프트", "assets/real-stepped-shaft-vertical.jpg"],
+  ["연결 부품", "Connection Part", "견고한 체결력과 내구성을 갖춘 연결 부품", "assets/real-process-shaft-detail.jpg"],
+  ["특수 부품", "Custom Part", "고객 맞춤형 특수 사양 제품 및 가공 부품", "assets/real-precision-threaded-pair.jpg"],
 ];
 
 const imageSlotFallbacks = Object.fromEntries(publicImageSlots.map((slot) => [slot.key, slot.fallback]));
@@ -283,7 +283,11 @@ function withFirstImage(cards, image) {
 
 function withGalleryImages(cards, images = []) {
   if (!images.length) return cards;
-  return cards.map((card, index) => [card[0], card[1], images[index % images.length] || card[2]]);
+  return cards.map((card, index) => {
+    const next = [...card];
+    next[next.length - 1] = images[index % images.length] || card[card.length - 1];
+    return next;
+  });
 }
 
 function withMobileProductImages(cards, images = []) {
@@ -364,7 +368,7 @@ function MobileDarkHero({ image, title, body, className = "" }) {
 function MobileProductList({ products }) {
   return (
     <div className="mobile-products-list">
-      {products.map(([title, body, image]) => (
+      {products.map(([title, subtitle, body, image]) => (
         <article className="mobile-product-row" key={title}>
           <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
           <div>
@@ -393,9 +397,9 @@ function MobileHomeScreen({ content, imageSlots }) {
       <section className="mobile-app-section">
         <MobileSectionHead title="핵심 역량" />
         <div className="mobile-capability-grid">
-          {mobileCapabilities.map(([title, body]) => (
-            <article key={title}>
-              <i aria-hidden="true" />
+          {mobileCapabilities.map(([icon, title, body]) => (
+            <article className={`mobile-capability-card mobile-capability-card--${icon}`} key={title}>
+              <i className="mobile-capability-icon" aria-hidden="true" />
               <h3>{title}</h3>
               <p>{body}</p>
             </article>
@@ -405,11 +409,11 @@ function MobileHomeScreen({ content, imageSlots }) {
       <section className="mobile-app-section">
         <MobileSectionHead title="주요 제품" href="#/products" />
         <div className="mobile-product-strip">
-          {products.map(([title, body, image]) => (
+          {products.map(([title, subtitle, body, image]) => (
             <a href="#/products" key={title} data-mobile-product-card={title} aria-label={`${title} 제품 보기`}>
               <figure><img src={image} alt={title} loading="eager" decoding="async" /></figure>
               <strong>{title}</strong>
-              <span>{body.split(" ")[0] || "Precision Part"}</span>
+              <span>{subtitle || "Precision Part"}</span>
             </a>
           ))}
         </div>

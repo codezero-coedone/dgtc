@@ -8437,3 +8437,514 @@ img[src$="real-precision-threaded-pair.jpg"] {
   }
 }
 
+/* DAEKWANG_MOBILE_HOME_APPROVED_VISUAL_IMPLEMENT_RETRY_V2 */
+@media (max-width: 1023px) {
+  .route-index .mobile-app-public-shell {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(40, 91, 145, .08), transparent 36%),
+      linear-gradient(180deg, #f7f9fc 0%, #f1f5f9 48%, #f7f9fc 100%);
+  }
+
+  .route-index .mobile-app-topbar--home {
+    height: 60px;
+    padding: 9px 22px 6px;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup {
+    gap: 9px;
+    height: 39px;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup__text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__mark {
+    width: 36px;
+    height: 36px;
+    filter:
+      drop-shadow(0 8px 16px rgba(0, 37, 78, .34))
+      drop-shadow(0 0 10px rgba(68, 135, 209, .16));
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__name {
+    font-size: 13.5px;
+    font-weight: 950;
+    line-height: 1;
+    letter-spacing: .015em;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__tech {
+    position: relative;
+    padding-inline: 22px;
+    color: #78a7ef;
+    font-size: 8px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: .48em;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__tech::before,
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__tech::after {
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 1px;
+    background: rgba(186, 214, 255, .8);
+    content: "";
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__tech::before {
+    left: 0;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__tech::after {
+    right: 1px;
+  }
+
+  .route-index .mobile-app-topbar button {
+    width: 38px;
+    height: 38px;
+    padding: 10px;
+    border-radius: 999px;
+    background: rgba(4, 17, 34, .28);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, .2),
+      0 10px 24px rgba(0, 0, 0, .16);
+  }
+
+  .route-index .mobile-app-topbar button span {
+    width: 15px;
+    height: 1.45px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .94);
+  }
+
+  .route-index .mobile-home-hero {
+    min-height: clamp(390px, 101vw, 492px);
+    padding: 112px 22px 36px;
+    border-radius: 0 0 34px 34px;
+    background: #041425;
+    box-shadow:
+      0 22px 42px rgba(6, 22, 39, .16),
+      0 1px 0 rgba(255, 255, 255, .65);
+    overflow: hidden;
+  }
+
+  .route-index .mobile-home-hero img {
+    object-position: 72% center;
+    opacity: .92;
+    filter: grayscale(.04) contrast(1.08) brightness(1.02) saturate(.94);
+    transform: scale(1.03);
+  }
+
+  .route-index .mobile-home-hero::before {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(circle at 78% 40%, rgba(135, 184, 235, .34), transparent 23%),
+      linear-gradient(90deg, rgba(3, 13, 27, .98) 0%, rgba(5, 19, 36, .82) 38%, rgba(6, 21, 38, .18) 74%),
+      linear-gradient(180deg, rgba(2, 10, 21, .22), rgba(2, 10, 21, .34));
+    content: "";
+  }
+
+  .route-index .mobile-home-hero::after {
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(7, 27, 49, 0) 58%, rgba(5, 20, 37, .28)),
+      radial-gradient(circle at 12% 8%, rgba(28, 87, 153, .2), transparent 32%);
+  }
+
+  .route-index .mobile-home-hero-copy {
+    position: relative;
+    z-index: 2;
+    min-height: calc(clamp(390px, 101vw, 492px) - 150px);
+    align-content: center;
+  }
+
+  .route-index .mobile-home-hero h1 {
+    max-width: 286px;
+    color: #fff;
+    font-size: clamp(34px, 9.25vw, 45px);
+    font-weight: 950;
+    line-height: 1.36;
+    letter-spacing: 0;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, .26);
+  }
+
+  .route-index .mobile-home-hero p {
+    width: min(300px, 78vw);
+    margin-top: 22px;
+    color: rgba(255, 255, 255, .86);
+    font-size: 14px;
+    font-weight: 760;
+    line-height: 1.75;
+  }
+
+  .route-index .mobile-app-section {
+    gap: 13px;
+  }
+
+  .route-index .mobile-app-section-head {
+    min-height: 34px;
+    padding-inline: 2px;
+  }
+
+  .route-index .mobile-app-section-head h2 {
+    color: #08162b;
+    font-size: 21px;
+    font-weight: 950;
+    letter-spacing: 0;
+  }
+
+  .route-index .mobile-app-section-head a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #18253b;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .route-index .mobile-app-section-head a::after {
+    color: #1d63d8;
+    font-size: 18px;
+    line-height: 1;
+    content: "›";
+  }
+
+  .route-index .mobile-capability-grid {
+    gap: 12px;
+  }
+
+  .route-index .mobile-capability-card {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 13px;
+    min-height: 88px;
+    padding: 15px 14px;
+    border: 1px solid rgba(12, 34, 63, .06);
+    border-radius: 17px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(255, 255, 255, .94));
+    box-shadow:
+      0 14px 30px rgba(15, 23, 42, .075),
+      inset 0 1px 0 rgba(255, 255, 255, .9);
+  }
+
+  .route-index .mobile-capability-icon {
+    position: relative;
+    grid-row: 1 / 3;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    border: 0;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 35% 20%, rgba(129, 176, 232, .55), transparent 32%),
+      linear-gradient(145deg, #173a67, #061c37);
+    box-shadow:
+      0 10px 20px rgba(7, 28, 56, .22),
+      inset 0 0 0 1px rgba(255, 255, 255, .12);
+  }
+
+  .route-index .mobile-capability-icon::before,
+  .route-index .mobile-capability-icon::after {
+    position: absolute;
+    content: "";
+  }
+
+  .route-index .mobile-capability-card--precision .mobile-capability-icon::before {
+    inset: 12px;
+    border: 2px solid rgba(255, 255, 255, .92);
+    border-radius: 999px;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, .08);
+  }
+
+  .route-index .mobile-capability-card--precision .mobile-capability-icon::after {
+    top: 8px;
+    left: 21px;
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(#fff 0 5px, transparent 5px 10px, #fff 10px 18px, transparent 18px 23px, #fff 23px);
+    box-shadow: -13px 13px 0 -1px #fff, 13px 13px 0 -1px #fff;
+  }
+
+  .route-index .mobile-capability-card--quality .mobile-capability-icon::before {
+    top: 10px;
+    left: 12px;
+    width: 18px;
+    height: 21px;
+    border: 2px solid rgba(255, 255, 255, .92);
+    border-radius: 10px 10px 12px 12px;
+    transform: rotate(45deg) skew(-8deg, -8deg);
+  }
+
+  .route-index .mobile-capability-card--quality .mobile-capability-icon::after {
+    top: 21px;
+    left: 16px;
+    width: 15px;
+    height: 8px;
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff;
+    transform: rotate(-45deg);
+  }
+
+  .route-index .mobile-capability-card--innovation .mobile-capability-icon::before {
+    top: 12px;
+    left: 15px;
+    width: 14px;
+    height: 17px;
+    border: 2px solid #fff;
+    border-radius: 12px 12px 10px 10px;
+    box-shadow: 0 10px 0 -7px #fff;
+  }
+
+  .route-index .mobile-capability-card--innovation .mobile-capability-icon::after {
+    top: 7px;
+    left: 21px;
+    width: 2px;
+    height: 5px;
+    background: #fff;
+    box-shadow:
+      -11px 5px 0 #fff,
+      11px 5px 0 #fff,
+      -14px 16px 0 #fff,
+      14px 16px 0 #fff;
+  }
+
+  .route-index .mobile-capability-card--customer .mobile-capability-icon::before {
+    top: 13px;
+    left: 11px;
+    width: 9px;
+    height: 9px;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    box-shadow: 14px 0 0 -2px #17345a, 14px 0 0 0 #fff;
+  }
+
+  .route-index .mobile-capability-card--customer .mobile-capability-icon::after {
+    top: 26px;
+    left: 9px;
+    width: 25px;
+    height: 10px;
+    border: 2px solid #fff;
+    border-top: 0;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .route-index .mobile-capability-grid h3 {
+    align-self: end;
+    color: #07162b;
+    font-size: 15px;
+    font-weight: 950;
+    line-height: 1.22;
+  }
+
+  .route-index .mobile-capability-grid p {
+    margin-top: 6px;
+    color: #637084;
+    font-size: 11.5px;
+    font-weight: 760;
+    line-height: 1.48;
+  }
+
+  .route-index .mobile-product-strip {
+    grid-auto-columns: clamp(104px, calc((100vw - 58px) / 3), 124px);
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+
+  .route-index .mobile-product-strip a {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(12, 34, 63, .08);
+    border-radius: 17px;
+    background: #fff;
+    box-shadow:
+      0 16px 30px rgba(15, 23, 42, .085),
+      inset 0 1px 0 rgba(255, 255, 255, .9);
+  }
+
+  .route-index .mobile-product-strip figure {
+    aspect-ratio: 1 / .86;
+    border-radius: 15px 15px 0 0;
+    background: #eef2f5;
+  }
+
+  .route-index .mobile-product-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.04) saturate(.92);
+  }
+
+  .route-index .mobile-product-strip a:nth-child(1) img {
+    object-position: 52% 54%;
+  }
+
+  .route-index .mobile-product-strip a:nth-child(2) img {
+    object-position: 50% 54%;
+  }
+
+  .route-index .mobile-product-strip a:nth-child(3) img {
+    object-position: 50% 44%;
+  }
+
+  .route-index .mobile-product-strip strong {
+    display: block;
+    padding: 11px 10px 0;
+    color: #07162b;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 950;
+    line-height: 1.22;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .route-index .mobile-product-strip span {
+    display: block;
+    min-height: 32px;
+    padding: 4px 10px 12px;
+    color: #697587;
+    overflow: hidden;
+    font-size: 10px;
+    font-weight: 760;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .route-index .mobile-app-dock {
+    min-height: 70px !important;
+    margin-top: 18px !important;
+    padding: 7px 9px calc(7px + env(safe-area-inset-bottom)) !important;
+    border: 1px solid rgba(134, 178, 225, .14);
+    border-radius: 28px 28px 0 0;
+    background:
+      radial-gradient(circle at 18% 0%, rgba(54, 114, 181, .32), transparent 33%),
+      linear-gradient(135deg, #061c36, #021227 68%, #03152d);
+    box-shadow:
+      0 -18px 38px rgba(3, 14, 29, .18),
+      inset 0 1px 0 rgba(255, 255, 255, .09);
+  }
+
+  .route-index .mobile-app-dock a {
+    min-height: 56px;
+    border-radius: 20px;
+    color: rgba(255, 255, 255, .7);
+  }
+
+  .route-index .mobile-app-dock a.is-active {
+    color: #fff;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(96, 153, 220, .34), transparent 58%),
+      rgba(255, 255, 255, .08);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, .1),
+      0 12px 26px rgba(0, 0, 0, .16);
+  }
+
+  .route-index .mobile-tab-icon {
+    opacity: .92;
+  }
+
+  .route-index .mobile-app-dock b {
+    color: currentColor;
+    font-size: 11px;
+    font-weight: 850;
+  }
+}
+
+@media (max-width: 370px) {
+  .route-index .mobile-app-topbar--home {
+    padding-inline: 16px;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__mark {
+    width: 31px;
+    height: 31px;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__name {
+    font-size: 12px;
+  }
+
+  .route-index .mobile-app-brand .brand-lockup--mobile .brand-lockup__tech {
+    padding-inline: 16px;
+    font-size: 7px;
+    letter-spacing: .38em;
+  }
+
+  .route-index .mobile-home-hero {
+    min-height: 362px;
+    padding: 94px 18px 30px;
+  }
+
+  .route-index .mobile-home-hero-copy {
+    min-height: 230px;
+  }
+
+  .route-index .mobile-home-hero h1 {
+    font-size: 30px;
+  }
+
+  .route-index .mobile-home-hero p {
+    margin-top: 17px;
+    font-size: 12.5px;
+  }
+
+  .route-index .mobile-capability-card {
+    grid-template-columns: 40px minmax(0, 1fr);
+    column-gap: 10px;
+    min-height: 86px;
+    padding: 13px 11px;
+  }
+
+  .route-index .mobile-capability-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .route-index .mobile-capability-grid h3 {
+    font-size: 13px;
+  }
+
+  .route-index .mobile-capability-grid p {
+    font-size: 10.2px;
+  }
+
+  .route-index .mobile-product-strip {
+    grid-auto-columns: clamp(94px, calc((100vw - 50px) / 3), 106px);
+    gap: 9px;
+  }
+
+  .route-index .mobile-product-strip strong {
+    font-size: 11.5px;
+  }
+
+  .route-index .mobile-product-strip span {
+    font-size: 8.8px;
+  }
+}
+
+@media (min-width: 431px) and (max-width: 1023px) {
+  .route-index .mobile-home-hero {
+    min-height: clamp(438px, 66vw, 520px);
+    padding-top: 118px;
+  }
+
+  .route-index .mobile-home-hero-copy {
+    min-height: calc(clamp(438px, 66vw, 520px) - 158px);
+  }
+
+  .route-index .mobile-product-strip {
+    grid-auto-columns: minmax(122px, 1fr);
+  }
+}
+
