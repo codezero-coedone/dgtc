@@ -5,7 +5,7 @@ import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
 import { NoticeDetailPage, NoticeListPage } from "./pages/NoticePages.jsx";
-import { facilityCards, homeProducts, imageFallback, navItems, pageContent, qualityCards, routeAlias } from "./siteData.js";
+import { homeProducts, imageFallback, navItems, pageContent, qualityCards, routeAlias } from "./siteData.js";
 import { publicImageSlots } from "./data/daekwangAdminData.js";
 import { ADMIN_STORAGE_KEY, ADMIN_STORE_EVENT } from "./utils/adminStorage.js";
 
@@ -229,6 +229,18 @@ const cncEquipmentInfo = {
     ["적용 분야", "소형 정밀 금속 부품"],
   ],
 };
+
+const DAEKWANG_ADDRESS_ROAD = "경남 김해시 한림면 신천산단로 52";
+const DAEKWANG_ADDRESS_LOT = "경남 김해시 한림면 신천리 984";
+const DAEKWANG_PLACE_QUERY = "대광테크 경남 김해시 한림면 신천산단로 52";
+const kakaoMapUrl = `https://map.kakao.com/?q=${encodeURIComponent(DAEKWANG_PLACE_QUERY)}`;
+
+const noImageFacilityCards = [
+  ["CNC 자동선반", "장비 구분", "한화 XDI26/32 계열 CNC 자동선반 기반 정밀 부품 가공 설비"],
+  ["XDI26/32", "모델", "Ø26/Ø32mm급 소형 정밀 금속 부품 가공 대응"],
+  ["Swiss Turning", "가공 방식", "반복 정밀도와 균일 품질이 필요한 소형 부품 가공"],
+  ["자동차·유압·전자", "대응 품목", "자동차부품, 유압부품, 전자부품 생산에 활용"],
+];
 
 const imageSlotFallbacks = Object.fromEntries(publicImageSlots.map((slot) => [slot.key, slot.fallback]));
 
@@ -512,9 +524,10 @@ function MobileHomeScreen({ content, imageSlots }) {
       </section>
       <section className="mobile-dark-panel mobile-brand-card">
         <h2>정밀한 기술로<br />더 나은 미래를 만듭니다</h2>
-        <p>대광테크와 함께 최고의 가치를 만들어가세요.</p>
+        <p>대광테크의 회사 정보와 사업장 위치를 확인할 수 있습니다.</p>
         <a href="#/technology">기술 보기</a>
       </section>
+      <MobileDirectionsPanel company={content.company} compact />
     </>
   );
 }
@@ -555,7 +568,6 @@ function MobileTechnologyScreen({ imageSlots }) {
     ["05", "표면 처리", "내구성 및 내식성 향상을 위한 표면 처리 공정"],
     ["06", "최종 검사 및 출하", "최종 품질 검사 후 안전한 포장 및 출하"],
   ];
-  const facilityItems = withFirstImage(facilityCards.slice(0, 4), imageSlots.facilityVisualImage);
   return (
     <>
       <MobileDarkHero
@@ -587,12 +599,9 @@ function MobileTechnologyScreen({ imageSlots }) {
       </section>
       <section className="mobile-app-section">
         <MobileSectionHead title="보유 설비" href="#/facility" />
-        <div className="mobile-facility-grid">
-          {facilityItems.map(([title, body, image]) => (
-            <article key={title}>
-              <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
-              <strong>{title}</strong>
-            </article>
+        <div className="mobile-noimage-facility-grid">
+          {noImageFacilityCards.map(([title, label, body]) => (
+            <article key={title}><i aria-hidden="true" /><span>{label}</span><strong>{title}</strong><p>{body}</p></article>
           ))}
         </div>
       </section>
@@ -671,6 +680,7 @@ function MobileCompanyScreen({ content, imageSlots }) {
           {handledItemCards.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
         </div>
       </section>
+      <MobileDirectionsPanel company={content.company} />
     </>
   );
 }
@@ -696,7 +706,6 @@ function MobileNoticeScreen({ content }) {
 
 function MobileInfoScreen({ page, detail, imageSlots, content }) {
   if (page.id === "facility") {
-    const facilityItems = withFirstImage((detail.cards || facilityCards).slice(0, 4), imageSlots.facilityVisualImage);
     return (
       <>
         <MobileDarkHero image={imageSlots.facilityVisualImage} title="CNC 자동선반 보유 설비" body="대광테크는 CNC 자동선반 기반의 정밀 가공 설비를 활용해 자동차부품, 유압부품, 전자부품 등 다양한 산업 부품을 가공합니다." />
@@ -710,9 +719,9 @@ function MobileInfoScreen({ page, detail, imageSlots, content }) {
         </section>
         <section className="mobile-app-section">
           <MobileSectionHead title="정밀 가공 설비" />
-          <div className="mobile-facility-grid">
-            {facilityItems.map(([title, body, image]) => (
-              <article key={title}><figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure><strong>{title}</strong><p>{body}</p></article>
+          <div className="mobile-noimage-facility-grid">
+            {noImageFacilityCards.map(([title, label, body]) => (
+              <article key={title}><i aria-hidden="true" /><span>{label}</span><strong>{title}</strong><p>{body}</p></article>
             ))}
           </div>
         </section>
@@ -834,19 +843,37 @@ function MetricRow({ items }) {
   );
 }
 
-function CompanyInfoPanel({ company }) {
-  const rows = [
+function companyInfoRows(company) {
+  return [
     ["상호", company.nameKo],
     ["영문명", company.nameEn],
     ["업종", company.businessType],
     ["담당", company.manager],
-    ["주소", company.address],
-    ["지번", company.lotAddress],
+    ["주소", DAEKWANG_ADDRESS_ROAD],
+    ["지번", DAEKWANG_ADDRESS_LOT],
     ["TEL", company.tel],
     ["FAX", company.fax],
     ["Mobile", company.mobile],
     ["E-mail", company.email],
   ].filter(([, value]) => value);
+}
+
+function MobileDirectionsPanel({ company, compact = false }) {
+  const rows = companyInfoRows(company);
+  return (
+    <section className={`mobile-info-card mobile-directions-panel ${compact ? "mobile-directions-panel--compact" : ""}`} aria-label="대광테크 오시는 길">
+      <h2>오시는 길</h2>
+      <p>대광테크 사업장 위치</p>
+      <dl>
+        {rows.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+      </dl>
+      <a className="kakao-map-link" href={kakaoMapUrl} target="_blank" rel="noopener noreferrer" aria-label="카카오맵에서 대광테크 위치 보기">카카오맵에서 보기<span>↗</span></a>
+    </section>
+  );
+}
+
+function CompanyInfoPanel({ company }) {
+  const rows = companyInfoRows(company);
   return (
     <section className="company-info-panel wrap" aria-label="대광테크 회사 정보">
       <div className="company-info-panel__head">
@@ -861,6 +888,48 @@ function CompanyInfoPanel({ company }) {
         {handledItemCards.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
       </div>
     </section>
+  );
+}
+
+function DirectionsPanel({ company, className = "" }) {
+  const rows = companyInfoRows(company);
+  return (
+    <section className={`company-location-panel directions-panel wrap ${className}`} aria-label="대광테크 오시는 길">
+      <div className="company-location-copy">
+        <span>LOCATION</span>
+        <strong>오시는 길</strong>
+        <p>대광테크 사업장 위치와 회사 기본 정보를 한 화면에서 확인합니다.</p>
+      </div>
+      <dl className="company-location-list">
+        {rows.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+      </dl>
+      <div className="company-location-action" aria-label="대광테크 지도 연결">
+        <div className="company-map-card" aria-hidden="true">
+          <i />
+          <b>DAEKWANG TECH</b>
+          <small>신천산단로 52</small>
+        </div>
+        <a className="kakao-map-link" href={kakaoMapUrl} target="_blank" rel="noopener noreferrer" aria-label="카카오맵에서 대광테크 위치 보기">
+          카카오맵에서 보기
+          <span>↗</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function NoImageFacilityCardGrid({ className = "" }) {
+  return (
+    <div className={`noimage-facility-grid ${className}`} aria-label="이미지 없는 보유 설비 정보 카드">
+      {noImageFacilityCards.map(([title, label, body]) => (
+        <article key={title}>
+          <i aria-hidden="true" />
+          <span>{label}</span>
+          <strong>{title}</strong>
+          <p>{body}</p>
+        </article>
+      ))}
+    </div>
   );
 }
 
@@ -883,36 +952,8 @@ function FacilityEquipmentPanel() {
 }
 
 function CompactClosingPanel({ page, items }) {
-  const mapHref = "https://map.kakao.com/link/search/%EA%B2%BD%EB%82%A8%20%EA%B9%80%ED%95%B4%EC%8B%9C%20%ED%95%9C%EB%A6%BC%EB%A9%B4%20%EC%8B%A0%EC%B2%9C%EC%82%B0%EB%8B%A8%EB%A1%9C%2052";
   if (page.id === "company") {
-    return (
-      <section className="company-location-panel wrap" aria-label="대광테크 오시는 길">
-        <div className="company-location-copy">
-          <span>LOCATION</span>
-          <strong>오시는 길</strong>
-          <p>사업장 주소와 기본 연락처를 함께 정리했습니다. 지도는 카카오맵 검색 결과로 연결됩니다.</p>
-        </div>
-        <dl className="company-location-list">
-          <div><dt>주소</dt><dd>경남 김해시 한림면 신천산단로 52</dd></div>
-          <div><dt>지번</dt><dd>경남 김해시 한림면 신천리 984</dd></div>
-          <div><dt>TEL</dt><dd>055-323-7157</dd></div>
-          <div><dt>FAX</dt><dd>055-314-5430</dd></div>
-          <div><dt>Mobile</dt><dd>010-9256-7475</dd></div>
-          <div><dt>E-mail</dt><dd>ndh7157@hanmail.net</dd></div>
-        </dl>
-        <div className="company-location-action" aria-label="대광테크 지도 연결">
-          <div className="company-map-card" aria-hidden="true">
-            <i />
-            <b>DAEKWANG TECH</b>
-            <small>신천산단로 52</small>
-          </div>
-          <a className="kakao-map-link" href={mapHref} target="_blank" rel="noreferrer noopener" aria-label="카카오맵에서 대광테크 위치 보기">
-            카카오맵에서 위치 보기
-            <span>↗</span>
-          </a>
-        </div>
-      </section>
-    );
+    return null;
   }
   const copy = page.id === "technology"
     ? ["기술력 운영 기준", "가공 정밀도, 소재 대응, 도면 검토 기준을 한 화면 안에서 간결하게 정리합니다."]
@@ -1042,11 +1083,10 @@ function QualityPreview({ imageSlots }) {
 }
 
 function FacilityPreview({ imageSlots }) {
-  const cards = withFirstImage(facilityCards, imageSlots.facilityVisualImage);
   return (
     <section className="split-section wrap home-facility-section">
       <div className="section-intro"><p className="section-kicker">보유 설비</p><h2>CNC 자동선반 기반<br />정밀 가공 설비</h2><p>한화 XDI26/32 CNC 자동선반 계열 설비를 중심으로 소형 정밀 금속 부품 가공에 대응합니다.</p><a className="detail-link" href="#/facility">설비 정보 자세히 보기 →</a></div>
-      <CardGrid cards={cards} className="facility-grid" />
+      <NoImageFacilityCardGrid className="home-noimage-facility-grid" />
     </section>
   );
 }
@@ -1086,9 +1126,10 @@ function SubPage({ page, detail, imageSlots, company }) {
           <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
           <p>{page.summary}</p>
         </div>
-        {detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : page.id === "facility" ? withFirstImage(detail.cards, imageSlots.facilityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
+        {page.id === "facility" ? <NoImageFacilityCardGrid /> : detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
       </section>
       {page.id === "company" ? <CompanyInfoPanel company={company} /> : null}
+      {page.id === "company" ? <DirectionsPanel company={company} /> : null}
       {page.id === "facility" ? <FacilityEquipmentPanel /> : null}
       {isQualityPage ? <QualityControlPanel /> : isCompactClosingPage && detail.metrics ? <CompactClosingPanel page={page} items={detail.metrics} /> : detail.metrics ? <MetricRow items={detail.metrics} /> : null}
     </>
@@ -1232,6 +1273,7 @@ function SiteApp({ content, setContent, route }) {
           <FacilityPreview imageSlots={imageSlots} />
           <HomeNoticeSection />
           <TrustPreview posts={content.posts} />
+          <DirectionsPanel company={content.company} className="home-directions-panel" />
           <Footer company={content.company} />
           </>
         ) : (
