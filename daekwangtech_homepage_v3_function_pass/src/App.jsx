@@ -301,7 +301,7 @@ function mobileActiveTab(route, pageId) {
 function MobileTopBar({ title, tone = "light", menuOpen, setMenuOpen }) {
   const isHome = !title;
   return (
-    <header className={`mobile-app-topbar mobile-app-topbar--${tone}`}>
+    <header className={`mobile-app-topbar mobile-app-topbar--${tone} ${isHome ? "mobile-app-topbar--home" : "mobile-app-topbar--route"}`}>
       {isHome ? (
         <a className="mobile-app-brand" href="#/" aria-label="대광테크 홈"><BrandLockup tone="dark" variant="mobile" /></a>
       ) : (

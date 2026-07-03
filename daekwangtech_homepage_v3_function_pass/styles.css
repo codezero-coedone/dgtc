@@ -8053,3 +8053,387 @@ img[src$="real-precision-threaded-pair.jpg"] {
   }
 }
 
+/* DAEKWANG_MOBILE_ROUTE_SYSTEM_STABILITY_AND_PRODUCT_FUNCTION_FIX_V1 */
+@media (max-width: 1023px) {
+  .mobile-app-public-shell {
+    --dk-route-topbar: 58px;
+    --dk-route-gap: 14px;
+    --dk-route-card-radius: 16px;
+    background:
+      linear-gradient(180deg, #f8fafc 0%, #f4f7fb 52%, #f7f9fc 100%);
+    overflow-x: clip;
+  }
+
+  .mobile-app-main {
+    gap: var(--dk-route-gap);
+    padding-top: calc(var(--dk-route-topbar) + 10px);
+  }
+
+  .route-index .mobile-app-main {
+    gap: 15px;
+    padding-top: 0;
+  }
+
+  .mobile-app-topbar {
+    height: var(--dk-route-topbar);
+    padding: 6px 14px 5px;
+    border-bottom: 1px solid rgba(15, 23, 42, .05);
+  }
+
+  .mobile-app-topbar--home {
+    grid-template-columns: minmax(0, 1fr) 38px;
+  }
+
+  .mobile-app-topbar--route {
+    grid-template-columns: 38px minmax(0, 1fr) 38px;
+    column-gap: 2px;
+  }
+
+  .route-index .mobile-app-topbar--home {
+    height: 58px;
+    padding: 8px 14px 5px;
+  }
+
+  .mobile-app-topbar--route .mobile-app-back {
+    grid-column: 1;
+    justify-self: start;
+    width: 36px;
+    height: 36px;
+    color: #667085;
+    font-size: 25px;
+    line-height: 34px;
+    text-align: center;
+  }
+
+  .mobile-app-topbar--route > strong {
+    grid-column: 2;
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .mobile-app-topbar--route button {
+    grid-column: 3;
+  }
+
+  .mobile-app-brand .brand-lockup {
+    gap: 7px;
+    height: 34px;
+  }
+
+  .mobile-app-topbar--home .mobile-app-brand .brand-lockup__text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  .mobile-app-brand .brand-lockup__mark,
+  .brand-lockup--mobile .brand-lockup__mark {
+    width: 29px;
+    height: 29px;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, .18));
+  }
+
+  .mobile-app-topbar--home .mobile-app-brand .brand-lockup--mobile .brand-lockup__mark {
+    width: 27px;
+    height: 27px;
+  }
+
+  .mobile-app-brand .brand-lockup__name {
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .mobile-app-topbar--home .mobile-app-brand .brand-lockup--mobile .brand-lockup__name {
+    font-size: 11.5px;
+    line-height: 1;
+  }
+
+  .mobile-app-brand .brand-lockup__tech {
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: .045em;
+  }
+
+  .mobile-app-topbar--home .mobile-app-brand .brand-lockup--mobile .brand-lockup__tech {
+    font-size: 11.5px;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .mobile-app-topbar button {
+    width: 38px;
+    height: 38px;
+    padding: 10px 9px;
+    border-radius: 12px;
+  }
+
+  .mobile-app-topbar button span {
+    width: 16px;
+    height: 1.35px;
+  }
+
+  .mobile-app-menu {
+    top: 60px;
+  }
+
+  .mobile-home-hero {
+    min-height: clamp(338px, 88vw, 404px);
+    padding: 84px 20px 28px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .mobile-home-hero-copy {
+    min-height: calc(clamp(338px, 88vw, 404px) - 112px);
+  }
+
+  .mobile-home-hero h1 {
+    max-width: 294px;
+    font-size: clamp(28px, 7.85vw, 36px);
+    line-height: 1.13;
+  }
+
+  .mobile-home-hero p {
+    width: min(280px, 76vw);
+    margin-top: 12px;
+    font-size: 12.5px;
+    line-height: 1.52;
+  }
+
+  .mobile-app-section {
+    gap: 9px;
+  }
+
+  .mobile-app-section-head {
+    min-height: 26px;
+    padding-inline: 1px;
+  }
+
+  .mobile-app-section-head h2 {
+    font-size: 16px;
+  }
+
+  .mobile-app-section-head a {
+    min-height: 30px;
+    padding: 7px 1px 6px 12px;
+  }
+
+  .mobile-capability-grid {
+    gap: 8px;
+  }
+
+  .mobile-capability-grid article {
+    min-height: 86px;
+    padding: 11px 12px 10px;
+    border-radius: 15px;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, .055);
+  }
+
+  .mobile-capability-grid i {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 7px;
+    border-width: 5px;
+    box-shadow:
+      14px 0 0 -6px #0b2340,
+      0 14px 0 -6px #0b2340,
+      14px 14px 0 -6px #0b2340;
+  }
+
+  .mobile-capability-grid h3 {
+    font-size: 12px;
+    line-height: 1.18;
+  }
+
+  .mobile-capability-grid p {
+    margin-top: 4px;
+    font-size: 10px;
+    line-height: 1.34;
+  }
+
+  .mobile-product-strip {
+    grid-auto-columns: 100px;
+    gap: 9px;
+    padding-bottom: 6px;
+  }
+
+  .mobile-product-strip a {
+    min-width: 100px;
+    border-radius: 13px;
+  }
+
+  .mobile-product-strip figure {
+    border-radius: 11px;
+  }
+
+  .mobile-product-strip strong {
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .mobile-product-strip span {
+    font-size: 9px;
+    line-height: 1.2;
+  }
+
+  .mobile-app-dark-hero {
+    min-height: 132px;
+    padding: 28px 20px 19px;
+    border-radius: var(--dk-route-card-radius);
+  }
+
+  .mobile-app-dark-hero h1 {
+    max-width: 292px;
+    font-size: 18px;
+    line-height: 1.32;
+  }
+
+  .mobile-app-dark-hero p {
+    max-width: 288px;
+    margin-top: 9px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .mobile-chip-row {
+    gap: 8px;
+    margin-top: -1px;
+    padding: 0 2px 1px;
+  }
+
+  .mobile-chip-row button {
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+  }
+
+  .mobile-products-list,
+  .mobile-process-list,
+  .mobile-notice-list {
+    gap: 10px;
+  }
+
+  .mobile-product-row {
+    grid-template-columns: 38% minmax(0, 1fr);
+    gap: 10px;
+    min-height: 132px;
+    padding: 9px;
+    border-radius: var(--dk-route-card-radius);
+  }
+
+  .mobile-product-row figure {
+    min-height: 112px;
+    border-radius: 13px;
+  }
+
+  .mobile-product-row h3 {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .mobile-product-row p {
+    font-size: 10px;
+    line-height: 1.38;
+  }
+
+  .mobile-product-row a {
+    min-height: 32px;
+    margin-top: 8px;
+    padding: 0 12px;
+    border-radius: 11px;
+  }
+
+  .mobile-process-list article,
+  .mobile-info-card,
+  .mobile-dark-panel,
+  .mobile-facility-grid article,
+  .mobile-notice-list a {
+    border-radius: var(--dk-route-card-radius);
+  }
+
+  .mobile-info-card {
+    padding: 20px;
+  }
+
+  .mobile-dark-panel {
+    padding: 20px 18px;
+  }
+
+  .mobile-app-dock {
+    margin-top: 16px !important;
+    margin-bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+    min-height: 60px !important;
+    border-radius: 17px;
+  }
+
+  .mobile-app-dock a {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 370px) {
+  .mobile-app-public-shell {
+    --dk-route-topbar: 56px;
+    --dk-route-gap: 12px;
+  }
+
+  .mobile-app-topbar {
+    padding-inline: 12px;
+  }
+
+  .mobile-app-topbar--home {
+    grid-template-columns: minmax(0, 1fr) 36px;
+  }
+
+  .mobile-app-topbar button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mobile-home-hero {
+    min-height: 334px;
+    padding: 80px 18px 25px;
+  }
+
+  .mobile-home-hero-copy {
+    min-height: 222px;
+  }
+
+  .mobile-home-hero h1 {
+    font-size: 28px;
+  }
+
+  .mobile-capability-grid article {
+    min-height: 84px;
+    padding: 10px 11px;
+  }
+
+  .mobile-capability-grid p {
+    font-size: 9.6px;
+  }
+
+  .mobile-product-strip {
+    grid-auto-columns: 94px;
+  }
+
+  .mobile-product-row {
+    grid-template-columns: 37% minmax(0, 1fr);
+    gap: 9px;
+  }
+}
+
+@media (min-width: 431px) and (max-width: 1023px) {
+  .mobile-home-hero {
+    min-height: clamp(404px, 59vw, 474px);
+    padding-top: 94px;
+  }
+
+  .mobile-home-hero-copy {
+    min-height: calc(clamp(404px, 59vw, 474px) - 124px);
+  }
+}
+
