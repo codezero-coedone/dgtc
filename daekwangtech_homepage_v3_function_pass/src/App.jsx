@@ -365,20 +365,50 @@ function MobileDarkHero({ image, title, body, className = "" }) {
   );
 }
 
-function MobileProductList({ products }) {
+function ProductDetailPanel({ product, onClose, compact = false }) {
+  if (!product) return null;
+  const [title, subtitle, body, image] = product;
   return (
-    <div className="mobile-products-list">
-      {products.map(([title, subtitle, body, image]) => (
-        <article className="mobile-product-row" key={title}>
-          <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
-          <div>
-            <h3>{title}</h3>
-            <p>{body}</p>
-            <a href="#/products">자세히 보기 →</a>
-          </div>
-        </article>
-      ))}
-    </div>
+    <section className={compact ? "mobile-product-detail-panel" : "product-detail-panel"} aria-live="polite" aria-label={`${title} 제품 정보`}>
+      <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
+      <div>
+        <span>{subtitle}</span>
+        <h3>{title}</h3>
+        <p>{body}</p>
+        <dl>
+          <div><dt>제품명</dt><dd>{title}</dd></div>
+          <div><dt>제품군</dt><dd>{subtitle}</dd></div>
+          <div><dt>설명</dt><dd>{body}</dd></div>
+        </dl>
+        <button type="button" onClick={onClose}>제품 목록으로</button>
+      </div>
+    </section>
+  );
+}
+
+function MobileProductList({ products, selectedProduct, onSelectProduct, onCloseProduct }) {
+  return (
+    <>
+      <div className="mobile-products-list">
+        {products.map((product) => {
+          const [title, subtitle, body, image] = product;
+          const isSelected = selectedProduct?.[0] === title;
+          return (
+            <article className={`mobile-product-row ${isSelected ? "is-selected" : ""}`} key={title}>
+              <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
+              <div>
+                <h3>{title}</h3>
+                <p>{body}</p>
+                <button type="button" onClick={() => onSelectProduct(product)} aria-expanded={isSelected ? "true" : "false"} aria-controls="mobile-product-detail">자세히 보기 →</button>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+      <div id="mobile-product-detail">
+        <ProductDetailPanel product={selectedProduct} onClose={onCloseProduct} compact />
+      </div>
+    </>
   );
 }
 
@@ -449,6 +479,14 @@ function MobileHomeScreen({ content, imageSlots }) {
 
 function MobileProductsScreen({ imageSlots }) {
   const products = withMobileProductImages(mobileProductCards, imageSlots.productsGalleryImages);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const detailRef = useRef(null);
+  const openProduct = (product) => {
+    setSelectedProduct(product);
+    window.requestAnimationFrame(() => {
+      detailRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+  };
   return (
     <>
       <MobileDarkHero
@@ -459,7 +497,9 @@ function MobileProductsScreen({ imageSlots }) {
       <div className="mobile-chip-row" aria-label="제품 분류">
         {["전체", "유압 부품", "밸브 부품", "일반 부품"].map((label, index) => <button className={index === 0 ? "is-active" : ""} key={label} type="button">{label}</button>)}
       </div>
-      <MobileProductList products={products} />
+      <div ref={detailRef}>
+        <MobileProductList products={products} selectedProduct={selectedProduct} onSelectProduct={openProduct} onCloseProduct={() => setSelectedProduct(null)} />
+      </div>
       <section className="mobile-dark-panel mobile-bottom-card">
         <h2>원하는 제품을 찾지 못하셨나요?</h2>
         <p>맞춤 제작 및 요건을 통해 최적의 솔루션을 제공합니다.</p>
@@ -686,7 +726,7 @@ function FeatureRail({ items }) {
   );
 }
 
-function CardGrid({ cards, className = "sub-card-grid" }) {
+function CardGrid({ cards, className = "sub-card-grid", showDetailButton = false }) {
   const [lightbox, setLightbox] = useState(null);
   return (
     <>
@@ -694,7 +734,11 @@ function CardGrid({ cards, className = "sub-card-grid" }) {
         {cards.map(([title, desc, image]) => (
           <article className="product-card deep-card" key={title}>
             <img alt={title} className="js-lightbox-img" decoding="async" loading="lazy" role="button" src={image} tabIndex="0" onClick={() => setLightbox({ title, desc, image })} />
-            <div className="card-body"><h3>{title}</h3><p>{desc}</p></div>
+            <div className="card-body">
+              <h3>{title}</h3>
+              <p>{desc}</p>
+              {showDetailButton ? <button className="product-detail-button" type="button" onClick={() => setLightbox({ title, desc, image })}>자세히 보기 →</button> : null}
+            </div>
           </article>
         ))}
       </div>
@@ -921,7 +965,7 @@ function SubPage({ page, detail, imageSlots }) {
           <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
           <p>{page.summary}</p>
         </div>
-        {detail.cards ? <CardGrid cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : page.id === "facility" ? withFirstImage(detail.cards, imageSlots.facilityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
+        {detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : page.id === "facility" ? withFirstImage(detail.cards, imageSlots.facilityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
       </section>
       {isQualityPage ? <QualityControlPanel /> : isCompactClosingPage && detail.metrics ? <CompactClosingPanel page={page} items={detail.metrics} /> : detail.metrics ? <MetricRow items={detail.metrics} /> : null}
     </>
