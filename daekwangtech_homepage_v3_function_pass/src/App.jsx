@@ -3,7 +3,7 @@ import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
 import { NoticeDetailPage, NoticeListPage } from "./pages/NoticePages.jsx";
-import { facilityCards, homeProducts, imageFallback, navItems, pageContent, processSteps, qualityCards, routeAlias } from "./siteData.js";
+import { facilityCards, homeProducts, imageFallback, navItems, pageContent, qualityCards, routeAlias } from "./siteData.js";
 
 const manufacturingProcessSteps = [
   ["요구사항 확인", "제작 목적과 사용 조건, 납품 기준을 먼저 정리합니다."],
@@ -20,6 +20,51 @@ const qualityCheckpoints = [
   ["가공 정밀도", "가공 중 주요 치수와 공차를 단계별로 확인합니다."],
   ["조립·용접 검수", "조립 상태와 후가공 품질을 항목별로 점검합니다."],
   ["출고 전 확인", "최종 검사 결과와 출하 상태를 기록으로 남깁니다."],
+];
+
+const premiumProcessSteps = [
+  {
+    num: "01",
+    title: "고객 요구 분석",
+    body: "고객의 요구사항과 사용 조건을 면밀히 분석해 사양과 기준을 정리합니다.",
+    image: "assets/real-precision-threaded-pair.jpg",
+    icon: "⌕",
+  },
+  {
+    num: "02",
+    title: "설계 & 엔지니어링",
+    body: "정밀 설계와 공정 검토를 통해 성능과 제조 효율을 함께 확인합니다.",
+    image: "assets/real-process-shaft-detail.jpg",
+    icon: "◇",
+  },
+  {
+    num: "03",
+    title: "정밀 가공",
+    body: "설비 조건과 작업 기준을 안정적으로 맞춰 고정밀 부품을 가공합니다.",
+    image: "assets/real-black-valve-core.jpg",
+    icon: "⚙",
+  },
+  {
+    num: "04",
+    title: "표면 처리 / 열처리",
+    body: "내구성과 기능 향상을 위해 소재 특성에 맞는 후처리 공정을 수행합니다.",
+    image: "assets/real-silver-valve-core.jpg",
+    icon: "◱",
+  },
+  {
+    num: "05",
+    title: "검사 & 품질 검증",
+    body: "측정 기준과 검사 기록을 기반으로 치수, 형상, 표면 품질을 검증합니다.",
+    image: "assets/inspection-cmm.jpg",
+    icon: "◎",
+  },
+  {
+    num: "06",
+    title: "조립 / 포장 / 출하",
+    body: "조립 상태와 포장 조건을 확인해 안정적인 출하 흐름으로 마감합니다.",
+    image: "assets/real-stepped-shaft-vertical.jpg",
+    icon: "▥",
+  },
 ];
 
 function normalizeRoute() {
@@ -141,12 +186,7 @@ const mobileCapabilities = [
   ["설비 역량", "안정적인 생산 인프라"],
 ];
 
-const mobileProcessCards = [
-  ["01", "설계·검토", "도면과 요구 조건을 먼저 확인합니다."],
-  ["02", "정밀가공", "가공 기준에 맞춰 반복 품질을 유지합니다."],
-  ["03", "검사", "치수와 표면 상태를 단계별로 확인합니다."],
-  ["04", "출하", "포장과 전달 흐름까지 기록합니다."],
-];
+const mobileProcessCards = premiumProcessSteps.map(({ num, title, body, image }) => [num, title, body, image]);
 
 const mobileQualityCards = [
   ["ISO 9001", "품질경영 기준"],
@@ -173,7 +213,7 @@ function MobilePublicShell({ route, page, detail, content, menuOpen, setMenuOpen
 
   const renderPageCards = () => {
     if (active === "process") {
-      return <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body]) => <article key={title}><span>{num}</span><strong>{title}</strong><p>{body}</p></article>)}</div>;
+      return <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body, image]) => <article key={title}><img src={image} alt="" aria-hidden="true" /><div><span>{num}</span><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
     }
     if (active === "quality") {
       return <div className="mobile-app-list">{mobileQualityCards.map(([title, body]) => <article key={title}><span>◎</span><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
@@ -238,7 +278,7 @@ function MobilePublicShell({ route, page, detail, content, menuOpen, setMenuOpen
             </section>
             <section className="mobile-app-section">
               <div className="mobile-app-section-head"><span>PROCESS</span><h2>제조 흐름</h2></div>
-              <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body]) => <article key={title}><span>{num}</span><strong>{title}</strong><p>{body}</p></article>)}</div>
+              <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body, image]) => <article key={title}><img src={image} alt="" aria-hidden="true" /><div><span>{num}</span><strong>{title}</strong><p>{body}</p></div></article>)}</div>
             </section>
             <section className="mobile-app-section">
               <div className="mobile-app-section-head"><span>NEWS</span><h2>대광테크 소식</h2><a href="#/notice">전체 보기</a></div>
@@ -387,16 +427,36 @@ function CompactClosingPanel({ page, items }) {
 
 function ProcessBand() {
   return (
-    <section className="process-band">
-      <div className="wrap process-layout">
-        <div className="section-intro invert">
-          <p className="section-kicker">제조 프로세스</p>
+    <section className="process-band" aria-label="대광테크 제조 프로세스">
+      <div className="wrap process-layout process-premium-layout">
+        <div className="section-intro invert process-editorial">
+          <p className="section-kicker">제조 프로세스 / DAEKWANG TECH PROCESS</p>
           <h2>체계적인 프로세스로<br />일관된 품질을 약속합니다</h2>
-          <a className="detail-link" href="#/process">프로세스 자세히 보기 →</a>
+          <p className="process-editorial-copy">요구 분석부터 출하까지 하나의 기준으로 연결해 정밀 가공 품질과 생산 흐름을 안정적으로 관리합니다.</p>
+          <a className="detail-link process-detail-link" href="#/process">프로세스 자세히 보기</a>
+          <figure className="process-proof-card">
+            <img src="assets/real-hero-batch-components.jpg" alt="대광테크 정밀 가공 부품 디테일" />
+            <figcaption>
+              <span>PROCESS PROOF</span>
+              <strong>가공 기준과 검사 흐름을 함께 묶은 제조 관리</strong>
+            </figcaption>
+          </figure>
         </div>
-        <div className="step-row">
-          {processSteps.map((step, index) => (
-            <article className="step" key={step}><span>{String(index + 1).padStart(2, "0")}</span><div className="step-icon">⌁</div><h3>{step}</h3><p>단계별 기준과 기록 관리</p></article>
+        <div className="process-card-grid" aria-label="6단계 제조 프로세스">
+          {premiumProcessSteps.map((step) => (
+            <article className="process-step-card" key={step.num}>
+              <div className="process-step-card__body">
+                <div className="process-step-card__meta">
+                  <span>{step.num}</span>
+                  <i aria-hidden="true">{step.icon}</i>
+                </div>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+              <figure className="process-step-card__image">
+                <img src={step.image} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              </figure>
+            </article>
           ))}
         </div>
       </div>
