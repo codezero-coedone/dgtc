@@ -4664,3 +4664,215 @@ body.lightbox-open{overflow:hidden;}
   }
 }
 
+/* 2026-07-03 clean screen logo lockup: stop shrinking full bitmap details. */
+.brand-lockup {
+  --brand-name: #f8fafc;
+  --brand-tech: #58a6ff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.brand-lockup__mark {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: none;
+}
+
+.brand-lockup__text {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.brand-lockup__name,
+.brand-lockup__tech {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 950;
+  line-height: .95;
+  white-space: nowrap;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+.brand-lockup__name {
+  color: var(--brand-name);
+  font-size: 17px;
+  letter-spacing: .12em;
+}
+
+.brand-lockup__tech {
+  color: var(--brand-tech);
+  font-size: 12px;
+  letter-spacing: .44em;
+}
+
+.brand-lockup--light {
+  --brand-name: #0b1d3a;
+  --brand-tech: #0f47af;
+}
+
+.brand-lockup--dark {
+  --brand-name: #f8fafc;
+  --brand-tech: #58a6ff;
+}
+
+.brand-lockup--header {
+  min-height: 48px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .24));
+}
+
+.brand-lockup--header .brand-lockup__mark {
+  width: 46px;
+  height: 46px;
+}
+
+.brand-lockup--header .brand-lockup__text {
+  padding-top: 1px;
+}
+
+.brand-lockup--mobile {
+  gap: 8px;
+  min-height: 38px;
+}
+
+.brand-lockup--mobile .brand-lockup__mark {
+  width: 36px;
+  height: 36px;
+}
+
+.brand-lockup--mobile .brand-lockup__name {
+  font-size: 13px;
+  letter-spacing: .105em;
+}
+
+.brand-lockup--mobile .brand-lockup__tech {
+  font-size: 9.5px;
+  letter-spacing: .38em;
+}
+
+.brand-lockup--footer {
+  gap: 9px;
+  min-height: 42px;
+}
+
+.brand-lockup--footer .brand-lockup__mark {
+  width: 40px;
+  height: 40px;
+}
+
+.brand-lockup--footer .brand-lockup__name {
+  font-size: 14px;
+}
+
+.brand-lockup--footer .brand-lockup__tech {
+  font-size: 10px;
+}
+
+.brand .brand-lockup,
+.mobile-app-topbar a .brand-lockup,
+.footer-brand .brand-lockup {
+  flex: 0 1 auto;
+}
+
+.mobile-app-topbar a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.notice-hero-card .dk-brand-logo,
+.notice-empty .dk-brand-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-height: 0 !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.notice-hero-card .dk-brand-logo__asset,
+.notice-empty .dk-brand-logo__asset {
+  display: none !important;
+}
+
+.notice-hero-card .dk-brand-logo::before,
+.notice-empty .dk-brand-logo::before {
+  content: "";
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  background: url("assets/daekwang-mark-v2.svg") center / contain no-repeat;
+}
+
+.notice-hero-card .dk-brand-logo::after,
+.notice-empty .dk-brand-logo::after {
+  content: "DAE KWANG\A TECH";
+  white-space: pre;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.05;
+  font-weight: 950;
+  letter-spacing: .13em;
+  text-rendering: geometricPrecision;
+}
+
+.notice-hero-card .dk-brand-logo::after {
+  color: #f8fafc;
+}
+
+.notice-empty .dk-brand-logo::after {
+  color: #0b1d3a;
+}
+
+.notice-cta > svg {
+  flex: 0 0 auto;
+  filter: none;
+}
+
+@media (max-width: 430px) {
+  .brand-lockup--mobile {
+    gap: 7px;
+  }
+
+  .brand-lockup--mobile .brand-lockup__mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-lockup--mobile .brand-lockup__name {
+    font-size: 12px;
+    letter-spacing: .095em;
+  }
+
+  .brand-lockup--mobile .brand-lockup__tech {
+    font-size: 9px;
+    letter-spacing: .34em;
+  }
+
+  .notice-hero-card .dk-brand-logo::before,
+  .notice-empty .dk-brand-logo::before {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .notice-hero-card .dk-brand-logo::after,
+  .notice-empty .dk-brand-logo::after {
+    font-size: 13px;
+  }
+}
+

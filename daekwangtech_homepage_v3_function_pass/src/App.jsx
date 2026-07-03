@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
-import { DaekwangLogoLockup } from "./components/brand/DaekwangLogoLockup.jsx";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
 import { NoticeDetailPage, NoticeListPage } from "./pages/NoticePages.jsx";
 import { facilityCards, homeProducts, imageFallback, navItems, pageContent, processSteps, qualityCards, routeAlias } from "./siteData.js";
@@ -33,6 +32,20 @@ function normalizeRoute() {
 
 function routeHref(id) {
   return id === "index" ? "#/" : `#/${id}`;
+}
+
+function BrandLockup({ tone = "dark", variant = "header", className = "" }) {
+  const classes = ["brand-lockup", `brand-lockup--${tone}`, `brand-lockup--${variant}`, className].filter(Boolean).join(" ");
+
+  return (
+    <span className={classes} role="img" aria-label="DAE KWANG TECH">
+      <img className="brand-lockup__mark" src="assets/daekwang-mark-v2.svg" alt="" aria-hidden="true" decoding="async" />
+      <span className="brand-lockup__text" aria-hidden="true">
+        <span className="brand-lockup__name">DAE KWANG</span>
+        <span className="brand-lockup__tech">TECH</span>
+      </span>
+    </span>
+  );
 }
 
 function useRoute() {
@@ -77,7 +90,7 @@ function Header({ active, menuOpen = false, onMenu }) {
   return (
     <header className={menuOpen ? "site-header nav-open" : "site-header"}>
       <a aria-label="DAE KWANG TECH home" className="brand" href="#/">
-        <DaekwangLogoLockup className="header-mark-crop" tone="dark" size="sm" />
+        <BrandLockup tone="dark" variant="header" />
       </a>
       <nav className="desktop-nav">
         {publicNavItems.map((item) => (
@@ -199,7 +212,7 @@ function MobilePublicShell({ route, page, detail, content, menuOpen, setMenuOpen
   return (
     <div className={`mobile-app-public-shell route-${active}`} aria-label="대광테크 모바일 웹">
       <header className="mobile-app-topbar">
-        <a href="#/" aria-label="대광테크 홈"><DaekwangLogoLockup tone="light" size="sm" /></a>
+        <a href="#/" aria-label="대광테크 홈"><BrandLockup tone="light" variant="mobile" /></a>
         <button type="button" aria-label="메뉴 열기" aria-expanded={menuOpen ? "true" : "false"} onClick={() => setMenuOpen((value) => !value)}>☰</button>
       </header>
       {menuOpen ? (
@@ -510,7 +523,7 @@ function SubPage({ page, detail }) {
 function Footer({ company }) {
   return (
     <footer className="site-footer">
-      <div className="footer-brand"><DaekwangLogoLockup tone="dark" size="sm" /></div>
+      <div className="footer-brand"><BrandLockup tone="dark" variant="footer" /></div>
       <p>{company.address}</p><p>T. {company.tel}</p><p>F. {company.fax}</p><p className="copyright">© DAE KWANG TECH All rights reserved.</p>
       <div className="footer-links"><a href="#/company">회사 소개</a><a href="#/quality">품질 관리</a><a href="#/notice">공지사항</a></div>
     </footer>
