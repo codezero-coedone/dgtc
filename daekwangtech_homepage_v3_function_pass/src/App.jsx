@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
@@ -207,17 +207,50 @@ const mobileProductCards = [
 const imageSlotFallbacks = Object.fromEntries(publicImageSlots.map((slot) => [slot.key, slot.fallback]));
 
 function isUsablePublicImage(src) {
-  return typeof src === "string" && src.trim() && !src.startsWith("data:");
+  if (typeof src !== "string") return false;
+  const value = src.trim();
+  if (!value) return false;
+  const lower = value.toLowerCase();
+  return !lower.startsWith("data:") && !lower.startsWith("javascript:");
 }
 
-function loadPublicImageSlotOverrides() {
-  const fallback = {
+function getStaticPublicImageSlots() {
+  return {
     homeHeroImage: imageSlotFallbacks.homeHeroImage,
     processHeroImage: imageSlotFallbacks.processHeroImage,
     qualityVisualImage: imageSlotFallbacks.qualityVisualImage,
     facilityVisualImage: imageSlotFallbacks.facilityVisualImage,
     productsGalleryImages: [imageSlotFallbacks.productsGalleryImages].filter(Boolean),
   };
+}
+
+function pickPublicImageSrc(value) {
+  if (typeof value === "string") return value;
+  if (!value || typeof value !== "object") return "";
+  return value.src || value.imageUrl || value.url || value.path || "";
+}
+
+function normalizePublicImageSlotPayload(payload) {
+  const fallback = getStaticPublicImageSlots();
+  if (!payload?.ok || !payload.slots || typeof payload.slots !== "object") return null;
+  const slot = (key) => {
+    const src = pickPublicImageSrc(payload.slots[key]);
+    return isUsablePublicImage(src) ? src : fallback[key];
+  };
+  const products = Array.isArray(payload.slots.productsGalleryImages)
+    ? payload.slots.productsGalleryImages.map(pickPublicImageSrc).filter(isUsablePublicImage)
+    : [pickPublicImageSrc(payload.slots.productsGalleryImages)].filter(isUsablePublicImage);
+  return {
+    homeHeroImage: slot("homeHeroImage"),
+    processHeroImage: slot("processHeroImage"),
+    qualityVisualImage: slot("qualityVisualImage"),
+    facilityVisualImage: slot("facilityVisualImage"),
+    productsGalleryImages: products.length ? products : fallback.productsGalleryImages,
+  };
+}
+
+function loadLocalPublicImageSlotOverrides() {
+  const fallback = getStaticPublicImageSlots();
   if (typeof window === "undefined") return fallback;
   try {
     const parsed = JSON.parse(window.localStorage.getItem(ADMIN_STORAGE_KEY) || "{}");
@@ -237,6 +270,10 @@ function loadPublicImageSlotOverrides() {
   } catch {
     return fallback;
   }
+}
+
+function loadPublicImageSlotOverrides() {
+  return getStaticPublicImageSlots();
 }
 
 function withFirstImage(cards, image) {
@@ -922,6 +959,7 @@ function NotFoundPage({ company, menuOpen, setMenuOpen }) {
 function SiteApp({ content, setContent, route }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [imageSlots, setImageSlots] = useState(() => loadPublicImageSlotOverrides());
+  const serverImageSlotsReady = useRef(false);
   const page = useMemo(() => {
     const sourcePage = content.pages.find((item) => item.id === route) ?? content.pages[0];
     const slotByPage = {
@@ -936,7 +974,30 @@ function SiteApp({ content, setContent, route }) {
   const detail = pageContent[page.id] ?? pageContent.index;
 
   useEffect(() => {
-    const refresh = () => setImageSlots(loadPublicImageSlotOverrides());
+    let active = true;
+    fetch("/api/public/image-slots", { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error("PUBLIC_IMAGE_SLOTS_UNAVAILABLE"))))
+      .then((payload) => {
+        const normalized = normalizePublicImageSlotPayload(payload);
+        if (!active || !normalized) return;
+        serverImageSlotsReady.current = true;
+        setImageSlots(normalized);
+      })
+      .catch(() => {
+        if (!active) return;
+        serverImageSlotsReady.current = false;
+        setImageSlots(loadLocalPublicImageSlotOverrides());
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    const refresh = () => {
+      if (serverImageSlotsReady.current) return;
+      setImageSlots(loadLocalPublicImageSlotOverrides());
+    };
     window.addEventListener("storage", refresh);
     window.addEventListener(ADMIN_STORE_EVENT, refresh);
     return () => {

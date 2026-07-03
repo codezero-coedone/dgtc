@@ -8,6 +8,25 @@ const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 const LOGIN_FAIL_LIMIT = 8;
 const LOGIN_FAIL_WINDOW_SECONDS = 10 * 60;
+const PUBLIC_IMAGE_SLOT_KEYS = ["homeHeroImage", "processHeroImage", "qualityVisualImage", "facilityVisualImage"];
+const PUBLIC_IMAGE_SLOT_ALT = {
+  homeHeroImage: "대광테크 정밀 가공 대표 이미지",
+  processHeroImage: "대광테크 생산 공정 대표 이미지",
+  qualityVisualImage: "대광테크 품질 관리 대표 이미지",
+  facilityVisualImage: "대광테크 설비 대표 이미지",
+  productsGalleryImages: "대광테크 제품 이미지",
+};
+const PUBLIC_IMAGE_SLOT_FALLBACKS = {
+  homeHeroImage: { src: "assets/real-hero-batch-components.jpg", alt: PUBLIC_IMAGE_SLOT_ALT.homeHeroImage, source: "fallback" },
+  processHeroImage: { src: "assets/real-process-shaft-detail.jpg", alt: PUBLIC_IMAGE_SLOT_ALT.processHeroImage, source: "fallback" },
+  qualityVisualImage: { src: "assets/real-precision-threaded-pair.jpg", alt: PUBLIC_IMAGE_SLOT_ALT.qualityVisualImage, source: "fallback" },
+  facilityVisualImage: { src: "assets/real-hero-batch-components.jpg", alt: PUBLIC_IMAGE_SLOT_ALT.facilityVisualImage, source: "fallback" },
+  productsGalleryImages: [
+    { src: "assets/real-black-valve-core.jpg", alt: "대광테크 유압 피팅 제품 이미지", source: "fallback" },
+    { src: "assets/real-silver-valve-core.jpg", alt: "대광테크 밸브 컴포넌트 제품 이미지", source: "fallback" },
+    { src: "assets/real-stepped-shaft-vertical.jpg", alt: "대광테크 정밀 부품 제품 이미지", source: "fallback" },
+  ],
+};
 
 const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
@@ -35,6 +54,53 @@ function safeName(name) {
       .replace(/^-+|-+$/g, "")
       .slice(0, 96) || "upload"
   );
+}
+
+function clonePublicFallbackSlots() {
+  return {
+    homeHeroImage: { ...PUBLIC_IMAGE_SLOT_FALLBACKS.homeHeroImage },
+    processHeroImage: { ...PUBLIC_IMAGE_SLOT_FALLBACKS.processHeroImage },
+    qualityVisualImage: { ...PUBLIC_IMAGE_SLOT_FALLBACKS.qualityVisualImage },
+    facilityVisualImage: { ...PUBLIC_IMAGE_SLOT_FALLBACKS.facilityVisualImage },
+    productsGalleryImages: PUBLIC_IMAGE_SLOT_FALLBACKS.productsGalleryImages.map((item) => ({ ...item })),
+  };
+}
+
+function isSafePublicImageSrc(value, origin = "") {
+  if (typeof value !== "string") return false;
+  const src = value.trim();
+  if (!src) return false;
+  const lower = src.toLowerCase();
+  if (lower.startsWith("javascript:") || lower.startsWith("data:")) return false;
+  if (src.startsWith("assets/") || src.startsWith("/assets/") || src.startsWith("/api/cms/media/")) return true;
+  if (/^https?:\/\//i.test(src)) {
+    try {
+      const parsed = new URL(src);
+      return origin ? parsed.origin === origin : false;
+    } catch {
+      return false;
+    }
+  }
+  return false;
+}
+
+function pickImageSrc(value) {
+  if (typeof value === "string") return value;
+  if (!value || typeof value !== "object") return "";
+  return value.src || value.imageUrl || value.url || value.path || "";
+}
+
+function normalizePublicImageSlot(value, slotKey, source, origin) {
+  const src = pickImageSrc(value).trim();
+  if (!isSafePublicImageSrc(src, origin)) return null;
+  const alt = typeof value === "object" && value
+    ? String(value.alt || value.title || PUBLIC_IMAGE_SLOT_ALT[slotKey] || PUBLIC_IMAGE_SLOT_ALT.productsGalleryImages).trim()
+    : PUBLIC_IMAGE_SLOT_ALT[slotKey] || PUBLIC_IMAGE_SLOT_ALT.productsGalleryImages;
+  return {
+    src,
+    alt: alt.slice(0, 120) || PUBLIC_IMAGE_SLOT_ALT[slotKey] || PUBLIC_IMAGE_SLOT_ALT.productsGalleryImages,
+    source,
+  };
 }
 
 function parseCookies(cookieHeader = "") {
@@ -522,6 +588,101 @@ async function listMedia(env) {
   return json({ media: visibleRows, meta: { source: "D1:media_assets", r2Checked: true, missingExcluded: missingRows.length } });
 }
 
+function applyAdminStateImageAssets(slots, imageAssets, origin) {
+  if (!Array.isArray(imageAssets)) return false;
+  const activeAssets = imageAssets
+    .filter((asset) => asset && asset.status !== "inactive")
+    .sort((a, b) => (Number(a.order) || 0) - (Number(b.order) || 0));
+  let used = false;
+  for (const slotKey of PUBLIC_IMAGE_SLOT_KEYS) {
+    const asset = activeAssets.find((item) => item.category === slotKey);
+    const normalized = normalizePublicImageSlot(asset, slotKey, "admin_state", origin);
+    if (normalized) {
+      slots[slotKey] = normalized;
+      used = true;
+    }
+  }
+  const products = activeAssets
+    .filter((item) => item.category === "productsGalleryImages")
+    .map((item) => normalizePublicImageSlot(item, "productsGalleryImages", "admin_state", origin))
+    .filter(Boolean);
+  if (products.length) {
+    slots.productsGalleryImages = products;
+    used = true;
+  }
+  return used;
+}
+
+function applyMediaAssetSlots(slots, rows, origin) {
+  if (!Array.isArray(rows)) return false;
+  const activeRows = rows
+    .filter((row) => row && row.status !== "deleted")
+    .sort((a, b) => String(b.updated_at || b.created_at || "").localeCompare(String(a.updated_at || a.created_at || "")));
+  let used = false;
+  for (const slotKey of PUBLIC_IMAGE_SLOT_KEYS) {
+    if (slots[slotKey]?.source !== "fallback") continue;
+    const row = activeRows.find((item) => item.usage === slotKey);
+    const normalized = normalizePublicImageSlot(row, slotKey, "media_assets", origin);
+    if (normalized) {
+      slots[slotKey] = normalized;
+      used = true;
+    }
+  }
+  if (slots.productsGalleryImages.every((item) => item.source === "fallback")) {
+    const products = activeRows
+      .filter((item) => item.usage === "productsGalleryImages")
+      .map((item) => normalizePublicImageSlot(item, "productsGalleryImages", "media_assets", origin))
+      .filter(Boolean);
+    if (products.length) {
+      slots.productsGalleryImages = products;
+      used = true;
+    }
+  }
+  return used;
+}
+
+function publicImageSource(slots) {
+  const sources = [
+    ...PUBLIC_IMAGE_SLOT_KEYS.map((slotKey) => slots[slotKey]?.source || "fallback"),
+    ...(Array.isArray(slots.productsGalleryImages) ? slots.productsGalleryImages.map((item) => item.source || "fallback") : ["fallback"]),
+  ];
+  const unique = [...new Set(sources)];
+  if (unique.length === 1) {
+    if (unique[0] === "fallback") return "static_fallback";
+    return unique[0];
+  }
+  return "mixed";
+}
+
+async function publicImageSlots(request, env) {
+  const fallback = clonePublicFallbackSlots();
+  const origin = new URL(request.url).origin;
+  if (!env.DB) {
+    return json({ ok: true, source: "static_fallback", slots: fallback, updatedAt: null, stale: true });
+  }
+  try {
+    await ensureSchema(env);
+    const slots = clonePublicFallbackSlots();
+    let updatedAt = null;
+    const stateRow = await env.DB.prepare("SELECT content_json, updated_at FROM admin_state WHERE id = 'primary'").first();
+    if (stateRow?.content_json) {
+      try {
+        const state = JSON.parse(stateRow.content_json);
+        if (applyAdminStateImageAssets(slots, state?.imageAssets, origin)) updatedAt = stateRow.updated_at || updatedAt;
+      } catch {
+        // A bad admin snapshot must not break the public page.
+      }
+    }
+    const rows = await env.DB.prepare("SELECT src, label, alt, usage, status, created_at, updated_at FROM media_assets WHERE status != 'deleted' ORDER BY updated_at DESC").all();
+    if (applyMediaAssetSlots(slots, rows.results || [], origin) && !updatedAt) {
+      updatedAt = (rows.results || [])[0]?.updated_at || null;
+    }
+    return json({ ok: true, source: publicImageSource(slots), slots, updatedAt, stale: false });
+  } catch {
+    return json({ ok: true, source: "static_fallback", slots: fallback, updatedAt: null, stale: true });
+  }
+}
+
 async function deleteMedia(env, actor, id) {
   if (!env.DB || !env.MEDIA_BUCKET) return json({ error: "D1/R2 binding is missing." }, { status: 503 });
   await ensureSchema(env);
@@ -630,6 +791,7 @@ async function handleApi(request, env) {
     if (authResponse) return authResponse;
 
     if (url.pathname === "/api/public/site" && request.method === "GET") return json(await publicContent(env));
+    if (url.pathname === "/api/public/image-slots" && request.method === "GET") return publicImageSlots(request, env);
     if (url.pathname === "/api/public/notices" && request.method === "GET") {
       const payload = await listNoticeRows(env, { includeHidden: false });
       return json({ ...payload, noticeCtaSettings: defaultNoticeCtaSettings });
