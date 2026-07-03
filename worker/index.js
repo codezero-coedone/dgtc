@@ -879,10 +879,28 @@ async function handleApi(request, env) {
   }
 }
 
+async function serveStaticAsset(request, env) {
+  const url = new URL(request.url);
+  const response = await env.ASSETS.fetch(request);
+  const headers = new Headers(response.headers);
+
+  if (url.pathname === "/daekwang-sw.js") {
+    headers.set("cache-control", "no-store, no-cache, must-revalidate");
+  } else if (request.mode === "navigate" || headers.get("content-type")?.includes("text/html")) {
+    headers.set("cache-control", "no-cache, must-revalidate");
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/api/")) return handleApi(request, env);
-    return env.ASSETS.fetch(request);
+    return serveStaticAsset(request, env);
   },
 };

@@ -1,0 +1,1 @@
+public\daekwang-sw.js:2:const LEGACY_CACHE_NAMES = ["daekwang-app-shell-v1", "daekwang-runtime-v1"];
