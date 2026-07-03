@@ -2762,6 +2762,193 @@ body.lightbox-open{overflow:hidden;}
   }
 }
 
+/* DAEKWANG_PUBLIC_MOBILE_LOGO_PRODUCT_STABILITY_FIX_V1 final priority */
+@media (max-width: 1023px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .mobile-app-public-shell {
+    width: 100%;
+    max-width: 100vw;
+    padding-bottom: calc(112px + env(safe-area-inset-bottom));
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+  }
+
+  .mobile-app-brand {
+    max-width: calc(100vw - 78px);
+    min-height: 34px;
+  }
+
+  .mobile-app-brand .brand-lockup {
+    gap: 7px;
+    min-height: 32px;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .22));
+  }
+
+  .mobile-app-brand .brand-lockup__mark,
+  .brand-lockup--mobile .brand-lockup__mark {
+    width: 29px;
+    height: 29px;
+  }
+
+  .mobile-app-brand .brand-lockup__mark {
+    filter: none;
+  }
+
+  .mobile-app-brand .brand-lockup__name {
+    font-size: 11.5px;
+    letter-spacing: .12em;
+  }
+
+  .mobile-app-brand .brand-lockup__tech {
+    font-size: 8.2px;
+    letter-spacing: .42em;
+  }
+
+  .mobile-product-strip {
+    display: flex;
+    grid-auto-flow: initial;
+    grid-auto-columns: initial;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-padding-inline: 2px;
+    scroll-margin-top: 12px;
+    scroll-margin-bottom: 116px;
+    scroll-snap-type: x proximity;
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .mobile-product-strip a {
+    display: grid;
+    flex: 0 0 clamp(96px, 31%, 122px);
+    min-width: 0;
+    max-width: 122px;
+    scroll-snap-align: start;
+    border-radius: 16px;
+    outline-offset: 4px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(45, 125, 255, .14);
+  }
+
+  .mobile-product-strip a:focus-visible {
+    outline: 2px solid rgba(45, 125, 255, .7);
+  }
+
+  .mobile-product-strip figure {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    contain: layout paint;
+  }
+
+  .mobile-product-strip strong,
+  .mobile-product-strip span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .mobile-app-dock {
+    min-height: calc(64px + env(safe-area-inset-bottom));
+    padding-top: 7px;
+    padding-bottom: calc(7px + env(safe-area-inset-bottom));
+    border-radius: 22px;
+  }
+
+  .mobile-app-dock a {
+    min-height: 48px;
+    gap: 4px;
+  }
+
+  .mobile-tab-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 370px) and (max-height: 640px) {
+  .route-index .mobile-app-main {
+    gap: 12px;
+  }
+
+  .mobile-home-hero {
+    min-height: 228px;
+    padding-top: 70px;
+    padding-bottom: 18px;
+    border-radius: 0 0 22px 22px;
+  }
+
+  .mobile-home-hero h1 {
+    font-size: 24px;
+    line-height: 1.12;
+  }
+
+  .mobile-home-hero p {
+    width: 230px;
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .mobile-app-section {
+    gap: 8px;
+  }
+
+  .mobile-app-section-head {
+    min-height: 26px;
+  }
+
+  .mobile-app-section-head h2 {
+    font-size: 16px;
+  }
+
+  .mobile-capability-grid {
+    gap: 8px;
+  }
+
+  .mobile-capability-grid article {
+    min-height: 80px;
+    padding: 10px 12px 9px;
+  }
+
+  .mobile-capability-grid i {
+    width: 21px;
+    height: 21px;
+    margin-bottom: 6px;
+    border-width: 6px;
+    box-shadow: 16px 0 0 -7px #0b2340, 0 16px 0 -7px #0b2340, 16px 16px 0 -7px #0b2340;
+  }
+
+  .mobile-capability-grid h3 {
+    font-size: 13px;
+  }
+
+  .mobile-capability-grid p {
+    margin-top: 3px;
+    font-size: 9.5px;
+    line-height: 1.32;
+  }
+
+  .mobile-app-public-shell {
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-app-dock {
+    position: static !important;
+    width: 100%;
+    margin-top: 18px;
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 1023px) {
   .mobile-app-dark-hero {
     min-height: 156px;
@@ -2786,6 +2973,360 @@ body.lightbox-open{overflow:hidden;}
   .mobile-process-list p {
     margin-top: 4px;
     line-height: 1.4;
+  }
+}
+
+/* DAEKWANG_PUBLIC_MOBILE_LOGO_PRODUCT_STABILITY_FIX_V1 */
+@media (max-width: 1023px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .mobile-app-public-shell {
+    width: 100%;
+    max-width: 100vw;
+    padding-bottom: calc(112px + env(safe-area-inset-bottom));
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+  }
+
+  .mobile-app-main {
+    width: min(100%, 430px);
+    padding-bottom: 24px;
+  }
+
+  .mobile-app-topbar {
+    grid-template-columns: minmax(0, 1fr) 42px;
+    width: min(100%, 430px);
+    padding: 0 14px;
+  }
+
+  .mobile-app-topbar > strong {
+    grid-column: 1 / 3;
+    justify-self: center;
+    pointer-events: none;
+  }
+
+  .mobile-app-back {
+    position: relative;
+    z-index: 2;
+    grid-column: 1;
+    width: 40px;
+  }
+
+  .mobile-app-topbar button {
+    position: relative;
+    z-index: 3;
+    grid-column: 2;
+  }
+
+  .mobile-app-brand {
+    position: relative;
+    z-index: 2;
+    grid-column: 1;
+    align-self: end;
+    max-width: calc(100vw - 78px);
+    min-height: 34px;
+    margin-bottom: 8px;
+  }
+
+  .mobile-app-brand .brand-lockup {
+    display: inline-flex;
+    gap: 7px;
+    min-height: 32px;
+    max-width: 100%;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .22));
+  }
+
+  .mobile-app-brand .brand-lockup__mark,
+  .brand-lockup--mobile .brand-lockup__mark {
+    width: 29px;
+    height: 29px;
+  }
+
+  .mobile-app-brand .brand-lockup__mark {
+    filter: none;
+  }
+
+  .mobile-app-brand .brand-lockup__text {
+    gap: 2px;
+    padding-top: 1px;
+  }
+
+  .mobile-app-brand .brand-lockup__name {
+    font-size: 11.5px;
+    letter-spacing: .12em;
+    line-height: .95;
+  }
+
+  .mobile-app-brand .brand-lockup__tech {
+    font-size: 8.2px;
+    letter-spacing: .42em;
+    line-height: .95;
+  }
+
+  .mobile-app-section-head a {
+    display: inline-grid;
+    place-items: center;
+    min-width: 48px;
+    min-height: 36px;
+    margin-right: -4px;
+    padding: 0 4px;
+    border-radius: 12px;
+    touch-action: manipulation;
+  }
+
+  .mobile-product-strip {
+    display: flex;
+    grid-auto-flow: initial;
+    grid-auto-columns: initial;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 0 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-padding-inline: 2px;
+    scroll-snap-type: x proximity;
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .mobile-product-strip a {
+    display: grid;
+    flex: 0 0 clamp(96px, 31%, 122px);
+    min-width: 0;
+    max-width: 122px;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    border-radius: 16px;
+    outline-offset: 4px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(45, 125, 255, .14);
+  }
+
+  .mobile-product-strip a:focus-visible {
+    outline: 2px solid rgba(45, 125, 255, .7);
+  }
+
+  .mobile-product-strip figure {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    contain: layout paint;
+  }
+
+  .mobile-product-strip img {
+    object-fit: cover;
+    object-position: center;
+    transform: translateZ(0);
+  }
+
+  .mobile-product-strip strong,
+  .mobile-product-strip span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .mobile-app-dock {
+    right: max(8px, env(safe-area-inset-right));
+    bottom: max(8px, env(safe-area-inset-bottom));
+    left: max(8px, env(safe-area-inset-left));
+    width: min(calc(100% - 16px), 430px);
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+@media (max-width: 370px) {
+  .mobile-app-topbar {
+    height: 58px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .mobile-app-brand .brand-lockup {
+    gap: 6px;
+  }
+
+  .mobile-app-brand .brand-lockup__mark,
+  .brand-lockup--mobile .brand-lockup__mark {
+    width: 27px;
+    height: 27px;
+  }
+
+  .mobile-app-brand .brand-lockup__name {
+    font-size: 10.4px;
+  }
+
+  .mobile-app-brand .brand-lockup__tech {
+    font-size: 7.5px;
+  }
+
+  .mobile-product-strip {
+    gap: 10px;
+  }
+
+  .mobile-product-strip a {
+    flex-basis: clamp(88px, 30.5%, 108px);
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1023px) {
+  .mobile-app-public-shell {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .mobile-app-topbar {
+    width: min(100% - 24px, 430px);
+  }
+
+  .mobile-product-strip a {
+    flex-basis: 124px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .route-index .mobile-app-main {
+    gap: 18px;
+  }
+
+  .mobile-home-hero {
+    min-height: 304px;
+    padding-top: 88px;
+    padding-bottom: 24px;
+  }
+
+  .mobile-capability-grid article {
+    min-height: 104px;
+    padding-top: 15px;
+    padding-bottom: 13px;
+  }
+
+  .mobile-product-strip {
+    scroll-margin-top: 12px;
+    scroll-margin-bottom: 116px;
+  }
+
+  .mobile-product-strip figure {
+    max-height: 112px;
+  }
+
+  .mobile-app-dock {
+    min-height: calc(64px + env(safe-area-inset-bottom));
+    padding-top: 7px;
+    padding-bottom: calc(7px + env(safe-area-inset-bottom));
+    border-radius: 22px;
+  }
+
+  .mobile-app-dock a {
+    min-height: 48px;
+    gap: 4px;
+  }
+
+  .mobile-tab-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 370px) {
+  .mobile-home-hero {
+    min-height: 286px;
+    padding-top: 82px;
+  }
+
+  .mobile-capability-grid article {
+    min-height: 96px;
+  }
+
+  .mobile-capability-grid h3 {
+    font-size: 14px;
+  }
+
+  .mobile-capability-grid p {
+    font-size: 10.5px;
+    line-height: 1.42;
+  }
+}
+
+@media (max-width: 370px) and (max-height: 640px) {
+  .route-index .mobile-app-main {
+    gap: 12px;
+  }
+
+  .mobile-home-hero {
+    min-height: 228px;
+    padding-top: 70px;
+    padding-bottom: 18px;
+    border-radius: 0 0 22px 22px;
+  }
+
+  .mobile-home-hero h1 {
+    font-size: 24px;
+    line-height: 1.12;
+  }
+
+  .mobile-home-hero p {
+    width: 230px;
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .mobile-app-section {
+    gap: 8px;
+  }
+
+  .mobile-app-section-head {
+    min-height: 26px;
+  }
+
+  .mobile-app-section-head h2 {
+    font-size: 16px;
+  }
+
+  .mobile-capability-grid {
+    gap: 8px;
+  }
+
+  .mobile-capability-grid article {
+    min-height: 80px;
+    padding: 10px 12px 9px;
+  }
+
+  .mobile-capability-grid i {
+    width: 21px;
+    height: 21px;
+    margin-bottom: 6px;
+    border-width: 6px;
+    box-shadow: 16px 0 0 -7px #0b2340, 0 16px 0 -7px #0b2340, 16px 16px 0 -7px #0b2340;
+  }
+
+  .mobile-capability-grid h3 {
+    font-size: 13px;
+  }
+
+  .mobile-capability-grid p {
+    margin-top: 3px;
+    font-size: 9.5px;
+    line-height: 1.32;
+  }
+
+  .mobile-app-public-shell {
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-app-dock {
+    position: static;
+    width: 100%;
+    margin-top: 18px;
+    margin-bottom: 0;
   }
 }
 

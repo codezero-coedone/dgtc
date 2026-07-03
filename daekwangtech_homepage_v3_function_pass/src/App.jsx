@@ -307,7 +307,7 @@ function MobileSectionHead({ title, href }) {
   return (
     <div className="mobile-app-section-head">
       <h2>{title}</h2>
-      {href ? <a href={href}>더보기</a> : null}
+      {href ? <a href={href} data-mobile-section-more={title}>더보기</a> : null}
     </div>
   );
 }
@@ -369,7 +369,7 @@ function MobileHomeScreen({ content, imageSlots }) {
         <MobileSectionHead title="주요 제품" href="#/products" />
         <div className="mobile-product-strip">
           {products.map(([title, body, image]) => (
-            <a href="#/products" key={title}>
+            <a href="#/products" key={title} data-mobile-product-card={title} aria-label={`${title} 제품 보기`}>
               <figure><img src={image} alt={title} loading="eager" decoding="async" /></figure>
               <strong>{title}</strong>
               <span>{body.split(" ")[0] || "Precision Part"}</span>
