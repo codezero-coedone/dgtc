@@ -2829,15 +2829,15 @@ button:disabled {
   align-items: center;
   justify-content: center;
   border-radius: 14px;
-  background: rgba(255, 255, 255, .94);
-  padding: 8px 9px;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, .14);
+  background: rgba(255, 255, 255, .97);
+  padding: 8px 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .16);
 }
 
 .dk-sidebar-brand .dk-brand-logo__asset {
-  width: 210px;
+  width: 214px;
   height: auto;
-  max-height: 58px;
+  max-height: 54px;
   object-fit: contain;
 }
 
@@ -2855,10 +2855,10 @@ button:disabled {
 }
 
 .dk-topbar-brandline .dk-brand-logo__asset {
-  width: 164px;
-  max-width: min(32vw, 164px);
+  width: 172px;
+  max-width: min(34vw, 172px);
   height: auto;
-  max-height: 34px;
+  max-height: 38px;
   object-fit: contain;
 }
 

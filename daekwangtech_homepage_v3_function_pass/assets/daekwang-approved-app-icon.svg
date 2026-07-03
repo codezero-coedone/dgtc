@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="DAE KWANG TECH app icon">
+  <defs>
+    <linearGradient id="dkAppBlue" x1="96" y1="84" x2="420" y2="436" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E63D6"/>
+      <stop offset=".48" stop-color="#2E8AF0"/>
+      <stop offset="1" stop-color="#76C7FF"/>
+    </linearGradient>
+    <linearGradient id="dkAppPanel" x1="54" y1="44" x2="462" y2="468" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071A33"/>
+      <stop offset=".62" stop-color="#0B2B58"/>
+      <stop offset="1" stop-color="#082043"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#dkAppPanel)"/>
+  <path d="M84 104h344" fill="none" stroke="#76C7FF" stroke-opacity=".26" stroke-width="12" stroke-linecap="round"/>
+  <path d="M126 356V156h87c69 0 114 38 114 100s-45 100-114 100h-87Zm58-52h30c40 0 63-18 63-48s-23-48-63-48h-30v96Z" fill="#FFFFFF"/>
+  <path d="M320 156h77L296 254l111 102h-82l-92-96 87-104Z" fill="url(#dkAppBlue)"/>
+  <path d="M374 186h-30l-79 77 90 82h34l-88-91 73-68Z" fill="#061B35" opacity=".93"/>
+  <path d="M134 408h244" fill="none" stroke="#76C7FF" stroke-opacity=".18" stroke-width="10" stroke-linecap="round"/>
+</svg>

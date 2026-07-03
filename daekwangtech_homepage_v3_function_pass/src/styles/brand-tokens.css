@@ -20,7 +20,6 @@
 .dk-brand-logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
   min-width: 0;
   color: var(--dk-brand-text);
   line-height: 0;
@@ -37,22 +36,22 @@
 
 .dk-brand-logo__asset {
   display: block;
-  width: 230px;
+  width: 246px;
   max-width: 100%;
   height: auto;
   object-fit: contain;
 }
 
 .dk-brand-logo.is-sm .dk-brand-logo__asset {
-  width: 210px;
+  width: 196px;
 }
 
 .dk-brand-logo.is-md .dk-brand-logo__asset {
-  width: 240px;
+  width: 238px;
 }
 
 .dk-brand-logo.is-lg .dk-brand-logo__asset {
-  width: 280px;
+  width: 276px;
 }
 
 .dk-brand-badge {

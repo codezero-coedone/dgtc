@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import approvedBrandMarkUrl from "../assets/daekwang-approved-mark.svg";
 import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
@@ -87,11 +88,13 @@ function BrandLockup({ tone = "dark", variant = "header", className = "" }) {
 
   return (
     <span className={classes} role="img" aria-label="DAE KWANG TECH">
-      <img className="brand-lockup__mark" src="assets/daekwang-mark-v2.svg" alt="" aria-hidden="true" decoding="async" />
-      <span className="brand-lockup__text" aria-hidden="true">
-        <span className="brand-lockup__name">DAE KWANG</span>
-        <span className="brand-lockup__tech">TECH</span>
-      </span>
+      <img className="brand-lockup__mark" src={approvedBrandMarkUrl} alt="" aria-hidden="true" decoding="async" />
+      {variant === "route" ? null : (
+        <span className="brand-lockup__text" aria-hidden="true">
+          <span className="brand-lockup__name">DAE KWANG</span>
+          <span className="brand-lockup__tech">TECH</span>
+        </span>
+      )}
     </span>
   );
 }
@@ -312,7 +315,7 @@ function MobileTopBar({ title, tone = "light", menuOpen, setMenuOpen }) {
       ) : (
         <a className="mobile-app-back" href="#/" aria-label="이전 화면">‹</a>
       )}
-      {title ? <strong>{title}</strong> : null}
+      {title ? <strong><BrandLockup tone="light" variant="route" /><span>{title}</span></strong> : null}
       <button type="button" aria-label="메뉴 열기" aria-expanded={menuOpen ? "true" : "false"} onClick={() => setMenuOpen((value) => !value)}>
         <span />
         <span />

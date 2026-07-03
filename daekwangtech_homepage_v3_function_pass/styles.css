@@ -5822,7 +5822,7 @@ img[src$="real-precision-threaded-pair.jpg"] {
   flex: 0 0 42px;
   width: 42px;
   height: 42px;
-  background: url("assets/daekwang-mark-v2.svg") center / contain no-repeat;
+  background: url("assets/daekwang-approved-mark.svg") center / contain no-repeat;
 }
 
 .notice-hero-card .dk-brand-logo::after,
@@ -9308,6 +9308,181 @@ body.product-modal-open {
 
   .product-detail-modal__close {
     width: 100%;
+  }
+}
+
+/* DAEKWANG_APPROVED_LOGO_REPLACEMENT_AND_PREMIUM_BRAND_POLISH_V1 */
+.brand-lockup {
+  --brand-name: #f8fafc;
+  --brand-tech: #76c7ff;
+  gap: 9px;
+  letter-spacing: 0;
+}
+
+.brand-lockup__mark {
+  border-radius: 0;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 8px 16px rgba(0, 18, 42, .28))
+    drop-shadow(0 0 10px rgba(46, 138, 240, .10));
+}
+
+.brand-lockup__text {
+  gap: 3px;
+}
+
+.brand-lockup__name {
+  color: var(--brand-name);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 950;
+  letter-spacing: .045em;
+}
+
+.brand-lockup__tech {
+  position: relative;
+  width: max-content;
+  padding-inline: 14px;
+  color: var(--brand-tech);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 950;
+  letter-spacing: .34em;
+}
+
+.brand-lockup__tech::before,
+.brand-lockup__tech::after {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 1px;
+  background: currentColor;
+  opacity: .56;
+  content: "";
+}
+
+.brand-lockup__tech::before {
+  left: 0;
+}
+
+.brand-lockup__tech::after {
+  right: 1px;
+}
+
+.brand-lockup--light {
+  --brand-name: #071a33;
+  --brand-tech: #1e63d6;
+}
+
+.brand-lockup--dark {
+  --brand-name: #f8fafc;
+  --brand-tech: #76c7ff;
+}
+
+.brand-lockup--header {
+  min-height: 48px;
+}
+
+.brand-lockup--header .brand-lockup__mark {
+  width: 48px;
+  height: 48px;
+}
+
+.brand-lockup--header .brand-lockup__name {
+  font-size: 17px;
+}
+
+.brand-lockup--header .brand-lockup__tech {
+  font-size: 10px;
+}
+
+.brand-lockup--mobile {
+  gap: 8px;
+  min-height: 38px;
+}
+
+.brand-lockup--mobile .brand-lockup__mark {
+  width: 34px;
+  height: 34px;
+}
+
+.brand-lockup--mobile .brand-lockup__name {
+  font-size: 13px;
+}
+
+.brand-lockup--mobile .brand-lockup__tech {
+  font-size: 8px;
+}
+
+.brand-lockup--route {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+}
+
+.brand-lockup--route .brand-lockup__mark {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 5px 10px rgba(15, 71, 175, .18));
+}
+
+.brand-lockup--footer .brand-lockup__mark {
+  width: 42px;
+  height: 42px;
+}
+
+.site-header .brand {
+  min-width: 0;
+}
+
+.site-header .brand .brand-lockup {
+  max-width: min(245px, 30vw);
+}
+
+.mobile-app-topbar--route > strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.mobile-app-topbar--route > strong > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-app-menu > div::before {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: url("assets/daekwang-approved-mark.svg") center / contain no-repeat;
+  content: "";
+}
+
+@media (max-width: 430px) {
+  .brand-lockup--mobile .brand-lockup__mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-lockup--mobile .brand-lockup__name {
+    font-size: 12px;
+    letter-spacing: .035em;
+  }
+
+  .brand-lockup--mobile .brand-lockup__tech {
+    padding-inline: 12px;
+    font-size: 7.5px;
+    letter-spacing: .3em;
+  }
+
+  .brand-lockup--route,
+  .brand-lockup--route .brand-lockup__mark {
+    width: 26px;
+    height: 26px;
   }
 }
 
