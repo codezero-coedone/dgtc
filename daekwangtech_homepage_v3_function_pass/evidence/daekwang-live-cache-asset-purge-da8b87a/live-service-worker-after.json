@@ -1,0 +1,11 @@
+{
+  "url": "https://dgtc.ejdzm90.workers.dev/daekwang-sw.js",
+  "status": 200,
+  "cacheControl": [
+    "no-store, must-revalidate, no-cache"
+  ],
+  "containsCleanup": true,
+  "containsOldServing": false,
+  "note": "actual registered service worker URL without query",
+  "body": "const CACHE_NAME_MATCHERS = [\"daekwang\", \"app-shell\", \"runtime\"];\nconst LEGACY_CACHE_NAMES = [\"daekwang-app-shell-v1\", \"daekwang-runtime-v1\"];\n\nfunction shouldDeleteCache(cacheName) {\n  return LEGACY_CACHE_NAMES.includes(cacheName) || CACHE_NAME_MATCHERS.some((matcher) => cacheName.includes(matcher));\n}\n\nasync function clearDaekwangCaches() {\n  const keys = await caches.keys();\n  await Promise.all(keys.filter(shouldDeleteCache).map((key) => caches.delete(key)));\n}\n\nasync function notifyClients() {\n  const clients = await self.clients.matchAll({ includeUncontrolled: true, type: \"window\" });\n  clients.forEach((client) => client.postMessage({ type: \"SW_CACHE_CLEARED\" }));\n}\n\nself.addEventListener(\"install\", (event) => {\n  event.waitUntil(self.skipWaiting());\n});\n\nself.addEventListener(\"activate\", (event) => {\n  event.waitUntil(\n    clearDaekwangCaches()\n      .then(() => self.clients.claim())\n      .then(() => notifyClients()),\n  );\n});\n\nself.addEventListener(\"fetch\", (event) => {\n  const { request } = event;\n  if (request.method !== \"GET\") return;\n\n  const url = new URL(request.url);\n  if (url.origin !== self.location.origin) return;\n\n  event.respondWith(fetch(request));\n});\n"
+}

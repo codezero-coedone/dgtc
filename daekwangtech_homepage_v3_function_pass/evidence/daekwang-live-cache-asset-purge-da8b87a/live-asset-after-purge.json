@@ -1,0 +1,14 @@
+{
+  "url": "https://dgtc.ejdzm90.workers.dev/?v=cache-purge-43178f2#/",
+  "status": 200,
+  "cacheControl": [
+    "must-revalidate, no-cache"
+  ],
+  "asset": "/assets/index-c9binZzj.js",
+  "assetStatus": 200,
+  "assetCacheControl": [
+    "public, must-revalidate, max-age=0"
+  ],
+  "htmlContainsNewJs": true,
+  "htmlLength": 1224
+}

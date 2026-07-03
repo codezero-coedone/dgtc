@@ -1,24 +1,30 @@
 {
-  "base": "http://127.0.0.1:4187",
+  "base": "https://dgtc.ejdzm90.workers.dev",
+  "tag": "cache-purge-43178f2",
   "beforeKeys": [
     "daekwang-app-shell-v1",
     "daekwang-runtime-v1",
     "other-cache-keep"
   ],
-  "afterKeys": [
+  "registeredScope": "https://dgtc.ejdzm90.workers.dev/",
+  "afterSwKeys": [
     "other-cache-keep"
   ],
-  "oldCachesRemoved": true,
-  "unrelatedCachePreserved": true,
-  "registrations": [],
-  "serviceWorkersUnregistered": true,
-  "loadedScripts": [
-    "http://127.0.0.1:4187/assets/index-c9binZzj.js"
+  "afterAppKeys": [
+    "other-cache-keep"
   ],
+  "oldCachesRemovedBySw": true,
+  "oldCachesRemovedAfterApp": true,
+  "unrelatedCachePreserved": true,
+  "registrationsAfterApp": [],
+  "serviceWorkersUnregisteredByApp": true,
+  "loadedScripts": [
+    "https://dgtc.ejdzm90.workers.dev/assets/index-c9binZzj.js"
+  ],
+  "latestJsLoaded": true,
   "heroText": "정밀함이\n가치를 만듭니다",
   "productsVisible": true,
+  "cardCount": 19,
   "adminLoginVisible": true,
-  "consoleErrors": [
-    "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ]
+  "consoleErrors": []
 }
