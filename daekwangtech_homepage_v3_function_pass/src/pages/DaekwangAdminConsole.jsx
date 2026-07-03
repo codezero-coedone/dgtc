@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { adminSectionOptions, initialNoticeDraft } from "../data/daekwangAdminData.js";
+import { adminSectionOptions, initialNoticeDraft, normalizeAdminSectionKey } from "../data/daekwangAdminData.js";
 import { useAdminStore } from "../hooks/useAdminStore.js";
 import { AdminConfirmModal } from "../components/daekwang-admin/AdminConfirmModal.jsx";
 import { AdminPreviewModal } from "../components/daekwang-admin/AdminPreviewModal.jsx";
@@ -140,8 +140,8 @@ export function DaekwangAdminConsole() {
   const { state, actions } = useAdminStore();
   const [authSession, setAuthSession] = useState(() => readAdminAuthSession());
   const [isResponsiveAdmin, setIsResponsiveAdmin] = useState(false);
-  const [activeSection, setActiveSectionState] = useState(state.uiPreferences.activeSection || "dashboard");
-  const [activeCategory, setActiveCategoryState] = useState(state.uiPreferences.activeCategory || "mainBanner");
+  const [activeSection, setActiveSectionState] = useState(() => normalizeAdminSectionKey(state.uiPreferences.activeSection || "dashboard"));
+  const [activeCategory, setActiveCategoryState] = useState(state.uiPreferences.activeCategory || "homeHeroImage");
   const [selectedImageId, setSelectedImageId] = useState(state.imageAssets[0]?.id ?? "");
   const [noticeDraft, setNoticeDraft] = useState(() => normalizeNoticeDraft(state.uiPreferences.noticeDraft));
   const [noticeError, setNoticeError] = useState("");
@@ -155,6 +155,13 @@ export function DaekwangAdminConsole() {
   useEffect(() => {
     document.title = "대광테크 관리자 콘솔 | DAE KWANG TECH";
   }, []);
+
+  useEffect(() => {
+    const normalizedSection = normalizeAdminSectionKey(activeSection);
+    if (normalizedSection === activeSection) return;
+    setActiveSectionState(normalizedSection);
+    actions.updateUiPreferences((prefs) => ({ ...prefs, activeSection: normalizedSection }));
+  }, [activeSection, actions]);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 1199px)");
@@ -269,8 +276,9 @@ export function DaekwangAdminConsole() {
   const notify = (title, message = "", type = "success") => setToast({ title, message, type });
 
   const setActiveSection = (section) => {
-    setActiveSectionState(section);
-    actions.updateUiPreferences((prefs) => ({ ...prefs, activeSection: section }));
+    const normalizedSection = normalizeAdminSectionKey(section);
+    setActiveSectionState(normalizedSection);
+    actions.updateUiPreferences((prefs) => ({ ...prefs, activeSection: normalizedSection }));
   };
 
   const setActiveCategory = (category) => {
@@ -305,13 +313,6 @@ export function DaekwangAdminConsole() {
         section: "images",
         category: asset.category,
         kind: "이미지",
-      })),
-      ...state.adminUsers.map((user) => ({
-        id: user.id,
-        label: user.name,
-        meta: `${user.email} · ${user.role}`,
-        section: "users",
-        kind: "사용자",
       })),
       ...state.auditLogs.slice(0, 30).map((log) => ({
         id: log.id,
@@ -379,7 +380,7 @@ export function DaekwangAdminConsole() {
       {
         id: "banners",
         label: "활성 배너",
-        value: String(state.imageAssets.filter((asset) => asset.category === "mainBanner" && asset.status === "active").length),
+        value: String(state.imageAssets.filter((asset) => asset.category === "homeHeroImage" && asset.status === "active").length),
         unit: "개",
         description: "사용 중인 메인 배너",
         icon: "banner",
@@ -746,7 +747,7 @@ export function DaekwangAdminConsole() {
       onConfirm: () => {
         actions.resetAdminData();
         setActiveSectionState("dashboard");
-        setActiveCategoryState("mainBanner");
+        setActiveCategoryState("homeHeroImage");
         setSelectedImageId("");
         setNoticeDraft(normalizeNoticeDraft(initialNoticeDraft));
         setEditingNoticeId(null);
@@ -836,6 +837,26 @@ export function DaekwangAdminConsole() {
         onOpenPublicNoticeList={openPublicNoticeList}
         onPreview={(payload) => setPreview(payload)}
         onReset={resetAdminData}
+        onDeleteActivity={(log) => {
+          openConfirm({
+            title: "최근 활동 삭제",
+            message: `${log.title} 활동 기록을 삭제할까요?`,
+            onConfirm: () => {
+              actions.deleteActivityLog(log.id);
+              notify("최근 활동 삭제", log.title);
+            },
+          });
+        }}
+        onClearActivities={() => {
+          openConfirm({
+            title: "활동 기록 비우기",
+            message: "최근 활동 기록을 모두 비울까요? 공지, 이미지, 콘텐츠 데이터는 유지됩니다.",
+            onConfirm: () => {
+              actions.clearActivityLogs();
+              notify("활동 기록 비우기 완료", "최근 활동 기록이 정리되었습니다.");
+            },
+          });
+        }}
         onToast={notify}
         onToggleNotice={toggleNotice}
         onConfirm={openConfirm}

@@ -4,6 +4,8 @@ import { loadStoredContent } from "./adminContentSeed.js";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
 import { NoticeDetailPage, NoticeListPage } from "./pages/NoticePages.jsx";
 import { facilityCards, homeProducts, imageFallback, navItems, pageContent, qualityCards, routeAlias } from "./siteData.js";
+import { publicImageSlots } from "./data/daekwangAdminData.js";
+import { ADMIN_STORAGE_KEY, ADMIN_STORE_EVENT } from "./utils/adminStorage.js";
 
 const manufacturingProcessSteps = [
   ["요구사항 확인", "제작 목적과 사용 조건, 납품 기준을 먼저 정리합니다."],
@@ -186,28 +188,74 @@ const mobileCapabilities = [
   ["설비 역량", "안정적인 생산 인프라"],
 ];
 
+const mobileProofImages = [
+  ["생산 로트", "assets/real-hero-batch-components.jpg"],
+  ["나사산 검증", "assets/real-precision-threaded-pair.jpg"],
+  ["정밀 부품", "assets/real-black-valve-core.jpg"],
+];
+
 const mobileProcessCards = premiumProcessSteps.map(({ num, title, body, image }) => [num, title, body, image]);
 
-const mobileQualityCards = [
-  ["ISO 9001", "품질경영 기준"],
-  ["측정 장비", "CMM 및 형상 측정"],
-  ["검사 체계", "입고부터 출하 전 확인"],
-  ["품질 보증", "기록 기반 반복 관리"],
-];
-
 const mobileProductCards = [
-  ["자동차 부품", "정밀 치수와 반복 품질이 필요한 부품"],
-  ["산업기계 부품", "장비 운용 환경을 고려한 금속 가공"],
-  ["건설기계 부품", "내구성과 형상 안정성이 중요한 부품"],
-  ["기타 정밀 부품", "도면 조건에 맞춘 다품종 가공 대응"],
+  ["자동차 부품", "정밀 치수와 반복 품질이 필요한 부품", "assets/real-black-valve-core.jpg"],
+  ["산업기계 부품", "장비 운용 환경을 고려한 금속 가공", "assets/real-silver-valve-core.jpg"],
+  ["건설기계 부품", "내구성과 형상 안정성이 중요한 부품", "assets/real-stepped-shaft-vertical.jpg"],
+  ["기타 정밀 부품", "도면 조건에 맞춘 다품종 가공 대응", "assets/real-precision-threaded-pair.jpg"],
 ];
 
-function MobilePublicShell({ route, page, detail, content, menuOpen, setMenuOpen }) {
+const imageSlotFallbacks = Object.fromEntries(publicImageSlots.map((slot) => [slot.key, slot.fallback]));
+
+function isUsablePublicImage(src) {
+  return typeof src === "string" && src.trim() && !src.startsWith("data:");
+}
+
+function loadPublicImageSlotOverrides() {
+  const fallback = {
+    homeHeroImage: imageSlotFallbacks.homeHeroImage,
+    processHeroImage: imageSlotFallbacks.processHeroImage,
+    qualityVisualImage: imageSlotFallbacks.qualityVisualImage,
+    facilityVisualImage: imageSlotFallbacks.facilityVisualImage,
+    productsGalleryImages: [imageSlotFallbacks.productsGalleryImages].filter(Boolean),
+  };
+  if (typeof window === "undefined") return fallback;
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(ADMIN_STORAGE_KEY) || "{}");
+    const assets = Array.isArray(parsed.imageAssets) ? parsed.imageAssets : [];
+    const activeAssets = assets
+      .filter((asset) => asset?.status !== "inactive" && isUsablePublicImage(asset?.imageUrl))
+      .sort((a, b) => (Number(a.order) || 0) - (Number(b.order) || 0));
+    const pick = (key) => activeAssets.find((asset) => asset.category === key)?.imageUrl || fallback[key];
+    const products = activeAssets.filter((asset) => asset.category === "productsGalleryImages").map((asset) => asset.imageUrl);
+    return {
+      homeHeroImage: pick("homeHeroImage"),
+      processHeroImage: pick("processHeroImage"),
+      qualityVisualImage: pick("qualityVisualImage"),
+      facilityVisualImage: pick("facilityVisualImage"),
+      productsGalleryImages: products.length ? products : fallback.productsGalleryImages,
+    };
+  } catch {
+    return fallback;
+  }
+}
+
+function withFirstImage(cards, image) {
+  if (!image || !cards.length) return cards;
+  return cards.map((card, index) => (index === 0 ? [card[0], card[1], image] : card));
+}
+
+function withGalleryImages(cards, images = []) {
+  if (!images.length) return cards;
+  return cards.map((card, index) => [card[0], card[1], images[index % images.length] || card[2]]);
+}
+
+function MobilePublicShell({ route, page, detail, content, imageSlots, menuOpen, setMenuOpen }) {
   const active = route.startsWith("notice") ? "notice" : page.id;
   const isHome = page.id === "index" && route !== "notice" && !route.startsWith("notice/");
   const noticeItems = (content.posts || []).filter((post) => post.status === "published" || post.pinned).slice(0, 3);
   const cards = detail.cards || [];
-  const facilityItems = pageContent.facility.cards.slice(0, 4);
+  const facilityItems = withFirstImage(pageContent.facility.cards.slice(0, 4), imageSlots.facilityVisualImage);
+  const mobileQualityCards = withFirstImage(qualityCards.slice(0, 4), imageSlots.qualityVisualImage);
+  const mobileProducts = withGalleryImages(mobileProductCards, imageSlots.productsGalleryImages);
   const pageTitle = isHome ? "정밀한 기술로 가치를 만듭니다" : page.headline.replace(/\n/g, " ");
   const pageSummary = isHome ? "정밀 제조, 품질 관리, 설비 역량을 하나의 기준으로 관리하는 대광테크의 제조 역량을 소개합니다." : page.summary;
 
@@ -216,13 +264,13 @@ function MobilePublicShell({ route, page, detail, content, menuOpen, setMenuOpen
       return <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body, image]) => <article key={title}><img src={image} alt="" aria-hidden="true" /><div><span>{num}</span><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
     }
     if (active === "quality") {
-      return <div className="mobile-app-list">{mobileQualityCards.map(([title, body]) => <article key={title}><span>◎</span><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
+      return <div className="mobile-app-card-grid">{mobileQualityCards.map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
     }
     if (active === "facility") {
       return <div className="mobile-app-card-grid">{facilityItems.map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
     }
     if (active === "products") {
-      return <div className="mobile-app-card-grid">{mobileProductCards.map(([title, body]) => <article className="mobile-app-card" key={title}><span>▥</span><strong>{title}</strong><p>{body}</p></article>)}</div>;
+      return <div className="mobile-app-card-grid">{mobileProducts.map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
     }
     if (active === "notice") {
       return (
@@ -266,12 +314,15 @@ function MobilePublicShell({ route, page, detail, content, menuOpen, setMenuOpen
         {isHome ? (
           <>
             <section className="mobile-app-hero">
-              <img src="assets/hero-machine.jpg" alt="대광테크 정밀 제조 이미지" />
+              <img src={imageSlots.homeHeroImage} alt="대광테크 정밀 가공 부품 실사" />
               <div>
                 <span>Precision Makes Value</span>
                 <h1>정밀한 기술로<br />가치를 만듭니다</h1>
                 <p>{pageSummary}</p>
               </div>
+            </section>
+            <section className="mobile-app-proofstrip" aria-label="정밀 가공 실사">
+              {mobileProofImages.map(([label, image], index) => <figure key={label}><img src={index === 0 ? imageSlots.processHeroImage : image} alt={label} /><figcaption>{label}</figcaption></figure>)}
             </section>
             <section className="mobile-app-capabilities" aria-label="핵심 역량">
               {mobileCapabilities.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
@@ -290,6 +341,7 @@ function MobilePublicShell({ route, page, detail, content, menuOpen, setMenuOpen
         ) : (
           <>
             <section className="mobile-app-page-hero">
+              <img className="mobile-app-page-hero-image" src={page.heroImage} alt="" aria-hidden="true" />
               <span>{page.eyebrow}</span>
               <h1>{page.title}</h1>
               <p>{pageSummary}</p>
@@ -425,7 +477,7 @@ function CompactClosingPanel({ page, items }) {
   );
 }
 
-function ProcessBand() {
+function ProcessBand({ imageSlots = loadPublicImageSlotOverrides() }) {
   return (
     <section className="process-band" aria-label="대광테크 제조 프로세스">
       <div className="wrap process-layout process-premium-layout">
@@ -435,7 +487,7 @@ function ProcessBand() {
           <p className="process-editorial-copy">요구 분석부터 출하까지 하나의 기준으로 연결해 정밀 가공 품질과 생산 흐름을 안정적으로 관리합니다.</p>
           <a className="detail-link process-detail-link" href="#/process">프로세스 자세히 보기</a>
           <figure className="process-proof-card">
-            <img src="assets/real-hero-batch-components.jpg" alt="대광테크 정밀 가공 부품 디테일" />
+            <img src={imageSlots.processHeroImage} alt="대광테크 정밀 가공 부품 디테일" />
             <figcaption>
               <span>PROCESS PROOF</span>
               <strong>가공 기준과 검사 흐름을 함께 묶은 제조 관리</strong>
@@ -511,29 +563,32 @@ function QualityControlPanel() {
   );
 }
 
-function ProductsPreview() {
+function ProductsPreview({ imageSlots }) {
+  const cards = withGalleryImages(homeProducts, imageSlots.productsGalleryImages);
   return (
     <section className="split-section wrap home-products-section">
       <div className="section-intro"><p className="section-kicker">제품/서비스</p><h2>정밀 기술로 완성하는<br />최고의 솔루션</h2><p>다양한 산업의 요구를 충족하는 고정밀 부품 및 금속 가공 솔루션을 제공합니다.</p><a className="detail-link" href="#/products">자세히 보기 →</a></div>
-      <CardGrid cards={homeProducts} className="product-grid" />
+      <CardGrid cards={cards} className="product-grid" />
     </section>
   );
 }
 
-function QualityPreview() {
+function QualityPreview({ imageSlots }) {
+  const cards = withFirstImage(qualityCards, imageSlots.qualityVisualImage);
   return (
     <section className="split-section wrap quality-home home-quality-section">
       <div className="section-intro"><p className="section-kicker">품질 관리</p><h2>정밀한 검증이<br />신뢰를 만듭니다</h2><p>품질 관리 시스템과 측정 장비로 안정적인 품질을 보장합니다.</p><a className="detail-link" href="#/quality">품질 관리 자세히 보기 →</a></div>
-      <CardGrid cards={qualityCards} className="quality-grid" />
+      <CardGrid cards={cards} className="quality-grid" />
     </section>
   );
 }
 
-function FacilityPreview() {
+function FacilityPreview({ imageSlots }) {
+  const cards = withFirstImage(facilityCards, imageSlots.facilityVisualImage);
   return (
     <section className="split-section wrap home-facility-section">
       <div className="section-intro"><p className="section-kicker">설비 / 시설</p><h2>최첨단 설비와<br />강력한 생산 인프라</h2><p>고품질 가공을 위한 설비와 생산 시스템을 구축하고 있습니다.</p><a className="detail-link" href="#/facility">설비 현황 자세히 보기 →</a></div>
-      <CardGrid cards={facilityCards} className="facility-grid" />
+      <CardGrid cards={cards} className="facility-grid" />
     </section>
   );
 }
@@ -561,7 +616,7 @@ function TrustPreview({ posts }) {
   );
 }
 
-function SubPage({ page, detail }) {
+function SubPage({ page, detail, imageSlots }) {
   const isProcessPage = page.id === "process";
   const isQualityPage = page.id === "quality";
   const isCompactClosingPage = page.id === "technology" || page.id === "company";
@@ -573,7 +628,7 @@ function SubPage({ page, detail }) {
           <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
           <p>{page.summary}</p>
         </div>
-        {detail.cards ? <CardGrid cards={detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand />}
+        {detail.cards ? <CardGrid cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : page.id === "facility" ? withFirstImage(detail.cards, imageSlots.facilityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
       </section>
       {isQualityPage ? <QualityControlPanel /> : isCompactClosingPage && detail.metrics ? <CompactClosingPanel page={page} items={detail.metrics} /> : detail.metrics ? <MetricRow items={detail.metrics} /> : null}
     </>
@@ -614,8 +669,29 @@ function NotFoundPage({ company, menuOpen, setMenuOpen }) {
 
 function SiteApp({ content, setContent, route }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const page = useMemo(() => content.pages.find((item) => item.id === route) ?? content.pages[0], [content.pages, route]);
+  const [imageSlots, setImageSlots] = useState(() => loadPublicImageSlotOverrides());
+  const page = useMemo(() => {
+    const sourcePage = content.pages.find((item) => item.id === route) ?? content.pages[0];
+    const slotByPage = {
+      index: imageSlots.homeHeroImage,
+      process: imageSlots.processHeroImage,
+      quality: imageSlots.qualityVisualImage,
+      facility: imageSlots.facilityVisualImage,
+      products: imageSlots.productsGalleryImages[0],
+    };
+    return slotByPage[sourcePage.id] ? { ...sourcePage, heroImage: slotByPage[sourcePage.id] } : sourcePage;
+  }, [content.pages, imageSlots, route]);
   const detail = pageContent[page.id] ?? pageContent.index;
+
+  useEffect(() => {
+    const refresh = () => setImageSlots(loadPublicImageSlotOverrides());
+    window.addEventListener("storage", refresh);
+    window.addEventListener(ADMIN_STORE_EVENT, refresh);
+    return () => {
+      window.removeEventListener("storage", refresh);
+      window.removeEventListener(ADMIN_STORE_EVENT, refresh);
+    };
+  }, []);
 
   useEffect(() => {
     if (route === "admin") return;
@@ -646,7 +722,7 @@ function SiteApp({ content, setContent, route }) {
     return (
       <div className="site-shell route-notice">
         <a className="skip-link" href="#main-content">본문 바로가기</a>
-        <MobilePublicShell route={route} page={page} detail={detail} content={content} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <MobilePublicShell route={route} page={page} detail={detail} content={content} imageSlots={imageSlots} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <div className="desktop-public-render">
           <Header active="notice" menuOpen={menuOpen} onMenu={() => setMenuOpen((value) => !value)} />
           <MobilePanel active="notice" open={menuOpen} onClose={() => setMenuOpen(false)} />
@@ -660,16 +736,16 @@ function SiteApp({ content, setContent, route }) {
   return (
     <div className={`site-shell route-${page.id}`}>
       <a className="skip-link" href="#main-content">본문 바로가기</a>
-      <MobilePublicShell route={route} page={page} detail={detail} content={content} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <MobilePublicShell route={route} page={page} detail={detail} content={content} imageSlots={imageSlots} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <div className="desktop-public-render">
         {page.id === "index" ? (
           <>
           <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <FeatureRail items={detail.rail} />
-          <ProductsPreview />
-          <ProcessBand />
-          <QualityPreview />
-          <FacilityPreview />
+          <ProductsPreview imageSlots={imageSlots} />
+          <ProcessBand imageSlots={imageSlots} />
+          <QualityPreview imageSlots={imageSlots} />
+          <FacilityPreview imageSlots={imageSlots} />
           <HomeNoticeSection />
           <TrustPreview posts={content.posts} />
           <Footer company={content.company} />
@@ -678,7 +754,7 @@ function SiteApp({ content, setContent, route }) {
           <>
           <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <FeatureRail items={detail.rail} />
-          <SubPage page={page} detail={detail} />
+          <SubPage page={page} detail={detail} imageSlots={imageSlots} />
           <Footer company={content.company} />
           </>
         )}

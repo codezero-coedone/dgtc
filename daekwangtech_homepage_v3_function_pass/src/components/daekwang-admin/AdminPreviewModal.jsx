@@ -18,7 +18,7 @@ function DetailRows({ rows }) {
 function FullHomepagePreview({ preview, mode, popup }) {
   const isImage = (preview.kind || "").includes("IMAGE");
   const isNotice = (preview.kind || "").includes("NOTICE");
-  const heroImage = isImage && preview.imageCategory === "mainBanner" ? preview.imageUrl : "assets/hero-machine.jpg";
+  const heroImage = isImage && preview.imageCategory === "homeHeroImage" ? preview.imageUrl : "assets/hero-machine.jpg";
   const businessImage = isImage && ["product", "company"].includes(preview.imageCategory) ? preview.imageUrl : "assets/product-1.jpg";
   const facilityImage = isImage && preview.imageCategory === "facility" ? preview.imageUrl : "assets/facility-cnc.jpg";
   const noticeCategory = preview.category || preview.description?.split("·")?.[0]?.trim() || "공지";

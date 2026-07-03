@@ -112,6 +112,20 @@ export function useAdminStore() {
       updateUiPreferences(updater) {
         updateSlice("uiPreferences", updater);
       },
+      deleteActivityLog(activityId) {
+        setState((current) => ({
+          ...current,
+          activityLogs: current.activityLogs.filter((log) => log.id !== activityId),
+          auditLogs: [createAuditLog("activityDelete", "최근 활동 삭제", activityId, "success", "사용자 화면의 최근 활동 항목을 삭제했습니다."), ...current.auditLogs],
+        }));
+      },
+      clearActivityLogs() {
+        setState((current) => ({
+          ...current,
+          activityLogs: [],
+          auditLogs: [createAuditLog("activityClear", "최근 활동 전체 삭제", "activityLogs", "success", "사용자 화면의 최근 활동 기록을 모두 비웠습니다."), ...current.auditLogs],
+        }));
+      },
       clearAuditLogs() {
         setState((current) => ({
           ...current,

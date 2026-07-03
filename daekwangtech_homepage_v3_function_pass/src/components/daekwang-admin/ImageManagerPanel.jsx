@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { categoryLabels } from "../../data/daekwangAdminData.js";
+import { categoryLabels, publicImageSlots } from "../../data/daekwangAdminData.js";
 import { AdminIcon } from "./AdminIcons.jsx";
 import { ImageAssetCard } from "./ImageAssetCard.jsx";
 import { ImagePreviewPanel } from "./ImagePreviewPanel.jsx";
@@ -24,6 +24,7 @@ export function ImageManagerPanel({
   const replaceRef = useRef(null);
   const [replaceTargetId, setReplaceTargetId] = useState("");
   const filteredAssets = assets.filter((asset) => asset.category === activeCategory);
+  const activeSlot = publicImageSlots.find((slot) => slot.key === activeCategory) ?? publicImageSlots[0];
 
   const handleFile = (event) => {
     const file = event.target.files?.[0];
@@ -55,7 +56,7 @@ export function ImageManagerPanel({
       </div>
 
       <div className="dk-image-tabs" role="tablist" aria-label="이미지 분류">
-        {Object.entries(categoryLabels).map(([key, label]) => (
+        {publicImageSlots.map(({ key, label }) => (
           <button
             aria-selected={activeCategory === key}
             className={activeCategory === key ? "is-active" : ""}
@@ -67,6 +68,20 @@ export function ImageManagerPanel({
             {label}
           </button>
         ))}
+      </div>
+
+      <div className="dk-image-slot-map" aria-label="공개 홈페이지 이미지 슬롯">
+        <div>
+          <span>PUBLIC SLOT</span>
+          <strong>{activeSlot.label}</strong>
+          <p>{activeSlot.description}</p>
+        </div>
+        <dl>
+          <div><dt>공개 위치</dt><dd>{activeSlot.publicSection}</dd></div>
+          <div><dt>저장 키</dt><dd>{activeSlot.key}</dd></div>
+          <div><dt>Fallback</dt><dd>{activeSlot.fallback}</dd></div>
+          <div><dt>반영 상태</dt><dd>현재 브라우저 즉시 반영 / 서버 동기화 시 저장</dd></div>
+        </dl>
       </div>
 
       <div className="dk-image-layout">

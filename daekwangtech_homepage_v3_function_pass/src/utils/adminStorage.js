@@ -7,6 +7,7 @@ import {
   initialNoticeDraft,
   logItems,
   menuItems,
+  normalizeAdminSectionKey,
   noticeCtaSettings,
   notices,
   pageItems,
@@ -78,7 +79,7 @@ export function createDefaultAdminState(extraAudit = []) {
     backupItems: clone(backupItems),
     uiPreferences: {
       activeSection: "dashboard",
-      activeCategory: "mainBanner",
+      activeCategory: "homeHeroImage",
       noticeDraft: clone(initialNoticeDraft),
       autoBackup: true,
     },
@@ -91,6 +92,12 @@ export function normalizeAdminState(value) {
     ...base,
     ...(value && typeof value === "object" ? value : {}),
   };
+  const uiPreferences = { ...base.uiPreferences, ...(merged.uiPreferences || {}) };
+  uiPreferences.activeSection = normalizeAdminSectionKey(uiPreferences.activeSection);
+  if (!imageAssets.some((asset) => asset.category === uiPreferences.activeCategory)) {
+    uiPreferences.activeCategory = "homeHeroImage";
+  }
+
   return {
     ...merged,
     imageAssets: Array.isArray(merged.imageAssets) ? merged.imageAssets : base.imageAssets,
@@ -106,7 +113,7 @@ export function normalizeAdminState(value) {
     activityLogs: Array.isArray(merged.activityLogs) ? merged.activityLogs : base.activityLogs,
     auditLogs: Array.isArray(merged.auditLogs) ? merged.auditLogs : base.auditLogs,
     backupItems: Array.isArray(merged.backupItems) ? merged.backupItems : base.backupItems,
-    uiPreferences: { ...base.uiPreferences, ...(merged.uiPreferences || {}) },
+    uiPreferences,
   };
 }
 

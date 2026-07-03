@@ -25,7 +25,7 @@ export const defaultAdminContent = {
       title: "DAE KWANG TECH",
       headline: "정밀함이 만드는 차이,\n그 차이가 경쟁력입니다",
       summary: "초정밀 가공 · 금속 처리 · 품질 관리까지, 완벽을 향한 우리의 기준은 타협하지 않습니다.",
-      heroImage: "assets/hero-machine.jpg",
+      heroImage: "assets/real-hero-batch-components.jpg",
     },
     {
       id: "technology",
@@ -38,7 +38,7 @@ export const defaultAdminContent = {
       title: "기술력",
       headline: "정밀한 기술과\n끊임없는 개선으로 가치를 만듭니다",
       summary: "고객 요구와 도면 조건에 맞춘 정밀 가공 대응 역량을 제공합니다.",
-      heroImage: "assets/hero-machine.jpg",
+      heroImage: "assets/real-silver-valve-core.jpg",
     },
     {
       id: "products",
@@ -51,7 +51,7 @@ export const defaultAdminContent = {
       title: "제품/서비스",
       headline: "정밀 가공부터 조립까지,\n맞춤형 제품과 제조 솔루션을 제공합니다",
       summary: "다양한 소재와 공정, 축적된 경험으로 고객 요구에 최적화된 고정밀 부품과 완성품을 제공합니다.",
-      heroImage: "assets/hero-machine.jpg",
+      heroImage: "assets/real-hero-batch-components.jpg",
     },
     {
       id: "process",
@@ -64,7 +64,7 @@ export const defaultAdminContent = {
       title: "제조 프로세스",
       headline: "체계적인 제조 흐름으로\n일관된 품질을 완성합니다",
       summary: "요구 분석부터 출하까지 각 단계의 기준을 정리해 안정적인 생산 흐름을 유지합니다.",
-      heroImage: "assets/facility-cnc.jpg",
+      heroImage: "assets/real-process-shaft-detail.jpg",
     },
     {
       id: "quality",
@@ -77,7 +77,7 @@ export const defaultAdminContent = {
       title: "품질 관리",
       headline: "정밀한 검증이\n신뢰를 만듭니다",
       summary: "측정, 검사, 기록 관리를 통해 안정적인 품질 수준을 유지합니다.",
-      heroImage: "assets/inspection-cmm.jpg",
+      heroImage: "assets/real-precision-threaded-pair.jpg",
     },
     {
       id: "facility",
@@ -90,7 +90,7 @@ export const defaultAdminContent = {
       title: "설비/시설",
       headline: "정밀 제조를 지탱하는\n생산 인프라를 갖추고 있습니다",
       summary: "정밀 가공 설비와 검사 환경을 기반으로 안정적인 제조 대응력을 확보합니다.",
-      heroImage: "assets/facility-cnc.jpg",
+      heroImage: "assets/real-hero-batch-components.jpg",
     },
     {
       id: "company",
@@ -103,7 +103,7 @@ export const defaultAdminContent = {
       title: "회사 소개",
       headline: "신뢰를 바탕으로 성장하며,\n정밀 가공의 가치를 만들어갑니다",
       summary: "정직과 책임, 끊임없는 기술 혁신으로 고객과 함께 성장하는 정밀 가공 전문 기업입니다.",
-      heroImage: "assets/facility-cnc.jpg",
+      heroImage: "assets/real-hero-batch-components.jpg",
     },
   ],
   posts: [

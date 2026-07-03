@@ -7,6 +7,7 @@ import { RecentActivityPanel } from "./RecentActivityPanel.jsx";
 import { SummaryCards } from "./SummaryCards.jsx";
 import { clone, nowStamp } from "../../utils/adminStorage.js";
 import { downloadCsv, downloadJson, isEmail, isValidPath, validateDateRange } from "../../utils/adminValidation.js";
+import { normalizeAdminSectionKey } from "../../data/daekwangAdminData.js";
 
 const sectionMeta = {
   dashboard: ["대시보드", "웹사이트 이미지, 공지사항, 최근 활동을 한 화면에서 확인합니다."],
@@ -113,6 +114,8 @@ function DashboardSection({
   activityLogs,
   onNavigate,
   onCreateBackup,
+  onDeleteActivity,
+  onClearActivities,
 }) {
   if (compact) {
     return (
@@ -122,9 +125,8 @@ function DashboardSection({
           <button type="button" onClick={() => onNavigate("images")}>이미지 업로드</button>
           <button type="button" onClick={() => onNavigate("notices")}>공지 등록</button>
           <button type="button" onClick={onCreateBackup}>백업 생성</button>
-          <button type="button" onClick={() => onNavigate("seo")}>SEO 설정</button>
         </div>
-        <RecentActivityPanel logs={activityLogs} />
+        <RecentActivityPanel logs={activityLogs} onDeleteActivity={onDeleteActivity} onClearActivities={onClearActivities} />
       </>
     );
   }
@@ -136,7 +138,6 @@ function DashboardSection({
         <button type="button" onClick={() => onNavigate("images")}>이미지 업로드</button>
         <button type="button" onClick={() => onNavigate("notices")}>공지 등록</button>
         <button type="button" onClick={onCreateBackup}>백업 생성</button>
-        <button type="button" onClick={() => onNavigate("seo")}>SEO 설정</button>
       </div>
       <div className="dk-middle-grid">
         <ImageManagerPanel {...imageManagerProps} />
@@ -151,7 +152,7 @@ function DashboardSection({
           onPreviewNotice={onPreviewNotice}
           onToggleNotice={onToggleNotice}
         />
-        <RecentActivityPanel logs={activityLogs} />
+        <RecentActivityPanel logs={activityLogs} onDeleteActivity={onDeleteActivity} onClearActivities={onClearActivities} />
       </div>
     </>
   );
@@ -501,12 +502,15 @@ export function AdminSectionRenderer({
   onOpenPublicNoticeList,
   onPreview,
   onReset,
+  onDeleteActivity,
+  onClearActivities,
   onToast,
   onToggleNotice,
   onConfirm,
   compactDashboard = false,
 }) {
-  const [title, description] = sectionMeta[activeSection] ?? sectionMeta.dashboard;
+  const safeSection = normalizeAdminSectionKey(activeSection);
+  const [title, description] = sectionMeta[safeSection] ?? sectionMeta.dashboard;
 
   const createBackupQuick = () => {
     const snapshot = clone(state);
@@ -516,7 +520,7 @@ export function AdminSectionRenderer({
   };
 
   let body = null;
-  if (activeSection === "dashboard") {
+  if (safeSection === "dashboard") {
     body = (
       <DashboardSection
         compact={compactDashboard}
@@ -531,30 +535,32 @@ export function AdminSectionRenderer({
         onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content, category: notice.category, publishDate: notice.publishDate, status: notice.status })}
         onToggleNotice={onToggleNotice}
         onNavigate={onNavigate}
+        onDeleteActivity={onDeleteActivity}
+        onClearActivities={onClearActivities}
         summaryCards={summaryCards}
       />
     );
-  } else if (activeSection === "images") {
-    body = <div className="dk-manager-grid dk-manager-grid-wide"><ImageManagerPanel {...imageManagerProps} /><RecentActivityPanel logs={activityLogs} /></div>;
-  } else if (activeSection === "notices") {
-    body = <div className="dk-manager-grid"><NoticeManagementIntro state={state} onNavigate={onNavigate} onPreview={onPreview} /><NoticeCreatePanel {...noticeCreateProps} /><NoticeListTable notices={notices} onDeleteNotice={onDeleteNotice} onEditNotice={onEditNotice} onOpenPublicNotice={onOpenPublicNotice} onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content, category: notice.category, publishDate: notice.publishDate, status: notice.status })} onToggleNotice={onToggleNotice} /><NoticeCtaSettingsPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} /><RecentActivityPanel logs={activityLogs} /></div>;
-  } else if (activeSection === "pages") {
+  } else if (safeSection === "images") {
+    body = <div className="dk-manager-grid dk-manager-grid-wide"><ImageManagerPanel {...imageManagerProps} /><RecentActivityPanel logs={activityLogs} onDeleteActivity={onDeleteActivity} onClearActivities={onClearActivities} /></div>;
+  } else if (safeSection === "notices") {
+    body = <div className="dk-manager-grid"><NoticeManagementIntro state={state} onNavigate={onNavigate} onPreview={onPreview} /><NoticeCreatePanel {...noticeCreateProps} /><NoticeListTable notices={notices} onDeleteNotice={onDeleteNotice} onEditNotice={onEditNotice} onOpenPublicNotice={onOpenPublicNotice} onPreviewNotice={(notice) => onPreview({ kind: "NOTICE PREVIEW", title: notice.title, description: `${notice.category} · ${notice.publishDate}`, content: notice.content, category: notice.category, publishDate: notice.publishDate, status: notice.status })} onToggleNotice={onToggleNotice} /><NoticeCtaSettingsPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} /><RecentActivityPanel logs={activityLogs} onDeleteActivity={onDeleteActivity} onClearActivities={onClearActivities} /></div>;
+  } else if (safeSection === "pages") {
     body = <PageManagerPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} />;
-  } else if (activeSection === "popups") {
+  } else if (safeSection === "popups") {
     body = <PopupManagerPanel state={state} actions={actions} onToast={onToast} onConfirm={onConfirm} onPreview={onPreview} />;
-  } else if (activeSection === "menus") {
+  } else if (safeSection === "menus") {
     body = <MenuManagerPanel state={state} actions={actions} onToast={onToast} onConfirm={onConfirm} />;
-  } else if (activeSection === "footer") {
+  } else if (safeSection === "footer") {
     body = <FooterManagerPanel state={state} actions={actions} onToast={onToast} />;
-  } else if (activeSection === "settings") {
+  } else if (safeSection === "settings") {
     body = <SiteSettingsPanel state={state} actions={actions} onToast={onToast} />;
-  } else if (activeSection === "seo") {
+  } else if (safeSection === "seo") {
     body = <SeoSettingsPanel state={state} actions={actions} onToast={onToast} onPreview={onPreview} />;
-  } else if (activeSection === "users") {
+  } else if (safeSection === "users") {
     body = <UserManagerPanel state={state} actions={actions} onToast={onToast} onConfirm={onConfirm} />;
-  } else if (activeSection === "logs") {
+  } else if (safeSection === "logs") {
     body = <LogManagerPanel state={{ ...state, auditLogs }} actions={actions} onToast={onToast} onConfirm={onConfirm} onPreview={onPreview} />;
-  } else if (activeSection === "backups") {
+  } else if (safeSection === "backups") {
     body = <BackupManagerPanel state={state} actions={actions} onToast={onToast} onConfirm={onConfirm} />;
   }
 

@@ -1024,6 +1024,67 @@ button {
   color: var(--dk-blue-700);
 }
 
+.dk-image-slot-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, .78fr);
+  gap: 14px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(15, 71, 175, .12);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(234, 244, 255, .84), rgba(255, 255, 255, .92));
+  padding: 16px;
+}
+
+.dk-image-slot-map span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--dk-blue-700);
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.dk-image-slot-map strong {
+  display: block;
+  color: var(--dk-text-strong);
+  font-size: 17px;
+  font-weight: 950;
+}
+
+.dk-image-slot-map p {
+  margin: 7px 0 0;
+  color: var(--dk-text-sub);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.dk-image-slot-map dl {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+
+.dk-image-slot-map dl div {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.dk-image-slot-map dt {
+  color: var(--dk-text-muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.dk-image-slot-map dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--dk-text-main);
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  font-weight: 850;
+}
+
 .dk-image-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 292px;
@@ -1104,7 +1165,8 @@ button {
 
 .dk-thumb {
   position: relative;
-  height: 118px;
+  aspect-ratio: 16 / 10;
+  min-height: 118px;
   overflow: hidden;
   background:
     linear-gradient(135deg, rgba(6, 26, 53, 0.88), rgba(15, 71, 175, 0.66)),
@@ -1481,6 +1543,11 @@ button {
   gap: 12px;
 }
 
+.dk-activity-head button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
 .dk-activity-head .dk-section-title {
   margin-bottom: 0;
 }
@@ -1492,11 +1559,12 @@ button {
 
 .dk-activity-list article {
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) auto;
+  grid-template-columns: 36px minmax(0, 1fr) 48px 34px;
   gap: 12px;
-  align-items: start;
+  align-items: center;
   border-bottom: 1px solid var(--dk-line-soft);
   padding: 14px 0;
+  min-height: 72px;
 }
 
 .dk-activity-list article:last-child {
@@ -1532,6 +1600,24 @@ button {
   color: var(--dk-text-muted);
   font-size: 12px;
   font-weight: 800;
+}
+
+.dk-activity-delete {
+  width: 32px;
+  height: 32px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(239, 68, 68, .14);
+  border-radius: 10px;
+  background: rgba(254, 242, 242, .78);
+  color: var(--dk-red);
+}
+
+.dk-activity-empty {
+  margin-top: 14px;
+  min-height: 104px;
+  display: grid;
+  place-items: center;
 }
 
 @media (max-width: 1280px) {
@@ -1636,6 +1722,7 @@ button {
 
   .dk-summary-grid,
   .dk-image-grid,
+  .dk-image-slot-map,
   .dk-form-row,
   .dk-two-col,
   .dk-settings-grid,
@@ -1650,6 +1737,15 @@ button {
   .dk-log-filter {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .dk-image-slot-map dl div,
+  .dk-activity-list article {
+    grid-template-columns: 1fr;
+  }
+
+  .dk-activity-delete {
+    width: 100%;
   }
 
   .dk-table-tools label {
