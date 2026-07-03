@@ -165,11 +165,10 @@ function MobilePanel({ active, open, onClose }) {
 }
 
 const mobileDockItems = [
-  ["index", "홈", "⌂"],
-  ["company", "회사", "◇"],
-  ["process", "공정", "↬"],
-  ["quality", "품질", "◎"],
-  ["notice", "소식", "□"],
+  ["index", "홈", "home"],
+  ["products", "제품", "box"],
+  ["technology", "기술", "gear"],
+  ["notice", "소식", "news"],
 ];
 
 const mobileMenuItems = [
@@ -183,9 +182,10 @@ const mobileMenuItems = [
 ];
 
 const mobileCapabilities = [
-  ["정밀 제조", "CNC 기반 고정밀 부품 가공"],
-  ["품질 관리", "공정별 검사와 기록 관리"],
-  ["설비 역량", "안정적인 생산 인프라"],
+  ["정밀 가공", "최신 설비와 기술력으로 정밀한 제품을 생산"],
+  ["품질 관리", "공정별 검증과 관리로 최고의 품질 보장"],
+  ["기술 혁신", "지속적인 연구개발로 기술 경쟁력 강화"],
+  ["고객 중심", "고객 만족을 최우선으로 신뢰를 구축"],
 ];
 
 const mobileProofImages = [
@@ -197,10 +197,11 @@ const mobileProofImages = [
 const mobileProcessCards = premiumProcessSteps.map(({ num, title, body, image }) => [num, title, body, image]);
 
 const mobileProductCards = [
-  ["자동차 부품", "정밀 치수와 반복 품질이 필요한 부품", "assets/real-black-valve-core.jpg"],
-  ["산업기계 부품", "장비 운용 환경을 고려한 금속 가공", "assets/real-silver-valve-core.jpg"],
-  ["건설기계 부품", "내구성과 형상 안정성이 중요한 부품", "assets/real-stepped-shaft-vertical.jpg"],
-  ["기타 정밀 부품", "도면 조건에 맞춘 다품종 가공 대응", "assets/real-precision-threaded-pair.jpg"],
+  ["유압 피팅", "고압 환경에서도 안정적인 성능을 확보하는 유압 피팅 제품군", "assets/real-black-valve-core.jpg"],
+  ["밸브 컴포넌트", "정밀한 가공 기술로 제작된 각종 밸브 구성 부품", "assets/real-silver-valve-core.jpg"],
+  ["정밀 부품", "자동차, 반도체, 의료기기 등 다양한 산업용 정밀 부품", "assets/real-stepped-shaft-vertical.jpg"],
+  ["연결 부품", "견고한 체결력과 내구성을 갖춘 연결 부품", "assets/real-process-shaft-detail.jpg"],
+  ["기타 특수 부품", "고객 맞춤형 특수 사양 제품 및 가공 부품", "assets/real-precision-threaded-pair.jpg"],
 ];
 
 const imageSlotFallbacks = Object.fromEntries(publicImageSlots.map((slot) => [slot.key, slot.fallback]));
@@ -248,114 +249,332 @@ function withGalleryImages(cards, images = []) {
   return cards.map((card, index) => [card[0], card[1], images[index % images.length] || card[2]]);
 }
 
-function MobilePublicShell({ route, page, detail, content, imageSlots, menuOpen, setMenuOpen }) {
-  const active = route.startsWith("notice") ? "notice" : page.id;
-  const isHome = page.id === "index" && route !== "notice" && !route.startsWith("notice/");
-  const noticeItems = (content.posts || []).filter((post) => post.status === "published" || post.pinned).slice(0, 3);
-  const cards = detail.cards || [];
-  const facilityItems = withFirstImage(pageContent.facility.cards.slice(0, 4), imageSlots.facilityVisualImage);
-  const mobileQualityCards = withFirstImage(qualityCards.slice(0, 4), imageSlots.qualityVisualImage);
-  const mobileProducts = withGalleryImages(mobileProductCards, imageSlots.productsGalleryImages);
-  const pageTitle = isHome ? "정밀한 기술로 가치를 만듭니다" : page.headline.replace(/\n/g, " ");
-  const pageSummary = isHome ? "정밀 제조, 품질 관리, 설비 역량을 하나의 기준으로 관리하는 대광테크의 제조 역량을 소개합니다." : page.summary;
+function withMobileProductImages(cards, images = []) {
+  return images.length > 1 ? withGalleryImages(cards, images) : cards;
+}
 
-  const renderPageCards = () => {
-    if (active === "process") {
-      return <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body, image]) => <article key={title}><img src={image} alt="" aria-hidden="true" /><div><span>{num}</span><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
-    }
-    if (active === "quality") {
-      return <div className="mobile-app-card-grid">{mobileQualityCards.map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
-    }
-    if (active === "facility") {
-      return <div className="mobile-app-card-grid">{facilityItems.map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
-    }
-    if (active === "products") {
-      return <div className="mobile-app-card-grid">{mobileProducts.map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
-    }
-    if (active === "notice") {
-      return (
-        <div className="mobile-app-news-list">
-          <div className="mobile-app-chip-row"><span>전체</span><span>공지사항</span><span>뉴스</span></div>
-          {noticeItems.length ? noticeItems.map((post) => (
-            <a href="#/notice" className="mobile-app-news-card" key={post.id}>
-              <em>{post.category || "공지사항"}</em>
-              <strong>{post.title}</strong>
-              <p>{post.summary}</p>
-              <time>{post.publishedAt}</time>
-            </a>
-          )) : <a href="#/notice" className="mobile-app-news-card"><em>공지사항</em><strong>대광테크 소식</strong><p>주요 안내와 기업 소식을 확인하실 수 있습니다.</p><time>최근 공지</time></a>}
-        </div>
-      );
-    }
-    if (active === "company") {
-      return (
-        <div className="mobile-app-card-grid">
-          {["회사 개요", "경영 철학", "인력/역량"].map((title, index) => <article className="mobile-app-card" key={title}><span>{String(index + 1).padStart(2, "0")}</span><strong>{title}</strong><p>{["정밀 가공 기반의 제조 역량을 축적해 왔습니다.", "신뢰와 정밀을 기준으로 지속적인 개선을 이어갑니다.", "도면 검토부터 품질 확인까지 내부 기준으로 관리합니다."][index]}</p></article>)}
-        </div>
-      );
-    }
-    return <div className="mobile-app-card-grid">{cards.slice(0, 4).map(([title, body, image]) => <article className="mobile-app-image-card" key={title}><img src={image} alt={title} /><div><strong>{title}</strong><p>{body}</p></div></article>)}</div>;
-  };
+function mobileActiveTab(route, pageId) {
+  const key = route.startsWith("notice") ? "notice" : pageId;
+  if (key === "products") return "products";
+  if (["technology", "process", "quality", "facility"].includes(key)) return "technology";
+  if (key === "notice") return "notice";
+  return "index";
+}
 
+function MobileTopBar({ title, tone = "light", menuOpen, setMenuOpen }) {
+  const isHome = !title;
   return (
-    <div className={`mobile-app-public-shell route-${active}`} aria-label="대광테크 모바일 웹">
-      <header className="mobile-app-topbar">
-        <a href="#/" aria-label="대광테크 홈"><BrandLockup tone="light" variant="mobile" /></a>
-        <button type="button" aria-label="메뉴 열기" aria-expanded={menuOpen ? "true" : "false"} onClick={() => setMenuOpen((value) => !value)}>☰</button>
-      </header>
-      {menuOpen ? (
-        <aside className="mobile-app-menu" aria-label="모바일 전체 메뉴">
-          <div><strong>DAEKWANG TECH</strong><span>Precision Makes Value</span></div>
-          {mobileMenuItems.map(([id, label]) => <a key={id} href={routeHref(id)} className={active === id ? "is-active" : ""} onClick={() => setMenuOpen(false)}>{label}</a>)}
-          <p>경기도 화성시 마도면 청원산단5길 60-26</p>
-        </aside>
-      ) : null}
+    <header className={`mobile-app-topbar mobile-app-topbar--${tone}`}>
+      {isHome ? (
+        <a className="mobile-app-brand" href="#/" aria-label="대광테크 홈"><BrandLockup tone="dark" variant="mobile" /></a>
+      ) : (
+        <a className="mobile-app-back" href="#/" aria-label="이전 화면">‹</a>
+      )}
+      {title ? <strong>{title}</strong> : null}
+      <button type="button" aria-label="메뉴 열기" aria-expanded={menuOpen ? "true" : "false"} onClick={() => setMenuOpen((value) => !value)}>
+        <span />
+        <span />
+        <span />
+      </button>
+    </header>
+  );
+}
+
+function MobileMenu({ active, open, onClose }) {
+  if (!open) return null;
+  return (
+    <aside className="mobile-app-menu" aria-label="모바일 전체 메뉴">
+      <div><strong>DAEKWANG TECH</strong><span>Precision Makes Value</span></div>
+      {mobileMenuItems.map(([id, label]) => <a key={id} href={routeHref(id)} className={active === id ? "is-active" : ""} onClick={onClose}>{label}</a>)}
+    </aside>
+  );
+}
+
+function MobileBottomTabs({ active }) {
+  return (
+    <nav className="mobile-app-dock" aria-label="모바일 하단 내비게이션">
+      {mobileDockItems.map(([id, label, icon]) => (
+        <a key={id} href={routeHref(id)} className={active === id ? "is-active" : ""}>
+          <i className={`mobile-tab-icon mobile-tab-icon--${icon}`} aria-hidden="true" />
+          <b>{label}</b>
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+function MobileSectionHead({ title, href }) {
+  return (
+    <div className="mobile-app-section-head">
+      <h2>{title}</h2>
+      {href ? <a href={href}>더보기</a> : null}
+    </div>
+  );
+}
+
+function MobileDarkHero({ image, title, body, className = "" }) {
+  return (
+    <section className={`mobile-app-dark-hero ${className}`.trim()}>
+      <img src={image} alt="" aria-hidden="true" />
+      <div>
+        <h1>{title}</h1>
+        <p>{body}</p>
+      </div>
+    </section>
+  );
+}
+
+function MobileProductList({ products }) {
+  return (
+    <div className="mobile-products-list">
+      {products.map(([title, body, image]) => (
+        <article className="mobile-product-row" key={title}>
+          <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
+          <div>
+            <h3>{title}</h3>
+            <p>{body}</p>
+            <a href="#/products">자세히 보기 →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function MobileHomeScreen({ content, imageSlots }) {
+  const noticeItems = (content.posts || []).filter((post) => post.status === "published" || post.pinned).slice(0, 3);
+  const products = withMobileProductImages(mobileProductCards, imageSlots.productsGalleryImages).slice(0, 3);
+  return (
+    <>
+      <section className="mobile-home-hero">
+        <img src={imageSlots.homeHeroImage} alt="" aria-hidden="true" />
+        <div className="mobile-home-hero-copy">
+          <h1>정밀함이<br />가치를 만듭니다</h1>
+          <p>대광테크는 정밀 가공 기술로<br />최고의 품질을 제공합니다.</p>
+        </div>
+      </section>
+      <section className="mobile-app-section">
+        <MobileSectionHead title="핵심 역량" />
+        <div className="mobile-capability-grid">
+          {mobileCapabilities.map(([title, body]) => (
+            <article key={title}>
+              <i aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="mobile-app-section">
+        <MobileSectionHead title="주요 제품" href="#/products" />
+        <div className="mobile-product-strip">
+          {products.map(([title, body, image]) => (
+            <a href="#/products" key={title}>
+              <figure><img src={image} alt={title} loading="eager" decoding="async" /></figure>
+              <strong>{title}</strong>
+              <span>{body.split(" ")[0] || "Precision Part"}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+      <section className="mobile-dark-panel mobile-quality-flow">
+        <h2>품질 프로세스</h2>
+        <p>체계적인 품질 관리 시스템</p>
+        <div>
+          {["현장재 검사", "공정 관리", "검사 및 측정", "최종 검수"].map((item, index) => (
+            <article key={item}><i>{String(index + 1).padStart(2, "0")}</i><strong>{item}</strong></article>
+          ))}
+        </div>
+      </section>
+      <section className="mobile-app-section">
+        <MobileSectionHead title="최신 소식" href="#/notice" />
+        <div className="mobile-news-list">
+          {noticeItems.length ? noticeItems.map((post) => (
+            <a href="#/notice" key={post.id}>
+              <time>{post.publishedAt}</time>
+              <strong>{post.title}</strong>
+            </a>
+          )) : <a href="#/notice"><time>최근 공지</time><strong>대광테크 소식을 확인하실 수 있습니다.</strong></a>}
+        </div>
+      </section>
+      <section className="mobile-dark-panel mobile-brand-card">
+        <h2>정밀한 기술로<br />더 나은 미래를 만듭니다</h2>
+        <p>대광테크와 함께 최고의 가치를 만들어가세요.</p>
+        <a href="#/technology">기술 보기</a>
+      </section>
+    </>
+  );
+}
+
+function MobileProductsScreen({ imageSlots }) {
+  const products = withMobileProductImages(mobileProductCards, imageSlots.productsGalleryImages);
+  return (
+    <>
+      <MobileDarkHero
+        image={imageSlots.productsGalleryImages[0]}
+        title="정밀한 기술로 완성된 최고 품질의 제품"
+        body="다양한 산업 분야에 최고의 솔루션을 제공합니다."
+      />
+      <div className="mobile-chip-row" aria-label="제품 분류">
+        {["전체", "유압 부품", "밸브 부품", "일반 부품"].map((label, index) => <button className={index === 0 ? "is-active" : ""} key={label} type="button">{label}</button>)}
+      </div>
+      <MobileProductList products={products} />
+      <section className="mobile-dark-panel mobile-bottom-card">
+        <h2>원하는 제품을 찾지 못하셨나요?</h2>
+        <p>맞춤 제작 및 요건을 통해 최적의 솔루션을 제공합니다.</p>
+        <a href="#/products">제품 정보</a>
+      </section>
+    </>
+  );
+}
+
+function MobileTechnologyScreen({ imageSlots }) {
+  const processRows = [
+    ["01", "설계 및 제안", "고객 요구사항 분석 및 최적의 설계 솔루션 제공"],
+    ["02", "원자재 검사", "엄격한 입고 검사를 통한 품질 기준 충족 확인"],
+    ["03", "정밀 가공", "최신 CNC 설비를 활용한 정밀 가공 작업"],
+    ["04", "품질 검사", "3차원 측정기 및 다양한 검사 장비로 품질 검증"],
+    ["05", "표면 처리", "내구성 및 내식성 향상을 위한 표면 처리 공정"],
+    ["06", "최종 검사 및 출하", "최종 품질 검사 후 안전한 포장 및 출하"],
+  ];
+  const facilityItems = withFirstImage(facilityCards.slice(0, 4), imageSlots.facilityVisualImage);
+  return (
+    <>
+      <MobileDarkHero
+        image={imageSlots.processHeroImage}
+        title="최신 설비와 축적된 기술력으로 최고의 품질을 실현합니다"
+        body="끊임없는 기술 혁신으로 고객에게 최상의 가치를 제공합니다."
+      />
+      <section className="mobile-app-section">
+        <MobileSectionHead title="생산 프로세스" />
+        <div className="mobile-process-list">
+          {processRows.map(([num, title, body]) => (
+            <article key={title}>
+              <i>{num}</i>
+              <div><h3>{title}</h3><p>{body}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="mobile-dark-panel mobile-stat-panel">
+        <h2>기술 경쟁력</h2>
+        <div>
+          {[
+            ["20+", "보유 설비"],
+            ["15+", "전문 기술진"],
+            ["99.8%", "품질 신뢰도"],
+            ["100+", "파트너사"],
+          ].map(([value, label]) => <article key={label}><strong>{value}</strong><span>{label}</span></article>)}
+        </div>
+      </section>
+      <section className="mobile-app-section">
+        <MobileSectionHead title="보유 설비" href="#/facility" />
+        <div className="mobile-facility-grid">
+          {facilityItems.map(([title, body, image]) => (
+            <article key={title}>
+              <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
+              <strong>{title}</strong>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="mobile-dark-panel mobile-bottom-card">
+        <h2>기술 기준</h2>
+        <p>기술력과 운영 기준을 한 화면에서 확인하세요.</p>
+        <a href="#/technology">기술 보기</a>
+      </section>
+    </>
+  );
+}
+
+function MobileCompanyScreen({ content, imageSlots }) {
+  const companyRows = [
+    ["회사명", content.company.nameKo],
+    ["대표전화", content.company.tel],
+    ["팩스", content.company.fax],
+    ["주소", content.company.address],
+  ].filter(([, value]) => value);
+  return (
+    <>
+      <MobileDarkHero
+        image={imageSlots.facilityVisualImage}
+        title="정밀한 기술로 신뢰를 만드는 기업"
+        body="대광테크는 고객의 성공을 기술력과 품질로 함께합니다."
+      />
+      <section className="mobile-info-card">
+        <h2>회사 개요</h2>
+        <p>대광테크는 정밀 가공 기술을 바탕으로 다양한 산업 분야에 고품질 제품을 공급하고 있습니다.</p>
+        <dl>
+          {companyRows.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+        </dl>
+      </section>
+    </>
+  );
+}
+
+function MobileNoticeScreen({ content }) {
+  const noticeItems = (content.posts || []).filter((post) => post.status === "published" || post.pinned).slice(0, 8);
+  return (
+    <>
+      <div className="mobile-chip-row mobile-chip-row--notice" aria-label="공지 분류">
+        {["전체", "공지", "뉴스", "행사"].map((label, index) => <button className={index === 0 ? "is-active" : ""} key={label} type="button">{label}</button>)}
+      </div>
+      <div className="mobile-notice-list">
+        {noticeItems.length ? noticeItems.map((post) => (
+          <a href="#/notice" key={post.id}>
+            <time>{post.publishedAt}</time>
+            <strong>{post.title}</strong>
+          </a>
+        )) : <a href="#/notice"><time>최근 공지</time><strong>대광테크 소식을 확인하실 수 있습니다.</strong></a>}
+      </div>
+    </>
+  );
+}
+
+function MobileInfoScreen({ page, detail, imageSlots, content }) {
+  if (page.id === "facility") {
+    const facilityItems = withFirstImage((detail.cards || facilityCards).slice(0, 4), imageSlots.facilityVisualImage);
+    return (
+      <>
+        <MobileDarkHero image={imageSlots.facilityVisualImage} title="생산 인프라를 안정적으로 관리합니다" body="설비와 검사 환경을 정돈된 기준으로 운영합니다." />
+        <section className="mobile-app-section">
+          <MobileSectionHead title="보유 설비" />
+          <div className="mobile-facility-grid">
+            {facilityItems.map(([title, body, image]) => (
+              <article key={title}><figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure><strong>{title}</strong></article>
+            ))}
+          </div>
+        </section>
+      </>
+    );
+  }
+  if (page.id === "quality") {
+    return <MobileTechnologyScreen imageSlots={{ ...imageSlots, processHeroImage: imageSlots.qualityVisualImage }} />;
+  }
+  return <MobileCompanyScreen content={content} imageSlots={imageSlots} />;
+}
+
+function MobilePublicShell({ route, page, detail, content, imageSlots, menuOpen, setMenuOpen }) {
+  const routeKey = route.startsWith("notice") ? "notice" : page.id;
+  const active = mobileActiveTab(route, page.id);
+  const titleMap = { products: "제품", technology: "기술력", process: "기술력", quality: "기술력", company: "회사 소개", notice: "공지사항", facility: "보유 설비" };
+  const isHome = active === "index" && routeKey === "index";
+  const renderScreen = () => {
+    if (routeKey === "products") return <MobileProductsScreen imageSlots={imageSlots} />;
+    if (["technology", "process"].includes(routeKey)) return <MobileTechnologyScreen imageSlots={imageSlots} />;
+    if (routeKey === "company") return <MobileCompanyScreen content={content} imageSlots={imageSlots} />;
+    if (routeKey === "notice") return <MobileNoticeScreen content={content} />;
+    if (["facility", "quality"].includes(routeKey)) return <MobileInfoScreen page={page} detail={detail} imageSlots={imageSlots} content={content} />;
+    return <MobileHomeScreen content={content} imageSlots={imageSlots} />;
+  };
+  return (
+    <div className={`mobile-app-public-shell route-${routeKey}`} aria-label="대광테크 모바일 웹">
+      <MobileTopBar title={isHome ? "" : titleMap[routeKey] || page.label} tone={isHome ? "dark" : "light"} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <MobileMenu active={routeKey} open={menuOpen} onClose={() => setMenuOpen(false)} />
       <main className="mobile-app-main" id="main-content">
-        {isHome ? (
-          <>
-            <section className="mobile-app-hero">
-              <img src={imageSlots.homeHeroImage} alt="대광테크 정밀 가공 부품 실사" />
-              <div>
-                <span>Precision Makes Value</span>
-                <h1>정밀한 기술로<br />가치를 만듭니다</h1>
-                <p>{pageSummary}</p>
-              </div>
-            </section>
-            <section className="mobile-app-proofstrip" aria-label="정밀 가공 실사">
-              {mobileProofImages.map(([label, image], index) => <figure key={label}><img src={index === 0 ? imageSlots.processHeroImage : image} alt={label} /><figcaption>{label}</figcaption></figure>)}
-            </section>
-            <section className="mobile-app-capabilities" aria-label="핵심 역량">
-              {mobileCapabilities.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
-            </section>
-            <section className="mobile-app-section">
-              <div className="mobile-app-section-head"><span>PROCESS</span><h2>제조 흐름</h2></div>
-              <div className="mobile-app-timeline">{mobileProcessCards.map(([num, title, body, image]) => <article key={title}><img src={image} alt="" aria-hidden="true" /><div><span>{num}</span><strong>{title}</strong><p>{body}</p></div></article>)}</div>
-            </section>
-            <section className="mobile-app-section">
-              <div className="mobile-app-section-head"><span>NEWS</span><h2>대광테크 소식</h2><a href="#/notice">전체 보기</a></div>
-              <div className="mobile-app-news-list">
-                {noticeItems.length ? noticeItems.map((post) => <a className="mobile-app-news-card" href="#/notice" key={post.id}><em>{post.category || "공지사항"}</em><strong>{post.title}</strong><p>{post.summary}</p><time>{post.publishedAt}</time></a>) : <a className="mobile-app-news-card" href="#/notice"><em>공지사항</em><strong>대광테크 소식</strong><p>주요 안내와 기업 소식을 확인하실 수 있습니다.</p><time>최근 공지</time></a>}
-              </div>
-            </section>
-          </>
-        ) : (
-          <>
-            <section className="mobile-app-page-hero">
-              <img className="mobile-app-page-hero-image" src={page.heroImage} alt="" aria-hidden="true" />
-              <span>{page.eyebrow}</span>
-              <h1>{page.title}</h1>
-              <p>{pageSummary}</p>
-            </section>
-            <section className="mobile-app-section">
-              <div className="mobile-app-section-head"><span>{page.eyebrow}</span><h2>{pageTitle}</h2></div>
-              {renderPageCards()}
-            </section>
-          </>
-        )}
+        {renderScreen()}
       </main>
-      <nav className="mobile-app-dock" aria-label="모바일 하단 내비게이션">
-        {mobileDockItems.map(([id, label, icon]) => <a key={id} href={routeHref(id)} className={active === id ? "is-active" : ""}><span>{icon}</span><b>{label}</b></a>)}
-      </nav>
+      <MobileBottomTabs active={active} />
     </div>
   );
 }
