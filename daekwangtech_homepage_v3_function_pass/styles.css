@@ -7648,3 +7648,20 @@ img[src$="real-precision-threaded-pair.jpg"] {
   }
 }
 
+/* DAEKWANG_PUBLIC_MOBILE_LOGO_PRODUCT_STABILITY_FIX_V1 no-overlap seal */
+@media (max-width: 1023px) {
+  .mobile-app-public-shell {
+    padding-bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .mobile-app-dock {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    width: min(100%, 430px) !important;
+    max-width: 430px !important;
+    margin: 18px auto 0 !important;
+    padding-bottom: calc(9px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
