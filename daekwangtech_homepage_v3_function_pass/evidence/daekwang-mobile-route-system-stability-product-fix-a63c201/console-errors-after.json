@@ -1,0 +1,10 @@
+{
+  "local": {
+    "pass": true,
+    "errors": []
+  },
+  "live": {
+    "pass": true,
+    "errors": []
+  }
+}

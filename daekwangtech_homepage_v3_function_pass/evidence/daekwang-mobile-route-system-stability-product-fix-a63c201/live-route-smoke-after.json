@@ -1,0 +1,5613 @@
+{
+  "matrix": [
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "bodyWidth": 320,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -14,
+        "y": 0,
+        "width": 348,
+        "height": 58,
+        "top": 0,
+        "right": 334,
+        "bottom": 58,
+        "left": -14
+      },
+      "main": {
+        "x": 14,
+        "y": 0,
+        "width": 292,
+        "height": 1347.015625,
+        "top": 0,
+        "right": 306,
+        "bottom": 1347.015625,
+        "left": 14
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 334,
+        "top": 0,
+        "right": 320,
+        "bottom": 334,
+        "left": 0
+      },
+      "dock": {
+        "x": 14,
+        "y": 1363.015625,
+        "width": 292,
+        "height": 62,
+        "top": 1363.015625,
+        "right": 306,
+        "bottom": 1425.015625,
+        "left": 14
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 320,
+      "height": 568
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "bodyWidth": 320,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 56,
+        "top": 0,
+        "right": 320,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14,
+        "y": 0,
+        "width": 292,
+        "height": 1279.609375,
+        "top": 0,
+        "right": 306,
+        "bottom": 1279.609375,
+        "left": 14
+      },
+      "hero": {
+        "x": 14,
+        "y": 66,
+        "width": 292,
+        "height": 132,
+        "top": 66,
+        "right": 306,
+        "bottom": 198,
+        "left": 14
+      },
+      "dock": {
+        "x": 14,
+        "y": 1295.609375,
+        "width": 292,
+        "height": 62,
+        "top": 1295.609375,
+        "right": 306,
+        "bottom": 1357.609375,
+        "left": 14
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 146,
+          "y": 20.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 174,
+          "bottom": 35.6875,
+          "left": 146
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 320,
+      "height": 568
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "bodyWidth": 320,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 56,
+        "top": 0,
+        "right": 320,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14,
+        "y": 0,
+        "width": 292,
+        "height": 1491.15625,
+        "top": 0,
+        "right": 306,
+        "bottom": 1491.15625,
+        "left": 14
+      },
+      "hero": {
+        "x": 14,
+        "y": 66,
+        "width": 292,
+        "height": 159.125,
+        "top": 66,
+        "right": 306,
+        "bottom": 225.125,
+        "left": 14
+      },
+      "dock": {
+        "x": 14,
+        "y": 1507.15625,
+        "width": 292,
+        "height": 62,
+        "top": 1507.15625,
+        "right": 306,
+        "bottom": 1569.15625,
+        "left": 14
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 139,
+          "y": 20.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 181,
+          "bottom": 35.6875,
+          "left": 139
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 320,
+      "height": 568
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "bodyWidth": 320,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 56,
+        "top": 0,
+        "right": 320,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14,
+        "y": 0,
+        "width": 292,
+        "height": 1491.15625,
+        "top": 0,
+        "right": 306,
+        "bottom": 1491.15625,
+        "left": 14
+      },
+      "hero": {
+        "x": 14,
+        "y": 66,
+        "width": 292,
+        "height": 159.125,
+        "top": 66,
+        "right": 306,
+        "bottom": 225.125,
+        "left": 14
+      },
+      "dock": {
+        "x": 14,
+        "y": 1507.15625,
+        "width": 292,
+        "height": 62,
+        "top": 1507.15625,
+        "right": 306,
+        "bottom": 1569.15625,
+        "left": 14
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 139,
+          "y": 20.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 181,
+          "bottom": 35.6875,
+          "left": 139
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 320,
+      "height": 568
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "bodyWidth": 320,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 56,
+        "top": 0,
+        "right": 320,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14,
+        "y": 0,
+        "width": 292,
+        "height": 822.53125,
+        "top": 0,
+        "right": 306,
+        "bottom": 822.53125,
+        "left": 14
+      },
+      "hero": {
+        "x": 14,
+        "y": 66,
+        "width": 292,
+        "height": 135.375,
+        "top": 66,
+        "right": 306,
+        "bottom": 201.375,
+        "left": 14
+      },
+      "dock": {
+        "x": 14,
+        "y": 838.53125,
+        "width": 292,
+        "height": 62,
+        "top": 838.53125,
+        "right": 306,
+        "bottom": 900.53125,
+        "left": 14
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 129.53125,
+          "y": 20.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 190.453125,
+          "bottom": 35.6875,
+          "left": 129.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 320,
+      "height": 568
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "bodyWidth": 320,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 56,
+        "top": 0,
+        "right": 320,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14,
+        "y": 0,
+        "width": 292,
+        "height": 532.4375,
+        "top": 0,
+        "right": 306,
+        "bottom": 532.4375,
+        "left": 14
+      },
+      "hero": {
+        "x": 14,
+        "y": 66,
+        "width": 292,
+        "height": 132,
+        "top": 66,
+        "right": 306,
+        "bottom": 198,
+        "left": 14
+      },
+      "dock": {
+        "x": 14,
+        "y": 548.4375,
+        "width": 292,
+        "height": 62,
+        "top": 548.4375,
+        "right": 306,
+        "bottom": 610.4375,
+        "left": 14
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 129.53125,
+          "y": 20.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 190.453125,
+          "bottom": 35.6875,
+          "left": 129.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 320,
+      "height": 568
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "bodyWidth": 320,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 56,
+        "top": 0,
+        "right": 320,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14,
+        "y": 0,
+        "width": 292,
+        "height": 475.375,
+        "top": 0,
+        "right": 306,
+        "bottom": 475.375,
+        "left": 14
+      },
+      "hero": {
+        "x": 14,
+        "y": 66,
+        "width": 292,
+        "height": 135.375,
+        "top": 66,
+        "right": 306,
+        "bottom": 201.375,
+        "left": 14
+      },
+      "dock": {
+        "x": 14,
+        "y": 491.375,
+        "width": 292,
+        "height": 62,
+        "top": 491.375,
+        "right": 306,
+        "bottom": 553.375,
+        "left": 14
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 129.53125,
+          "y": 20.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 190.453125,
+          "bottom": 35.6875,
+          "left": 129.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 320,
+      "height": 568
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "bodyWidth": 320,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 56,
+        "top": 0,
+        "right": 320,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14,
+        "y": 0,
+        "width": 292,
+        "height": 174,
+        "top": 0,
+        "right": 306,
+        "bottom": 174,
+        "left": 14
+      },
+      "hero": null,
+      "dock": {
+        "x": 14,
+        "y": 190,
+        "width": 292,
+        "height": 62,
+        "top": 190,
+        "right": 306,
+        "bottom": 252,
+        "left": 14
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 132,
+          "y": 20.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 188,
+          "bottom": 35.6875,
+          "left": 132
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 320,
+      "height": 568
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bodyWidth": 360,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -14.390625,
+        "y": 0,
+        "width": 388.78125,
+        "height": 58,
+        "top": 0,
+        "right": 374.390625,
+        "bottom": 58,
+        "left": -14.390625
+      },
+      "main": {
+        "x": 14.390625,
+        "y": 0,
+        "width": 331.21875,
+        "height": 1335.015625,
+        "top": 0,
+        "right": 345.609375,
+        "bottom": 1335.015625,
+        "left": 14.390625
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 334,
+        "top": 0,
+        "right": 360,
+        "bottom": 334,
+        "left": 0
+      },
+      "dock": {
+        "x": 14.390625,
+        "y": 1351.015625,
+        "width": 331.21875,
+        "height": 62,
+        "top": 1351.015625,
+        "right": 345.609375,
+        "bottom": 1413.015625,
+        "left": 14.390625
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 360,
+      "height": 800
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bodyWidth": 360,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 56,
+        "top": 0,
+        "right": 360,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14.390625,
+        "y": 0,
+        "width": 331.21875,
+        "height": 1435.890625,
+        "top": 0,
+        "right": 345.609375,
+        "bottom": 1435.890625,
+        "left": 14.390625
+      },
+      "hero": {
+        "x": 14.390625,
+        "y": 66,
+        "width": 331.21875,
+        "height": 132,
+        "top": 66,
+        "right": 345.609375,
+        "bottom": 198,
+        "left": 14.390625
+      },
+      "dock": {
+        "x": 14.390625,
+        "y": 1451.890625,
+        "width": 331.21875,
+        "height": 62,
+        "top": 1451.890625,
+        "right": 345.609375,
+        "bottom": 1513.890625,
+        "left": 14.390625
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 166,
+          "y": 20.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 194,
+          "bottom": 35.6875,
+          "left": 166
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 360,
+      "height": 800
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bodyWidth": 360,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 56,
+        "top": 0,
+        "right": 360,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14.390625,
+        "y": 0,
+        "width": 331.21875,
+        "height": 1445.125,
+        "top": 0,
+        "right": 345.609375,
+        "bottom": 1445.125,
+        "left": 14.390625
+      },
+      "hero": {
+        "x": 14.390625,
+        "y": 66,
+        "width": 331.21875,
+        "height": 135.375,
+        "top": 66,
+        "right": 345.609375,
+        "bottom": 201.375,
+        "left": 14.390625
+      },
+      "dock": {
+        "x": 14.390625,
+        "y": 1461.125,
+        "width": 331.21875,
+        "height": 62,
+        "top": 1461.125,
+        "right": 345.609375,
+        "bottom": 1523.125,
+        "left": 14.390625
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 159,
+          "y": 20.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 201,
+          "bottom": 35.6875,
+          "left": 159
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 360,
+      "height": 800
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bodyWidth": 360,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 56,
+        "top": 0,
+        "right": 360,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14.390625,
+        "y": 0,
+        "width": 331.21875,
+        "height": 1445.125,
+        "top": 0,
+        "right": 345.609375,
+        "bottom": 1445.125,
+        "left": 14.390625
+      },
+      "hero": {
+        "x": 14.390625,
+        "y": 66,
+        "width": 331.21875,
+        "height": 135.375,
+        "top": 66,
+        "right": 345.609375,
+        "bottom": 201.375,
+        "left": 14.390625
+      },
+      "dock": {
+        "x": 14.390625,
+        "y": 1461.125,
+        "width": 331.21875,
+        "height": 62,
+        "top": 1461.125,
+        "right": 345.609375,
+        "bottom": 1523.125,
+        "left": 14.390625
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 159,
+          "y": 20.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 201,
+          "bottom": 35.6875,
+          "left": 159
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 360,
+      "height": 800
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bodyWidth": 360,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 56,
+        "top": 0,
+        "right": 360,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14.390625,
+        "y": 0,
+        "width": 331.21875,
+        "height": 835.3125,
+        "top": 0,
+        "right": 345.609375,
+        "bottom": 835.3125,
+        "left": 14.390625
+      },
+      "hero": {
+        "x": 14.390625,
+        "y": 66,
+        "width": 331.21875,
+        "height": 135.375,
+        "top": 66,
+        "right": 345.609375,
+        "bottom": 201.375,
+        "left": 14.390625
+      },
+      "dock": {
+        "x": 14.390625,
+        "y": 851.3125,
+        "width": 331.21875,
+        "height": 62,
+        "top": 851.3125,
+        "right": 345.609375,
+        "bottom": 913.3125,
+        "left": 14.390625
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 149.53125,
+          "y": 20.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 210.453125,
+          "bottom": 35.6875,
+          "left": 149.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 360,
+      "height": 800
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bodyWidth": 360,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 56,
+        "top": 0,
+        "right": 360,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14.390625,
+        "y": 0,
+        "width": 331.21875,
+        "height": 561.71875,
+        "top": 0,
+        "right": 345.609375,
+        "bottom": 561.71875,
+        "left": 14.390625
+      },
+      "hero": {
+        "x": 14.390625,
+        "y": 66,
+        "width": 331.21875,
+        "height": 132,
+        "top": 66,
+        "right": 345.609375,
+        "bottom": 198,
+        "left": 14.390625
+      },
+      "dock": {
+        "x": 14.390625,
+        "y": 577.71875,
+        "width": 331.21875,
+        "height": 62,
+        "top": 577.71875,
+        "right": 345.609375,
+        "bottom": 639.71875,
+        "left": 14.390625
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 149.53125,
+          "y": 20.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 210.453125,
+          "bottom": 35.6875,
+          "left": 149.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 360,
+      "height": 800
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bodyWidth": 360,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 56,
+        "top": 0,
+        "right": 360,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14.390625,
+        "y": 0,
+        "width": 331.21875,
+        "height": 472,
+        "top": 0,
+        "right": 345.609375,
+        "bottom": 472,
+        "left": 14.390625
+      },
+      "hero": {
+        "x": 14.390625,
+        "y": 66,
+        "width": 331.21875,
+        "height": 132,
+        "top": 66,
+        "right": 345.609375,
+        "bottom": 198,
+        "left": 14.390625
+      },
+      "dock": {
+        "x": 14.390625,
+        "y": 488,
+        "width": 331.21875,
+        "height": 62,
+        "top": 488,
+        "right": 345.609375,
+        "bottom": 550,
+        "left": 14.390625
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 149.53125,
+          "y": 20.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 210.453125,
+          "bottom": 35.6875,
+          "left": 149.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 360,
+      "height": 800
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bodyWidth": 360,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 56,
+        "top": 0,
+        "right": 360,
+        "bottom": 56,
+        "left": 0
+      },
+      "main": {
+        "x": 14.390625,
+        "y": 0,
+        "width": 331.21875,
+        "height": 174,
+        "top": 0,
+        "right": 345.609375,
+        "bottom": 174,
+        "left": 14.390625
+      },
+      "hero": null,
+      "dock": {
+        "x": 14.390625,
+        "y": 190,
+        "width": 331.21875,
+        "height": 62,
+        "top": 190,
+        "right": 345.609375,
+        "bottom": 252,
+        "left": 14.390625
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 152,
+          "y": 20.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 20.296875,
+          "right": 208,
+          "bottom": 35.6875,
+          "left": 152
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 360,
+      "height": 800
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "bodyWidth": 375,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -15,
+        "y": 0,
+        "width": 405,
+        "height": 58,
+        "top": 0,
+        "right": 390,
+        "bottom": 58,
+        "left": -15
+      },
+      "main": {
+        "x": 15,
+        "y": 0,
+        "width": 345,
+        "height": 1343.203125,
+        "top": 0,
+        "right": 360,
+        "bottom": 1343.203125,
+        "left": 15
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 338,
+        "top": 0,
+        "right": 375,
+        "bottom": 338,
+        "left": 0
+      },
+      "dock": {
+        "x": 15,
+        "y": 1359.203125,
+        "width": 345,
+        "height": 62,
+        "top": 1359.203125,
+        "right": 360,
+        "bottom": 1421.203125,
+        "left": 15
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 375,
+      "height": 812
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "bodyWidth": 375,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 58,
+        "top": 0,
+        "right": 375,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15,
+        "y": 0,
+        "width": 345,
+        "height": 1457.546875,
+        "top": 0,
+        "right": 360,
+        "bottom": 1457.546875,
+        "left": 15
+      },
+      "hero": {
+        "x": 15,
+        "y": 68,
+        "width": 345,
+        "height": 132,
+        "top": 68,
+        "right": 360,
+        "bottom": 200,
+        "left": 15
+      },
+      "dock": {
+        "x": 15,
+        "y": 1473.546875,
+        "width": 345,
+        "height": 62,
+        "top": 1473.546875,
+        "right": 360,
+        "bottom": 1535.546875,
+        "left": 15
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 173.5,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 201.5,
+          "bottom": 36.6875,
+          "left": 173.5
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 375,
+      "height": 812
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "bodyWidth": 375,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 58,
+        "top": 0,
+        "right": 375,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15,
+        "y": 0,
+        "width": 345,
+        "height": 1465.40625,
+        "top": 0,
+        "right": 360,
+        "bottom": 1465.40625,
+        "left": 15
+      },
+      "hero": {
+        "x": 15,
+        "y": 68,
+        "width": 345,
+        "height": 135.375,
+        "top": 68,
+        "right": 360,
+        "bottom": 203.375,
+        "left": 15
+      },
+      "dock": {
+        "x": 15,
+        "y": 1481.40625,
+        "width": 345,
+        "height": 62,
+        "top": 1481.40625,
+        "right": 360,
+        "bottom": 1543.40625,
+        "left": 15
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 166.5,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 208.5,
+          "bottom": 36.6875,
+          "left": 166.5
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 375,
+      "height": 812
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "bodyWidth": 375,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 58,
+        "top": 0,
+        "right": 375,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15,
+        "y": 0,
+        "width": 345,
+        "height": 1465.40625,
+        "top": 0,
+        "right": 360,
+        "bottom": 1465.40625,
+        "left": 15
+      },
+      "hero": {
+        "x": 15,
+        "y": 68,
+        "width": 345,
+        "height": 135.375,
+        "top": 68,
+        "right": 360,
+        "bottom": 203.375,
+        "left": 15
+      },
+      "dock": {
+        "x": 15,
+        "y": 1481.40625,
+        "width": 345,
+        "height": 62,
+        "top": 1481.40625,
+        "right": 360,
+        "bottom": 1543.40625,
+        "left": 15
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 166.5,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 208.5,
+          "bottom": 36.6875,
+          "left": 166.5
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 375,
+      "height": 812
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "bodyWidth": 375,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 58,
+        "top": 0,
+        "right": 375,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15,
+        "y": 0,
+        "width": 345,
+        "height": 851.59375,
+        "top": 0,
+        "right": 360,
+        "bottom": 851.59375,
+        "left": 15
+      },
+      "hero": {
+        "x": 15,
+        "y": 68,
+        "width": 345,
+        "height": 135.375,
+        "top": 68,
+        "right": 360,
+        "bottom": 203.375,
+        "left": 15
+      },
+      "dock": {
+        "x": 15,
+        "y": 867.59375,
+        "width": 345,
+        "height": 62,
+        "top": 867.59375,
+        "right": 360,
+        "bottom": 929.59375,
+        "left": 15
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 157.03125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 217.953125,
+          "bottom": 36.6875,
+          "left": 157.03125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 375,
+      "height": 812
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "bodyWidth": 375,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 58,
+        "top": 0,
+        "right": 375,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15,
+        "y": 0,
+        "width": 345,
+        "height": 576,
+        "top": 0,
+        "right": 360,
+        "bottom": 576,
+        "left": 15
+      },
+      "hero": {
+        "x": 15,
+        "y": 68,
+        "width": 345,
+        "height": 132,
+        "top": 68,
+        "right": 360,
+        "bottom": 200,
+        "left": 15
+      },
+      "dock": {
+        "x": 15,
+        "y": 592,
+        "width": 345,
+        "height": 62,
+        "top": 592,
+        "right": 360,
+        "bottom": 654,
+        "left": 15
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 157.03125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 217.953125,
+          "bottom": 36.6875,
+          "left": 157.03125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 375,
+      "height": 812
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "bodyWidth": 375,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 58,
+        "top": 0,
+        "right": 375,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15,
+        "y": 0,
+        "width": 345,
+        "height": 458,
+        "top": 0,
+        "right": 360,
+        "bottom": 458,
+        "left": 15
+      },
+      "hero": {
+        "x": 15,
+        "y": 68,
+        "width": 345,
+        "height": 132,
+        "top": 68,
+        "right": 360,
+        "bottom": 200,
+        "left": 15
+      },
+      "dock": {
+        "x": 15,
+        "y": 474,
+        "width": 345,
+        "height": 62,
+        "top": 474,
+        "right": 360,
+        "bottom": 536,
+        "left": 15
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 157.03125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 217.953125,
+          "bottom": 36.6875,
+          "left": 157.03125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 375,
+      "height": 812
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "bodyWidth": 375,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 58,
+        "top": 0,
+        "right": 375,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15,
+        "y": 0,
+        "width": 345,
+        "height": 178,
+        "top": 0,
+        "right": 360,
+        "bottom": 178,
+        "left": 15
+      },
+      "hero": null,
+      "dock": {
+        "x": 15,
+        "y": 194,
+        "width": 345,
+        "height": 62,
+        "top": 194,
+        "right": 360,
+        "bottom": 256,
+        "left": 15
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 159.5,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 215.5,
+          "bottom": 36.6875,
+          "left": 159.5
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 375,
+      "height": 812
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyWidth": 390,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -15.59375,
+        "y": 0,
+        "width": 421.1875,
+        "height": 58,
+        "top": 0,
+        "right": 405.59375,
+        "bottom": 58,
+        "left": -15.59375
+      },
+      "main": {
+        "x": 15.59375,
+        "y": 0,
+        "width": 358.8125,
+        "height": 1348.390625,
+        "top": 0,
+        "right": 374.40625,
+        "bottom": 1348.390625,
+        "left": 15.59375
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 343.1875,
+        "top": 0,
+        "right": 390,
+        "bottom": 343.1875,
+        "left": 0
+      },
+      "dock": {
+        "x": 15.59375,
+        "y": 1364.390625,
+        "width": 358.8125,
+        "height": 62,
+        "top": 1364.390625,
+        "right": 374.40625,
+        "bottom": 1426.390625,
+        "left": 15.59375
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyWidth": 390,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "top": 0,
+        "right": 390,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.59375,
+        "y": 0,
+        "width": 358.8125,
+        "height": 1495.109375,
+        "top": 0,
+        "right": 374.40625,
+        "bottom": 1495.109375,
+        "left": 15.59375
+      },
+      "hero": {
+        "x": 15.59375,
+        "y": 68,
+        "width": 358.8125,
+        "height": 132,
+        "top": 68,
+        "right": 374.40625,
+        "bottom": 200,
+        "left": 15.59375
+      },
+      "dock": {
+        "x": 15.59375,
+        "y": 1511.109375,
+        "width": 358.8125,
+        "height": 62,
+        "top": 1511.109375,
+        "right": 374.40625,
+        "bottom": 1573.109375,
+        "left": 15.59375
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 181,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 209,
+          "bottom": 36.6875,
+          "left": 181
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyWidth": 390,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "top": 0,
+        "right": 390,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.59375,
+        "y": 0,
+        "width": 358.8125,
+        "height": 1475.71875,
+        "top": 0,
+        "right": 374.40625,
+        "bottom": 1475.71875,
+        "left": 15.59375
+      },
+      "hero": {
+        "x": 15.59375,
+        "y": 68,
+        "width": 358.8125,
+        "height": 135.375,
+        "top": 68,
+        "right": 374.40625,
+        "bottom": 203.375,
+        "left": 15.59375
+      },
+      "dock": {
+        "x": 15.59375,
+        "y": 1491.71875,
+        "width": 358.8125,
+        "height": 62,
+        "top": 1491.71875,
+        "right": 374.40625,
+        "bottom": 1553.71875,
+        "left": 15.59375
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 174,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 216,
+          "bottom": 36.6875,
+          "left": 174
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyWidth": 390,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "top": 0,
+        "right": 390,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.59375,
+        "y": 0,
+        "width": 358.8125,
+        "height": 1475.71875,
+        "top": 0,
+        "right": 374.40625,
+        "bottom": 1475.71875,
+        "left": 15.59375
+      },
+      "hero": {
+        "x": 15.59375,
+        "y": 68,
+        "width": 358.8125,
+        "height": 135.375,
+        "top": 68,
+        "right": 374.40625,
+        "bottom": 203.375,
+        "left": 15.59375
+      },
+      "dock": {
+        "x": 15.59375,
+        "y": 1491.71875,
+        "width": 358.8125,
+        "height": 62,
+        "top": 1491.71875,
+        "right": 374.40625,
+        "bottom": 1553.71875,
+        "left": 15.59375
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 174,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 216,
+          "bottom": 36.6875,
+          "left": 174
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyWidth": 390,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "top": 0,
+        "right": 390,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.59375,
+        "y": 0,
+        "width": 358.8125,
+        "height": 845.40625,
+        "top": 0,
+        "right": 374.40625,
+        "bottom": 845.40625,
+        "left": 15.59375
+      },
+      "hero": {
+        "x": 15.59375,
+        "y": 68,
+        "width": 358.8125,
+        "height": 135.375,
+        "top": 68,
+        "right": 374.40625,
+        "bottom": 203.375,
+        "left": 15.59375
+      },
+      "dock": {
+        "x": 15.59375,
+        "y": 861.40625,
+        "width": 358.8125,
+        "height": 62,
+        "top": 861.40625,
+        "right": 374.40625,
+        "bottom": 923.40625,
+        "left": 15.59375
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 164.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 225.453125,
+          "bottom": 36.6875,
+          "left": 164.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyWidth": 390,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "top": 0,
+        "right": 390,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.59375,
+        "y": 0,
+        "width": 358.8125,
+        "height": 586.3125,
+        "top": 0,
+        "right": 374.40625,
+        "bottom": 586.3125,
+        "left": 15.59375
+      },
+      "hero": {
+        "x": 15.59375,
+        "y": 68,
+        "width": 358.8125,
+        "height": 132,
+        "top": 68,
+        "right": 374.40625,
+        "bottom": 200,
+        "left": 15.59375
+      },
+      "dock": {
+        "x": 15.59375,
+        "y": 602.3125,
+        "width": 358.8125,
+        "height": 62,
+        "top": 602.3125,
+        "right": 374.40625,
+        "bottom": 664.3125,
+        "left": 15.59375
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 164.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 225.453125,
+          "bottom": 36.6875,
+          "left": 164.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyWidth": 390,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "top": 0,
+        "right": 390,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.59375,
+        "y": 0,
+        "width": 358.8125,
+        "height": 458,
+        "top": 0,
+        "right": 374.40625,
+        "bottom": 458,
+        "left": 15.59375
+      },
+      "hero": {
+        "x": 15.59375,
+        "y": 68,
+        "width": 358.8125,
+        "height": 132,
+        "top": 68,
+        "right": 374.40625,
+        "bottom": 200,
+        "left": 15.59375
+      },
+      "dock": {
+        "x": 15.59375,
+        "y": 474,
+        "width": 358.8125,
+        "height": 62,
+        "top": 474,
+        "right": 374.40625,
+        "bottom": 536,
+        "left": 15.59375
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 164.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 225.453125,
+          "bottom": 36.6875,
+          "left": 164.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyWidth": 390,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "top": 0,
+        "right": 390,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.59375,
+        "y": 0,
+        "width": 358.8125,
+        "height": 178,
+        "top": 0,
+        "right": 374.40625,
+        "bottom": 178,
+        "left": 15.59375
+      },
+      "hero": null,
+      "dock": {
+        "x": 15.59375,
+        "y": 194,
+        "width": 358.8125,
+        "height": 62,
+        "top": 194,
+        "right": 374.40625,
+        "bottom": 256,
+        "left": 15.59375
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 167,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 223,
+          "bottom": 36.6875,
+          "left": 167
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "bodyWidth": 393,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -15.71875,
+        "y": 0,
+        "width": 424.4375,
+        "height": 58,
+        "top": 0,
+        "right": 408.71875,
+        "bottom": 58,
+        "left": -15.71875
+      },
+      "main": {
+        "x": 15.71875,
+        "y": 0,
+        "width": 361.5625,
+        "height": 1351.03125,
+        "top": 0,
+        "right": 377.28125,
+        "bottom": 1351.03125,
+        "left": 15.71875
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 345.828125,
+        "top": 0,
+        "right": 393,
+        "bottom": 345.828125,
+        "left": 0
+      },
+      "dock": {
+        "x": 15.71875,
+        "y": 1367.03125,
+        "width": 361.5625,
+        "height": 62,
+        "top": 1367.03125,
+        "right": 377.28125,
+        "bottom": 1429.03125,
+        "left": 15.71875
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 393,
+      "height": 852
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "bodyWidth": 393,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 58,
+        "top": 0,
+        "right": 393,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.71875,
+        "y": 0,
+        "width": 361.5625,
+        "height": 1502.625,
+        "top": 0,
+        "right": 377.28125,
+        "bottom": 1502.625,
+        "left": 15.71875
+      },
+      "hero": {
+        "x": 15.71875,
+        "y": 68,
+        "width": 361.5625,
+        "height": 132,
+        "top": 68,
+        "right": 377.28125,
+        "bottom": 200,
+        "left": 15.71875
+      },
+      "dock": {
+        "x": 15.71875,
+        "y": 1518.625,
+        "width": 361.5625,
+        "height": 62,
+        "top": 1518.625,
+        "right": 377.28125,
+        "bottom": 1580.625,
+        "left": 15.71875
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 182.5,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 210.5,
+          "bottom": 36.6875,
+          "left": 182.5
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 393,
+      "height": 852
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "bodyWidth": 393,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 58,
+        "top": 0,
+        "right": 393,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.71875,
+        "y": 0,
+        "width": 361.5625,
+        "height": 1477.78125,
+        "top": 0,
+        "right": 377.28125,
+        "bottom": 1477.78125,
+        "left": 15.71875
+      },
+      "hero": {
+        "x": 15.71875,
+        "y": 68,
+        "width": 361.5625,
+        "height": 135.375,
+        "top": 68,
+        "right": 377.28125,
+        "bottom": 203.375,
+        "left": 15.71875
+      },
+      "dock": {
+        "x": 15.71875,
+        "y": 1493.78125,
+        "width": 361.5625,
+        "height": 62,
+        "top": 1493.78125,
+        "right": 377.28125,
+        "bottom": 1555.78125,
+        "left": 15.71875
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 175.5,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 217.5,
+          "bottom": 36.6875,
+          "left": 175.5
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 393,
+      "height": 852
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "bodyWidth": 393,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 58,
+        "top": 0,
+        "right": 393,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.71875,
+        "y": 0,
+        "width": 361.5625,
+        "height": 1477.78125,
+        "top": 0,
+        "right": 377.28125,
+        "bottom": 1477.78125,
+        "left": 15.71875
+      },
+      "hero": {
+        "x": 15.71875,
+        "y": 68,
+        "width": 361.5625,
+        "height": 135.375,
+        "top": 68,
+        "right": 377.28125,
+        "bottom": 203.375,
+        "left": 15.71875
+      },
+      "dock": {
+        "x": 15.71875,
+        "y": 1493.78125,
+        "width": 361.5625,
+        "height": 62,
+        "top": 1493.78125,
+        "right": 377.28125,
+        "bottom": 1555.78125,
+        "left": 15.71875
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 175.5,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 217.5,
+          "bottom": 36.6875,
+          "left": 175.5
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 393,
+      "height": 852
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "bodyWidth": 393,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 58,
+        "top": 0,
+        "right": 393,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.71875,
+        "y": 0,
+        "width": 361.5625,
+        "height": 847.46875,
+        "top": 0,
+        "right": 377.28125,
+        "bottom": 847.46875,
+        "left": 15.71875
+      },
+      "hero": {
+        "x": 15.71875,
+        "y": 68,
+        "width": 361.5625,
+        "height": 135.375,
+        "top": 68,
+        "right": 377.28125,
+        "bottom": 203.375,
+        "left": 15.71875
+      },
+      "dock": {
+        "x": 15.71875,
+        "y": 863.46875,
+        "width": 361.5625,
+        "height": 62,
+        "top": 863.46875,
+        "right": 377.28125,
+        "bottom": 925.46875,
+        "left": 15.71875
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 166.03125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 226.953125,
+          "bottom": 36.6875,
+          "left": 166.03125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 393,
+      "height": 852
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "bodyWidth": 393,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 58,
+        "top": 0,
+        "right": 393,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.71875,
+        "y": 0,
+        "width": 361.5625,
+        "height": 588.375,
+        "top": 0,
+        "right": 377.28125,
+        "bottom": 588.375,
+        "left": 15.71875
+      },
+      "hero": {
+        "x": 15.71875,
+        "y": 68,
+        "width": 361.5625,
+        "height": 132,
+        "top": 68,
+        "right": 377.28125,
+        "bottom": 200,
+        "left": 15.71875
+      },
+      "dock": {
+        "x": 15.71875,
+        "y": 604.375,
+        "width": 361.5625,
+        "height": 62,
+        "top": 604.375,
+        "right": 377.28125,
+        "bottom": 666.375,
+        "left": 15.71875
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 166.03125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 226.953125,
+          "bottom": 36.6875,
+          "left": 166.03125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 393,
+      "height": 852
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "bodyWidth": 393,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 58,
+        "top": 0,
+        "right": 393,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.71875,
+        "y": 0,
+        "width": 361.5625,
+        "height": 458,
+        "top": 0,
+        "right": 377.28125,
+        "bottom": 458,
+        "left": 15.71875
+      },
+      "hero": {
+        "x": 15.71875,
+        "y": 68,
+        "width": 361.5625,
+        "height": 132,
+        "top": 68,
+        "right": 377.28125,
+        "bottom": 200,
+        "left": 15.71875
+      },
+      "dock": {
+        "x": 15.71875,
+        "y": 474,
+        "width": 361.5625,
+        "height": 62,
+        "top": 474,
+        "right": 377.28125,
+        "bottom": 536,
+        "left": 15.71875
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 166.03125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 226.953125,
+          "bottom": 36.6875,
+          "left": 166.03125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 393,
+      "height": 852
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "bodyWidth": 393,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 393,
+        "height": 58,
+        "top": 0,
+        "right": 393,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 15.71875,
+        "y": 0,
+        "width": 361.5625,
+        "height": 178,
+        "top": 0,
+        "right": 377.28125,
+        "bottom": 178,
+        "left": 15.71875
+      },
+      "hero": null,
+      "dock": {
+        "x": 15.71875,
+        "y": 194,
+        "width": 361.5625,
+        "height": 62,
+        "top": 194,
+        "right": 377.28125,
+        "bottom": 256,
+        "left": 15.71875
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 168.5,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 224.5,
+          "bottom": 36.6875,
+          "left": 168.5
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 393,
+      "height": 852
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "bodyWidth": 412,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -16.46875,
+        "y": 0,
+        "width": 444.9375,
+        "height": 58,
+        "top": 0,
+        "right": 428.46875,
+        "bottom": 58,
+        "left": -16.46875
+      },
+      "main": {
+        "x": 16.46875,
+        "y": 0,
+        "width": 379.0625,
+        "height": 1367.75,
+        "top": 0,
+        "right": 395.53125,
+        "bottom": 1367.75,
+        "left": 16.46875
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 362.546875,
+        "top": 0,
+        "right": 412,
+        "bottom": 362.546875,
+        "left": 0
+      },
+      "dock": {
+        "x": 16.46875,
+        "y": 1383.75,
+        "width": 379.0625,
+        "height": 62,
+        "top": 1383.75,
+        "right": 395.53125,
+        "bottom": 1445.75,
+        "left": 16.46875
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 412,
+      "height": 915
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "bodyWidth": 412,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 58,
+        "top": 0,
+        "right": 412,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.46875,
+        "y": 0,
+        "width": 379.0625,
+        "height": 1550.359375,
+        "top": 0,
+        "right": 395.53125,
+        "bottom": 1550.359375,
+        "left": 16.46875
+      },
+      "hero": {
+        "x": 16.46875,
+        "y": 68,
+        "width": 379.0625,
+        "height": 132,
+        "top": 68,
+        "right": 395.53125,
+        "bottom": 200,
+        "left": 16.46875
+      },
+      "dock": {
+        "x": 16.46875,
+        "y": 1566.359375,
+        "width": 379.0625,
+        "height": 62,
+        "top": 1566.359375,
+        "right": 395.53125,
+        "bottom": 1628.359375,
+        "left": 16.46875
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 192,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 220,
+          "bottom": 36.6875,
+          "left": 192
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 412,
+      "height": 915
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "bodyWidth": 412,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 58,
+        "top": 0,
+        "right": 412,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.46875,
+        "y": 0,
+        "width": 379.0625,
+        "height": 1490.8125,
+        "top": 0,
+        "right": 395.53125,
+        "bottom": 1490.8125,
+        "left": 16.46875
+      },
+      "hero": {
+        "x": 16.46875,
+        "y": 68,
+        "width": 379.0625,
+        "height": 135.375,
+        "top": 68,
+        "right": 395.53125,
+        "bottom": 203.375,
+        "left": 16.46875
+      },
+      "dock": {
+        "x": 16.46875,
+        "y": 1506.8125,
+        "width": 379.0625,
+        "height": 62,
+        "top": 1506.8125,
+        "right": 395.53125,
+        "bottom": 1568.8125,
+        "left": 16.46875
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 185,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 227,
+          "bottom": 36.6875,
+          "left": 185
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 412,
+      "height": 915
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "bodyWidth": 412,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 58,
+        "top": 0,
+        "right": 412,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.46875,
+        "y": 0,
+        "width": 379.0625,
+        "height": 1490.8125,
+        "top": 0,
+        "right": 395.53125,
+        "bottom": 1490.8125,
+        "left": 16.46875
+      },
+      "hero": {
+        "x": 16.46875,
+        "y": 68,
+        "width": 379.0625,
+        "height": 135.375,
+        "top": 68,
+        "right": 395.53125,
+        "bottom": 203.375,
+        "left": 16.46875
+      },
+      "dock": {
+        "x": 16.46875,
+        "y": 1506.8125,
+        "width": 379.0625,
+        "height": 62,
+        "top": 1506.8125,
+        "right": 395.53125,
+        "bottom": 1568.8125,
+        "left": 16.46875
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 185,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 227,
+          "bottom": 36.6875,
+          "left": 185
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 412,
+      "height": 915
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "bodyWidth": 412,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 58,
+        "top": 0,
+        "right": 412,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.46875,
+        "y": 0,
+        "width": 379.0625,
+        "height": 860.5,
+        "top": 0,
+        "right": 395.53125,
+        "bottom": 860.5,
+        "left": 16.46875
+      },
+      "hero": {
+        "x": 16.46875,
+        "y": 68,
+        "width": 379.0625,
+        "height": 135.375,
+        "top": 68,
+        "right": 395.53125,
+        "bottom": 203.375,
+        "left": 16.46875
+      },
+      "dock": {
+        "x": 16.46875,
+        "y": 876.5,
+        "width": 379.0625,
+        "height": 62,
+        "top": 876.5,
+        "right": 395.53125,
+        "bottom": 938.5,
+        "left": 16.46875
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 175.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 236.453125,
+          "bottom": 36.6875,
+          "left": 175.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 412,
+      "height": 915
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "bodyWidth": 412,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 58,
+        "top": 0,
+        "right": 412,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.46875,
+        "y": 0,
+        "width": 379.0625,
+        "height": 601.40625,
+        "top": 0,
+        "right": 395.53125,
+        "bottom": 601.40625,
+        "left": 16.46875
+      },
+      "hero": {
+        "x": 16.46875,
+        "y": 68,
+        "width": 379.0625,
+        "height": 132,
+        "top": 68,
+        "right": 395.53125,
+        "bottom": 200,
+        "left": 16.46875
+      },
+      "dock": {
+        "x": 16.46875,
+        "y": 617.40625,
+        "width": 379.0625,
+        "height": 62,
+        "top": 617.40625,
+        "right": 395.53125,
+        "bottom": 679.40625,
+        "left": 16.46875
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 175.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 236.453125,
+          "bottom": 36.6875,
+          "left": 175.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 412,
+      "height": 915
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "bodyWidth": 412,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 58,
+        "top": 0,
+        "right": 412,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.46875,
+        "y": 0,
+        "width": 379.0625,
+        "height": 458,
+        "top": 0,
+        "right": 395.53125,
+        "bottom": 458,
+        "left": 16.46875
+      },
+      "hero": {
+        "x": 16.46875,
+        "y": 68,
+        "width": 379.0625,
+        "height": 132,
+        "top": 68,
+        "right": 395.53125,
+        "bottom": 200,
+        "left": 16.46875
+      },
+      "dock": {
+        "x": 16.46875,
+        "y": 474,
+        "width": 379.0625,
+        "height": 62,
+        "top": 474,
+        "right": 395.53125,
+        "bottom": 536,
+        "left": 16.46875
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 175.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 236.453125,
+          "bottom": 36.6875,
+          "left": 175.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 412,
+      "height": 915
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "bodyWidth": 412,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 58,
+        "top": 0,
+        "right": 412,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.46875,
+        "y": 0,
+        "width": 379.0625,
+        "height": 178,
+        "top": 0,
+        "right": 395.53125,
+        "bottom": 178,
+        "left": 16.46875
+      },
+      "hero": null,
+      "dock": {
+        "x": 16.46875,
+        "y": 194,
+        "width": 379.0625,
+        "height": 62,
+        "top": 194,
+        "right": 395.53125,
+        "bottom": 256,
+        "left": 16.46875
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 178,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 234,
+          "bottom": 36.6875,
+          "left": 178
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 412,
+      "height": 915
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "bodyWidth": 414,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -16.546875,
+        "y": 0,
+        "width": 447.09375,
+        "height": 58,
+        "top": 0,
+        "right": 430.546875,
+        "bottom": 58,
+        "left": -16.546875
+      },
+      "main": {
+        "x": 16.546875,
+        "y": 0,
+        "width": 380.90625,
+        "height": 1369.515625,
+        "top": 0,
+        "right": 397.453125,
+        "bottom": 1369.515625,
+        "left": 16.546875
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 364.3125,
+        "top": 0,
+        "right": 414,
+        "bottom": 364.3125,
+        "left": 0
+      },
+      "dock": {
+        "x": 16.546875,
+        "y": 1385.515625,
+        "width": 380.90625,
+        "height": 62,
+        "top": 1385.515625,
+        "right": 397.453125,
+        "bottom": 1447.515625,
+        "left": 16.546875
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 414,
+      "height": 896
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "bodyWidth": 414,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 58,
+        "top": 0,
+        "right": 414,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.546875,
+        "y": 0,
+        "width": 380.90625,
+        "height": 1555.40625,
+        "top": 0,
+        "right": 397.453125,
+        "bottom": 1555.40625,
+        "left": 16.546875
+      },
+      "hero": {
+        "x": 16.546875,
+        "y": 68,
+        "width": 380.90625,
+        "height": 132,
+        "top": 68,
+        "right": 397.453125,
+        "bottom": 200,
+        "left": 16.546875
+      },
+      "dock": {
+        "x": 16.546875,
+        "y": 1571.40625,
+        "width": 380.90625,
+        "height": 62,
+        "top": 1571.40625,
+        "right": 397.453125,
+        "bottom": 1633.40625,
+        "left": 16.546875
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 193,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 221,
+          "bottom": 36.6875,
+          "left": 193
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 414,
+      "height": 896
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "bodyWidth": 414,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 58,
+        "top": 0,
+        "right": 414,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.546875,
+        "y": 0,
+        "width": 380.90625,
+        "height": 1492.1875,
+        "top": 0,
+        "right": 397.453125,
+        "bottom": 1492.1875,
+        "left": 16.546875
+      },
+      "hero": {
+        "x": 16.546875,
+        "y": 68,
+        "width": 380.90625,
+        "height": 135.375,
+        "top": 68,
+        "right": 397.453125,
+        "bottom": 203.375,
+        "left": 16.546875
+      },
+      "dock": {
+        "x": 16.546875,
+        "y": 1508.1875,
+        "width": 380.90625,
+        "height": 62,
+        "top": 1508.1875,
+        "right": 397.453125,
+        "bottom": 1570.1875,
+        "left": 16.546875
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 186,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 228,
+          "bottom": 36.6875,
+          "left": 186
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 414,
+      "height": 896
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "bodyWidth": 414,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 58,
+        "top": 0,
+        "right": 414,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.546875,
+        "y": 0,
+        "width": 380.90625,
+        "height": 1492.1875,
+        "top": 0,
+        "right": 397.453125,
+        "bottom": 1492.1875,
+        "left": 16.546875
+      },
+      "hero": {
+        "x": 16.546875,
+        "y": 68,
+        "width": 380.90625,
+        "height": 135.375,
+        "top": 68,
+        "right": 397.453125,
+        "bottom": 203.375,
+        "left": 16.546875
+      },
+      "dock": {
+        "x": 16.546875,
+        "y": 1508.1875,
+        "width": 380.90625,
+        "height": 62,
+        "top": 1508.1875,
+        "right": 397.453125,
+        "bottom": 1570.1875,
+        "left": 16.546875
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 186,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 228,
+          "bottom": 36.6875,
+          "left": 186
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 414,
+      "height": 896
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "bodyWidth": 414,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 58,
+        "top": 0,
+        "right": 414,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.546875,
+        "y": 0,
+        "width": 380.90625,
+        "height": 861.875,
+        "top": 0,
+        "right": 397.453125,
+        "bottom": 861.875,
+        "left": 16.546875
+      },
+      "hero": {
+        "x": 16.546875,
+        "y": 68,
+        "width": 380.90625,
+        "height": 135.375,
+        "top": 68,
+        "right": 397.453125,
+        "bottom": 203.375,
+        "left": 16.546875
+      },
+      "dock": {
+        "x": 16.546875,
+        "y": 877.875,
+        "width": 380.90625,
+        "height": 62,
+        "top": 877.875,
+        "right": 397.453125,
+        "bottom": 939.875,
+        "left": 16.546875
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 176.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 237.453125,
+          "bottom": 36.6875,
+          "left": 176.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 414,
+      "height": 896
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "bodyWidth": 414,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 58,
+        "top": 0,
+        "right": 414,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.546875,
+        "y": 0,
+        "width": 380.90625,
+        "height": 602.78125,
+        "top": 0,
+        "right": 397.453125,
+        "bottom": 602.78125,
+        "left": 16.546875
+      },
+      "hero": {
+        "x": 16.546875,
+        "y": 68,
+        "width": 380.90625,
+        "height": 132,
+        "top": 68,
+        "right": 397.453125,
+        "bottom": 200,
+        "left": 16.546875
+      },
+      "dock": {
+        "x": 16.546875,
+        "y": 618.78125,
+        "width": 380.90625,
+        "height": 62,
+        "top": 618.78125,
+        "right": 397.453125,
+        "bottom": 680.78125,
+        "left": 16.546875
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 176.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 237.453125,
+          "bottom": 36.6875,
+          "left": 176.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 414,
+      "height": 896
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "bodyWidth": 414,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 58,
+        "top": 0,
+        "right": 414,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.546875,
+        "y": 0,
+        "width": 380.90625,
+        "height": 458,
+        "top": 0,
+        "right": 397.453125,
+        "bottom": 458,
+        "left": 16.546875
+      },
+      "hero": {
+        "x": 16.546875,
+        "y": 68,
+        "width": 380.90625,
+        "height": 132,
+        "top": 68,
+        "right": 397.453125,
+        "bottom": 200,
+        "left": 16.546875
+      },
+      "dock": {
+        "x": 16.546875,
+        "y": 474,
+        "width": 380.90625,
+        "height": 62,
+        "top": 474,
+        "right": 397.453125,
+        "bottom": 536,
+        "left": 16.546875
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 176.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 237.453125,
+          "bottom": 36.6875,
+          "left": 176.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 414,
+      "height": 896
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 414,
+      "clientWidth": 414,
+      "bodyWidth": 414,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 414,
+        "height": 58,
+        "top": 0,
+        "right": 414,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 16.546875,
+        "y": 0,
+        "width": 380.90625,
+        "height": 178,
+        "top": 0,
+        "right": 397.453125,
+        "bottom": 178,
+        "left": 16.546875
+      },
+      "hero": null,
+      "dock": {
+        "x": 16.546875,
+        "y": 194,
+        "width": 380.90625,
+        "height": 62,
+        "top": 194,
+        "right": 397.453125,
+        "bottom": 256,
+        "left": 16.546875
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 179,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 235,
+          "bottom": 36.6875,
+          "left": 179
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 414,
+      "height": 896
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "bodyWidth": 430,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -17.1875,
+        "y": 0,
+        "width": 464.375,
+        "height": 58,
+        "top": 0,
+        "right": 447.1875,
+        "bottom": 58,
+        "left": -17.1875
+      },
+      "main": {
+        "x": 17.1875,
+        "y": 0,
+        "width": 395.625,
+        "height": 1383.59375,
+        "top": 0,
+        "right": 412.8125,
+        "bottom": 1383.59375,
+        "left": 17.1875
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 378.390625,
+        "top": 0,
+        "right": 430,
+        "bottom": 378.390625,
+        "left": 0
+      },
+      "dock": {
+        "x": 17.1875,
+        "y": 1399.59375,
+        "width": 395.625,
+        "height": 62,
+        "top": 1399.59375,
+        "right": 412.8125,
+        "bottom": 1461.59375,
+        "left": 17.1875
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 430,
+      "height": 932
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "bodyWidth": 430,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 430,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 17.1875,
+        "y": 0,
+        "width": 395.625,
+        "height": 1595.515625,
+        "top": 0,
+        "right": 412.8125,
+        "bottom": 1595.515625,
+        "left": 17.1875
+      },
+      "hero": {
+        "x": 17.1875,
+        "y": 68,
+        "width": 395.625,
+        "height": 132,
+        "top": 68,
+        "right": 412.8125,
+        "bottom": 200,
+        "left": 17.1875
+      },
+      "dock": {
+        "x": 17.1875,
+        "y": 1611.515625,
+        "width": 395.625,
+        "height": 62,
+        "top": 1611.515625,
+        "right": 412.8125,
+        "bottom": 1673.515625,
+        "left": 17.1875
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 201,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 229,
+          "bottom": 36.6875,
+          "left": 201
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 430,
+      "height": 932
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "bodyWidth": 430,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 430,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 17.1875,
+        "y": 0,
+        "width": 395.625,
+        "height": 1503.1875,
+        "top": 0,
+        "right": 412.8125,
+        "bottom": 1503.1875,
+        "left": 17.1875
+      },
+      "hero": {
+        "x": 17.1875,
+        "y": 68,
+        "width": 395.625,
+        "height": 135.375,
+        "top": 68,
+        "right": 412.8125,
+        "bottom": 203.375,
+        "left": 17.1875
+      },
+      "dock": {
+        "x": 17.1875,
+        "y": 1519.1875,
+        "width": 395.625,
+        "height": 62,
+        "top": 1519.1875,
+        "right": 412.8125,
+        "bottom": 1581.1875,
+        "left": 17.1875
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 194,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 236,
+          "bottom": 36.6875,
+          "left": 194
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 430,
+      "height": 932
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "bodyWidth": 430,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 430,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 17.1875,
+        "y": 0,
+        "width": 395.625,
+        "height": 1503.1875,
+        "top": 0,
+        "right": 412.8125,
+        "bottom": 1503.1875,
+        "left": 17.1875
+      },
+      "hero": {
+        "x": 17.1875,
+        "y": 68,
+        "width": 395.625,
+        "height": 135.375,
+        "top": 68,
+        "right": 412.8125,
+        "bottom": 203.375,
+        "left": 17.1875
+      },
+      "dock": {
+        "x": 17.1875,
+        "y": 1519.1875,
+        "width": 395.625,
+        "height": 62,
+        "top": 1519.1875,
+        "right": 412.8125,
+        "bottom": 1581.1875,
+        "left": 17.1875
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 194,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 236,
+          "bottom": 36.6875,
+          "left": 194
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 430,
+      "height": 932
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "bodyWidth": 430,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 430,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 17.1875,
+        "y": 0,
+        "width": 395.625,
+        "height": 872.875,
+        "top": 0,
+        "right": 412.8125,
+        "bottom": 872.875,
+        "left": 17.1875
+      },
+      "hero": {
+        "x": 17.1875,
+        "y": 68,
+        "width": 395.625,
+        "height": 135.375,
+        "top": 68,
+        "right": 412.8125,
+        "bottom": 203.375,
+        "left": 17.1875
+      },
+      "dock": {
+        "x": 17.1875,
+        "y": 888.875,
+        "width": 395.625,
+        "height": 62,
+        "top": 888.875,
+        "right": 412.8125,
+        "bottom": 950.875,
+        "left": 17.1875
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 184.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 245.453125,
+          "bottom": 36.6875,
+          "left": 184.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 430,
+      "height": 932
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "bodyWidth": 430,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 430,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 17.1875,
+        "y": 0,
+        "width": 395.625,
+        "height": 613.78125,
+        "top": 0,
+        "right": 412.8125,
+        "bottom": 613.78125,
+        "left": 17.1875
+      },
+      "hero": {
+        "x": 17.1875,
+        "y": 68,
+        "width": 395.625,
+        "height": 132,
+        "top": 68,
+        "right": 412.8125,
+        "bottom": 200,
+        "left": 17.1875
+      },
+      "dock": {
+        "x": 17.1875,
+        "y": 629.78125,
+        "width": 395.625,
+        "height": 62,
+        "top": 629.78125,
+        "right": 412.8125,
+        "bottom": 691.78125,
+        "left": 17.1875
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 184.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 245.453125,
+          "bottom": 36.6875,
+          "left": 184.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 430,
+      "height": 932
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "bodyWidth": 430,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 430,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 17.1875,
+        "y": 0,
+        "width": 395.625,
+        "height": 458,
+        "top": 0,
+        "right": 412.8125,
+        "bottom": 458,
+        "left": 17.1875
+      },
+      "hero": {
+        "x": 17.1875,
+        "y": 68,
+        "width": 395.625,
+        "height": 132,
+        "top": 68,
+        "right": 412.8125,
+        "bottom": 200,
+        "left": 17.1875
+      },
+      "dock": {
+        "x": 17.1875,
+        "y": 474,
+        "width": 395.625,
+        "height": 62,
+        "top": 474,
+        "right": 412.8125,
+        "bottom": 536,
+        "left": 17.1875
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 184.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 245.453125,
+          "bottom": 36.6875,
+          "left": 184.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 430,
+      "height": 932
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "bodyWidth": 430,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 430,
+        "bottom": 58,
+        "left": 0
+      },
+      "main": {
+        "x": 17.1875,
+        "y": 0,
+        "width": 395.625,
+        "height": 178,
+        "top": 0,
+        "right": 412.8125,
+        "bottom": 178,
+        "left": 17.1875
+      },
+      "hero": null,
+      "dock": {
+        "x": 17.1875,
+        "y": 194,
+        "width": 395.625,
+        "height": 62,
+        "top": 194,
+        "right": 412.8125,
+        "bottom": 256,
+        "left": 17.1875
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 187,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 243,
+          "bottom": 36.6875,
+          "left": 187
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 430,
+      "height": 932
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "bodyWidth": 480,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -18,
+        "y": 0,
+        "width": 516,
+        "height": 58,
+        "top": 0,
+        "right": 498,
+        "bottom": 58,
+        "left": -18
+      },
+      "main": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 1402.265625,
+        "top": 0,
+        "right": 455,
+        "bottom": 1402.265625,
+        "left": 25
+      },
+      "hero": {
+        "x": 7,
+        "y": 0,
+        "width": 466,
+        "height": 404,
+        "top": 0,
+        "right": 473,
+        "bottom": 404,
+        "left": 7
+      },
+      "dock": {
+        "x": 25,
+        "y": 1418.265625,
+        "width": 430,
+        "height": 62,
+        "top": 1418.265625,
+        "right": 455,
+        "bottom": 1480.265625,
+        "left": 25
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 480,
+      "height": 932
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "bodyWidth": 480,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 455,
+        "bottom": 58,
+        "left": 25
+      },
+      "main": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 1689.234375,
+        "top": 0,
+        "right": 455,
+        "bottom": 1689.234375,
+        "left": 25
+      },
+      "hero": {
+        "x": 25,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 455,
+        "bottom": 200,
+        "left": 25
+      },
+      "dock": {
+        "x": 25,
+        "y": 1705.234375,
+        "width": 430,
+        "height": 62,
+        "top": 1705.234375,
+        "right": 455,
+        "bottom": 1767.234375,
+        "left": 25
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 226,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 254,
+          "bottom": 36.6875,
+          "left": 226
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 480,
+      "height": 932
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "bodyWidth": 480,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 455,
+        "bottom": 58,
+        "left": 25
+      },
+      "main": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 1528.84375,
+        "top": 0,
+        "right": 455,
+        "bottom": 1528.84375,
+        "left": 25
+      },
+      "hero": {
+        "x": 25,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 455,
+        "bottom": 203.375,
+        "left": 25
+      },
+      "dock": {
+        "x": 25,
+        "y": 1544.84375,
+        "width": 430,
+        "height": 62,
+        "top": 1544.84375,
+        "right": 455,
+        "bottom": 1606.84375,
+        "left": 25
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 219,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 261,
+          "bottom": 36.6875,
+          "left": 219
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 480,
+      "height": 932
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "bodyWidth": 480,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 455,
+        "bottom": 58,
+        "left": 25
+      },
+      "main": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 1528.84375,
+        "top": 0,
+        "right": 455,
+        "bottom": 1528.84375,
+        "left": 25
+      },
+      "hero": {
+        "x": 25,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 455,
+        "bottom": 203.375,
+        "left": 25
+      },
+      "dock": {
+        "x": 25,
+        "y": 1544.84375,
+        "width": 430,
+        "height": 62,
+        "top": 1544.84375,
+        "right": 455,
+        "bottom": 1606.84375,
+        "left": 25
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 219,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 261,
+          "bottom": 36.6875,
+          "left": 219
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 480,
+      "height": 932
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "bodyWidth": 480,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 455,
+        "bottom": 58,
+        "left": 25
+      },
+      "main": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 898.53125,
+        "top": 0,
+        "right": 455,
+        "bottom": 898.53125,
+        "left": 25
+      },
+      "hero": {
+        "x": 25,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 455,
+        "bottom": 203.375,
+        "left": 25
+      },
+      "dock": {
+        "x": 25,
+        "y": 914.53125,
+        "width": 430,
+        "height": 62,
+        "top": 914.53125,
+        "right": 455,
+        "bottom": 976.53125,
+        "left": 25
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 209.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 270.453125,
+          "bottom": 36.6875,
+          "left": 209.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 480,
+      "height": 932
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "bodyWidth": 480,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 455,
+        "bottom": 58,
+        "left": 25
+      },
+      "main": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 639.4375,
+        "top": 0,
+        "right": 455,
+        "bottom": 639.4375,
+        "left": 25
+      },
+      "hero": {
+        "x": 25,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 455,
+        "bottom": 200,
+        "left": 25
+      },
+      "dock": {
+        "x": 25,
+        "y": 655.4375,
+        "width": 430,
+        "height": 62,
+        "top": 655.4375,
+        "right": 455,
+        "bottom": 717.4375,
+        "left": 25
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 209.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 270.453125,
+          "bottom": 36.6875,
+          "left": 209.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 480,
+      "height": 932
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "bodyWidth": 480,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 455,
+        "bottom": 58,
+        "left": 25
+      },
+      "main": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 458,
+        "top": 0,
+        "right": 455,
+        "bottom": 458,
+        "left": 25
+      },
+      "hero": {
+        "x": 25,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 455,
+        "bottom": 200,
+        "left": 25
+      },
+      "dock": {
+        "x": 25,
+        "y": 474,
+        "width": 430,
+        "height": 62,
+        "top": 474,
+        "right": 455,
+        "bottom": 536,
+        "left": 25
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 209.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 270.453125,
+          "bottom": 36.6875,
+          "left": 209.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 480,
+      "height": 932
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "bodyWidth": 480,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 455,
+        "bottom": 58,
+        "left": 25
+      },
+      "main": {
+        "x": 25,
+        "y": 0,
+        "width": 430,
+        "height": 178,
+        "top": 0,
+        "right": 455,
+        "bottom": 178,
+        "left": 25
+      },
+      "hero": null,
+      "dock": {
+        "x": 25,
+        "y": 194,
+        "width": 430,
+        "height": 62,
+        "top": 194,
+        "right": 455,
+        "bottom": 256,
+        "left": 25
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 212,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 268,
+          "bottom": 36.6875,
+          "left": 212
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 480,
+      "height": 932
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 600,
+      "clientWidth": 600,
+      "bodyWidth": 600,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -18,
+        "y": 0,
+        "width": 636,
+        "height": 58,
+        "top": 0,
+        "right": 618,
+        "bottom": 58,
+        "left": -18
+      },
+      "main": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 1402.265625,
+        "top": 0,
+        "right": 515,
+        "bottom": 1402.265625,
+        "left": 85
+      },
+      "hero": {
+        "x": 67,
+        "y": 0,
+        "width": 466,
+        "height": 404,
+        "top": 0,
+        "right": 533,
+        "bottom": 404,
+        "left": 67
+      },
+      "dock": {
+        "x": 85,
+        "y": 1418.265625,
+        "width": 430,
+        "height": 62,
+        "top": 1418.265625,
+        "right": 515,
+        "bottom": 1480.265625,
+        "left": 85
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 600,
+      "height": 960
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 600,
+      "clientWidth": 600,
+      "bodyWidth": 600,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 515,
+        "bottom": 58,
+        "left": 85
+      },
+      "main": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 1689.234375,
+        "top": 0,
+        "right": 515,
+        "bottom": 1689.234375,
+        "left": 85
+      },
+      "hero": {
+        "x": 85,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 515,
+        "bottom": 200,
+        "left": 85
+      },
+      "dock": {
+        "x": 85,
+        "y": 1705.234375,
+        "width": 430,
+        "height": 62,
+        "top": 1705.234375,
+        "right": 515,
+        "bottom": 1767.234375,
+        "left": 85
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 286,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 314,
+          "bottom": 36.6875,
+          "left": 286
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 600,
+      "height": 960
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 600,
+      "clientWidth": 600,
+      "bodyWidth": 600,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 515,
+        "bottom": 58,
+        "left": 85
+      },
+      "main": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 1528.84375,
+        "top": 0,
+        "right": 515,
+        "bottom": 1528.84375,
+        "left": 85
+      },
+      "hero": {
+        "x": 85,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 515,
+        "bottom": 203.375,
+        "left": 85
+      },
+      "dock": {
+        "x": 85,
+        "y": 1544.84375,
+        "width": 430,
+        "height": 62,
+        "top": 1544.84375,
+        "right": 515,
+        "bottom": 1606.84375,
+        "left": 85
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 279,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 321,
+          "bottom": 36.6875,
+          "left": 279
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 600,
+      "height": 960
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 600,
+      "clientWidth": 600,
+      "bodyWidth": 600,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 515,
+        "bottom": 58,
+        "left": 85
+      },
+      "main": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 1528.84375,
+        "top": 0,
+        "right": 515,
+        "bottom": 1528.84375,
+        "left": 85
+      },
+      "hero": {
+        "x": 85,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 515,
+        "bottom": 203.375,
+        "left": 85
+      },
+      "dock": {
+        "x": 85,
+        "y": 1544.84375,
+        "width": 430,
+        "height": 62,
+        "top": 1544.84375,
+        "right": 515,
+        "bottom": 1606.84375,
+        "left": 85
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 279,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 321,
+          "bottom": 36.6875,
+          "left": 279
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 600,
+      "height": 960
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 600,
+      "clientWidth": 600,
+      "bodyWidth": 600,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 515,
+        "bottom": 58,
+        "left": 85
+      },
+      "main": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 898.53125,
+        "top": 0,
+        "right": 515,
+        "bottom": 898.53125,
+        "left": 85
+      },
+      "hero": {
+        "x": 85,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 515,
+        "bottom": 203.375,
+        "left": 85
+      },
+      "dock": {
+        "x": 85,
+        "y": 914.53125,
+        "width": 430,
+        "height": 62,
+        "top": 914.53125,
+        "right": 515,
+        "bottom": 976.53125,
+        "left": 85
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 269.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 330.453125,
+          "bottom": 36.6875,
+          "left": 269.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 600,
+      "height": 960
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 600,
+      "clientWidth": 600,
+      "bodyWidth": 600,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 515,
+        "bottom": 58,
+        "left": 85
+      },
+      "main": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 639.4375,
+        "top": 0,
+        "right": 515,
+        "bottom": 639.4375,
+        "left": 85
+      },
+      "hero": {
+        "x": 85,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 515,
+        "bottom": 200,
+        "left": 85
+      },
+      "dock": {
+        "x": 85,
+        "y": 655.4375,
+        "width": 430,
+        "height": 62,
+        "top": 655.4375,
+        "right": 515,
+        "bottom": 717.4375,
+        "left": 85
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 269.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 330.453125,
+          "bottom": 36.6875,
+          "left": 269.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 600,
+      "height": 960
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 600,
+      "clientWidth": 600,
+      "bodyWidth": 600,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 515,
+        "bottom": 58,
+        "left": 85
+      },
+      "main": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 458,
+        "top": 0,
+        "right": 515,
+        "bottom": 458,
+        "left": 85
+      },
+      "hero": {
+        "x": 85,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 515,
+        "bottom": 200,
+        "left": 85
+      },
+      "dock": {
+        "x": 85,
+        "y": 474,
+        "width": 430,
+        "height": 62,
+        "top": 474,
+        "right": 515,
+        "bottom": 536,
+        "left": 85
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 269.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 330.453125,
+          "bottom": 36.6875,
+          "left": 269.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 600,
+      "height": 960
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 600,
+      "clientWidth": 600,
+      "bodyWidth": 600,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 515,
+        "bottom": 58,
+        "left": 85
+      },
+      "main": {
+        "x": 85,
+        "y": 0,
+        "width": 430,
+        "height": 178,
+        "top": 0,
+        "right": 515,
+        "bottom": 178,
+        "left": 85
+      },
+      "hero": null,
+      "dock": {
+        "x": 85,
+        "y": 194,
+        "width": 430,
+        "height": 62,
+        "top": 194,
+        "right": 515,
+        "bottom": 256,
+        "left": 85
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 272,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 328,
+          "bottom": 36.6875,
+          "left": 272
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 600,
+      "height": 960
+    },
+    {
+      "route": "home",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyWidth": 768,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": -18,
+        "y": 0,
+        "width": 804,
+        "height": 58,
+        "top": 0,
+        "right": 786,
+        "bottom": 58,
+        "left": -18
+      },
+      "main": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 1451.375,
+        "top": 0,
+        "right": 599,
+        "bottom": 1451.375,
+        "left": 169
+      },
+      "hero": {
+        "x": 151,
+        "y": 0,
+        "width": 466,
+        "height": 453.109375,
+        "top": 0,
+        "right": 617,
+        "bottom": 453.109375,
+        "left": 151
+      },
+      "dock": {
+        "x": 169,
+        "y": 1467.375,
+        "width": 430,
+        "height": 62,
+        "top": 1467.375,
+        "right": 599,
+        "bottom": 1529.375,
+        "left": 169
+      },
+      "title": null,
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "products",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/products",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyWidth": 768,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 599,
+        "bottom": 58,
+        "left": 169
+      },
+      "main": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 1689.234375,
+        "top": 0,
+        "right": 599,
+        "bottom": 1689.234375,
+        "left": 169
+      },
+      "hero": {
+        "x": 169,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 599,
+        "bottom": 200,
+        "left": 169
+      },
+      "dock": {
+        "x": 169,
+        "y": 1705.234375,
+        "width": 430,
+        "height": 62,
+        "top": 1705.234375,
+        "right": 599,
+        "bottom": 1767.234375,
+        "left": 169
+      },
+      "title": {
+        "text": "제품",
+        "box": {
+          "x": 370,
+          "y": 21.296875,
+          "width": 28,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 398,
+          "bottom": 36.6875,
+          "left": 370
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "technology",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/technology",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyWidth": 768,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 599,
+        "bottom": 58,
+        "left": 169
+      },
+      "main": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 1528.84375,
+        "top": 0,
+        "right": 599,
+        "bottom": 1528.84375,
+        "left": 169
+      },
+      "hero": {
+        "x": 169,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 599,
+        "bottom": 203.375,
+        "left": 169
+      },
+      "dock": {
+        "x": 169,
+        "y": 1544.84375,
+        "width": 430,
+        "height": 62,
+        "top": 1544.84375,
+        "right": 599,
+        "bottom": 1606.84375,
+        "left": 169
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 363,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 405,
+          "bottom": 36.6875,
+          "left": 363
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "process",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/process",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyWidth": 768,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 599,
+        "bottom": 58,
+        "left": 169
+      },
+      "main": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 1528.84375,
+        "top": 0,
+        "right": 599,
+        "bottom": 1528.84375,
+        "left": 169
+      },
+      "hero": {
+        "x": 169,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 599,
+        "bottom": 203.375,
+        "left": 169
+      },
+      "dock": {
+        "x": 169,
+        "y": 1544.84375,
+        "width": 430,
+        "height": 62,
+        "top": 1544.84375,
+        "right": 599,
+        "bottom": 1606.84375,
+        "left": 169
+      },
+      "title": {
+        "text": "기술력",
+        "box": {
+          "x": 363,
+          "y": 21.296875,
+          "width": 42,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 405,
+          "bottom": 36.6875,
+          "left": 363
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "quality",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/quality",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyWidth": 768,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 599,
+        "bottom": 58,
+        "left": 169
+      },
+      "main": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 898.53125,
+        "top": 0,
+        "right": 599,
+        "bottom": 898.53125,
+        "left": 169
+      },
+      "hero": {
+        "x": 169,
+        "y": 68,
+        "width": 430,
+        "height": 135.375,
+        "top": 68,
+        "right": 599,
+        "bottom": 203.375,
+        "left": 169
+      },
+      "dock": {
+        "x": 169,
+        "y": 914.53125,
+        "width": 430,
+        "height": 62,
+        "top": 914.53125,
+        "right": 599,
+        "bottom": 976.53125,
+        "left": 169
+      },
+      "title": {
+        "text": "품질 관리",
+        "box": {
+          "x": 353.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 414.453125,
+          "bottom": 36.6875,
+          "left": 353.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "facility",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/facility",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyWidth": 768,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 599,
+        "bottom": 58,
+        "left": 169
+      },
+      "main": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 639.4375,
+        "top": 0,
+        "right": 599,
+        "bottom": 639.4375,
+        "left": 169
+      },
+      "hero": {
+        "x": 169,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 599,
+        "bottom": 200,
+        "left": 169
+      },
+      "dock": {
+        "x": 169,
+        "y": 655.4375,
+        "width": 430,
+        "height": 62,
+        "top": 655.4375,
+        "right": 599,
+        "bottom": 717.4375,
+        "left": 169
+      },
+      "title": {
+        "text": "보유 설비",
+        "box": {
+          "x": 353.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 414.453125,
+          "bottom": 36.6875,
+          "left": 353.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "company",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/company",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyWidth": 768,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 599,
+        "bottom": 58,
+        "left": 169
+      },
+      "main": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 458,
+        "top": 0,
+        "right": 599,
+        "bottom": 458,
+        "left": 169
+      },
+      "hero": {
+        "x": 169,
+        "y": 68,
+        "width": 430,
+        "height": 132,
+        "top": 68,
+        "right": 599,
+        "bottom": 200,
+        "left": 169
+      },
+      "dock": {
+        "x": 169,
+        "y": 474,
+        "width": 430,
+        "height": 62,
+        "top": 474,
+        "right": 599,
+        "bottom": 536,
+        "left": 169
+      },
+      "title": {
+        "text": "회사 소개",
+        "box": {
+          "x": 353.53125,
+          "y": 21.296875,
+          "width": 60.921875,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 414.453125,
+          "bottom": 36.6875,
+          "left": 353.53125
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "notice",
+      "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/notice",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyWidth": 768,
+      "horizontalOverflow": false,
+      "topbar": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 58,
+        "top": 0,
+        "right": 599,
+        "bottom": 58,
+        "left": 169
+      },
+      "main": {
+        "x": 169,
+        "y": 0,
+        "width": 430,
+        "height": 178,
+        "top": 0,
+        "right": 599,
+        "bottom": 178,
+        "left": 169
+      },
+      "hero": null,
+      "dock": {
+        "x": 169,
+        "y": 194,
+        "width": 430,
+        "height": 62,
+        "top": 194,
+        "right": 599,
+        "bottom": 256,
+        "left": 169
+      },
+      "title": {
+        "text": "공지사항",
+        "box": {
+          "x": 356,
+          "y": 21.296875,
+          "width": 56,
+          "height": 15.390625,
+          "top": 21.296875,
+          "right": 412,
+          "bottom": 36.6875,
+          "left": 356
+        }
+      },
+      "fakeStatus": false,
+      "forbiddenVisible": [],
+      "brokenImages": [],
+      "width": 768,
+      "height": 1024
+    }
+  ],
+  "interaction": {
+    "checks": [
+      {
+        "action": "live_home_more_to_products",
+        "hash": "#/products",
+        "pass": true
+      },
+      {
+        "action": "live_home_first_product_card_to_products",
+        "hash": "#/products",
+        "pass": true
+      },
+      {
+        "action": "live_bottom_product_tab_to_products",
+        "hash": "#/products",
+        "pass": true
+      },
+      {
+        "action": "live_products_detail_link_safe",
+        "hash": "#/products",
+        "pass": true
+      },
+      {
+        "action": "live_products_back_to_home",
+        "hash": "#/",
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  "errors": [],
+  "pass": true
+}

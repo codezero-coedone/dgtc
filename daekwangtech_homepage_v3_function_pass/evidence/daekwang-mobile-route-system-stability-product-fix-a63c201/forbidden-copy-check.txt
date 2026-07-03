@@ -1,0 +1,5 @@
+scope: local public mobile visible routes + allowed edited files
+visible_forbidden_count=0
+visible_forbidden=[]
+edited_source_hits=[]
+pass=true

@@ -1,0 +1,198 @@
+{
+  "base": "https://dgtc.ejdzm90.workers.dev",
+  "tag": "mobile-route-system-fix-a63c201",
+  "versionId": "50728c2e-95bc-467e-9c46-4a5183ceab1d",
+  "commit": "a63c201",
+  "assetInfo": {
+    "href": "https://dgtc.ejdzm90.workers.dev/?v=mobile-route-system-fix-a63c201#/",
+    "scripts": [
+      "https://dgtc.ejdzm90.workers.dev/assets/index-PUDG1wY8.js"
+    ],
+    "styles": [
+      "https://dgtc.ejdzm90.workers.dev/assets/index-CDkCOQcQ.css"
+    ],
+    "images": [
+      {
+        "src": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-mark-v2.svg",
+        "complete": true,
+        "naturalWidth": 150,
+        "naturalHeight": 150
+      },
+      {
+        "src": "https://dgtc.ejdzm90.workers.dev/assets/real-hero-batch-components.jpg",
+        "complete": true,
+        "naturalWidth": 2600,
+        "naturalHeight": 1950
+      },
+      {
+        "src": "https://dgtc.ejdzm90.workers.dev/assets/real-black-valve-core.jpg",
+        "complete": true,
+        "naturalWidth": 1240,
+        "naturalHeight": 1900
+      },
+      {
+        "src": "https://dgtc.ejdzm90.workers.dev/assets/real-silver-valve-core.jpg",
+        "complete": true,
+        "naturalWidth": 1609,
+        "naturalHeight": 2000
+      },
+      {
+        "src": "https://dgtc.ejdzm90.workers.dev/assets/real-stepped-shaft-vertical.jpg",
+        "complete": true,
+        "naturalWidth": 1232,
+        "naturalHeight": 2000
+      },
+      {
+        "src": "https://dgtc.ejdzm90.workers.dev/assets/real-hero-batch-components.jpg",
+        "complete": true,
+        "naturalWidth": 2600,
+        "naturalHeight": 1950
+      },
+      {
+        "src": "https://dgtc.ejdzm90.workers.dev/assets/daekwang-mark-v2.svg",
+        "complete": true,
+        "naturalWidth": 150,
+        "naturalHeight": 150
+      },
+      {
+        "src": "https://dgtc.ejdzm90.workers.dev/assets/real-black-valve-core.jpg",
+        "complete": true,
+        "naturalWidth": 1240,
+        "naturalHeight": 1900
+      }
+    ]
+  },
+  "routeAudit": [
+    {
+      "route": "home",
+      "width": 390,
+      "overflow": false,
+      "fakeStatus": false,
+      "title": null,
+      "heroTop": 0,
+      "mainTop": 0,
+      "topbarHeight": 58,
+      "brokenImages": 0,
+      "forbiddenVisible": []
+    },
+    {
+      "route": "products",
+      "width": 390,
+      "overflow": false,
+      "fakeStatus": false,
+      "title": "제품",
+      "heroTop": 68,
+      "mainTop": 0,
+      "topbarHeight": 58,
+      "brokenImages": 0,
+      "forbiddenVisible": []
+    },
+    {
+      "route": "technology",
+      "width": 390,
+      "overflow": false,
+      "fakeStatus": false,
+      "title": "기술력",
+      "heroTop": 68,
+      "mainTop": 0,
+      "topbarHeight": 58,
+      "brokenImages": 0,
+      "forbiddenVisible": []
+    },
+    {
+      "route": "process",
+      "width": 390,
+      "overflow": false,
+      "fakeStatus": false,
+      "title": "기술력",
+      "heroTop": 68,
+      "mainTop": 0,
+      "topbarHeight": 58,
+      "brokenImages": 0,
+      "forbiddenVisible": []
+    },
+    {
+      "route": "quality",
+      "width": 390,
+      "overflow": false,
+      "fakeStatus": false,
+      "title": "품질 관리",
+      "heroTop": 68,
+      "mainTop": 0,
+      "topbarHeight": 58,
+      "brokenImages": 0,
+      "forbiddenVisible": []
+    },
+    {
+      "route": "facility",
+      "width": 390,
+      "overflow": false,
+      "fakeStatus": false,
+      "title": "보유 설비",
+      "heroTop": 68,
+      "mainTop": 0,
+      "topbarHeight": 58,
+      "brokenImages": 0,
+      "forbiddenVisible": []
+    },
+    {
+      "route": "company",
+      "width": 390,
+      "overflow": false,
+      "fakeStatus": false,
+      "title": "회사 소개",
+      "heroTop": 68,
+      "mainTop": 0,
+      "topbarHeight": 58,
+      "brokenImages": 0,
+      "forbiddenVisible": []
+    },
+    {
+      "route": "notice",
+      "width": 390,
+      "overflow": false,
+      "fakeStatus": false,
+      "title": "공지사항",
+      "heroTop": null,
+      "mainTop": 0,
+      "topbarHeight": 58,
+      "brokenImages": 0,
+      "forbiddenVisible": []
+    }
+  ],
+  "interaction": {
+    "checks": [
+      {
+        "action": "live_home_more_to_products",
+        "hash": "#/products",
+        "pass": true
+      },
+      {
+        "action": "live_home_first_product_card_to_products",
+        "hash": "#/products",
+        "pass": true
+      },
+      {
+        "action": "live_bottom_product_tab_to_products",
+        "hash": "#/products",
+        "pass": true
+      },
+      {
+        "action": "live_products_detail_link_safe",
+        "hash": "#/products",
+        "pass": true
+      },
+      {
+        "action": "live_products_back_to_home",
+        "hash": "#/",
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  "matrixPass": true,
+  "routePass": true,
+  "consolePass": true,
+  "visibleForbidden": [],
+  "pass": true
+}
