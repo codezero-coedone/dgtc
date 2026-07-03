@@ -9486,3 +9486,172 @@ body.product-modal-open {
   }
 }
 
+/* DAEKWANG_COMPANY_INFO_AND_EQUIPMENT_CONTENT_UPDATE_V1 */
+.company-info-panel,
+.facility-equipment-panel {
+  display: grid;
+  gap: 22px;
+  margin: 34px auto 0;
+  padding: 28px;
+  border: 1px solid rgba(15, 23, 42, .08);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(248, 251, 255, .92));
+  box-shadow: 0 22px 58px rgba(15, 35, 70, .08);
+}
+
+.company-info-panel__head,
+.facility-equipment-main {
+  max-width: 780px;
+}
+
+.company-info-panel__head h3,
+.facility-equipment-main h3 {
+  margin: 6px 0 8px;
+  color: #07162b;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.12;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.company-info-panel__head p,
+.facility-equipment-main p {
+  margin: 0;
+  color: #475467;
+  line-height: 1.72;
+}
+
+.facility-equipment-main span {
+  display: inline-flex;
+  width: max-content;
+  margin-bottom: 8px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(15, 71, 175, .08);
+  color: #0f47af;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: .08em;
+}
+
+.company-info-grid,
+.facility-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.company-info-grid div,
+.facility-spec-grid div {
+  min-width: 0;
+  padding: 15px 16px;
+  border: 1px solid rgba(15, 23, 42, .07);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.company-info-grid dt,
+.facility-spec-grid dt {
+  color: #667085;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.company-info-grid dd,
+.facility-spec-grid dd {
+  margin: 6px 0 0;
+  color: #102033;
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.company-handled-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.company-handled-grid article,
+.mobile-equipment-chip-grid article {
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid rgba(15, 23, 42, .07);
+  border-radius: 17px;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(93, 165, 224, .12), transparent 34%),
+    #fff;
+}
+
+.company-handled-grid strong,
+.mobile-equipment-chip-grid strong {
+  display: block;
+  color: #07162b;
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.company-handled-grid p,
+.mobile-equipment-chip-grid p {
+  margin: 8px 0 0;
+  color: #475467;
+  font-size: 13px;
+  line-height: 1.58;
+}
+
+.facility-equipment-panel {
+  background:
+    radial-gradient(circle at 10% 6%, rgba(93, 165, 224, .16), transparent 32%),
+    linear-gradient(135deg, #f8fbff, #ffffff);
+}
+
+.facility-handled-grid {
+  grid-column: 1 / -1;
+}
+
+.mobile-equipment-chip-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.mobile-equipment-main > span {
+  display: inline-flex;
+  width: max-content;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eaf4ff;
+  color: #0f47af;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .06em;
+}
+
+.mobile-facility-grid article p {
+  margin: 7px 0 0;
+  color: #667085;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+@media (max-width: 1023px) {
+  .company-info-grid,
+  .facility-spec-grid,
+  .company-handled-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .company-info-panel,
+  .facility-equipment-panel {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .mobile-info-card dl div {
+    grid-template-columns: 82px minmax(0, 1fr);
+  }
+}
+

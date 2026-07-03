@@ -208,6 +208,28 @@ const mobileProductCards = [
   ["특수 부품", "Custom Part", "고객 맞춤형 특수 사양 제품 및 가공 부품", "assets/real-precision-threaded-pair.jpg"],
 ];
 
+const handledItemCards = [
+  ["자동차부품", "반복 정밀도와 안정성이 중요한 자동차 관련 소형 부품 가공"],
+  ["유압부품", "압력·체결·밀폐 성능이 중요한 유압 피팅 및 관련 부품 가공"],
+  ["전자부품", "소형 정밀도와 균일 품질이 필요한 전자 부품 가공"],
+];
+
+const cncEquipmentInfo = {
+  title: "한화 XDI26/32 CNC 자동선반",
+  subtitle: "CNC Swiss Turning Lathe",
+  description: [
+    "Ø26/Ø32mm급 소형 정밀 부품 가공에 대응하는 CNC 자동선반 설비입니다.",
+    "반복 정밀도와 균일 품질이 중요한 자동차부품, 유압부품, 전자부품 생산에 활용됩니다.",
+  ],
+  specs: [
+    ["장비 구분", "CNC 자동선반"],
+    ["모델", "한화 XDI26/32"],
+    ["가공 방식", "CNC Swiss Turning Lathe"],
+    ["대응 품목", "자동차부품 / 유압부품 / 전자부품"],
+    ["적용 분야", "소형 정밀 금속 부품"],
+  ],
+};
+
 const imageSlotFallbacks = Object.fromEntries(publicImageSlots.map((slot) => [slot.key, slot.fallback]));
 
 function isUsablePublicImage(src) {
@@ -618,24 +640,36 @@ function MobileQualityScreen({ imageSlots }) {
 
 function MobileCompanyScreen({ content, imageSlots }) {
   const companyRows = [
-    ["회사명", content.company.nameKo],
-    ["대표전화", content.company.tel],
-    ["팩스", content.company.fax],
+    ["상호", content.company.nameKo],
+    ["영문명", content.company.nameEn],
+    ["업종", content.company.businessType],
+    ["담당", content.company.manager],
     ["주소", content.company.address],
+    ["지번", content.company.lotAddress],
+    ["TEL", content.company.tel],
+    ["FAX", content.company.fax],
+    ["Mobile", content.company.mobile],
+    ["E-mail", content.company.email],
   ].filter(([, value]) => value);
   return (
     <>
       <MobileDarkHero
         image={imageSlots.facilityVisualImage}
-        title="정밀한 기술로 신뢰를 만드는 기업"
-        body="대광테크는 고객의 성공을 기술력과 품질로 함께합니다."
+        title="CNC 자동선반 전문 가공업체"
+        body="대광테크는 자동차부품, 유압부품, 전자부품을 중심으로 소형 정밀 부품 가공을 수행합니다."
       />
       <section className="mobile-info-card">
-        <h2>회사 개요</h2>
-        <p>대광테크는 정밀 가공 기술을 바탕으로 다양한 산업 분야에 고품질 제품을 공급하고 있습니다.</p>
+        <h2>회사 정보</h2>
+        <p>명함 기준 회사 기본 정보를 한 화면에서 확인할 수 있도록 정리했습니다.</p>
         <dl>
           {companyRows.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
         </dl>
+      </section>
+      <section className="mobile-app-section mobile-handled-items">
+        <MobileSectionHead title="취급 품목" />
+        <div className="mobile-equipment-chip-grid">
+          {handledItemCards.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
+        </div>
       </section>
     </>
   );
@@ -665,12 +699,20 @@ function MobileInfoScreen({ page, detail, imageSlots, content }) {
     const facilityItems = withFirstImage((detail.cards || facilityCards).slice(0, 4), imageSlots.facilityVisualImage);
     return (
       <>
-        <MobileDarkHero image={imageSlots.facilityVisualImage} title="생산 인프라를 안정적으로 관리합니다" body="설비와 검사 환경을 정돈된 기준으로 운영합니다." />
+        <MobileDarkHero image={imageSlots.facilityVisualImage} title="CNC 자동선반 보유 설비" body="대광테크는 CNC 자동선반 기반의 정밀 가공 설비를 활용해 자동차부품, 유압부품, 전자부품 등 다양한 산업 부품을 가공합니다." />
+        <section className="mobile-info-card mobile-equipment-main">
+          <span>{cncEquipmentInfo.subtitle}</span>
+          <h2>{cncEquipmentInfo.title}</h2>
+          {cncEquipmentInfo.description.map((line) => <p key={line}>{line}</p>)}
+          <dl>
+            {cncEquipmentInfo.specs.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+          </dl>
+        </section>
         <section className="mobile-app-section">
-          <MobileSectionHead title="보유 설비" />
+          <MobileSectionHead title="정밀 가공 설비" />
           <div className="mobile-facility-grid">
             {facilityItems.map(([title, body, image]) => (
-              <article key={title}><figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure><strong>{title}</strong></article>
+              <article key={title}><figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure><strong>{title}</strong><p>{body}</p></article>
             ))}
           </div>
         </section>
@@ -792,27 +834,77 @@ function MetricRow({ items }) {
   );
 }
 
+function CompanyInfoPanel({ company }) {
+  const rows = [
+    ["상호", company.nameKo],
+    ["영문명", company.nameEn],
+    ["업종", company.businessType],
+    ["담당", company.manager],
+    ["주소", company.address],
+    ["지번", company.lotAddress],
+    ["TEL", company.tel],
+    ["FAX", company.fax],
+    ["Mobile", company.mobile],
+    ["E-mail", company.email],
+  ].filter(([, value]) => value);
+  return (
+    <section className="company-info-panel wrap" aria-label="대광테크 회사 정보">
+      <div className="company-info-panel__head">
+        <p className="section-kicker">COMPANY INFORMATION</p>
+        <h3>회사 정보</h3>
+        <p>대광테크의 사업장 정보와 담당자 정보를 명함 기준으로 정리했습니다.</p>
+      </div>
+      <dl className="company-info-grid">
+        {rows.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+      </dl>
+      <div className="company-handled-grid" aria-label="취급 품목">
+        {handledItemCards.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
+      </div>
+    </section>
+  );
+}
+
+function FacilityEquipmentPanel() {
+  return (
+    <section className="facility-equipment-panel wrap" aria-label="CNC 자동선반 보유 설비">
+      <div className="facility-equipment-main">
+        <span>{cncEquipmentInfo.subtitle}</span>
+        <h3>{cncEquipmentInfo.title}</h3>
+        {cncEquipmentInfo.description.map((line) => <p key={line}>{line}</p>)}
+      </div>
+      <dl className="facility-spec-grid">
+        {cncEquipmentInfo.specs.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+      </dl>
+      <div className="company-handled-grid facility-handled-grid" aria-label="취급 품목">
+        {handledItemCards.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
+      </div>
+    </section>
+  );
+}
+
 function CompactClosingPanel({ page, items }) {
-  const mapHref = "https://map.kakao.com/link/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%ED%99%94%EC%84%B1%EC%8B%9C%20%EB%A7%88%EB%8F%84%EB%A9%B4%20%EC%B2%AD%EC%9B%90%EC%82%B0%EB%8B%A85%EA%B8%B8%2060-26";
+  const mapHref = "https://map.kakao.com/link/search/%EA%B2%BD%EB%82%A8%20%EA%B9%80%ED%95%B4%EC%8B%9C%20%ED%95%9C%EB%A6%BC%EB%A9%B4%20%EC%8B%A0%EC%B2%9C%EC%82%B0%EB%8B%A8%EB%A1%9C%2052";
   if (page.id === "company") {
     return (
       <section className="company-location-panel wrap" aria-label="대광테크 오시는 길">
         <div className="company-location-copy">
           <span>LOCATION</span>
           <strong>오시는 길</strong>
-          <p>방문 전 주소와 연락처를 확인하실 수 있습니다. 지도는 카카오맵 검색 결과로 연결됩니다.</p>
+          <p>사업장 주소와 기본 연락처를 함께 정리했습니다. 지도는 카카오맵 검색 결과로 연결됩니다.</p>
         </div>
         <dl className="company-location-list">
-          <div><dt>주소</dt><dd>경기도 화성시 마도면 청원산단5길 60-26</dd></div>
-          <div><dt>전화</dt><dd>031-355-5400</dd></div>
-          <div><dt>팩스</dt><dd>031-355-5402</dd></div>
-          <div><dt>이메일</dt><dd>dgtc@daekwangtech.co.kr</dd></div>
+          <div><dt>주소</dt><dd>경남 김해시 한림면 신천산단로 52</dd></div>
+          <div><dt>지번</dt><dd>경남 김해시 한림면 신천리 984</dd></div>
+          <div><dt>TEL</dt><dd>055-323-7157</dd></div>
+          <div><dt>FAX</dt><dd>055-314-5430</dd></div>
+          <div><dt>Mobile</dt><dd>010-9256-7475</dd></div>
+          <div><dt>E-mail</dt><dd>ndh7157@hanmail.net</dd></div>
         </dl>
         <div className="company-location-action" aria-label="대광테크 지도 연결">
           <div className="company-map-card" aria-hidden="true">
             <i />
             <b>DAEKWANG TECH</b>
-            <small>청원산단5길 60-26</small>
+            <small>신천산단로 52</small>
           </div>
           <a className="kakao-map-link" href={mapHref} target="_blank" rel="noreferrer noopener" aria-label="카카오맵에서 대광테크 위치 보기">
             카카오맵에서 위치 보기
@@ -953,7 +1045,7 @@ function FacilityPreview({ imageSlots }) {
   const cards = withFirstImage(facilityCards, imageSlots.facilityVisualImage);
   return (
     <section className="split-section wrap home-facility-section">
-      <div className="section-intro"><p className="section-kicker">설비 / 시설</p><h2>최첨단 설비와<br />강력한 생산 인프라</h2><p>고품질 가공을 위한 설비와 생산 시스템을 구축하고 있습니다.</p><a className="detail-link" href="#/facility">설비 현황 자세히 보기 →</a></div>
+      <div className="section-intro"><p className="section-kicker">보유 설비</p><h2>CNC 자동선반 기반<br />정밀 가공 설비</h2><p>한화 XDI26/32 CNC 자동선반 계열 설비를 중심으로 소형 정밀 금속 부품 가공에 대응합니다.</p><a className="detail-link" href="#/facility">설비 정보 자세히 보기 →</a></div>
       <CardGrid cards={cards} className="facility-grid" />
     </section>
   );
@@ -964,12 +1056,12 @@ function TrustPreview({ posts }) {
   return (
     <>
       <section className="trust-section wrap">
-        <div className="section-intro"><p className="section-kicker">회사 소개</p><h2>신뢰와 도전으로<br />미래를 만듭니다</h2><p>고객과 함께 성장하는 기업, 대광테크입니다.</p><a className="detail-link" href="#/company">회사 소개 자세히 보기 →</a></div>
+        <div className="section-intro"><p className="section-kicker">회사 소개</p><h2>CNC 자동선반 전문<br />가공업체 대광테크</h2><p>자동차부품, 유압부품, 전자부품을 중심으로 소형 정밀 부품 가공을 수행합니다.</p><a className="detail-link" href="#/company">회사 정보 자세히 보기 →</a></div>
         <div className="trust-grid">
-          <article className="stat-card"><strong>1998</strong><span>대광테크 설립</span><p>정밀 가공 전문 기업으로 시작</p></article>
-          <article className="stat-card"><strong>200+</strong><span>협력 파트너</span><p>다양한 산업의 신뢰받는 파트너</p></article>
-          <article className="stat-card"><strong>1,000+</strong><span>프로젝트 수행</span><p>풍부한 경험과 노하우 축적</p></article>
-          <article className="map-card"><h3>글로벌 산업 지원</h3><p>자동차, 항공우주, 반도체, 의료, 산업기계 등 다양한 산업 분야 지원</p><img alt="global map" src="assets/map.jpg" /></article>
+          <article className="stat-card"><strong>대광테크</strong><span>상호</span><p>DAE KWANG TECH</p></article>
+          <article className="stat-card"><strong>이원근 이사</strong><span>담당자</span><p>회사 정보 및 사업장 기준 담당</p></article>
+          <article className="stat-card"><strong>CNC 자동선반</strong><span>업종</span><p>소형 정밀 부품 전문 가공</p></article>
+          <article className="map-card"><h3>취급 품목</h3><p>자동차부품, 유압부품, 전자부품 중심의 정밀 금속 부품 가공</p><img alt="대광테크 정밀 부품" src="assets/real-black-valve-core.jpg" /></article>
         </div>
       </section>
       {visiblePosts.length ? (
@@ -982,7 +1074,7 @@ function TrustPreview({ posts }) {
   );
 }
 
-function SubPage({ page, detail, imageSlots }) {
+function SubPage({ page, detail, imageSlots, company }) {
   const isProcessPage = page.id === "process";
   const isQualityPage = page.id === "quality";
   const isCompactClosingPage = page.id === "technology" || page.id === "company";
@@ -996,6 +1088,8 @@ function SubPage({ page, detail, imageSlots }) {
         </div>
         {detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : page.id === "facility" ? withFirstImage(detail.cards, imageSlots.facilityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
       </section>
+      {page.id === "company" ? <CompanyInfoPanel company={company} /> : null}
+      {page.id === "facility" ? <FacilityEquipmentPanel /> : null}
       {isQualityPage ? <QualityControlPanel /> : isCompactClosingPage && detail.metrics ? <CompactClosingPanel page={page} items={detail.metrics} /> : detail.metrics ? <MetricRow items={detail.metrics} /> : null}
     </>
   );
@@ -1005,7 +1099,7 @@ function Footer({ company }) {
   return (
     <footer className="site-footer">
       <div className="footer-brand"><BrandLockup tone="dark" variant="footer" /></div>
-      <p>{company.address}</p><p>T. {company.tel}</p><p>F. {company.fax}</p><p className="copyright">© DAE KWANG TECH All rights reserved.</p>
+      <p>{company.businessType}</p><p>{company.address}</p><p>TEL. {company.tel} · FAX. {company.fax}</p><p>Mobile. {company.mobile} · E-mail. {company.email}</p><p className="copyright">© DAE KWANG TECH All rights reserved.</p>
       <div className="footer-links"><a href="#/company">회사 소개</a><a href="#/quality">품질 관리</a><a href="#/notice">공지사항</a></div>
     </footer>
   );
@@ -1144,7 +1238,7 @@ function SiteApp({ content, setContent, route }) {
           <>
           <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <FeatureRail items={detail.rail} />
-          <SubPage page={page} detail={detail} imageSlots={imageSlots} />
+          <SubPage page={page} detail={detail} imageSlots={imageSlots} company={content.company} />
           <Footer company={content.company} />
           </>
         )}
