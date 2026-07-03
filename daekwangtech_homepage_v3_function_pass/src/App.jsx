@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AdminApp } from "./admin.jsx";
 import { loadStoredContent } from "./adminContentSeed.js";
 import { HomeNoticeSection } from "./components/notice/HomeNoticeSection.jsx";
@@ -365,50 +366,66 @@ function MobileDarkHero({ image, title, body, className = "" }) {
   );
 }
 
-function ProductDetailPanel({ product, onClose, compact = false }) {
+function ProductDetailModal({ product, onClose }) {
+  const closeButtonRef = useRef(null);
+  useEffect(() => {
+    if (!product) return undefined;
+    document.body.classList.add("product-modal-open");
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    window.requestAnimationFrame(() => closeButtonRef.current?.focus());
+    return () => {
+      document.body.classList.remove("product-modal-open");
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [product, onClose]);
+
   if (!product) return null;
   const [title, subtitle, body, image] = product;
-  return (
-    <section className={compact ? "mobile-product-detail-panel" : "product-detail-panel"} aria-live="polite" aria-label={`${title} 제품 정보`}>
-      <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
-      <div>
-        <span>{subtitle}</span>
-        <h3>{title}</h3>
-        <p>{body}</p>
-        <dl>
-          <div><dt>제품명</dt><dd>{title}</dd></div>
-          <div><dt>제품군</dt><dd>{subtitle}</dd></div>
-          <div><dt>설명</dt><dd>{body}</dd></div>
-        </dl>
-        <button type="button" onClick={onClose}>제품 목록으로</button>
+  return createPortal(
+    <div className="product-detail-modal" role="dialog" aria-modal="true" aria-labelledby="product-detail-modal-title" onMouseDown={(event) => {
+      if (event.target === event.currentTarget) onClose();
+    }}>
+      <div className="product-detail-modal__dialog">
+        <button ref={closeButtonRef} className="product-detail-modal__x" type="button" aria-label="제품 정보 닫기" onClick={onClose}>×</button>
+        <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
+        <div className="product-detail-modal__body">
+          <span>{subtitle}</span>
+          <h3 id="product-detail-modal-title">{title}</h3>
+          <p>{body}</p>
+          <dl>
+            <div><dt>제품명</dt><dd>{title}</dd></div>
+            <div><dt>제품군</dt><dd>{subtitle}</dd></div>
+            <div><dt>설명</dt><dd>{body}</dd></div>
+          </dl>
+          <button className="product-detail-modal__close" type="button" onClick={onClose}>닫기</button>
+        </div>
       </div>
-    </section>
+    </div>,
+    document.body
   );
 }
 
-function MobileProductList({ products, selectedProduct, onSelectProduct, onCloseProduct }) {
+function MobileProductList({ products, selectedProduct, onSelectProduct }) {
   return (
-    <>
-      <div className="mobile-products-list">
-        {products.map((product) => {
-          const [title, subtitle, body, image] = product;
-          const isSelected = selectedProduct?.[0] === title;
-          return (
-            <article className={`mobile-product-row ${isSelected ? "is-selected" : ""}`} key={title}>
-              <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
-              <div>
-                <h3>{title}</h3>
-                <p>{body}</p>
-                <button type="button" onClick={() => onSelectProduct(product)} aria-expanded={isSelected ? "true" : "false"} aria-controls="mobile-product-detail">자세히 보기 →</button>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-      <div id="mobile-product-detail">
-        <ProductDetailPanel product={selectedProduct} onClose={onCloseProduct} compact />
-      </div>
-    </>
+    <div className="mobile-products-list">
+      {products.map((product) => {
+        const [title, subtitle, body, image] = product;
+        const isSelected = selectedProduct?.[0] === title;
+        return (
+          <article className={`mobile-product-row ${isSelected ? "is-selected" : ""}`} key={title}>
+            <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
+            <div>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <button type="button" onClick={() => onSelectProduct(product)} aria-haspopup="dialog" aria-expanded={isSelected ? "true" : "false"}>자세히 보기 →</button>
+            </div>
+          </article>
+        );
+      })}
+    </div>
   );
 }
 
@@ -480,12 +497,8 @@ function MobileHomeScreen({ content, imageSlots }) {
 function MobileProductsScreen({ imageSlots }) {
   const products = withMobileProductImages(mobileProductCards, imageSlots.productsGalleryImages);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const detailRef = useRef(null);
   const openProduct = (product) => {
     setSelectedProduct(product);
-    window.requestAnimationFrame(() => {
-      detailRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
-    });
   };
   return (
     <>
@@ -497,9 +510,8 @@ function MobileProductsScreen({ imageSlots }) {
       <div className="mobile-chip-row" aria-label="제품 분류">
         {["전체", "유압 부품", "밸브 부품", "일반 부품"].map((label, index) => <button className={index === 0 ? "is-active" : ""} key={label} type="button">{label}</button>)}
       </div>
-      <div ref={detailRef}>
-        <MobileProductList products={products} selectedProduct={selectedProduct} onSelectProduct={openProduct} onCloseProduct={() => setSelectedProduct(null)} />
-      </div>
+      <MobileProductList products={products} selectedProduct={selectedProduct} onSelectProduct={openProduct} />
+      <ProductDetailModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
       <section className="mobile-dark-panel mobile-bottom-card">
         <h2>원하는 제품을 찾지 못하셨나요?</h2>
         <p>맞춤 제작 및 요건을 통해 최적의 솔루션을 제공합니다.</p>
@@ -728,6 +740,18 @@ function FeatureRail({ items }) {
 
 function CardGrid({ cards, className = "sub-card-grid", showDetailButton = false }) {
   const [lightbox, setLightbox] = useState(null);
+  useEffect(() => {
+    if (!lightbox) return undefined;
+    document.body.classList.add("lightbox-open");
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setLightbox(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.classList.remove("lightbox-open");
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [lightbox]);
   return (
     <>
       <div className={className}>
@@ -743,7 +767,9 @@ function CardGrid({ cards, className = "sub-card-grid", showDetailButton = false
         ))}
       </div>
       {lightbox ? (
-        <div className="lightbox is-open" role="dialog" aria-modal="true">
+        <div className="lightbox is-open" role="dialog" aria-modal="true" onMouseDown={(event) => {
+          if (event.target === event.currentTarget) setLightbox(null);
+        }}>
           <div className="lightbox__dialog">
             <button className="lightbox__close" type="button" onClick={() => setLightbox(null)}>×</button>
             <img className="lightbox__image" src={lightbox.image} alt={lightbox.title} />
