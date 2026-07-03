@@ -487,6 +487,39 @@ function MobileTechnologyScreen({ imageSlots }) {
   );
 }
 
+function MobileQualityScreen({ imageSlots }) {
+  const qualityItems = withFirstImage(qualityCards.slice(0, 4), imageSlots.qualityVisualImage);
+  return (
+    <>
+      <MobileDarkHero
+        image={imageSlots.qualityVisualImage}
+        title="측정 기준과 품질 기록으로 신뢰를 완성합니다"
+        body="입고부터 출하까지 정돈된 검사 기준으로 제조 품질을 확인합니다."
+      />
+      <section className="mobile-app-section">
+        <MobileSectionHead title="품질 관리" />
+        <div className="mobile-facility-grid mobile-quality-card-grid">
+          {qualityItems.map(([title, body, image]) => (
+            <article key={title}>
+              <figure><img src={image} alt={title} loading="lazy" decoding="async" /></figure>
+              <strong>{title}</strong>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="mobile-dark-panel mobile-stat-panel mobile-quality-panel">
+        <h2>품질 기준</h2>
+        <div>
+          {["입고", "공정", "측정", "출하"].map((label, index) => (
+            <article key={label}><strong>{String(index + 1).padStart(2, "0")}</strong><span>{label}</span></article>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
 function MobileCompanyScreen({ content, imageSlots }) {
   const companyRows = [
     ["회사명", content.company.nameKo],
@@ -549,7 +582,7 @@ function MobileInfoScreen({ page, detail, imageSlots, content }) {
     );
   }
   if (page.id === "quality") {
-    return <MobileTechnologyScreen imageSlots={{ ...imageSlots, processHeroImage: imageSlots.qualityVisualImage }} />;
+    return <MobileQualityScreen imageSlots={imageSlots} />;
   }
   return <MobileCompanyScreen content={content} imageSlots={imageSlots} />;
 }
@@ -557,7 +590,7 @@ function MobileInfoScreen({ page, detail, imageSlots, content }) {
 function MobilePublicShell({ route, page, detail, content, imageSlots, menuOpen, setMenuOpen }) {
   const routeKey = route.startsWith("notice") ? "notice" : page.id;
   const active = mobileActiveTab(route, page.id);
-  const titleMap = { products: "제품", technology: "기술력", process: "기술력", quality: "기술력", company: "회사 소개", notice: "공지사항", facility: "보유 설비" };
+  const titleMap = { products: "제품", technology: "기술력", process: "기술력", quality: "품질 관리", company: "회사 소개", notice: "공지사항", facility: "보유 설비" };
   const isHome = active === "index" && routeKey === "index";
   const renderScreen = () => {
     if (routeKey === "products") return <MobileProductsScreen imageSlots={imageSlots} />;
