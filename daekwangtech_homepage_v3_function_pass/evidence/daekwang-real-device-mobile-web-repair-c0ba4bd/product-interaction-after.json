@@ -1,0 +1,6 @@
+{
+  "afterMore": "#/products",
+  "afterCard": "#/products",
+  "afterDock": "#/products",
+  "pass": true
+}

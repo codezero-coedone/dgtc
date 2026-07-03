@@ -1,0 +1,497 @@
+[
+  {
+    "width": 320,
+    "innerWidth": 320,
+    "scrollWidth": 320,
+    "clientWidth": 320,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 348,
+      "height": 64,
+      "top": 0,
+      "left": -14,
+      "right": 334,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 119.15625,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 360,
+      "top": 0,
+      "bottom": 360
+    },
+    "products": {
+      "top": 727.65625,
+      "bottom": 871.453125,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1446.796875,
+      "bottom": 1510.796875,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 360,
+    "innerWidth": 360,
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 388.78125,
+      "height": 64,
+      "top": 0,
+      "left": -14.390625,
+      "right": 374.390625,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 119.15625,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 360,
+      "top": 0,
+      "bottom": 360
+    },
+    "products": {
+      "top": 727.65625,
+      "bottom": 871.453125,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1434.796875,
+      "bottom": 1498.796875,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 375,
+    "innerWidth": 375,
+    "scrollWidth": 375,
+    "clientWidth": 375,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 405,
+      "height": 64,
+      "top": 0,
+      "left": -15,
+      "right": 390,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 354,
+      "top": 0,
+      "bottom": 354
+    },
+    "products": {
+      "top": 725.65625,
+      "bottom": 869.453125,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1432.796875,
+      "bottom": 1496.796875,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 390,
+    "innerWidth": 390,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 421.1875,
+      "height": 64,
+      "top": 0,
+      "left": -15.59375,
+      "right": 405.59375,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 358.796875,
+      "top": 0,
+      "bottom": 358.796875
+    },
+    "products": {
+      "top": 730.453125,
+      "bottom": 874.25,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1437.59375,
+      "bottom": 1501.59375,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 393,
+    "innerWidth": 393,
+    "scrollWidth": 393,
+    "clientWidth": 393,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 424.4375,
+      "height": 64,
+      "top": 0,
+      "left": -15.71875,
+      "right": 408.71875,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 361.546875,
+      "top": 0,
+      "bottom": 361.546875
+    },
+    "products": {
+      "top": 733.203125,
+      "bottom": 877,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1440.34375,
+      "bottom": 1504.34375,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 412,
+    "innerWidth": 412,
+    "scrollWidth": 412,
+    "clientWidth": 412,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 444.9375,
+      "height": 64,
+      "top": 0,
+      "left": -16.46875,
+      "right": 428.46875,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 379.03125,
+      "top": 0,
+      "bottom": 379.03125
+    },
+    "products": {
+      "top": 750.6875,
+      "bottom": 894.484375,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1457.828125,
+      "bottom": 1521.828125,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 414,
+    "innerWidth": 414,
+    "scrollWidth": 414,
+    "clientWidth": 414,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 447.09375,
+      "height": 64,
+      "top": 0,
+      "left": -16.546875,
+      "right": 430.546875,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 380.875,
+      "top": 0,
+      "bottom": 380.875
+    },
+    "products": {
+      "top": 752.53125,
+      "bottom": 896.328125,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1459.671875,
+      "bottom": 1523.671875,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 430,
+    "innerWidth": 430,
+    "scrollWidth": 430,
+    "clientWidth": 430,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 464.375,
+      "height": 64,
+      "top": 0,
+      "left": -17.1875,
+      "right": 447.1875,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 395.59375,
+      "top": 0,
+      "bottom": 395.59375
+    },
+    "products": {
+      "top": 767.25,
+      "bottom": 911.046875,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1474.390625,
+      "bottom": 1538.390625,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 480,
+    "innerWidth": 480,
+    "scrollWidth": 480,
+    "clientWidth": 480,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 516,
+      "height": 64,
+      "top": 0,
+      "left": -18,
+      "right": 498,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 430,
+      "top": 0,
+      "bottom": 430
+    },
+    "products": {
+      "top": 801.65625,
+      "bottom": 945.453125,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1508.796875,
+      "bottom": 1572.796875,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 600,
+    "innerWidth": 600,
+    "scrollWidth": 600,
+    "clientWidth": 600,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 636,
+      "height": 64,
+      "top": 0,
+      "left": -18,
+      "right": 618,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 430,
+      "top": 0,
+      "bottom": 430
+    },
+    "products": {
+      "top": 801.65625,
+      "bottom": 945.453125,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1508.796875,
+      "bottom": 1572.796875,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  },
+  {
+    "width": 768,
+    "innerWidth": 768,
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "horizontalOverflow": false,
+    "hasFake941": false,
+    "header": {
+      "width": 804,
+      "height": 64,
+      "top": 0,
+      "left": -18,
+      "right": 786,
+      "bottom": 64
+    },
+    "brand": {
+      "width": 129,
+      "height": 38,
+      "top": 14,
+      "bottom": 52
+    },
+    "hamburger": {
+      "width": 42,
+      "height": 42,
+      "top": 12,
+      "bottom": 54
+    },
+    "hero": {
+      "height": 483.828125,
+      "top": 0,
+      "bottom": 483.828125
+    },
+    "products": {
+      "top": 855.484375,
+      "bottom": 999.28125,
+      "height": 143.796875
+    },
+    "dock": {
+      "top": 1562.625,
+      "bottom": 1626.625,
+      "height": 64,
+      "position": "static"
+    },
+    "productCoveredByDock": false
+  }
+]

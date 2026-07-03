@@ -6377,16 +6377,6 @@ img[src$="real-precision-threaded-pair.jpg"] {
     backdrop-filter: none;
   }
 
-  .mobile-app-topbar::before {
-    content: "9:41";
-    position: absolute;
-    top: 8px;
-    left: 22px;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0;
-  }
-
   .mobile-app-topbar > strong {
     grid-column: 2;
     justify-self: center;
@@ -7662,6 +7652,404 @@ img[src$="real-precision-threaded-pair.jpg"] {
     max-width: 430px !important;
     margin: 18px auto 0 !important;
     padding-bottom: calc(9px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* DAEKWANG_REAL_DEVICE_MOBILE_WEB_REPAIR_AFTER_FALSE_PASS_V1 */
+@media (max-width: 1023px) {
+  .mobile-app-public-shell {
+    --dk-real-page-pad: clamp(14px, 4vw, 18px);
+    --dk-real-bottom-clearance: calc(34px + env(safe-area-inset-bottom));
+    min-height: 100dvh;
+    padding: 0 var(--dk-real-page-pad) var(--dk-real-bottom-clearance) !important;
+    background: linear-gradient(180deg, #f7f9fc 0%, #f3f6fa 100%);
+    overflow-x: clip;
+  }
+
+  .mobile-app-public-shell::before,
+  .mobile-app-topbar::before,
+  .mobile-app-topbar::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .mobile-app-main {
+    gap: 16px;
+    max-width: 430px;
+    padding-top: 64px;
+    padding-bottom: 0;
+  }
+
+  .route-index .mobile-app-main {
+    gap: 16px;
+    padding-top: 0;
+  }
+
+  .mobile-app-topbar {
+    grid-template-columns: minmax(0, 1fr) 44px;
+    right: 0;
+    left: 0;
+    width: min(100%, 430px);
+    margin: 0 auto;
+    height: 64px;
+    padding: 8px 16px 6px;
+    border-bottom: 1px solid rgba(15, 23, 42, .055);
+    background: rgba(255, 255, 255, .94);
+    color: #101827;
+    backdrop-filter: blur(14px);
+    transform: none;
+  }
+
+  .route-index .mobile-app-topbar {
+    position: absolute;
+    right: calc(var(--dk-real-page-pad) * -1);
+    left: calc(var(--dk-real-page-pad) * -1);
+    width: auto;
+    max-width: none;
+    height: 64px;
+    border-bottom: 0;
+    background: linear-gradient(180deg, rgba(3, 12, 25, .48), rgba(3, 12, 25, 0));
+    color: #fff;
+    backdrop-filter: none;
+  }
+
+  .mobile-app-topbar > strong {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: center;
+    margin: 0;
+    max-width: calc(100% - 96px);
+    color: currentColor;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mobile-app-brand {
+    grid-column: 1;
+    align-self: center;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .mobile-app-brand .brand-lockup {
+    gap: 8px;
+    height: 38px;
+    transform: none;
+  }
+
+  .mobile-app-brand .brand-lockup__mark,
+  .brand-lockup--mobile .brand-lockup__mark {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .2));
+  }
+
+  .mobile-app-brand .brand-lockup__text {
+    gap: 1px;
+  }
+
+  .mobile-app-brand .brand-lockup__name {
+    font-size: 13px;
+    font-weight: 950;
+    letter-spacing: 0;
+  }
+
+  .mobile-app-brand .brand-lockup__tech {
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .06em;
+  }
+
+  .mobile-app-back {
+    align-self: center;
+    justify-self: start;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    color: #667085;
+    font-size: 27px;
+    line-height: 34px;
+    text-align: left;
+  }
+
+  .mobile-app-topbar button {
+    grid-column: 2;
+    align-self: center;
+    justify-self: end;
+    gap: 4px;
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    padding: 11px 10px;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .route-index .mobile-app-topbar button {
+    background: rgba(255, 255, 255, .06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14);
+  }
+
+  .mobile-app-topbar button span {
+    width: 18px;
+    height: 1.5px;
+  }
+
+  .mobile-app-menu {
+    top: 66px;
+    width: min(calc(100% - 28px), 402px);
+    border-radius: 18px;
+  }
+
+  .mobile-home-hero {
+    min-height: clamp(354px, 92vw, 430px);
+    margin: 0 calc(var(--dk-real-page-pad) * -1) 0;
+    padding: 96px 22px 30px;
+    border-radius: 0 0 22px 22px;
+    box-shadow: 0 16px 34px rgba(7, 24, 44, .14);
+  }
+
+  .mobile-home-hero img {
+    object-position: 63% center;
+    opacity: .62;
+    filter: grayscale(.04) contrast(1.04) brightness(.9);
+  }
+
+  .mobile-home-hero::after {
+    background:
+      linear-gradient(90deg, rgba(3, 12, 25, .94), rgba(5, 18, 35, .7) 50%, rgba(5, 18, 35, .2)),
+      linear-gradient(180deg, rgba(3, 9, 18, .08), rgba(3, 9, 18, .56));
+  }
+
+  .mobile-home-hero-copy {
+    display: grid;
+    align-content: end;
+    min-height: calc(clamp(354px, 92vw, 430px) - 126px);
+  }
+
+  .mobile-home-hero h1 {
+    max-width: 310px;
+    font-size: clamp(31px, 8.8vw, 40px);
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+
+  .mobile-home-hero p {
+    width: min(292px, 78vw);
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .mobile-app-section {
+    gap: 10px;
+  }
+
+  .mobile-app-section-head {
+    min-height: 28px;
+    padding: 0 2px;
+  }
+
+  .mobile-app-section-head h2 {
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  .mobile-app-section-head a {
+    min-height: 32px;
+    padding: 8px 2px 6px 12px;
+  }
+
+  .mobile-capability-grid {
+    gap: 10px;
+  }
+
+  .mobile-capability-grid article {
+    min-height: 96px;
+    padding: 13px 13px 12px;
+    border-radius: 18px;
+  }
+
+  .mobile-capability-grid i {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 8px;
+    border-width: 6px;
+    box-shadow:
+      17px 0 0 -7px #0b2340,
+      0 17px 0 -7px #0b2340,
+      17px 17px 0 -7px #0b2340;
+  }
+
+  .mobile-capability-grid h3 {
+    font-size: 13px;
+    line-height: 1.22;
+  }
+
+  .mobile-capability-grid p {
+    margin-top: 5px;
+    font-size: 10.5px;
+    line-height: 1.38;
+  }
+
+  .mobile-product-strip {
+    grid-auto-columns: 104px;
+    gap: 10px;
+    margin: 0 calc(var(--dk-real-page-pad) * -1);
+    padding: 0 var(--dk-real-page-pad) 4px;
+    scroll-padding-inline: var(--dk-real-page-pad);
+  }
+
+  .mobile-product-strip a {
+    min-width: 104px;
+    border-radius: 14px;
+  }
+
+  .mobile-product-strip figure {
+    border-radius: 12px;
+  }
+
+  .mobile-product-strip strong {
+    font-size: 11.5px;
+  }
+
+  .mobile-product-strip span {
+    font-size: 9.5px;
+  }
+
+  .mobile-app-dark-hero {
+    min-height: 154px;
+    padding: 40px 22px 22px;
+    border-radius: 18px;
+  }
+
+  .mobile-product-row {
+    grid-template-columns: 40% minmax(0, 1fr);
+    gap: 12px;
+    min-height: 144px;
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .mobile-product-row figure {
+    min-height: 124px;
+    border-radius: 14px;
+  }
+
+  .mobile-product-row h3 {
+    font-size: 14px;
+  }
+
+  .mobile-product-row p {
+    font-size: 10.5px;
+    line-height: 1.42;
+  }
+
+  .mobile-product-row a {
+    min-height: 34px;
+    margin-top: 10px;
+    padding: 0 14px;
+  }
+
+  .mobile-dark-panel {
+    border-radius: 18px;
+    padding: 22px 20px;
+  }
+
+  .mobile-app-dock {
+    position: static !important;
+    inset: auto !important;
+    z-index: 80;
+    width: min(100%, 430px) !important;
+    min-height: 62px !important;
+    margin: 18px auto calc(16px + env(safe-area-inset-bottom)) !important;
+    padding: 6px 10px calc(6px + env(safe-area-inset-bottom)) !important;
+    border-radius: 18px;
+    pointer-events: auto;
+  }
+
+  .mobile-app-dock a {
+    min-height: 50px;
+    border-radius: 14px;
+  }
+
+  .mobile-app-dock b {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 370px) {
+  .mobile-app-public-shell {
+    --dk-real-bottom-clearance: calc(30px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-app-topbar {
+    height: 60px;
+    padding-inline: 14px;
+  }
+
+  .mobile-app-brand .brand-lockup__mark,
+  .brand-lockup--mobile .brand-lockup__mark {
+    width: 29px;
+    height: 29px;
+  }
+
+  .mobile-app-brand .brand-lockup__name {
+    font-size: 12px;
+  }
+
+  .mobile-app-brand .brand-lockup__tech {
+    font-size: 9px;
+  }
+
+  .mobile-home-hero {
+    min-height: 360px;
+    padding-top: 88px;
+    padding-inline: 18px;
+  }
+
+  .mobile-home-hero-copy {
+    min-height: 238px;
+  }
+
+  .mobile-home-hero h1 {
+    font-size: 30px;
+  }
+
+  .mobile-capability-grid {
+    gap: 8px;
+  }
+
+  .mobile-capability-grid article {
+    min-height: 94px;
+    padding: 12px;
+  }
+
+  .mobile-product-strip {
+    grid-auto-columns: 96px;
+  }
+
+  .mobile-product-row {
+    grid-template-columns: 39% minmax(0, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (min-width: 431px) and (max-width: 1023px) {
+  .mobile-app-public-shell {
+    --dk-real-page-pad: 18px;
+  }
+
+  .mobile-home-hero {
+    min-height: clamp(430px, 63vw, 500px);
+    padding-top: 108px;
+  }
+
+  .mobile-home-hero-copy {
+    min-height: calc(clamp(430px, 63vw, 500px) - 140px);
   }
 }
 
