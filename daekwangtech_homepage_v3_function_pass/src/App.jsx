@@ -761,6 +761,7 @@ function MobilePublicShell({ route, page, detail, content, imageSlots, menuOpen,
 }
 
 function Hero({ page, active, menuOpen, setMenuOpen }) {
+  const isFacility = active === "facility";
   return (
     <section className="hero">
       <div className="hero-bg">
@@ -772,9 +773,9 @@ function Hero({ page, active, menuOpen, setMenuOpen }) {
       <div className="hero-content">
         <p className="eyebrow">{page.eyebrow}</p>
         <h1>{page.title}</h1>
-        <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
+        {isFacility ? null : <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>}
         <p className="hero-copy">{page.summary}</p>
-        <div className="hero-progress"><span>01</span><i></i><span>03</span></div>
+        {isFacility ? null : <div className="hero-progress"><span>01</span><i></i><span>03</span></div>}
       </div>
     </section>
   );
@@ -921,14 +922,12 @@ function DirectionsPanel({ company, className = "" }) {
 
 function EquipmentMachineVisual({ compact = false }) {
   return (
-    <figure className={`equipment-machine-visual equipment-machine-visual--photo ${compact ? "equipment-machine-visual--compact" : ""}`} aria-label="대광테크 보유 설비 사진">
+    <figure className={`equipment-machine-visual equipment-machine-visual--photo ${compact ? "equipment-machine-visual--compact" : ""}`} aria-label="대표 장비 이미지와 모델명 라벨">
       <img className="equipment-machine-main-photo" src="assets/equipment-hanwha-xdi32.jpg" alt="Hanwha XDI32 CNC Swiss Turning Lathe 설비 사진" loading="lazy" decoding="async" />
-      <div className="equipment-machine-label-photo" aria-label="XDI32 모델명 라벨 확대">
-        <img src="assets/equipment-hanwha-xdi32-label.jpg" alt="XDI32 모델명 라벨 확대 사진" loading="lazy" decoding="async" />
-      </div>
       <figcaption>
-        <span>보유 설비 모델</span>
+        <span>{compact ? "보유 설비 모델 정보" : "대표 장비 이미지"}</span>
         <strong>Hanwha XDI32 CNC Swiss Turning Lathe</strong>
+        {compact ? null : <small>이미지 출처: Hanwha Machinery America 공식 XDI 26/32 제품 이미지. 실제 현장 촬영본이 아닌 대표 장비 이미지입니다.</small>}
       </figcaption>
     </figure>
   );
@@ -951,34 +950,58 @@ function NoImageFacilityCardGrid({ className = "" }) {
 
 function FacilityDesktopMatrix() {
   return (
-    <dl className="facility-desktop-matrix" aria-label="보유 설비 핵심 정보">
+    <section className="facility-summary-section wrap" id="main-content" aria-label="설비 요약표">
+      <h2>설비 요약표</h2>
+      <dl className="facility-desktop-matrix" aria-label="설비 요약표">
       {cncEquipmentInfo.specs.map(([label, value]) => (
         <div key={label}>
           <dt>{label}</dt>
           <dd>{value}</dd>
         </div>
       ))}
-    </dl>
+      </dl>
+    </section>
   );
 }
 
 function FacilityEquipmentPanel() {
+  const modelFacts = [
+    ["모델명", "한화 XDI26/32"],
+    ["가공 범위", "Ø26/Ø32mm급 소형 정밀 금속 부품"],
+    ["가공 방식", "CNC Swiss Turning Lathe"],
+    ["적용 품목", "자동차부품 / 유압부품 / 전자부품"],
+  ];
   return (
-    <section className="facility-equipment-panel wrap" aria-label="CNC 자동선반 보유 설비">
+    <section className="facility-equipment-panel wrap" aria-label="보유 설비 모델 정보">
+      <div className="facility-equipment-head">
+        <p className="section-kicker">EQUIPMENT MODEL</p>
+        <h2>보유 설비 모델 정보</h2>
+      </div>
       <div className="facility-equipment-hero">
         <EquipmentMachineVisual />
         <div className="facility-equipment-main">
-          <span>{cncEquipmentInfo.subtitle}</span>
+          <span>대표 장비 기준 정보</span>
           <h3>{cncEquipmentInfo.title}</h3>
+          <dl className="equipment-model-facts">
+            {modelFacts.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+          </dl>
           {cncEquipmentInfo.description.map((line) => <p key={line}>{line}</p>)}
         </div>
       </div>
-      <dl className="facility-spec-grid">
-        {cncEquipmentInfo.specs.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
-      </dl>
-      <div className="company-handled-grid facility-handled-grid" aria-label="취급 품목">
-        {handledItemCards.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
+      <div className="equipment-label-proof" aria-label="XDI32 모델명 라벨 증거 이미지">
+        <div>
+          <span>MODEL LABEL</span>
+          <strong>XDI32 모델명 라벨 확대</strong>
+          <p>대표 장비 이미지 내 모델명 표기를 확대해 설비 모델 정보를 확인할 수 있게 배치했습니다.</p>
+        </div>
+        <img src="assets/equipment-hanwha-xdi32-label.jpg" alt="XDI32 모델명 라벨 확대" loading="lazy" decoding="async" />
       </div>
+      <section className="facility-handled-section" aria-label="가공 대응 품목">
+        <h2>가공 대응 품목</h2>
+        <div className="company-handled-grid facility-handled-grid">
+        {handledItemCards.map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
+        </div>
+      </section>
     </section>
   );
 }
@@ -1156,14 +1179,14 @@ function SubPage({ page, detail, imageSlots, company }) {
   const isCompactClosingPage = page.id === "technology" || page.id === "company";
   return (
     <>
-      <section className="sub-main wrap">
+      {isFacilityPage ? <FacilityDesktopMatrix /> : <section className="sub-main wrap">
         <div className="section-intro">
           <p className="section-kicker">{page.eyebrow}</p>
           <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
           <p>{page.summary}</p>
         </div>
-        {isFacilityPage ? <FacilityDesktopMatrix /> : detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
-      </section>
+        {detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
+      </section>}
       {page.id === "company" ? <CompanyInfoPanel company={company} /> : null}
       {page.id === "company" ? <DirectionsPanel company={company} /> : null}
       {isFacilityPage ? <FacilityEquipmentPanel /> : null}
@@ -1315,7 +1338,7 @@ function SiteApp({ content, setContent, route }) {
         ) : (
           <>
           <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-          <FeatureRail items={detail.rail} />
+          {page.id === "facility" ? null : <FeatureRail items={detail.rail} />}
           <SubPage page={page} detail={detail} imageSlots={imageSlots} company={content.company} />
           <Footer company={content.company} />
           </>

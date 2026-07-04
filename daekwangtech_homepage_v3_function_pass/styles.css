@@ -10298,3 +10298,183 @@ body.product-modal-open {
   }
 }
 
+/* DESKTOP_FACILITY_PUBLIC_PAGE_REFIX */
+@media (min-width: 1024px) {
+  .route-facility .hero-progress {
+    display: none;
+  }
+
+  .route-facility .hero-content {
+    padding-bottom: 58px;
+  }
+
+  .facility-summary-section {
+    display: grid;
+    gap: 0;
+    padding: 38px 0 0;
+  }
+
+  .facility-summary-section h2 {
+    margin: 0;
+    padding: 18px 22px;
+    border: 1px solid rgba(15, 23, 42, .16);
+    border-bottom: 0;
+    background: #fff;
+    color: #07162b;
+    font-size: 20px;
+    font-weight: 950;
+    letter-spacing: 0;
+  }
+
+  .facility-summary-section .facility-desktop-matrix {
+    width: 100%;
+  }
+
+  .route-facility .facility-equipment-panel {
+    margin-top: 34px;
+  }
+
+  .facility-equipment-head {
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(15, 23, 42, .14);
+    background: #fff;
+  }
+
+  .facility-equipment-head h2 {
+    margin: 6px 0 0;
+    color: #07162b;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 950;
+    letter-spacing: 0;
+  }
+
+  .route-facility .facility-equipment-hero {
+    grid-template-columns: minmax(480px, .92fr) minmax(0, 1fr);
+  }
+
+  .route-facility .equipment-machine-visual {
+    gap: 14px;
+    padding: 28px;
+  }
+
+  .route-facility .equipment-machine-main-photo {
+    min-height: 360px;
+    padding: 18px;
+  }
+
+  .route-facility .equipment-machine-visual figcaption {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: start;
+    gap: 8px 14px;
+  }
+
+  .route-facility .equipment-machine-visual figcaption small {
+    grid-column: 1 / -1;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .equipment-model-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 22px 0;
+    border: 1px solid rgba(15, 23, 42, .14);
+  }
+
+  .equipment-model-facts div {
+    padding: 16px 18px;
+    border-right: 1px solid rgba(15, 23, 42, .12);
+    border-bottom: 1px solid rgba(15, 23, 42, .12);
+  }
+
+  .equipment-model-facts div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .equipment-model-facts div:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .equipment-model-facts dt {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .equipment-model-facts dd {
+    margin: 8px 0 0;
+    color: #07162b;
+    font-size: 16px;
+    font-weight: 950;
+    line-height: 1.35;
+  }
+
+  .equipment-label-proof {
+    display: grid;
+    grid-template-columns: minmax(240px, .34fr) minmax(0, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(15, 23, 42, .14);
+    background: #fff;
+  }
+
+  .equipment-label-proof > div {
+    display: grid;
+    align-content: center;
+    padding: 28px;
+    border-right: 1px solid rgba(15, 23, 42, .12);
+  }
+
+  .equipment-label-proof span {
+    color: #0f47af;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+  }
+
+  .equipment-label-proof strong {
+    margin-top: 8px;
+    color: #07162b;
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 950;
+  }
+
+  .equipment-label-proof p {
+    margin: 12px 0 0;
+    color: #475467;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .equipment-label-proof img {
+    display: block;
+    width: 100%;
+    min-height: 220px;
+    max-height: 300px;
+    object-fit: contain;
+    background: #f8fafc;
+  }
+
+  .facility-handled-section {
+    border-top: 1px solid rgba(15, 23, 42, .14);
+  }
+
+  .facility-handled-section h2 {
+    margin: 0;
+    padding: 20px 28px;
+    border-bottom: 1px solid rgba(15, 23, 42, .12);
+    color: #07162b;
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 950;
+  }
+
+  .route-facility .facility-spec-grid {
+    display: none;
+  }
+}
+
