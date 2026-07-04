@@ -1,0 +1,50 @@
+/* AUTO-SPLIT FROM styles.css - authority: components/buttons.css */
+/* SOURCE_LINES:2-17 BUCKET:BUTTONS REASON:button/link selector RISK:LOW */
+:root{
+  --navy-980:#030912;
+  --navy-950:#06111f;
+  --navy-920:#081827;
+  --navy-900:#0b1e35;
+  --blue-600:#2563eb;
+  --blue-500:#3b82f6;
+  --bg:#f6f8fb;
+  --surface:#ffffff;
+  --line:#e5eaf0;
+  --text:#111827;
+  --muted:#64748b;
+  --shadow:0 22px 60px rgba(15,23,42,.12);
+  --soft-shadow:0 10px 30px rgba(15,23,42,.08);
+  font-family:Pretendard, SUIT, Inter, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* SOURCE_LINES:34-34 BUCKET:BUTTONS REASON:button/link selector RISK:LOW */
+.nav-link{font-size:15px;font-weight:750;color:rgba(255,255,255,.9);position:relative;padding:25px 0}
+
+/* SOURCE_LINES:35-35 BUCKET:BUTTONS REASON:button/link selector RISK:LOW */
+.nav-link.active::after{content:"";position:absolute;height:3px;left:0;right:0;bottom:15px;background:var(--blue-500);border-radius:99px}
+
+/* SOURCE_LINES:39-39 BUCKET:BUTTONS REASON:button/link selector RISK:LOW */
+.menu-button{border:0;background:transparent;color:#fff;font-weight:800;font-size:14px}
+
+/* SOURCE_LINES:40-40 BUCKET:BUTTONS REASON:button/link selector RISK:LOW */
+.menu-button{display:none;font-size:24px}
+
+/* SOURCE_LINES:119-119 BUCKET:BUTTONS REASON:button/link selector RISK:LOW */
+.footer-links{margin-left:auto;display:flex;gap:22px}
+
+/* SOURCE_LINES:119-119 BUCKET:BUTTONS REASON:button/link selector RISK:LOW */
+.footer-links a{color:#72a9ff}
+
+/* SOURCE_LINES:219-230 BUCKET:BUTTONS REASON:button/link selector RISK:LOW */
+.public-popup-cta{
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  margin-top:18px;
+  border-radius:999px;
+  background:#0f47af;
+  color:#fff;
+  padding:0 18px;
+  font-size:14px;
+  font-weight:950;
+}

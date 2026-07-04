@@ -1,0 +1,40 @@
+/* AUTO-SPLIT FROM styles.css - authority: components/navigation.css */
+/* SOURCE_LINES:24-29 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.site-header{
+  height:72px;position:absolute;left:0;right:0;top:0;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;padding:0 40px;color:#fff;
+  background:linear-gradient(180deg, rgba(3,9,18,.48), rgba(3,9,18,0));
+  backdrop-filter:blur(10px);
+}
+
+/* SOURCE_LINES:30-30 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.brand{display:flex;align-items:center;gap:12px;font-weight:850;font-size:22px;letter-spacing:-.02em;min-width:0}
+
+/* SOURCE_LINES:31-31 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.brand .dk-brand-logo{min-width:0;max-width:100%;min-height:58px;border-radius:16px;background:rgba(255,255,255,.96);padding:6px 10px;box-shadow:0 10px 26px rgba(0,0,0,.14)}
+
+/* SOURCE_LINES:32-32 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.brand .dk-brand-logo__asset{width:238px;height:auto;max-height:58px;object-fit:contain}
+
+/* SOURCE_LINES:33-33 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.desktop-nav{display:flex;align-items:center;gap:44px;margin-left:auto;margin-right:36px}
+
+/* SOURCE_LINES:36-36 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.header-right{display:flex;align-items:center;gap:12px}
+
+/* SOURCE_LINES:113-115 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.site-footer{
+  height:64px;background:#111923;color:#a8b3c2;display:flex;align-items:center;gap:30px;padding:0 56px;font-size:13px;margin-top:12px
+}
+
+/* SOURCE_LINES:116-116 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.footer-brand{display:flex;align-items:center;gap:10px;color:#fff;font-size:18px;font-weight:900;margin-right:auto}
+
+/* SOURCE_LINES:117-117 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.footer-brand .dk-brand-logo{border-radius:13px;background:rgba(255,255,255,.96);padding:6px 9px}
+
+/* SOURCE_LINES:118-118 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.footer-brand .dk-brand-logo__asset{width:214px;height:auto;max-height:50px;object-fit:contain}
+
+/* SOURCE_LINES:119-119 BUCKET:NAVIGATION REASON:nav/header/footer/brand selector RISK:LOW */
+.site-footer p{margin:0}

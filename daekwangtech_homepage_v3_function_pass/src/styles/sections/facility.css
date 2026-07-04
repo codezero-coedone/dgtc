@@ -1,0 +1,9 @@
+/* AUTO-SPLIT FROM styles.css - authority: sections/facility.css */
+/* SOURCE_LINES:104-104 BUCKET:FACILITY_SECTION REASON:facility/equipment selector RISK:MEDIUM */
+.facility-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+
+/* SOURCE_LINES:105-105 BUCKET:FACILITY_SECTION REASON:facility/equipment selector RISK:MEDIUM */
+.facility img{height:112px;width:100%;object-fit:cover}
+
+/* SOURCE_LINES:105-105 BUCKET:FACILITY_SECTION REASON:facility/equipment selector RISK:MEDIUM */
+.facility div{padding:13px 14px}

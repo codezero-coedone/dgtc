@@ -1,0 +1,9 @@
+/* AUTO-SPLIT FROM styles.css - authority: foundation/tokens.css */
+/* SOURCE_LINES:20-20 BUCKET:FOUNDATION_TOKENS REASON:css custom properties RISK:LOW */
+body{margin:0;background:var(--bg);color:var(--text);letter-spacing:-.025em}
+
+/* SOURCE_LINES:56-56 BUCKET:FOUNDATION_TOKENS REASON:css custom properties RISK:LOW */
+.eyebrow,.section-kicker{color:var(--blue-500);font-size:13px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+
+/* SOURCE_LINES:67-67 BUCKET:FOUNDATION_TOKENS REASON:css custom properties RISK:LOW */
+.rail-item{display:flex;align-items:center;gap:18px;min-height:76px;padding:16px 28px;border-right:1px solid var(--line)}

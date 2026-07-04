@@ -1,0 +1,221 @@
+/* AUTO-SPLIT FROM styles.css - authority: sections/company-directions.css */
+/* SOURCE_LINES:359-362 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.route-technology .sub-main,
+.route-company .sub-main{
+  padding-bottom:16px;
+}
+
+/* SOURCE_LINES:364-376 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-panel{
+  display:grid;
+  grid-template-columns:minmax(220px,.62fr) minmax(0,1.25fr) auto;
+  gap:22px;
+  align-items:center;
+  margin-top:0;
+  margin-bottom:34px;
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:var(--soft-shadow);
+  padding:22px;
+}
+
+/* SOURCE_LINES:377-381 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-copy{
+  min-width:0;
+  display:grid;
+  gap:7px;
+}
+
+/* SOURCE_LINES:382-387 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-copy span{
+  color:#0f47af;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.1em;
+}
+
+/* SOURCE_LINES:388-394 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-copy strong{
+  color:#111827;
+  font-size:24px;
+  line-height:1.1;
+  font-weight:950;
+  letter-spacing:-.06em;
+}
+
+/* SOURCE_LINES:395-400 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-copy p{
+  margin:0;
+  color:#64748b;
+  font-size:13px;
+  line-height:1.65;
+}
+
+/* SOURCE_LINES:401-407 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-list{
+  min-width:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 12px;
+  margin:0;
+}
+
+/* SOURCE_LINES:408-414 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-list div{
+  min-width:0;
+  border:1px solid #e5eaf0;
+  border-radius:14px;
+  background:#f7f9fc;
+  padding:12px 14px;
+}
+
+/* SOURCE_LINES:415-421 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-list dt{
+  margin:0 0 5px;
+  color:#0b3b7d;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.08em;
+}
+
+/* SOURCE_LINES:422-429 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-list dd{
+  margin:0;
+  color:#1f2937;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:800;
+  overflow-wrap:anywhere;
+}
+
+/* SOURCE_LINES:430-434 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-location-action{
+  min-width:210px;
+  display:grid;
+  gap:12px;
+}
+
+/* SOURCE_LINES:435-449 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card{
+  position:relative;
+  min-height:118px;
+  overflow:hidden;
+  border:1px solid rgba(11,29,58,.10);
+  border-radius:18px;
+  background:
+    linear-gradient(rgba(15,71,175,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,71,175,.08) 1px, transparent 1px),
+    radial-gradient(circle at 58% 42%, rgba(93,165,224,.30), transparent 18%),
+    linear-gradient(145deg,#f8fbff,#eef4fb);
+  background-size:18px 18px,18px 18px,auto,auto;
+  padding:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* SOURCE_LINES:450-456 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card::before,
+.company-map-card::after{
+  content:"";
+  position:absolute;
+  border-radius:999px;
+  pointer-events:none;
+}
+
+/* SOURCE_LINES:457-463 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card::before{
+  width:78px;
+  height:78px;
+  right:22px;
+  top:18px;
+  border:1px solid rgba(15,71,175,.18);
+}
+
+/* SOURCE_LINES:464-471 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card::after{
+  width:7px;
+  height:7px;
+  right:57px;
+  top:53px;
+  background:#0f47af;
+  box-shadow:0 0 0 8px rgba(93,165,224,.20);
+}
+
+/* SOURCE_LINES:472-480 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card i{
+  position:absolute;
+  left:20px;
+  top:20px;
+  width:28px;
+  height:28px;
+  border-radius:10px;
+  background:#0b1d3a;
+}
+
+/* SOURCE_LINES:481-491 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card i::before{
+  content:"";
+  position:absolute;
+  left:8px;
+  top:6px;
+  width:12px;
+  height:12px;
+  border-radius:50% 50% 50% 0;
+  background:#5da5e0;
+  transform:rotate(-45deg);
+}
+
+/* SOURCE_LINES:492-498 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card b,
+.company-map-card small{
+  position:relative;
+  z-index:1;
+  display:block;
+  padding-left:42px;
+}
+
+/* SOURCE_LINES:499-504 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card b{
+  color:#0b1d3a;
+  font-size:13px;
+  font-weight:950;
+  letter-spacing:.02em;
+}
+
+/* SOURCE_LINES:505-510 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.company-map-card small{
+  margin-top:6px;
+  color:#64748b;
+  font-size:11px;
+  font-weight:850;
+}
+
+/* SOURCE_LINES:511-526 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.kakao-map-link{
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  white-space:nowrap;
+  border-radius:999px;
+  background:#0b1d3a;
+  color:#fff;
+  padding:0 18px;
+  font-size:13px;
+  font-weight:950;
+  box-shadow:0 14px 34px rgba(11,29,58,.18);
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+/* SOURCE_LINES:527-531 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.kakao-map-link:hover{
+  transform:translateY(-2px);
+  background:#0f47af;
+  box-shadow:0 18px 38px rgba(15,71,175,.22);
+}
+
+/* SOURCE_LINES:532-534 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
+.kakao-map-link span{
+  color:#5da5e0;
+}

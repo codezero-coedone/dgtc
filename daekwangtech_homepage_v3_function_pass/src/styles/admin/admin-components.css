@@ -1,0 +1,137 @@
+/* AUTO-SPLIT FROM styles.css - authority: admin/admin-components.css */
+/* SOURCE_LINES:37-37 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-mini-link{min-height:34px;display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:0 10px;background:rgba(255,255,255,.08);color:#fff;font-size:11px;font-weight:900;letter-spacing:.05em;text-decoration:none}
+
+/* SOURCE_LINES:38-38 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-mini-link:hover{background:rgba(255,255,255,.16)}
+
+/* SOURCE_LINES:239-245 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-managed-posts{
+  display:grid;
+  grid-template-columns:250px 1fr;
+  gap:56px;
+  padding:44px 0 34px;
+  border-top:1px solid var(--line);
+}
+
+/* SOURCE_LINES:246-250 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-post-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:14px;
+}
+
+/* SOURCE_LINES:251-257 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-post-card{
+  background:var(--surface);
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:8px;
+  box-shadow:var(--soft-shadow);
+  padding:22px 24px;
+}
+
+/* SOURCE_LINES:258-268 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-post-card span{
+  display:inline-flex;
+  min-height:26px;
+  align-items:center;
+  border-radius:999px;
+  background:#eaf2ff;
+  color:#0b4593;
+  padding:0 10px;
+  font-size:11px;
+  font-weight:900;
+}
+
+/* SOURCE_LINES:269-274 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-post-card h3{
+  margin:14px 0 8px;
+  font-size:20px;
+  line-height:1.25;
+  letter-spacing:-.05em;
+}
+
+/* SOURCE_LINES:275-280 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-post-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* SOURCE_LINES:281-286 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+.admin-post-card small{
+  display:block;
+  margin-top:16px;
+  color:#334155;
+  font-weight:800;
+}
+
+/* SOURCE_LINES:615-642 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+@media (max-width: 1100px){
+  .wrap,.hero-content{width:min(100% - 36px, 940px)}
+  .desktop-nav{display:none}.menu-button{display:block}
+  .nav-open .mobile-panel{display:grid}
+  .mobile-panel{position:absolute;top:66px;left:16px;right:16px;z-index:30;background:rgba(5,13,25,.96);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px}
+  .mobile-panel .nav-link{display:block;padding:14px 16px;color:white}
+  .hero-bg{width:100%;opacity:.45}.hero-content{padding-top:96px}
+  .feature-rail{grid-template-columns:repeat(2,1fr)}
+  .rail-item{border-bottom:1px solid var(--line)}
+  .split-section,.process-layout,.trust-section,.sub-main{grid-template-columns:1fr;gap:24px}
+  .admin-managed-posts{grid-template-columns:1fr;gap:24px}
+  .product-grid,.facility-grid{grid-template-columns:repeat(2,1fr)}
+  .quality-grid{grid-template-columns:repeat(2,1fr)}
+  .step-row{grid-template-columns:repeat(2,1fr)}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .admin-post-grid{grid-template-columns:repeat(2,1fr)}
+  .sub-card-grid{grid-template-columns:repeat(2,1fr)}
+  .process-page-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .process-page-principles{grid-template-columns:1fr}
+  .quality-control-panel{grid-template-columns:1fr}
+  .quality-check-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .quality-check-grid article:nth-child(odd){border-left:0}
+  .quality-check-grid article{border-top:1px solid var(--line)}
+  .company-location-panel{grid-template-columns:1fr}
+  .sub-close-panel{grid-template-columns:1fr}
+  .sub-close-panel ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .site-footer{height:auto;flex-wrap:wrap;padding:22px 24px}
+}
+
+/* SOURCE_LINES:643-679 BUCKET:ADMIN_COMPONENTS REASON:admin selector family RISK:MEDIUM */
+@media (max-width: 640px){
+  .site-header{height:64px;padding:0 14px}.brand{max-width:calc(100% - 58px);gap:8px}.brand .dk-brand-logo{gap:8px}
+  .brand .dk-brand-logo__asset{width:178px;max-height:46px}
+  .footer-brand .dk-brand-logo__asset{width:164px;max-height:42px}
+  .hero{min-height:520px}.route-process .hero,.route-quality .hero{min-height:430px}.hero::after{background:linear-gradient(180deg,rgba(2,6,12,.90),rgba(3,12,25,.82))}
+  .hero-content{width:calc(100% - 32px);padding-top:86px;padding-bottom:78px}.route-process .hero-content,.route-quality .hero-content{padding-top:92px;padding-bottom:54px}.hero h1{font-size:44px}.hero h2{font-size:28px}
+  .feature-rail{width:calc(100% - 28px);grid-template-columns:1fr;margin-top:-60px}
+  .route-process .feature-rail,
+  .route-quality .feature-rail{display:none}
+  .rail-item{min-height:70px}
+  .split-section,.trust-section,.sub-main{padding-top:32px}
+  .product-grid,.facility-grid,.quality-grid,.sub-card-grid,.trust-grid,.metric-row{grid-template-columns:1fr}
+  .admin-post-grid{grid-template-columns:1fr}
+  .process-band{margin-top:28px}.step-row{grid-template-columns:1fr;border-left:0}.step{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+  .process-page-section{padding:20px;border-radius:16px}
+  .process-page-head h3{font-size:24px}
+  .process-page-steps{grid-template-columns:1fr}
+  .process-page-step{min-height:auto;padding:18px}
+  .quality-control-panel{border-radius:16px;margin-bottom:28px}
+  .quality-control-copy{padding:22px}
+  .quality-control-copy h3{font-size:22px}
+  .quality-check-grid{grid-template-columns:1fr}
+  .quality-check-grid article{border-left:0;padding:20px}
+  .company-location-panel{width:calc(100% - 32px);padding:18px;margin-bottom:24px;border-radius:16px}
+  .company-location-list{grid-template-columns:1fr}
+  .company-location-action{min-width:0}
+  .company-map-card{min-height:104px;border-radius:15px}
+  .kakao-map-link{width:100%;white-space:normal;text-align:center}
+  .sub-close-panel{width:calc(100% - 32px);padding:18px;margin-bottom:22px;border-radius:16px}
+  .sub-close-panel ul{grid-template-columns:1fr}
+  .sub-close-panel b{font-size:20px}
+  .metric{border-right:0;border-bottom:1px solid var(--line)}
+  .site-footer{gap:12px;font-size:12px}.footer-links{width:100%;justify-content:flex-start}
+  .public-popup-layer{padding:16px}
+  .public-popup-card{border-radius:20px}
+  .public-popup-body{padding:20px}
+}
