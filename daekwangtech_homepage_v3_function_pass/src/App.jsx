@@ -922,10 +922,13 @@ function DirectionsPanel({ company, className = "" }) {
 function EquipmentMachineVisual({ compact = false }) {
   return (
     <figure className={`equipment-machine-visual equipment-machine-visual--photo ${compact ? "equipment-machine-visual--compact" : ""}`} aria-label="대광테크 보유 설비 사진">
-      <img src="assets/facility-cnc.jpg" alt="대광테크 CNC 설비 사진" loading="lazy" decoding="async" />
+      <img className="equipment-machine-main-photo" src="assets/equipment-hanwha-xdi32.jpg" alt="Hanwha XDI32 CNC Swiss Turning Lathe 설비 사진" loading="lazy" decoding="async" />
+      <div className="equipment-machine-label-photo" aria-label="XDI32 모델명 라벨 확대">
+        <img src="assets/equipment-hanwha-xdi32-label.jpg" alt="XDI32 모델명 라벨 확대 사진" loading="lazy" decoding="async" />
+      </div>
       <figcaption>
-        <span>보유 설비 사진</span>
-        <strong>CNC 자동선반 기반 정밀 가공 설비</strong>
+        <span>보유 설비 모델</span>
+        <strong>Hanwha XDI32 CNC Swiss Turning Lathe</strong>
       </figcaption>
     </figure>
   );

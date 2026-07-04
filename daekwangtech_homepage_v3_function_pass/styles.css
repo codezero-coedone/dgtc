@@ -9624,10 +9624,7 @@ body.product-modal-open {
   padding: 18px;
   border: 1px solid rgba(15, 23, 42, .08);
   border-radius: 20px;
-  background:
-    radial-gradient(circle at 20% 0%, rgba(255, 122, 26, .14), transparent 30%),
-    radial-gradient(circle at 82% 12%, rgba(63, 167, 255, .16), transparent 32%),
-    linear-gradient(145deg, #071d38, #102b4a 54%, #eaf1f8 55%, #f8fbff);
+  background: linear-gradient(180deg, #ffffff, #f3f7fc);
   box-shadow: 0 24px 58px rgba(7, 29, 56, .16);
 }
 
@@ -9643,12 +9640,35 @@ body.product-modal-open {
 }
 
 .equipment-machine-visual--photo img {
-  min-height: 220px;
   border-radius: 14px;
-  background: #071d38;
-  object-fit: cover;
+  background: linear-gradient(180deg, #ffffff, #f5f7fb);
+  object-fit: contain;
   object-position: center;
-  filter: saturate(1.04) contrast(1.04);
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.equipment-machine-main-photo {
+  min-height: 220px;
+  padding: 10px;
+  border: 1px solid rgba(15, 23, 42, .08);
+}
+
+.equipment-machine-label-photo {
+  display: grid;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid rgba(15, 23, 42, .08);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.equipment-machine-label-photo img {
+  width: 100%;
+  max-height: 92px;
+  min-height: 0;
+  padding: 0;
+  object-fit: contain;
 }
 
 .equipment-machine-visual figcaption {
@@ -9678,6 +9698,7 @@ body.product-modal-open {
   font-weight: 950;
   text-align: right;
   overflow-wrap: anywhere;
+  line-height: 1.35;
 }
 
 .facility-handled-grid {
@@ -9938,12 +9959,12 @@ body.product-modal-open {
     border-radius: 16px;
   }
 
-  .equipment-machine-visual--compact svg {
+  .equipment-machine-visual--compact img {
     min-height: 190px;
   }
 
-  .equipment-machine-visual--compact img {
-    min-height: 190px;
+  .equipment-machine-visual--compact .equipment-machine-label-photo img {
+    min-height: 0;
   }
 
   .equipment-machine-visual figcaption {
