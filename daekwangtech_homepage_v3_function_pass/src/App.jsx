@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import approvedBrandMarkUrl from "../assets/daekwang-approved-mark.svg";
 import { AdminApp } from "./admin.jsx";
@@ -710,6 +710,7 @@ function MobileInfoScreen({ page, detail, imageSlots, content }) {
       <>
         <MobileDarkHero image={imageSlots.facilityVisualImage} title="CNC 자동선반 보유 설비" body="대광테크는 CNC 자동선반 기반의 정밀 가공 설비를 활용해 자동차부품, 유압부품, 전자부품 등 다양한 산업 부품을 가공합니다." />
         <section className="mobile-info-card mobile-equipment-main">
+          <EquipmentMachineVisual compact />
           <span>{cncEquipmentInfo.subtitle}</span>
           <h2>{cncEquipmentInfo.title}</h2>
           {cncEquipmentInfo.description.map((line) => <p key={line}>{line}</p>)}
@@ -918,6 +919,60 @@ function DirectionsPanel({ company, className = "" }) {
   );
 }
 
+function EquipmentMachineVisual({ compact = false }) {
+  const titleId = useId();
+  const descId = useId();
+  return (
+    <figure className={`equipment-machine-visual ${compact ? "equipment-machine-visual--compact" : ""}`} aria-label="CNC 자동선반 대표 설비 비주얼">
+      <svg viewBox="0 0 760 420" role="img" aria-labelledby={`${titleId} ${descId}`}>
+        <title id={titleId}>한화 XDI26/32 CNC 자동선반 대표 설비 비주얼</title>
+        <desc id={descId}>파일 이미지 없이 구성한 CNC 자동선반 도식 비주얼</desc>
+        <defs>
+          <linearGradient id="machineBody" x1="0%" x2="100%" y1="0%" y2="100%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="56%" stopColor="#edf3f8" />
+            <stop offset="100%" stopColor="#cfd9e4" />
+          </linearGradient>
+          <linearGradient id="machineBase" x1="0%" x2="100%" y1="0%" y2="100%">
+            <stop offset="0%" stopColor="#0b203a" />
+            <stop offset="100%" stopColor="#04101f" />
+          </linearGradient>
+          <linearGradient id="glass" x1="0%" x2="100%">
+            <stop offset="0%" stopColor="#0d2b4c" />
+            <stop offset="100%" stopColor="#184f82" />
+          </linearGradient>
+          <filter id="machineShadow" x="-20%" y="-30%" width="140%" height="160%">
+            <feDropShadow dx="0" dy="20" stdDeviation="18" floodColor="#071d38" floodOpacity=".22" />
+          </filter>
+        </defs>
+        <rect x="24" y="36" width="712" height="336" rx="34" fill="#eef5fb" />
+        <path d="M76 318h606l28 38H48z" fill="url(#machineBase)" />
+        <g filter="url(#machineShadow)">
+          <path d="M104 116c0-24 19-43 43-43h360c20 0 38 13 44 32l54 174H104z" fill="url(#machineBody)" />
+          <path d="M132 142c0-17 14-31 31-31h198c13 0 24 8 29 19l31 84H132z" fill="url(#glass)" opacity=".95" />
+          <path d="M450 84h118c22 0 40 18 40 40v155H492l-50-162c-5-16 7-33 24-33z" fill="#f8fafc" />
+          <rect x="522" y="119" width="58" height="86" rx="10" fill="#11253d" />
+          <rect x="535" y="133" width="32" height="22" rx="5" fill="#3fa7ff" opacity=".9" />
+          <circle cx="542" cy="177" r="5" fill="#ff7a1a" />
+          <circle cx="560" cy="177" r="5" fill="#7dd3fc" />
+          <path d="M112 278h498" stroke="#f97316" strokeWidth="10" strokeLinecap="round" />
+          <path d="M160 235h240" stroke="#dbe5ef" strokeWidth="18" strokeLinecap="round" opacity=".7" />
+          <path d="M152 235h86m70 0h52" stroke="#173556" strokeWidth="8" strokeLinecap="round" opacity=".78" />
+        </g>
+        <g>
+          <rect x="86" y="322" width="184" height="42" rx="14" fill="#06182d" opacity=".94" />
+          <text x="108" y="348" fill="#ffffff" fontFamily="Arial, sans-serif" fontSize="21" fontWeight="800">XDI26/32</text>
+          <text x="286" y="349" fill="#12304f" fontFamily="Arial, sans-serif" fontSize="18" fontWeight="800">CNC AUTO LATHE</text>
+        </g>
+      </svg>
+      <figcaption>
+        <span>대표 설비 비주얼</span>
+        <strong>XDI26/32급 CNC 자동선반 도식</strong>
+      </figcaption>
+    </figure>
+  );
+}
+
 function NoImageFacilityCardGrid({ className = "" }) {
   return (
     <div className={`noimage-facility-grid ${className}`} aria-label="이미지 없는 보유 설비 정보 카드">
@@ -936,10 +991,13 @@ function NoImageFacilityCardGrid({ className = "" }) {
 function FacilityEquipmentPanel() {
   return (
     <section className="facility-equipment-panel wrap" aria-label="CNC 자동선반 보유 설비">
-      <div className="facility-equipment-main">
-        <span>{cncEquipmentInfo.subtitle}</span>
-        <h3>{cncEquipmentInfo.title}</h3>
-        {cncEquipmentInfo.description.map((line) => <p key={line}>{line}</p>)}
+      <div className="facility-equipment-hero">
+        <EquipmentMachineVisual />
+        <div className="facility-equipment-main">
+          <span>{cncEquipmentInfo.subtitle}</span>
+          <h3>{cncEquipmentInfo.title}</h3>
+          {cncEquipmentInfo.description.map((line) => <p key={line}>{line}</p>)}
+        </div>
       </div>
       <dl className="facility-spec-grid">
         {cncEquipmentInfo.specs.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
@@ -1086,7 +1144,10 @@ function FacilityPreview({ imageSlots }) {
   return (
     <section className="split-section wrap home-facility-section">
       <div className="section-intro"><p className="section-kicker">보유 설비</p><h2>CNC 자동선반 기반<br />정밀 가공 설비</h2><p>한화 XDI26/32 CNC 자동선반 계열 설비를 중심으로 소형 정밀 금속 부품 가공에 대응합니다.</p><a className="detail-link" href="#/facility">설비 정보 자세히 보기 →</a></div>
-      <NoImageFacilityCardGrid className="home-noimage-facility-grid" />
+      <div className="home-facility-visual-stack">
+        <EquipmentMachineVisual compact />
+        <NoImageFacilityCardGrid className="home-noimage-facility-grid" />
+      </div>
     </section>
   );
 }

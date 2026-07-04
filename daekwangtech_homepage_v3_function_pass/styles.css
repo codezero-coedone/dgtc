@@ -9608,6 +9608,65 @@ body.product-modal-open {
     linear-gradient(135deg, #f8fbff, #ffffff);
 }
 
+.facility-equipment-hero {
+  display: grid;
+  grid-template-columns: minmax(320px, .95fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.equipment-machine-visual {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid rgba(15, 23, 42, .08);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 122, 26, .14), transparent 30%),
+    radial-gradient(circle at 82% 12%, rgba(63, 167, 255, .16), transparent 32%),
+    linear-gradient(145deg, #071d38, #102b4a 54%, #eaf1f8 55%, #f8fbff);
+  box-shadow: 0 24px 58px rgba(7, 29, 56, .16);
+}
+
+.equipment-machine-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 760 / 420;
+}
+
+.equipment-machine-visual figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.equipment-machine-visual figcaption span {
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 122, 26, .12);
+  color: #b45309;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .04em;
+}
+
+.equipment-machine-visual figcaption strong {
+  min-width: 0;
+  color: #102033;
+  font-size: 13px;
+  font-weight: 950;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
 .facility-handled-grid {
   grid-column: 1 / -1;
 }
@@ -9648,6 +9707,11 @@ body.product-modal-open {
   .facility-equipment-panel {
     padding: 18px;
     border-radius: 18px;
+  }
+
+  .facility-equipment-hero {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .mobile-info-card dl div {
@@ -9766,6 +9830,21 @@ body.product-modal-open {
   align-self: stretch;
 }
 
+.home-facility-visual-stack {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.home-facility-visual-stack .noimage-facility-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-facility-visual-stack .noimage-facility-grid article {
+  min-height: 142px;
+  padding: 16px;
+}
+
 .mobile-directions-panel {
   display: grid;
   gap: 14px;
@@ -9835,6 +9914,33 @@ body.product-modal-open {
 
   .mobile-noimage-facility-grid p {
     font-size: 11px;
+  }
+
+  .mobile-equipment-main .equipment-machine-visual {
+    margin: -2px 0 12px;
+  }
+
+  .equipment-machine-visual {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .equipment-machine-visual--compact svg {
+    min-height: 190px;
+  }
+
+  .equipment-machine-visual figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .equipment-machine-visual figcaption strong {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .home-facility-visual-stack .noimage-facility-grid {
+    grid-template-columns: 1fr;
   }
 }
 
