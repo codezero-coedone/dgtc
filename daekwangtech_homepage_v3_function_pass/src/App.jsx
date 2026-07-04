@@ -10,20 +10,17 @@ import { publicImageSlots } from "./data/daekwangAdminData.js";
 import { ADMIN_STORAGE_KEY, ADMIN_STORE_EVENT } from "./utils/adminStorage.js";
 
 const manufacturingProcessSteps = [
-  ["요구사항 확인", "제작 목적과 사용 조건, 납품 기준을 먼저 정리합니다."],
-  ["도면·치수 검토", "도면과 공차 기준을 확인하고 가공 리스크를 사전에 점검합니다."],
-  ["자재 준비", "소재 상태와 투입 조건을 확인해 공정 시작 기준을 맞춥니다."],
-  ["정밀 가공", "설정된 조건에 따라 장비와 작업 기준을 일관되게 운용합니다."],
-  ["조립·용접", "후가공과 조립이 필요한 항목은 별도 기준으로 확인합니다."],
-  ["품질 확인", "치수, 형상, 표면 상태를 확인하고 검사 결과를 기록합니다."],
-  ["납품·현장 대응", "포장, 출하, 현장 대응까지 추적 가능한 흐름으로 관리합니다."],
+  ["소재 확인", "자재와 도면 기준을 대조해 작업 전 조건을 정리합니다."],
+  ["CNC 가공", "CNC 자동선반 기반으로 소형 정밀 금속 부품을 가공합니다."],
+  ["검사 및 측정", "가공 중 주요 치수와 표면 상태를 공정 안에서 확인합니다."],
+  ["최종 검수", "출하 전 품질 기준과 작업 결과를 다시 확인합니다."],
 ];
 
 const qualityCheckpoints = [
-  ["입고 확인", "자재와 도면 기준을 대조해 작업 전 조건을 정리합니다."],
-  ["가공 정밀도", "가공 중 주요 치수와 공차를 단계별로 확인합니다."],
-  ["조립·용접 검수", "조립 상태와 후가공 품질을 항목별로 점검합니다."],
-  ["출고 전 확인", "최종 검사 결과와 출하 상태를 기록으로 남깁니다."],
+  ["현장재 검사", "자재와 도면 기준을 대조해 작업 전 조건을 정리합니다."],
+  ["공정 관리", "가공 단계별 확인 기준을 두고 작업 흐름을 관리합니다."],
+  ["검사 및 측정", "주요 치수와 표면 상태를 필요한 항목별로 확인합니다."],
+  ["최종 검수", "최종 검사 결과와 출하 상태를 기록으로 남깁니다."],
 ];
 
 const premiumProcessSteps = [
@@ -151,6 +148,7 @@ function Header({ active, menuOpen = false, onMenu }) {
         ))}
       </nav>
       <div className="header-right">
+        <span className="header-phone">TEL 055-323-7157</span>
         <button aria-controls="mobile-menu" aria-expanded={menuOpen ? "true" : "false"} aria-label="메뉴 열기" className="menu-button" type="button" onClick={onMenu}>☰</button>
       </div>
     </header>
@@ -212,6 +210,27 @@ const handledItemCards = [
   ["자동차부품", "반복 정밀도와 안정성이 중요한 자동차 관련 소형 부품 가공"],
   ["유압부품", "압력·체결·밀폐 성능이 중요한 유압 피팅 및 관련 부품 가공"],
   ["전자부품", "소형 정밀도와 균일 품질이 필요한 전자 부품 가공"],
+];
+
+const desktopHomeCapabilityRail = [
+  ["◎", "CNC 자동선반 전문", "정밀 금속 부품 가공"],
+  ["⬡", "자동차부품 대응", "소형 정밀 부품"],
+  ["⚙", "유압부품 대응", "피팅 및 관련 부품"],
+  ["▥", "전자부품 대응", "균일 품질 부품"],
+];
+
+const desktopProcessSummary = [
+  ["01", "소재 확인", "자재와 도면 기준"],
+  ["02", "CNC 가공", "자동선반 기반 가공"],
+  ["03", "검사 및 측정", "치수와 표면 확인"],
+  ["04", "최종 검수", "출하 전 확인"],
+];
+
+const desktopQualitySummary = [
+  ["01", "현장재 검사", "자재와 도면 기준"],
+  ["02", "공정 관리", "가공 흐름 확인"],
+  ["03", "검사 및 측정", "치수와 표면 확인"],
+  ["04", "최종 검수", "출하 전 확인"],
 ];
 
 const cncEquipmentInfo = {
@@ -772,10 +791,10 @@ function Hero({ page, active, menuOpen, setMenuOpen }) {
       <MobilePanel active={active} open={menuOpen} onClose={() => setMenuOpen(false)} />
       <div className="hero-content">
         <p className="eyebrow">{page.eyebrow}</p>
-        <h1>{page.title}</h1>
-        {isSubPage ? null : <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>}
-        <p className="hero-copy">{page.summary}</p>
-        {isSubPage ? null : <div className="hero-progress"><span>01</span><i></i><span>03</span></div>}
+        {isSubPage ? <h1>{page.title}</h1> : <h1>정밀한 기술로<br />최고의 품질을 만듭니다</h1>}
+        {isSubPage ? null : <h2 className="hero-desktop-subtitle">대광테크는 CNC 자동선반 전문 가공업체로<br />자동차부품, 유압부품, 전자부품 분야의<br />정밀 가공을 수행합니다.</h2>}
+        <p className="hero-copy">{isSubPage ? page.summary : "도면 기준, 소재 조건, 가공 흐름을 하나의 기준으로 정리해 신뢰할 수 있는 제조 품질을 만듭니다."}</p>
+        {isSubPage ? null : <div className="hero-actions"><a href="#/technology">기술력 보기</a><a href="#/products">제품 보기</a></div>}
       </div>
     </section>
   );
@@ -949,7 +968,11 @@ function NoImageFacilityCardGrid({ className = "" }) {
 }
 
 function PageSummaryMatrix({ page, detail }) {
-  const items = page.id === "facility"
+  const items = page.id === "process"
+    ? desktopProcessSummary
+    : page.id === "quality"
+    ? desktopQualitySummary
+    : page.id === "facility"
     ? cncEquipmentInfo.specs.map(([label, value]) => ["", label, value])
     : (detail.rail || []).map(([icon, title, body]) => [icon, title, body]);
   return (
@@ -1122,7 +1145,7 @@ function QualityControlPanel() {
 }
 
 function ProductsPreview({ imageSlots }) {
-  const cards = withGalleryImages(homeProducts, imageSlots.productsGalleryImages);
+  const cards = withGalleryImages(homeProducts, imageSlots.productsGalleryImages).slice(0, 3);
   return (
     <section className="split-section wrap home-products-section">
       <div className="section-intro"><p className="section-kicker">제품/서비스</p><h2>정밀 기술로 완성하는<br />최고의 솔루션</h2><p>다양한 산업의 요구를 충족하는 고정밀 부품 및 금속 가공 솔루션을 제공합니다.</p><a className="detail-link" href="#/products">자세히 보기 →</a></div>
@@ -1335,7 +1358,7 @@ function SiteApp({ content, setContent, route }) {
         {page.id === "index" ? (
           <>
           <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-          <FeatureRail items={detail.rail} />
+          <FeatureRail items={desktopHomeCapabilityRail} />
           <ProductsPreview imageSlots={imageSlots} />
           <ProcessBand imageSlots={imageSlots} />
           <QualityPreview imageSlots={imageSlots} />

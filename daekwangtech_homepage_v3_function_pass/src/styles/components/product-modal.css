@@ -1,1 +1,105 @@
-/* EMPTY AUTHORITY LAYER: components/product-modal.css */
+/* DAEKWANG_DESKTOP_PREMIUM_REFERENCE_FULL_IMPLEMENT_V1 */
+@media (min-width: 1024px) {
+  body.lightbox-open,
+  body.product-modal-open {
+    overflow: hidden;
+  }
+
+  .desktop-public-render .lightbox,
+  .product-detail-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 1000 !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 48px !important;
+    background: rgba(2, 8, 19, .72) !important;
+    backdrop-filter: blur(10px);
+  }
+
+  .desktop-public-render .lightbox__dialog,
+  .product-detail-modal__dialog {
+    width: min(940px, calc(100vw - 96px)) !important;
+    max-height: calc(100vh - 96px) !important;
+    display: grid !important;
+    grid-template-columns: 1.05fr .95fr !important;
+    border: 1px solid rgba(255, 255, 255, .18) !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    box-shadow: 0 34px 90px rgba(0, 0, 0, .38) !important;
+    overflow: hidden !important;
+  }
+
+  .desktop-public-render .lightbox__image,
+  .product-detail-modal__dialog figure img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 520px !important;
+    object-fit: cover !important;
+    background: #07172b !important;
+  }
+
+  .desktop-public-render .lightbox__caption,
+  .product-detail-modal__body {
+    display: flex !important;
+    align-items: center !important;
+    padding: 44px !important;
+    background: #ffffff !important;
+  }
+
+  .desktop-public-render .lightbox__caption h3,
+  .product-detail-modal__body h3 {
+    margin: 0 0 18px !important;
+    color: #07172b !important;
+    font-size: 34px !important;
+    line-height: 1.15 !important;
+    font-weight: 940 !important;
+    letter-spacing: -.04em !important;
+  }
+
+  .desktop-public-render .lightbox__caption p,
+  .product-detail-modal__body p {
+    color: #617083 !important;
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+  }
+
+  .desktop-public-render .lightbox__close,
+  .product-detail-modal__x {
+    position: absolute !important;
+    right: 22px !important;
+    top: 22px !important;
+    width: 42px !important;
+    height: 42px !important;
+    border: 1px solid rgba(7, 23, 43, .12) !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    color: #07172b !important;
+    font-size: 26px !important;
+    line-height: 1 !important;
+    z-index: 2 !important;
+  }
+
+  .product-detail-modal__body dl {
+    display: grid !important;
+    gap: 0 !important;
+    margin: 22px 0 !important;
+    border: 1px solid #dfe7f0 !important;
+  }
+
+  .product-detail-modal__body dl div {
+    padding: 14px 16px !important;
+    border-bottom: 1px solid #dfe7f0 !important;
+  }
+
+  .product-detail-modal__body dt {
+    color: #617083 !important;
+    font-size: 12px !important;
+    font-weight: 850 !important;
+  }
+
+  .product-detail-modal__body dd {
+    color: #07172b !important;
+    font-weight: 850 !important;
+  }
+}

@@ -79,6 +79,132 @@
   letter-spacing:.08em;
 }
 
+@media (min-width: 1024px) {
+  .desktop-public-render .company-info-panel,
+  .desktop-public-render .company-location-panel {
+    border: 1px solid #dfe7f0 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    box-shadow: 0 18px 46px rgba(9, 26, 48, .08) !important;
+  }
+
+  .desktop-public-render .company-info-panel {
+    padding: 34px !important;
+  }
+
+  .desktop-public-render .company-info-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    margin: 28px 0 0 !important;
+    border: 1px solid #dfe7f0;
+  }
+
+  .desktop-public-render .company-info-grid div {
+    min-height: 104px;
+    padding: 20px !important;
+    border-right: 1px solid #dfe7f0;
+    border-bottom: 1px solid #dfe7f0;
+    background: #fff;
+  }
+
+  .desktop-public-render .company-info-grid dt,
+  .desktop-public-render .company-location-list dt {
+    color: #617083 !important;
+    font-size: 12px !important;
+    font-weight: 860 !important;
+  }
+
+  .desktop-public-render .company-info-grid dd,
+  .desktop-public-render .company-location-list dd {
+    margin-top: 9px !important;
+    color: #07172b !important;
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+    font-weight: 850 !important;
+  }
+
+  .desktop-public-render .company-handled-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    margin-top: 24px !important;
+    border: 1px solid #dfe7f0;
+  }
+
+  .desktop-public-render .company-handled-grid article {
+    padding: 22px !important;
+    border-right: 1px solid #dfe7f0 !important;
+    border-radius: 0 !important;
+    background: #f8fbff !important;
+  }
+
+  .desktop-public-render .company-location-panel {
+    display: grid !important;
+    grid-template-columns: 260px minmax(0, 1fr) 280px !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+
+  .desktop-public-render .company-location-copy {
+    padding: 34px !important;
+    border-right: 1px solid #dfe7f0;
+  }
+
+  .desktop-public-render .company-location-copy strong {
+    color: #07172b !important;
+    font-size: 30px !important;
+  }
+
+  .desktop-public-render .company-location-list {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+
+  .desktop-public-render .company-location-list div {
+    min-height: 98px;
+    padding: 18px 20px !important;
+    border: 0 !important;
+    border-right: 1px solid #dfe7f0 !important;
+    border-bottom: 1px solid #dfe7f0 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .desktop-public-render .company-location-action {
+    display: grid !important;
+    grid-template-rows: 1fr auto !important;
+    min-height: 100%;
+    border-left: 1px solid #dfe7f0;
+    background: #f8fbff;
+  }
+
+  .desktop-public-render .company-map-card {
+    min-height: 220px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background:
+      linear-gradient(#e8eef6 1px, transparent 1px),
+      linear-gradient(90deg, #e8eef6 1px, transparent 1px),
+      #f8fbff !important;
+    background-size: 22px 22px !important;
+  }
+
+  .desktop-public-render .kakao-map-link {
+    min-height: 74px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 !important;
+    background: #061a31 !important;
+    color: #ffffff !important;
+    font-weight: 900 !important;
+  }
+}
+
 /* SOURCE_LINES:422-429 BUCKET:COMPANY_DIRECTIONS_SECTION REASON:company/directions selector RISK:LOW */
 .company-location-list dd{
   margin:0;

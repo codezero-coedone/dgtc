@@ -1,1 +1,67 @@
-/* EMPTY AUTHORITY LAYER: public/public-tablet.css */
+/* DAEKWANG_DESKTOP_PREMIUM_REFERENCE_FULL_IMPLEMENT_V1 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .desktop-public-render {
+    display: block !important;
+  }
+
+  .mobile-app-public-shell {
+    display: none !important;
+  }
+
+  .desktop-public-render .site-header {
+    height: 72px !important;
+    padding: 0 24px !important;
+    background: rgba(4, 12, 24, .9) !important;
+  }
+
+  .desktop-public-render .desktop-nav {
+    gap: 16px !important;
+    margin-right: 0 !important;
+  }
+
+  .desktop-public-render .desktop-nav .nav-link {
+    font-size: 12px !important;
+  }
+
+  .desktop-public-render .header-phone {
+    display: none !important;
+  }
+
+  .desktop-public-render .hero {
+    min-height: 620px !important;
+  }
+
+  .desktop-public-render .hero-content,
+  .desktop-public-render .wrap,
+  .desktop-public-render .feature-rail,
+  .desktop-public-render .desktop-page-content,
+  .desktop-public-render .company-location-panel,
+  .desktop-public-render .company-info-panel,
+  .desktop-public-render .facility-equipment-panel {
+    width: min(100% - 48px, 900px) !important;
+  }
+
+  .desktop-public-render .hero-content {
+    padding-top: 140px !important;
+  }
+
+  .desktop-public-render .hero h1 {
+    font-size: 56px !important;
+  }
+
+  .desktop-public-render .feature-rail,
+  .desktop-public-render .product-grid,
+  .desktop-public-render .quality-grid,
+  .desktop-public-render .sub-card-grid,
+  .desktop-public-render .process-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .desktop-public-render .split-section,
+  .desktop-public-render .process-layout,
+  .desktop-public-render .facility-equipment-hero,
+  .desktop-public-render .company-location-panel,
+  .desktop-public-render .quality-control-panel {
+    grid-template-columns: 1fr !important;
+  }
+}
