@@ -45,23 +45,14 @@ jobs:
         working-directory: daekwangtech_homepage_v3_function_pass
         run: npm run build
 
-      - name: Restore Wrangler auth
-        run: |
-          for dir in "$HOME/.config/.wrangler" "$HOME/.wrangler" "$HOME/.config/wrangler"; do
-            mkdir -p "$dir/config"
-            printf '%s' "$WRANGLER_CONFIG_DEFAULT_TOML" > "$dir/config/default.toml"
-            chmod 600 "$dir/config/default.toml"
-          done
-          test -s "$HOME/.config/.wrangler/config/default.toml"
-        env:
-          WRANGLER_CONFIG_DEFAULT_TOML: ${{ secrets.WRANGLER_CONFIG_DEFAULT_TOML }}
-
-      - name: Verify Wrangler auth
+      - name: Verify Cloudflare auth
         run: npx wrangler whoami
         env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Deploy to Cloudflare
         run: npx wrangler deploy
         env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
