@@ -949,6 +949,19 @@ function NoImageFacilityCardGrid({ className = "" }) {
   );
 }
 
+function FacilityDesktopMatrix() {
+  return (
+    <dl className="facility-desktop-matrix" aria-label="보유 설비 핵심 정보">
+      {cncEquipmentInfo.specs.map(([label, value]) => (
+        <div key={label}>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 function FacilityEquipmentPanel() {
   return (
     <section className="facility-equipment-panel wrap" aria-label="CNC 자동선반 보유 설비">
@@ -1139,6 +1152,7 @@ function TrustPreview({ posts }) {
 function SubPage({ page, detail, imageSlots, company }) {
   const isProcessPage = page.id === "process";
   const isQualityPage = page.id === "quality";
+  const isFacilityPage = page.id === "facility";
   const isCompactClosingPage = page.id === "technology" || page.id === "company";
   return (
     <>
@@ -1148,12 +1162,12 @@ function SubPage({ page, detail, imageSlots, company }) {
           <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
           <p>{page.summary}</p>
         </div>
-        {page.id === "facility" ? <NoImageFacilityCardGrid /> : detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
+        {isFacilityPage ? <FacilityDesktopMatrix /> : detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
       </section>
       {page.id === "company" ? <CompanyInfoPanel company={company} /> : null}
       {page.id === "company" ? <DirectionsPanel company={company} /> : null}
-      {page.id === "facility" ? <FacilityEquipmentPanel /> : null}
-      {isQualityPage ? <QualityControlPanel /> : isCompactClosingPage && detail.metrics ? <CompactClosingPanel page={page} items={detail.metrics} /> : detail.metrics ? <MetricRow items={detail.metrics} /> : null}
+      {isFacilityPage ? <FacilityEquipmentPanel /> : null}
+      {isQualityPage ? <QualityControlPanel /> : isCompactClosingPage && detail.metrics ? <CompactClosingPanel page={page} items={detail.metrics} /> : !isFacilityPage && detail.metrics ? <MetricRow items={detail.metrics} /> : null}
     </>
   );
 }
