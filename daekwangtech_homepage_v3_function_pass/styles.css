@@ -9631,11 +9631,24 @@ body.product-modal-open {
   box-shadow: 0 24px 58px rgba(7, 29, 56, .16);
 }
 
-.equipment-machine-visual svg {
+.equipment-machine-visual img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 760 / 420;
+}
+
+.equipment-machine-visual--photo {
+  padding: 12px;
+}
+
+.equipment-machine-visual--photo img {
+  min-height: 220px;
+  border-radius: 14px;
+  background: #071d38;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.04) contrast(1.04);
 }
 
 .equipment-machine-visual figcaption {
@@ -9926,6 +9939,10 @@ body.product-modal-open {
   }
 
   .equipment-machine-visual--compact svg {
+    min-height: 190px;
+  }
+
+  .equipment-machine-visual--compact img {
     min-height: 190px;
   }
 
