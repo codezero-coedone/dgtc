@@ -761,7 +761,7 @@ function MobilePublicShell({ route, page, detail, content, imageSlots, menuOpen,
 }
 
 function Hero({ page, active, menuOpen, setMenuOpen }) {
-  const isFacility = active === "facility";
+  const isSubPage = active !== "index";
   return (
     <section className="hero">
       <div className="hero-bg">
@@ -773,9 +773,9 @@ function Hero({ page, active, menuOpen, setMenuOpen }) {
       <div className="hero-content">
         <p className="eyebrow">{page.eyebrow}</p>
         <h1>{page.title}</h1>
-        {isFacility ? null : <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>}
+        {isSubPage ? null : <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>}
         <p className="hero-copy">{page.summary}</p>
-        {isFacility ? null : <div className="hero-progress"><span>01</span><i></i><span>03</span></div>}
+        {isSubPage ? null : <div className="hero-progress"><span>01</span><i></i><span>03</span></div>}
       </div>
     </section>
   );
@@ -948,13 +948,17 @@ function NoImageFacilityCardGrid({ className = "" }) {
   );
 }
 
-function FacilityDesktopMatrix() {
+function PageSummaryMatrix({ page, detail }) {
+  const items = page.id === "facility"
+    ? cncEquipmentInfo.specs.map(([label, value]) => ["", label, value])
+    : (detail.rail || []).map(([icon, title, body]) => [icon, title, body]);
   return (
-    <section className="facility-summary-section wrap" id="main-content" aria-label="설비 요약표">
-      <h2>설비 요약표</h2>
-      <dl className="facility-desktop-matrix" aria-label="설비 요약표">
-      {cncEquipmentInfo.specs.map(([label, value]) => (
-        <div key={label}>
+    <section className="page-summary-section wrap" id="main-content" aria-label={`${page.label} 요약표`}>
+      <h2>{page.id === "facility" ? "설비 요약표" : `${page.label} 요약표`}</h2>
+      <dl className="page-summary-matrix" aria-label={`${page.label} 요약표`}>
+      {items.map(([icon, label, value]) => (
+        <div key={`${label}-${value}`}>
+          {icon ? <i aria-hidden="true">{icon}</i> : null}
           <dt>{label}</dt>
           <dd>{value}</dd>
         </div>
@@ -1176,21 +1180,27 @@ function SubPage({ page, detail, imageSlots, company }) {
   const isProcessPage = page.id === "process";
   const isQualityPage = page.id === "quality";
   const isFacilityPage = page.id === "facility";
-  const isCompactClosingPage = page.id === "technology" || page.id === "company";
+  const sectionTitle = {
+    technology: "기술력 기준",
+    products: "제품/서비스 범위",
+    process: "제조 프로세스",
+    quality: "품질 관리 기준",
+    company: "회사 정보",
+  }[page.id] || page.label;
   return (
     <>
-      {isFacilityPage ? <FacilityDesktopMatrix /> : <section className="sub-main wrap">
-        <div className="section-intro">
+      <PageSummaryMatrix page={page} detail={detail} />
+      {isFacilityPage ? null : <section className={`desktop-page-content wrap desktop-page-content--${page.id}`}>
+        <div className="desktop-page-content__head">
           <p className="section-kicker">{page.eyebrow}</p>
-          <h2>{page.headline.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
-          <p>{page.summary}</p>
+          <h2>{sectionTitle}</h2>
         </div>
-        {detail.cards ? <CardGrid showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
+        {detail.cards ? <CardGrid className={page.id === "products" ? "product-grid" : page.id === "quality" ? "quality-grid" : "sub-card-grid"} showDetailButton={page.id === "products"} cards={page.id === "products" ? withGalleryImages(detail.cards, imageSlots.productsGalleryImages) : page.id === "quality" ? withFirstImage(detail.cards, imageSlots.qualityVisualImage) : detail.cards} /> : isProcessPage ? <ProcessPageSection /> : <ProcessBand imageSlots={imageSlots} />}
       </section>}
       {page.id === "company" ? <CompanyInfoPanel company={company} /> : null}
       {page.id === "company" ? <DirectionsPanel company={company} /> : null}
       {isFacilityPage ? <FacilityEquipmentPanel /> : null}
-      {isQualityPage ? <QualityControlPanel /> : isCompactClosingPage && detail.metrics ? <CompactClosingPanel page={page} items={detail.metrics} /> : !isFacilityPage && detail.metrics ? <MetricRow items={detail.metrics} /> : null}
+      {isQualityPage ? <QualityControlPanel /> : null}
     </>
   );
 }
@@ -1338,7 +1348,6 @@ function SiteApp({ content, setContent, route }) {
         ) : (
           <>
           <Hero page={page} active={page.id} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-          {page.id === "facility" ? null : <FeatureRail items={detail.rail} />}
           <SubPage page={page} detail={detail} imageSlots={imageSlots} company={content.company} />
           <Footer company={content.company} />
           </>
