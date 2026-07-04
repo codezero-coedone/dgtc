@@ -1,0 +1,59 @@
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-deploy-main
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build and deploy dgtc
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            daekwangtech_homepage_v3_function_pass/package-lock.json
+
+      - name: Install worker dependencies
+        run: npm ci
+
+      - name: Install public app dependencies
+        working-directory: daekwangtech_homepage_v3_function_pass
+        run: npm ci
+
+      - name: Verify public app
+        working-directory: daekwangtech_homepage_v3_function_pass
+        run: npm run lint
+
+      - name: Build public app
+        working-directory: daekwangtech_homepage_v3_function_pass
+        run: npm run build
+
+      - name: Restore Wrangler auth
+        run: |
+          mkdir -p "$HOME/.config/.wrangler/config"
+          printf '%s' "$WRANGLER_CONFIG_DEFAULT_TOML" > "$HOME/.config/.wrangler/config/default.toml"
+          chmod 600 "$HOME/.config/.wrangler/config/default.toml"
+        env:
+          WRANGLER_CONFIG_DEFAULT_TOML: ${{ secrets.WRANGLER_CONFIG_DEFAULT_TOML }}
+
+      - name: Deploy to Cloudflare
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
