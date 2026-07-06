@@ -1,9 +1,0 @@
-/* AUTO-SPLIT FROM styles.css - authority: foundation/reset-base.css */
-/* SOURCE_LINES:18-18 BUCKET:BASE_RESET REASON:base/reset element selector RISK:LOW */
-*{box-sizing:border-box}
-
-/* SOURCE_LINES:19-19 BUCKET:BASE_RESET REASON:base/reset element selector RISK:LOW */
-html{scroll-behavior:smooth}
-
-/* SOURCE_LINES:22-22 BUCKET:BASE_RESET REASON:base/reset element selector RISK:LOW */
-img{max-width:100%;display:block}

@@ -1,6 +1,0 @@
-/* AUTO-SPLIT FROM styles.css - authority: sections/technology.css */
-/* SOURCE_LINES:106-106 BUCKET:TECHNOLOGY_SECTION REASON:technology/trust selector RISK:LOW */
-.trust-section{display:grid;grid-template-columns:250px 1fr;gap:56px;padding:72px 0 34px}
-
-/* SOURCE_LINES:107-107 BUCKET:TECHNOLOGY_SECTION REASON:technology/trust selector RISK:LOW */
-.trust-grid{display:grid;grid-template-columns:repeat(3,1fr) 2fr;gap:14px}
