@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
+    "lint": "node scripts/verify.mjs",
     "verify": "node scripts/verify.mjs"
   },
   "dependencies": {},
