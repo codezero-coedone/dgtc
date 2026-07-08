@@ -1,7 +1,31 @@
+import crypto from 'crypto';
 import fs from 'fs';
 const app=fs.readFileSync('src/app.js','utf8');
 const css=fs.readFileSync('src/styles.css','utf8');
 const fail=[];
+const hashFile=(p)=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex').toUpperCase();
+const desktopDesignLock={
+  'public/screens/home.jpg':{bytes:405759,sha256:'424DFF358EADFB767B33D93A2D4D175DCF131E5AE69F0A171E0B0B4612E3296F'},
+  'public/screens/company.jpg':{bytes:383728,sha256:'5437C63775A948793D527AE31F07E49AC1E4544C16758127AB2FC5DF0A0BFFE7'},
+  'public/screens/fields.jpg':{bytes:366625,sha256:'9B91DE6C5CA82C632595C87647FD44B26AAF2ABDDB46374C08D4364089359483'},
+  'public/screens/products.jpg':{bytes:354367,sha256:'9DA22B232E349BD5F9A277F16505FD9769732345D33788D092E26921246B5378'},
+  'public/screens/facilities.jpg':{bytes:393231,sha256:'293A424BDABD92FAC576151D532DEB595A3208C8D9AA444F91AA4C1270D1C1C0'},
+  'public/screens/quality.jpg':{bytes:349010,sha256:'895A092D346D90D73A03B26AE04F4BE9C744FC17B9AB7E00A7D607AB6DBD78C3'},
+};
+for(const [file,lock] of Object.entries(desktopDesignLock)){
+  if(!fs.existsSync(file)){ fail.push('Desktop design lock asset missing: '+file); continue; }
+  const stat=fs.statSync(file);
+  if(stat.size!==lock.bytes) fail.push(`Desktop design lock asset size drift: ${file} expected ${lock.bytes} got ${stat.size}`);
+  const digest=hashFile(file);
+  if(digest!==lock.sha256) fail.push(`Desktop design lock asset hash drift: ${file}`);
+}
+if(!fs.existsSync('docs/DESKTOP_DESIGN_LOCK.md')) fail.push('Desktop design lock document missing');
+if(!app.includes('company-only-screen full-functional r-initial-visual')) fail.push('Desktop exact-screen authority renderer drifted');
+if(!app.includes('<img class="exact-screen" src="./public/screens/${r.img}"')) fail.push('Desktop exact-screen source mapping drifted');
+if(!app.includes('home-lower-process-consult-mask')||!app.includes('home-lower-process-first-clean')||!app.includes('home-inquiry-card-mask')) fail.push('Desktop home CTA pixel cleanup masks drifted');
+if(!css.includes('CT-X10 pixel authority')||!css.includes('.home-lower-process-consult-mask')||!css.includes('.home-lower-process-first-clean')||!css.includes('.home-inquiry-card-mask')) fail.push('Desktop home pixel authority CSS drifted');
+if(!css.includes('.dev-route-switcher,.screen-ux-dock,.desktop-function-hint{display:none!important;}')) fail.push('Desktop drift helper suppression changed');
+if(!css.includes('.clean-bottom-panel,')||!css.includes('.product-detail-clean-btn,')||!css.includes('.home-inquiry-card-clean,')) fail.push('Desktop bottom CTA/detail suppression drifted');
 for(const img of ['home','company','fields','products','facilities','quality','admin-dashboard','admin-pipeline','admin-content']){
   if(!fs.existsSync(`public/screens/${img}.jpg`)) fail.push('Missing screen asset: '+img);
 }
