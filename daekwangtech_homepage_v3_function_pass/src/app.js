@@ -1085,3 +1085,238 @@ try{ render(); }catch(e){ console.error('CT-CLICK-LOCK render failed', e); }
   finalMigrateData();
   try{ render(); }catch(e){ console.error('CT-FIX1~FIX8 final render failed', e); }
 })();
+
+/* CT-CTA-ATOM1~ATOM8 CTA ATOMIC FUNCTION CONTROL PLANE
+   One late authority layer for all existing public/mobile/admin actions: trace, focus, press state, keyboard parity, mobile state normalize, and admin transaction safety. */
+(function(){
+  const CTA_ATOM_VERSION = 'CT-CTA-ATOM1~ATOM8 atomic CTA control plane';
+  const CTA_LOG_KEY = 'DKT_CTA_AUDIT_LOG';
+  const CTA_SELECTOR = [
+    '[data-cta-id]',
+    'button',
+    'a[href]',
+    '[onclick]',
+    '.ct-screen-hit',
+    '.live-ux-hot',
+    '.detail-hot',
+    '.u-hot',
+    '.m-feed article',
+    '.m-card.clickable',
+    '.m-card.visual',
+    '.m-hero',
+    '.m-title'
+  ].join(',');
+  const ctaRoutes = ['home','company','fields','products','facilities','quality'];
+  function dktAtomicCtaId(el){
+    if(!el) return 'unknown';
+    if(el.dataset?.ctaId) return el.dataset.ctaId;
+    const explicit = el.dataset?.route || el.dataset?.uxZone || el.dataset?.uxTarget;
+    const cls = String(el.className || '').trim().split(/\s+/).filter(Boolean).slice(0,3).join('.');
+    const txt = (el.textContent || el.getAttribute?.('aria-label') || el.getAttribute?.('title') || '').replace(/\s+/g,' ').trim().slice(0,42);
+    return [current(), el.tagName?.toLowerCase() || 'node', explicit || cls || 'cta', txt || 'icon'].join(':');
+  }
+  function dktCtaTrace(el, eventType='click'){
+    try{
+      const item = {
+        id:dktAtomicCtaId(el),
+        type:eventType,
+        route:current(),
+        layer:current().startsWith('admin') ? 'admin' : (isMobile() ? 'mobile' : 'desktop'),
+        at:new Date().toISOString()
+      };
+      const prev = JSON.parse(localStorage.getItem(CTA_LOG_KEY) || '[]');
+      localStorage.setItem(CTA_LOG_KEY, JSON.stringify([item, ...prev].slice(0,80)));
+    }catch(e){}
+  }
+  function dktAtomicCta(el){
+    if(!el || el.dataset?.ctaAtomic === '1') return;
+    el.dataset.ctaAtomic = '1';
+    el.dataset.ctaId = dktAtomicCtaId(el);
+    if(!el.getAttribute('aria-label')){
+      const label = (el.textContent || '').replace(/\s+/g,' ').trim();
+      if(!label && !['input','select','textarea'].includes(el.tagName.toLowerCase())) el.setAttribute('aria-label', el.dataset.ctaId);
+    }
+    const tag = el.tagName.toLowerCase();
+    const native = ['button','a','input','select','textarea','summary'].includes(tag);
+    if(tag === 'button' && !el.getAttribute('type')) el.setAttribute('type','button');
+    if(!native && !el.getAttribute('tabindex')) el.setAttribute('tabindex','0');
+    if(!native && !el.getAttribute('role')) el.setAttribute('role','button');
+  }
+  function dktInstallAtomicCtas(){
+    document.querySelectorAll(CTA_SELECTOR).forEach(dktAtomicCta);
+    document.body.classList.add('cta-atom-lock');
+    document.body.dataset.ctaAtomVersion = CTA_ATOM_VERSION;
+  }
+  function dktSetPressed(el, on){
+    if(!el) return;
+    if(on) el.dataset.ctaPressed = '1';
+    else delete el.dataset.ctaPressed;
+  }
+  function dktNormalizeFieldSegment(){
+    const known = productCards.map(p=>p[0]);
+    const active = localStorage.getItem('DKT_FIELD_SEG');
+    if(active && !known.includes(active)) localStorage.setItem('DKT_FIELD_SEG', known[0] || '자동차부품');
+  }
+  function dktNormalizeProductSegment(){
+    const d = cms();
+    const allowed = ['전체','자동차부품','유압부품','전자부품','정밀 양산가공'];
+    const active = localStorage.getItem('DKT_PRODUCT_SEG') || '전체';
+    if(!allowed.includes(active)) localStorage.setItem('DKT_PRODUCT_SEG','전체');
+    const next = localStorage.getItem('DKT_PRODUCT_SEG') || '전체';
+    if(next !== '전체' && !d.products.some(p=>p.category === next)) localStorage.setItem('DKT_PRODUCT_SEG','전체');
+  }
+  function dktBackupEntry(label, payload){
+    return {id:'BK-ATOM-'+Date.now(), time:new Date().toLocaleString('ko-KR'), label, payload:snapshotSlim(payload)};
+  }
+  const oldSaveCmsAtom = saveCms;
+  saveCms = function(data, action='CMS 저장', options={}){
+    const normalized = normalizeCms(data);
+    if(options && options.backup === false){
+      normalized.audit = [{time:new Date().toLocaleString('ko-KR'), action, actor:'admin'}, ...(normalized.audit||[])].slice(0,50);
+      normalized.ops = {...(normalized.ops||{}), lastSavedAt:new Date().toLocaleString('ko-KR'), lastAction:action};
+      localStorage.setItem('DKT_COMPANY_CMS_V1', JSON.stringify(normalized));
+      toast(action);
+      render();
+      return;
+    }
+    return oldSaveCmsAtom(normalized, action);
+  };
+  adminCreateBackup = window.adminCreateBackup = function(){
+    const d = cms();
+    d.backups = [dktBackupEntry('수동 백업', d), ...(d.backups||[])].slice(0,8);
+    saveCms(d, '수동 백업 생성', {backup:false});
+  };
+  adminRestoreBackup = window.adminRestoreBackup = function(id){
+    const currentData = cms();
+    const b = (currentData.backups||[]).find(x=>x.id===id);
+    if(!b || !b.payload){ toast('복구할 백업 없음'); return; }
+    const restored = normalizeCms(b.payload);
+    restored.backups = [dktBackupEntry('복구 전 자동 백업', currentData), ...(currentData.backups||[])].slice(0,8);
+    restored.audit = [{time:new Date().toLocaleString('ko-KR'), action:`백업 복구: ${b.label || b.id}`, actor:'admin'}, ...(currentData.audit||[])].slice(0,50);
+    saveCms(restored, '백업 복구 완료', {backup:false});
+  };
+  adminUndo = window.adminUndo = function(){
+    const d = cms();
+    const b = (d.backups||[])[0];
+    if(!b){ toast('복구할 백업 없음'); return; }
+    window.adminRestoreBackup(b.id);
+  };
+  adminDelete = window.adminDelete = function(type,id){
+    if(!confirm('삭제하면 현재 상태 백업 1개를 남긴 뒤 처리합니다. 계속할까요?')) return;
+    if(!confirm('정말 삭제할까요?')) return;
+    const d = cms();
+    const before = clone(d);
+    d[type] = (d[type]||[]).filter(x=>x.id!==id);
+    d.backups = [dktBackupEntry(`${type} 삭제 전 백업: ${id}`, before), ...(d.backups||[])].slice(0,8);
+    saveCms(d, `${type} 삭제: ${id}`, {backup:false});
+  };
+  adminBulkStatus = window.adminBulkStatus = function(status){
+    const d = cms();
+    const q = (localStorage.getItem('DKT_PRODUCT_QUERY') || '').trim().toLowerCase();
+    const s = localStorage.getItem('DKT_PRODUCT_STATUS') || '전체';
+    const scope = d.products.filter(p => (s === '전체' || p.status === s) && [p.title,p.id,p.category,p.material,p.process].join(' ').toLowerCase().includes(q));
+    if(!scope.length){ toast('일괄 처리 대상 없음'); return; }
+    if(!confirm(`${scope.length}개 제품을 ${status} 상태로 변경할까요?`)) return;
+    const ids = new Set(scope.map(p=>p.id));
+    d.products = d.products.map(p => ids.has(p.id) ? {...p,status} : p);
+    saveCms(d, `필터 대상 ${scope.length}개 ${status} 처리`);
+  };
+  adminFilterProducts = window.adminFilterProducts = function(value){
+    localStorage.setItem('DKT_PRODUCT_QUERY', String(value || '').trim().toLowerCase());
+    render();
+  };
+  const oldAdminSelectProduct = window.adminSelectProduct;
+  adminSelectProduct = window.adminSelectProduct = function(id){
+    localStorage.setItem('DKT_SELECTED_PRODUCT', id);
+    if(typeof oldAdminSelectProduct === 'function') oldAdminSelectProduct(id);
+    else render();
+  };
+  const oldMobileSetField = window.mobileSetField;
+  mobileSetField = window.mobileSetField = function(value){
+    const known = productCards.map(p=>p[0]);
+    localStorage.setItem('DKT_FIELD_SEG', known.includes(value) ? value : (known[0] || '자동차부품'));
+    if(typeof oldMobileSetField === 'function') oldMobileSetField(localStorage.getItem('DKT_FIELD_SEG'));
+    else render();
+  };
+  const oldMobileSetProductFilter = window.mobileSetProductFilter;
+  mobileSetProductFilter = window.mobileSetProductFilter = function(value){
+    const allowed = ['전체','자동차부품','유압부품','전자부품','정밀 양산가공'];
+    localStorage.setItem('DKT_PRODUCT_SEG', allowed.includes(value) ? value : '전체');
+    localStorage.removeItem('DKT_MOBILE_PRODUCT');
+    if(typeof oldMobileSetProductFilter === 'function') oldMobileSetProductFilter(localStorage.getItem('DKT_PRODUCT_SEG'));
+    else render();
+  };
+  const prevMobileProductsAtom = MobileProducts;
+  MobileProducts = function(){
+    dktNormalizeProductSegment();
+    const html = prevMobileProductsAtom();
+    if(!html.includes('<section class="m-feed products"></section>')) return html;
+    return html.replace('<section class="m-feed products"></section>', '<section class="m-feed products empty"><article class="m-empty-state"><div><b>표시할 제품이 없습니다</b><p>필터를 전체로 되돌려 제품 사례를 확인하세요.</p><span>전체 보기</span></div></article></section>');
+  };
+  const prevMobileFieldsAtom = MobileFields;
+  MobileFields = function(){ dktNormalizeFieldSegment(); return prevMobileFieldsAtom(); };
+  const prevMobileCompanyAtom = MobileCompany;
+  MobileCompany = function(){ return prevMobileCompanyAtom().replace("${Bottom('home')}", "${Bottom('company')}").replace(Bottom('home'), Bottom('company')); };
+  const commandItems = [
+    ['home','홈','public'],
+    ['company','회사소개','public'],
+    ['fields','가공분야','public'],
+    ['products','제품·가공사례','public'],
+    ['facilities','설비현황','public'],
+    ['quality','품질관리','public'],
+    ['admin/dashboard','Admin 대시보드','admin'],
+    ['admin/ops','운영고도화','admin'],
+    ['admin/products','제품관리','admin'],
+    ['admin/settings','설정','admin']
+  ];
+  window.dktCommandQuery = window.dktCommandQuery || '';
+  CommandPalette = function(){
+    if(localStorage.getItem('DKT_COMMAND_OPEN')!=='1') return '';
+    const q = (localStorage.getItem('DKT_COMMAND_QUERY') || '').trim().toLowerCase();
+    const items = commandItems.filter(([,label,group]) => `${label} ${group}`.toLowerCase().includes(q));
+    return `<aside class="cmd-backdrop" onclick="closeCommandPalette()"><section class="cmd-palette cta-command" onclick="event.stopPropagation()"><div><b>기능 검색</b><button type="button" onclick="closeCommandPalette()" aria-label="기능 검색 닫기">×</button></div><input class="cmd-search" value="${esc(q)}" placeholder="화면 또는 기능명 검색" oninput="localStorage.setItem('DKT_COMMAND_QUERY',this.value);render()" autofocus><p>Ctrl+K / Esc / Enter 실행</p>${items.map(([k,l,g],i)=>`<button type="button" class="${i===0?'on':''}" data-command-route="${esc(k)}" onclick="closeCommandPalette();go('${k}')"><span>${esc(l)}</span><small>${esc(g)} · #/${esc(k)}</small></button>`).join('') || '<small class="cmd-empty">검색 결과 없음</small>'}</section></aside>`;
+  };
+  window.openCommandPalette = openCommandPalette = function(){
+    localStorage.setItem('DKT_COMMAND_OPEN','1');
+    localStorage.removeItem('DKT_COMMAND_QUERY');
+    render();
+    setTimeout(()=>document.querySelector('.cmd-search')?.focus(),0);
+  };
+  window.closeCommandPalette = closeCommandPalette = function(){
+    localStorage.removeItem('DKT_COMMAND_OPEN');
+    localStorage.removeItem('DKT_COMMAND_QUERY');
+    render();
+  };
+  const prevRenderAtom = render;
+  render = function(){
+    dktNormalizeFieldSegment();
+    dktNormalizeProductSegment();
+    prevRenderAtom();
+    if(typeof ensureGlobalUX === 'function') ensureGlobalUX();
+    if(typeof enhanceMobileClickability === 'function') enhanceMobileClickability();
+    if(typeof dktInstallDesktopClickLock === 'function') dktInstallDesktopClickLock();
+    if(typeof dktInstallMobileClickLock === 'function') dktInstallMobileClickLock();
+    dktInstallAtomicCtas();
+  };
+  document.addEventListener('pointerdown',(e)=>{ const el=e.target.closest(CTA_SELECTOR); if(el){ dktAtomicCta(el); dktSetPressed(el,true); dktCtaTrace(el,'pointerdown'); } }, true);
+  document.addEventListener('pointerup',(e)=>{ const el=e.target.closest(CTA_SELECTOR); if(el){ dktSetPressed(el,false); } }, true);
+  document.addEventListener('pointercancel',(e)=>{ const el=e.target.closest(CTA_SELECTOR); if(el){ dktSetPressed(el,false); } }, true);
+  document.addEventListener('click',(e)=>{ const el=e.target.closest(CTA_SELECTOR); if(el){ dktAtomicCta(el); dktCtaTrace(el,'click'); } }, true);
+  document.addEventListener('keydown',(e)=>{
+    if(localStorage.getItem('DKT_COMMAND_OPEN')==='1' && e.key === 'Enter'){
+      const first = document.querySelector('.cmd-palette [data-command-route]');
+      if(first){ e.preventDefault(); closeCommandPalette(); go(first.dataset.commandRoute); return; }
+    }
+    if(e.key !== 'Enter' && e.key !== ' ') return;
+    const el = e.target.closest(CTA_SELECTOR);
+    if(!el || ['BUTTON','A','INPUT','SELECT','TEXTAREA'].includes(el.tagName)) return;
+    e.preventDefault();
+    dktCtaTrace(el,'keyboard');
+    el.click();
+  }, true);
+  window.dktAtomicCta = dktAtomicCta;
+  window.dktCtaTrace = dktCtaTrace;
+  window.dktInstallAtomicCtas = dktInstallAtomicCtas;
+  localStorage.setItem('DKT_CTA_ATOM_VERSION', CTA_ATOM_VERSION);
+  try{ render(); }catch(e){ console.error('CT-CTA-ATOM render failed', e); }
+})();

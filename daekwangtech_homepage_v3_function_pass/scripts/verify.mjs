@@ -100,3 +100,15 @@ console.log('PASS: CT-MB1 selective motion blur polish exists');
 console.log('PASS: CT-HUMAN human finish / concrete manufacturing copy polish exists');
 if(!app.includes('CT-CLICK-LOCK1~6 COMPLETE CLICK FUNCTION LOCK PATCH')){ console.error('VERIFY HOLD'); console.error('- CT-GH click lock patch missing'); process.exit(1); }
 console.log('PASS: CT-GH1~GH5 click-function final lock exists');
+
+// CT-CTA-ATOM atomic CTA control-plane gates
+if(!app.includes('CT-CTA-ATOM1~ATOM8 CTA ATOMIC FUNCTION CONTROL PLANE')) fail.push('CT-CTA-ATOM app marker missing');
+if(!css.includes('CT-CTA-ATOM1~ATOM8 CTA ATOMIC FUNCTION CONTROL PLANE')) fail.push('CT-CTA-ATOM CSS marker missing');
+for(const token of ['DKT_CTA_AUDIT_LOG','dktAtomicCta','dktCtaTrace','ctaPressed','adminRestoreBackup','CommandPalette']){
+  if(!app.includes(token)) fail.push('CT-CTA-ATOM app token missing: '+token);
+}
+for(const token of ['data-cta-pressed','focus-visible','.cmd-search','.m-empty-state']){
+  if(!css.includes(token)) fail.push('CT-CTA-ATOM CSS token missing: '+token);
+}
+if(fail.length){console.error('VERIFY HOLD');for(const f of fail)console.error('- '+f);process.exit(1)}
+console.log('PASS: CT-CTA-ATOM desktop/mobile/admin CTA atomic control-plane exists');

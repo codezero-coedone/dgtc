@@ -503,3 +503,112 @@ body.ct-fix1-8-lock .admin-public-chip,
   .ct-fix-final .ct-product-clean-row,
   .ct-fix-final .ct-screen-hit{display:none!important;}
 }
+
+/* CT-CTA-ATOM1~ATOM8 CTA ATOMIC FUNCTION CONTROL PLANE
+   Press/focus/keyboard state for every existing desktop, mobile, and admin CTA without changing the company-only policy. */
+.cta-atom-lock [data-cta-atomic="1"]{
+  -webkit-tap-highlight-color:rgba(84,166,255,.20);
+  touch-action:manipulation;
+}
+.cta-atom-lock button,
+.cta-atom-lock a[href],
+.cta-atom-lock [role="button"],
+.cta-atom-lock [onclick]{
+  min-height:36px;
+}
+.cta-atom-lock [data-cta-pressed="1"]{
+  transform:translateY(1px) scale(.985)!important;
+  filter:brightness(1.16)!important;
+}
+.cta-atom-lock [data-cta-atomic="1"]:focus-visible,
+.cta-atom-lock button:focus-visible,
+.cta-atom-lock a:focus-visible,
+.cta-atom-lock input:focus-visible,
+.cta-atom-lock select:focus-visible,
+.cta-atom-lock textarea:focus-visible{
+  outline:2px solid rgba(96,180,255,.92)!important;
+  outline-offset:3px!important;
+  box-shadow:0 0 0 5px rgba(20,124,255,.18)!important;
+}
+.cta-atom-lock .ct-fix-final .ct-screen-hit:focus-visible,
+.cta-atom-lock .ct-fix-final .live-ux-hot:focus-visible,
+.cta-atom-lock .ct-fix-final .detail-hot:focus-visible,
+.cta-atom-lock .ct-fix-final .u-hot:focus-visible{
+  background:rgba(20,124,255,.08)!important;
+  box-shadow:inset 0 0 0 2px rgba(96,180,255,.36),0 0 0 4px rgba(20,124,255,.14)!important;
+}
+.cta-atom-lock .clean-bottom-panel{
+  cursor:pointer!important;
+}
+.cta-atom-lock .admin-top-actions button,
+.cta-atom-lock .editor-actions button,
+.cta-atom-lock .quick-grid button,
+.cta-atom-lock .bulk-actions button,
+.cta-atom-lock .backup-list button{
+  min-height:42px;
+}
+.cta-atom-lock .cmd-palette.cta-command{
+  display:grid;
+  gap:8px;
+}
+.cta-atom-lock .cmd-search{
+  width:100%;
+  border:1px solid rgba(115,185,255,.34);
+  background:rgba(2,13,25,.72);
+  color:#eef8ff;
+  border-radius:13px;
+  padding:12px 13px;
+  font-weight:800;
+}
+.cta-atom-lock .cmd-palette button.on{
+  border-color:rgba(115,185,255,.54);
+  background:rgba(20,124,255,.22);
+}
+.cta-atom-lock .cmd-empty{
+  display:block;
+  border:1px dashed rgba(115,185,255,.22);
+  border-radius:12px;
+  padding:14px;
+  color:#93abc4;
+}
+@media(max-width:899px){
+  .cta-atom-lock button,
+  .cta-atom-lock a[href],
+  .cta-atom-lock [role="button"],
+  .cta-atom-lock [onclick]{
+    min-height:44px;
+  }
+  .cta-atom-lock .m-feed article:before,
+  .cta-atom-lock .m-card.visual.clickable:before,
+  .cta-atom-lock .m-hero.clickable:before,
+  .cta-atom-lock .m-title.clickable:before{
+    content:'상세';
+    right:12px;
+    top:12px;
+  }
+  .cta-atom-lock .m-feed article:after,
+  .cta-atom-lock .m-card.visual.clickable:after{
+    content:none!important;
+    display:none!important;
+  }
+  .cta-atom-lock .m-feed.products.empty article{
+    grid-template-columns:1fr!important;
+    min-height:128px;
+    place-items:center;
+    text-align:center;
+    border-style:dashed;
+  }
+  .cta-atom-lock .m-empty-state span{
+    display:inline-flex;
+    justify-content:center;
+    margin-top:12px;
+    color:#78c4ff;
+    font-weight:900;
+  }
+  .cta-atom-lock .m-bottom button{
+    min-height:48px;
+  }
+  .cta-atom-lock .m-bottom:not(:has(.on)) button:first-child{
+    color:#7f94ad;
+  }
+}
