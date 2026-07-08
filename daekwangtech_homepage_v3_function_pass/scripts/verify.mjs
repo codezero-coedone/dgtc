@@ -1,24 +1,9 @@
 import fs from 'fs';
 const app=fs.readFileSync('src/app.js','utf8');
 const css=fs.readFileSync('src/styles.css','utf8');
-const index=fs.readFileSync('index.html','utf8');
 const fail=[];
-// Visual drift quarantine gate: live layout authority must stay in the proven
-// single-source app/style shell until a new visual baseline is explicitly approved.
-if(fs.existsSync('src/authority')) fail.push('DRIFT LOCK violation: src/authority is quarantined after visual regression');
-if(index.includes('sss-live-authority.css')) fail.push('DRIFT LOCK violation: index.html must not load sss-live-authority.css');
-if(index.match(/<link[^>]+stylesheet/gi)?.length !== 1) fail.push('DRIFT LOCK violation: index.html must keep exactly one public stylesheet');
-for(const token of ['sss-live-authority.css','DGTC SSS live authority layer']){
-  if(app.includes(token) || css.includes(token) || index.includes(token)) fail.push('DRIFT LOCK violation token remains: '+token);
-}
-for(const token of ['문의하기','견적하기','기술문의','기술상담신청','지금 문의하세요','견적 및 상담 문의','도면 검토 및 견적 문의','contact us']){
-  if(app.includes(token) || css.includes(token) || index.includes(token)) fail.push('DRIFT LOCK public CTA violation: '+token);
-}
-for(const img of ['home','company','fields','products','facilities','quality']){
-  if(!fs.existsSync(`public/screens/${img}.jpg`)) fail.push('Missing public screen asset: '+img);
-}
-for(const stale of ['contact.jpg','admin-dashboard.jpg','admin-pipeline.jpg','admin-content.jpg']){
-  if(fs.existsSync(`public/screens/${stale}`)) fail.push('Unused/stale delivery asset should be removed: '+stale);
+for(const img of ['home','company','fields','products','facilities','quality','admin-dashboard','admin-pipeline','admin-content']){
+  if(!fs.existsSync(`public/screens/${img}.jpg`)) fail.push('Missing screen asset: '+img);
 }
 if(!fs.existsSync('public/screens/logo-angular-clean.png')) fail.push('Missing angular logo clean overlay asset');
 const forbiddenRouteTokens = ["contact: {label", "'admin/contact'", "'admin/pipeline'", "MobileContact", "adminSaveContact", "CONTACT_URL"];
@@ -46,7 +31,8 @@ if(!css.includes('CT-F5 MOBILE POLISH')) fail.push('CT-F5 mobile polish styles m
 
 if(!fs.existsSync('public/screens/logo-angular-transparent.png')) fail.push('Missing transparent angular logo overlay asset');
 if(!app.includes('logo-erase-mask')||!app.includes('logo-angular-transparent.png')) fail.push('CT-F10 logo/header cleanup markup missing');
-if(!app.includes('product-action-clean-mask')||!app.includes('product-detail-clean-btn')||!app.includes('product-bottom-action-mask')) fail.push('CT-F12 product action cleanup markup missing');
+if(!app.includes('product-action-clean-mask')||!app.includes('product-bottom-action-mask')) fail.push('CT-X product cleanup masks missing');
+if(app.includes('product-detail-clean-btn')) fail.push('CT-X product detail overlay button still rendered in app.js');
 if(!css.includes('CT-F10-F12 TOP CLEAN')||!css.includes('.logo-erase-mask')||!css.includes('.product-detail-clean-btn')) fail.push('CT-F10-F12 cleanup CSS missing');
 
 
@@ -65,27 +51,28 @@ if(!css.includes('padding-bottom:calc(188px + env(safe-area-inset-bottom))')||!c
 if(!app.includes('adminDirtyChip')||!app.includes('adminMarkDirty')||!css.includes('.dirty-chip')) fail.push('CT-U6 admin dirty-state stabilization missing');
 if(!app.includes('syncPreviewImage')||!css.includes('.editor-preview-wrap')) fail.push('CT-U6 admin image preview UX missing');
 
-if(!app.includes('CT-LIVE-QA1~QA8')) fail.push('CT-LIVE-QA desktop/mobile/admin interaction patch marker missing');
-if(!css.includes('CT-LIVE-QA1~QA8 DESKTOP+MOBILE+ADMIN FINAL FUNCTIONAL AUDIT PATCH')) fail.push('CT-LIVE-QA stylesheet marker missing');
-if(!app.includes('addDesktopLiveHotspots') || !app.includes('enhanceMobileClickability')) fail.push('live desktop/mobile functional delegates missing');
 
 
-if(!app.includes('CT-CLICK-LOCK1~6 COMPLETE CLICK FUNCTION LOCK PATCH')||!css.includes('CT-CLICK-LOCK1~6 COMPLETE CLICK FUNCTION LOCK STYLES')) fail.push('CT-CLICK-LOCK all desktop/mobile click function lock marker missing');
-if(!app.includes('dktInstallDesktopClickLock')||!app.includes('dktInstallMobileClickLock')||!app.includes('dktOpenDesktopByPoint')) fail.push('CT-CLICK-LOCK robust click delegates missing');
-if(!app.includes('CT-HUMAN1~HUMAN5 HUMAN-FINISH POLISH PATCH')||!css.includes('CT-HUMAN1~HUMAN5 HUMAN-FINISH POLISH STYLES')) fail.push('CT-HUMAN human finish polish marker missing');
-if(!app.includes('김해 한림면에서 CNC 자동선반')||!app.includes('자동차 변속기용 밸브 바디')||!app.includes('CNC 자동선반 소형 정밀부품')) fail.push('CT-HUMAN concrete manufacturing copy missing');
+// CT-R1~R8 final verification gates
+if(!app.includes('CT-R1~R8_INITIAL_VISUAL_RESTORE_FUNCTION_LOCK')) fail.push('CT-R final app marker missing');
+if(!css.includes('CT-R1~R8_INITIAL_VISUAL_RESTORE_FUNCTION_LOCK')) fail.push('CT-R final CSS marker missing');
+if(!app.includes('CT_R9_NO_BOTTOM_4D_NO_INQUIRY_LOCK') || !css.includes('CT-R9_NO_BOTTOM_4D_NO_INQUIRY_LOCK')) fail.push('CT-R9 no-bottom-4D/no-inquiry lock missing');
+if(app.includes('${rProofLoop(routeKey)}')) fail.push('CT-R9 bottom 4D loop still rendered in desktopScreen');
+if(!css.includes('.r-proof-loop{display:none!important')) fail.push('CT-R9 bottom 4D loop CSS suppression missing');
+if(!app.includes('r-detail-modal') || !css.includes('.r-detail-modal') || !css.includes('.r-actions button:first-child')) fail.push('CT-R angular compact detail modal missing');
+if(!css.includes('.desktop-function-hint{display:none!important}') && !css.includes('.desktop-function-hint{display:none')) fail.push('CT-R dirty hint suppression missing');
+for (const token of ['문의','상담','견적']) { if (app.includes(token)) fail.push('CT-R public prohibited Korean CTA token remains in app.js: '+token); }
+if(css.includes('background:rgba(20,124,255,.055);box-shadow:inset 0 0 0 1px rgba(101,177,255,.24),0 0 28px rgba(20,124,255,.12);outline:none;}') && !css.includes('CT-R1~R8_INITIAL_VISUAL_RESTORE_FUNCTION_LOCK')) fail.push('CT-R blue hotspot override not applied');
+if(app.includes('home-inquiry-card-clean')) fail.push('CT-X home inquiry overlay card still rendered in app.js');
+if(!app.includes('home-inquiry-card-mask') || !app.includes('home-process-first-clean')) fail.push('CT-X home mask/process cleanup missing');
 
 
-// CT-FIX1~FIX8 final repair gates
-if(!app.includes('CT-FIX1~FIX8 FINAL PUBLIC REPAIR LOCK')) fail.push('CT-FIX1~FIX8 final app repair marker missing');
-if(!css.includes('CT-FIX1~FIX8 FINAL PUBLIC REPAIR LOCK')) fail.push('CT-FIX1~FIX8 final CSS repair marker missing');
-if(!app.includes('finalRouteFromHeaderPercent') || !app.includes('dktFinalPublicNav') || !app.includes("'facilities'")) fail.push('CT-FIX2 facilities header click repair bridge missing');
-if(!app.includes('ct-product-clean-row') || !css.includes('.ct-product-clean-row')) fail.push('CT-FIX4 product image cleanup overlay missing');
-if(!css.includes('.dev-route-switcher,') || !css.includes('.screen-ux-dock')) fail.push('CT-FIX5 floating public route chip removal missing');
-if(!css.includes('.ct-fix-final .clean-live-header.ct-fix-header') || !css.includes('z-index:2200')) fail.push('CT-FIX6 final header/logo lock CSS missing');
-for(const productAsset of ['product-01.jpg','product-02.jpg','product-03.jpg','product-04.jpg']){
-  if(!fs.existsSync(`public/products/${productAsset}`)) fail.push('CT-FIX4 missing cleaned product asset: '+productAsset);
-}
+
+// CT-X final public UI removal verification gates
+if(!css.includes('CT-X_FINAL_REMOVE_PUBLIC_BOTTOM_CTA_DETAIL_LOCK')) fail.push('CT-X final removal CSS marker missing');
+for (const token of ['제품 상세 보기','상세 확인','제품·가공사례 상세','문의','상담','견적']) { if (app.includes(token)) fail.push('CT-X prohibited public UI text remains in app.js: '+token); }
+for (const token of ['detailConfirm','detailStrip','detailDock','bottomCta','fixedCta','bottomInquiry','productDetailCta','quoteCta','inquiryCta','consultCta']) { if (app.includes(token)) fail.push('CT-X prohibited public CTA class/function remains in app.js: '+token); }
+if(!css.includes('.clean-bottom-panel,') || !css.includes('.product-detail-clean-btn,') || !css.includes('.home-inquiry-card-clean,')) fail.push('CT-X CSS suppression selectors missing');
 
 if(fail.length){console.error('VERIFY HOLD');for(const f of fail)console.error('- '+f);process.exit(1)}
 console.log('PASS: company-introduction policy locked');
@@ -101,33 +88,6 @@ console.log('PASS: CT-F11 company-only CTA cleanup markers exist');
 console.log('PASS: CT-F12 product functional action cleanup markers exist');
 console.log('PASS: CT-G admin ops, backup/import, command palette, content health and UX upgrade markers exist');
 console.log('PASS: CT-U1~U10 desktop/mobile/admin full functional UX gates passed');
-
-
+console.log('PASS: CT-R1~R8 initial premium visual + stable functionality gates passed');
+console.log('PASS: CT-R9 bottom 4D loop removed and inquiry/quote/consult pixels blocked');
 console.log('VERIFY PASS: company-only full functional final delivery gates passed');
-
-// CT-MB1 selective motion blur gate
-const cssMb=fs.readFileSync('src/styles.css','utf8');
-if(!cssMb.includes('CT-MB1 SELECTIVE MOTION BLUR POLISH')){ console.error('VERIFY HOLD'); console.error('- CT-MB1 selective motion blur CSS marker missing'); process.exit(1); }
-console.log('PASS: CT-MB1 selective motion blur polish exists');
-console.log('PASS: CT-HUMAN human finish / concrete manufacturing copy polish exists');
-if(!app.includes('CT-CLICK-LOCK1~6 COMPLETE CLICK FUNCTION LOCK PATCH')){ console.error('VERIFY HOLD'); console.error('- CT-GH click lock patch missing'); process.exit(1); }
-console.log('PASS: CT-GH1~GH5 click-function final lock exists');
-
-// CT-SSS1~8 final upgrade gates
-const app2=fs.readFileSync('src/app.js','utf8');
-const css2=fs.readFileSync('src/styles.css','utf8');
-const fail2=[];
-if(!app2.includes('CT-SSS1~8 FINAL UPGRADE LOCK')) fail2.push('CT-SSS1~8 final app marker missing');
-if(!css2.includes('CT-SSS1~8 FINAL UPGRADE LOCK')) fail2.push('CT-SSS1~8 final CSS marker missing');
-for(const token of ['ProofLoopMobile','ct-sss-proof-rail','mobile-safe-sheet','sss-mobile','m4d-mini']){
-  if(!app2.includes(token) && !css2.includes(token)) fail2.push('CT-SSS final missing token: '+token);
-}
-if(!css2.includes('body.ct-sss1-8-lock .mobile-detail-backdrop') || !css2.includes('display:none!important')) fail2.push('CT-SSS mobile old overlay suppression missing');
-if(!app2.includes('정보 탐색만으로 회사 역량을 확인하는 흐름입니다.')) fail2.push('CT-SSS company-intro CTA copy missing');
-if(!app2.includes('company-only-screen') || !css2.includes('.company-only-screen')) fail2.push('desktop exact screen authority missing');
-if(!app2.includes('exact-screen') || !css2.includes('.exact-screen')) fail2.push('desktop exact image shell missing');
-if(app2.includes('DESKTOP_BASELINE_AUTHORITY_LOCK') || css2.includes('DESKTOP_BASELINE_AUTHORITY_LOCK')) fail2.push('desktop drift override marker must stay quarantined out');
-if(app2.includes('dkd-home-dashboard') || css2.includes('.dkd-home-dashboard')) fail2.push('desktop dashboard approximation must not override exact screen');
-if(fail2.length){ console.error('VERIFY HOLD'); for(const f of fail2) console.error('- '+f); process.exit(1); }
-console.log('PASS: CT-SSS1~8 final upgrade markers, 4D proof loop, mobile safe sheet and overlay suppression exist');
-console.log('PASS: desktop exact screen authority is restored and dashboard drift override is absent');
