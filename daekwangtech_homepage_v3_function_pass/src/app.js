@@ -1161,7 +1161,39 @@ try{ render(); }catch(e){ console.error('CT-CLICK-LOCK render failed', e); }
       </section>
     </aside>`;
   }
+  function PremiumHomeDashboard(){
+    const d=cms();
+    const products=(d.products||[]).filter(p=>p.status!=='비공개').slice(0,6);
+    const facilities=(d.facilities||[]).slice(0,2);
+    return `<main class="dk-desktop dkd-home-dashboard route-home" data-desktop-lock="${DK_DESKTOP_LOCK}">
+      <section class="dkdash-hero">
+        <div class="dkdash-hero-copy">
+          <small>CNC 자동선반 정밀가공 회사소개</small>
+          <h1>정밀함이 만드는 차이,<br>그 차이가 <mark>제조 경쟁력</mark>입니다.</h1>
+          <p>대광테크는 CNC 자동선반 기반 정밀 금속부품 가공 역량과 제품사례, 설비환경, 품질관리 흐름을 한 화면에서 확인할 수 있게 정리한 회사소개형 홈페이지입니다.</p>
+          <div class="dkdash-actions">
+            <button onclick="go('fields')">가공분야 보기</button>
+            <button onclick="go('products')">제품사례 보기</button>
+            <button onclick="go('facilities')">설비현황 보기</button>
+          </div>
+        </div>
+        <figure><img src="./public/screens/home.jpg" alt="CNC 자동선반 정밀가공"><figcaption>DAE KWANG TECH</figcaption></figure>
+      </section>
+      <nav class="dkdash-nav">${nav.map(k=>`<button class="${k==='home'?'on':''}" onclick="go('${k}')">${esc(routes[k].label)}</button>`).join('')}</nav>
+      <section class="dkdash-grid">
+        <article class="dkdash-panel fields"><header><b>가공분야</b><button onclick="go('fields')">전체 보기</button></header><div>${productCards.map(([t,desc,img])=>`<button onclick="go('fields')"><img src="${img}" alt="${esc(t)}"><span><b>${esc(t)}</b><small>${esc(desc)}</small></span></button>`).join('')}</div></article>
+        <article class="dkdash-panel products"><header><b>제품·가공사례</b><button onclick="go('products')">전체 보기</button></header><div>${products.map(p=>`<button onclick="openPremiumDesktopDetail('product','${esc(p.id)}')"><img src="${esc(p.image)}" alt="${esc(p.title)}"><span>${esc(p.title)}</span></button>`).join('')}</div></article>
+        <article class="dkdash-panel process"><header><b>제조 프로세스</b><button onclick="openPremiumDesktopDetail('process','0')">상세 보기</button></header><div>${processSteps.map((s,i)=>`<button onclick="openPremiumDesktopDetail('process','${i}')"><em>${s[0]}</em><b>${s[1]}</b><small>${s[2]}</small></button>`).join('')}</div></article>
+        <article class="dkdash-panel facility"><header><b>설비현황</b><button onclick="go('facilities')">설비 보기</button></header><div>${facilities.map(f=>`<button onclick="openPremiumDesktopDetail('facility','${esc(f.id)}')"><img src="${esc(f.image)}" alt="${esc(f.name)}"><span><b>${esc(f.name)}</b><small>${esc(f.spec)}</small></span></button>`).join('')}</div></article>
+        <article class="dkdash-panel quality"><header><b>품질관리</b><button onclick="go('quality')">품질 보기</button></header><div>${(d.quality||[]).map(q=>`<button onclick="openPremiumDesktopDetail('quality','${esc(q.id)}')"><small>${esc(q.label)}</small><b>${esc(q.value)}</b><span>${esc(q.note)}</span></button>`).join('')}</div></article>
+        <article class="dkdash-panel company"><header><b>회사정보</b><button onclick="go('company')">회사정보 보기</button></header><p>${esc(d.companyInfo.intro||'CNC 자동선반 기반 정밀 금속 부품 제조 전문 기업입니다.')}</p><dl><div><dt>사업분야</dt><dd>${esc(d.companyInfo.businessArea||'CNC 자동선반 가공')}</dd></div><div><dt>주소</dt><dd>${esc(d.companyInfo.address||'경남 김해시 한림면 신천리 984')}</dd></div></dl></article>
+      </section>
+      <footer class="dkdash-footer"><b>CNC 자동선반 정밀가공 회사소개</b><span>제품사례 · 설비현황 · 품질관리 · 공정 흐름</span></footer>
+      ${PremiumDesktopDetail()}
+    </main>`;
+  }
   function PremiumDesktop(routeKey){
+    if(routeKey==='home') return PremiumHomeDashboard();
     const key=routeMeta[routeKey]?routeKey:'home';
     const m=routeMeta[key];
     const d=cms();
