@@ -124,5 +124,9 @@ for(const token of ['ProofLoopMobile','ct-sss-proof-rail','mobile-safe-sheet','s
 }
 if(!css2.includes('body.ct-sss1-8-lock .mobile-detail-backdrop') || !css2.includes('display:none!important')) fail2.push('CT-SSS mobile old overlay suppression missing');
 if(!app2.includes('정보 탐색만으로 회사 역량을 확인하는 흐름입니다.')) fail2.push('CT-SSS company-intro CTA copy missing');
+if(!app2.includes('DESKTOP_BASELINE_AUTHORITY_LOCK')) fail2.push('desktop baseline authority app lock missing');
+if(!css2.includes('DESKTOP_BASELINE_AUTHORITY_LOCK')) fail2.push('desktop baseline authority CSS lock missing');
+if(!app2.includes('dk-desktop') || !css2.includes('.dk-desktop')) fail2.push('desktop DOM homepage renderer missing');
 if(fail2.length){ console.error('VERIFY HOLD'); for(const f of fail2) console.error('- '+f); process.exit(1); }
 console.log('PASS: CT-SSS1~8 final upgrade markers, 4D proof loop, mobile safe sheet and overlay suppression exist');
+console.log('PASS: desktop baseline authority lock exists');
