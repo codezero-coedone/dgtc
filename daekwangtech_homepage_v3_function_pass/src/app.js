@@ -76,7 +76,8 @@ function esc(value){
 }
 
 function image(src, alt){
-  return `<img src="${esc(src)}" alt="${esc(alt)}" decoding="async">`;
+  const label = esc(alt);
+  return `<div class="visual-block" role="img" aria-label="${label}"><span>${label}</span><i></i><b></b></div>`;
 }
 
 function header(active){
