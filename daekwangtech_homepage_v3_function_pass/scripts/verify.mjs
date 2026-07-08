@@ -13,15 +13,15 @@ function has(filePath, label){
 has('index.html', 'entry');
 has('src/app.js', 'public app');
 has('src/styles.css', 'public style');
-has('assets/equipment-hanwha-xdi32.jpg', 'facility body image');
-has('assets/equipment-hanwha-xdi32-label.jpg', 'facility label image');
-has('assets/real-hero-batch-components.jpg', 'hero product image');
-has('assets/inspection-cmm.jpg', 'quality image');
+has('public/site-assets/equipment-hanwha-xdi32.jpg', 'facility body image');
+has('public/site-assets/equipment-hanwha-xdi32-label.jpg', 'facility label image');
+has('public/site-assets/hero-components.jpg', 'hero product image');
+has('public/site-assets/inspection-cmm.jpg', 'quality image');
 if(fs.existsSync('dist')){
-  has('dist/assets/equipment-hanwha-xdi32.jpg', 'dist facility body image');
-  has('dist/assets/equipment-hanwha-xdi32-label.jpg', 'dist facility label image');
-  has('dist/assets/real-hero-batch-components.jpg', 'dist hero product image');
-  has('dist/assets/inspection-cmm.jpg', 'dist quality image');
+  has('dist/public/site-assets/equipment-hanwha-xdi32.jpg', 'dist facility body image');
+  has('dist/public/site-assets/equipment-hanwha-xdi32-label.jpg', 'dist facility label image');
+  has('dist/public/site-assets/hero-components.jpg', 'dist hero product image');
+  has('dist/public/site-assets/inspection-cmm.jpg', 'dist quality image');
 }
 for(const item of ['public/products/product-01.jpg','public/products/product-02.jpg','public/products/product-03.jpg','public/products/product-04.jpg','public/products/product-05.jpg','public/products/product-06.jpg']){
   has(item, 'product image');

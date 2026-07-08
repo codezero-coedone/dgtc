@@ -2,14 +2,12 @@ const CT_SSS_FINAL = 'CT-SSS0~SSS8_PUBLIC_AUTHORITY_FINAL';
 
 const root = document.getElementById('app');
 const media = {
-  logo: 'assets/daekwang-approved-lockup-light.svg',
-  logoDark: 'assets/daekwang-approved-lockup.svg',
-  hero: 'assets/real-hero-batch-components.jpg',
-  process: 'assets/real-process-shaft-detail.jpg',
-  facility: 'assets/equipment-hanwha-xdi32.jpg',
-  facilityLabel: 'assets/equipment-hanwha-xdi32-label.jpg',
-  quality: 'assets/inspection-cmm.jpg',
-  map: 'assets/map.jpg',
+  hero: 'public/site-assets/hero-components.jpg',
+  process: 'public/site-assets/process-shaft-detail.jpg',
+  facility: 'public/site-assets/equipment-hanwha-xdi32.jpg',
+  facilityLabel: 'public/site-assets/equipment-hanwha-xdi32-label.jpg',
+  quality: 'public/site-assets/inspection-cmm.jpg',
+  map: 'public/site-assets/map.jpg',
   products: [
     'public/products/product-01.jpg',
     'public/products/product-02.jpg',
