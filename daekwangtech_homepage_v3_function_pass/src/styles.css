@@ -612,3 +612,79 @@ body.ct-fix1-8-lock .admin-public-chip,
     color:#7f94ad;
   }
 }
+
+/* CT-CTA-ATOM9~ATOM16 FULL-WEIGHT CTA CLOSURE
+   Final visual states for full-panel, product-zone, command-index, and admin dirty-guard CTA surfaces. */
+.cta-full-weight-lock [data-cta-full-weight]{
+  position:relative;
+}
+.cta-full-weight-lock [data-cta-full-weight]:focus-visible{
+  outline:2px solid rgba(125,198,255,.95)!important;
+  outline-offset:4px!important;
+}
+.cta-full-weight-lock .clean-bottom-panel[data-cta-full-weight="bottom-panel-route"]:hover{
+  border-color:rgba(125,198,255,.42)!important;
+  box-shadow:0 26px 76px rgba(0,0,0,.54),0 0 0 1px rgba(20,124,255,.20),inset 0 1px 0 rgba(255,255,255,.07)!important;
+}
+.cta-full-weight-lock .clean-bottom-panel[data-cta-full-weight="bottom-panel-route"]:after{
+  content:'패널 클릭 이동';
+  position:absolute;
+  right:14px;
+  top:-28px;
+  border:1px solid rgba(113,186,255,.24);
+  background:rgba(3,14,28,.78);
+  color:#9bd2ff;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:900;
+  opacity:0;
+  transform:translateY(4px);
+  transition:.16s ease;
+  pointer-events:none;
+}
+.cta-full-weight-lock .clean-bottom-panel[data-cta-full-weight="bottom-panel-route"]:hover:after,
+.cta-full-weight-lock .clean-bottom-panel[data-cta-full-weight="bottom-panel-route"]:focus-visible:after{
+  opacity:1;
+  transform:none;
+}
+.cta-full-weight-lock .ct-product-clean-row button[data-cta-zone]:hover{
+  border-color:rgba(125,198,255,.56)!important;
+  box-shadow:0 0 0 1px rgba(20,124,255,.22),0 14px 30px rgba(0,0,0,.32)!important;
+}
+.cta-full-weight-lock .ct-product-clean-row button[data-cta-zone]:after{
+  content:attr(data-cta-zone);
+  position:absolute;
+  left:6px;
+  top:6px;
+  border:1px solid rgba(125,198,255,.22);
+  background:rgba(2,10,20,.72);
+  color:#9bd2ff;
+  border-radius:999px;
+  padding:3px 6px;
+  font-size:9px;
+  font-weight:900;
+  opacity:0;
+  pointer-events:none;
+}
+.cta-full-weight-lock .ct-product-clean-row button[data-cta-zone]:hover:after,
+.cta-full-weight-lock .ct-product-clean-row button[data-cta-zone]:focus-visible:after{
+  opacity:1;
+}
+.cta-full-weight-lock .cmd-palette.full-weight .cmd-search{
+  min-height:44px;
+}
+.cta-full-weight-lock .cmd-palette.full-weight button.on{
+  border-color:rgba(125,198,255,.68)!important;
+  background:linear-gradient(135deg,rgba(20,124,255,.30),rgba(7,37,72,.86))!important;
+  box-shadow:inset 3px 0 0 #5eb5ff,0 0 28px rgba(20,124,255,.16)!important;
+}
+.cta-full-weight-lock [data-admin-dirty-guard="1"]:focus{
+  border-color:rgba(125,198,255,.70)!important;
+}
+@media(max-width:899px){
+  .cta-full-weight-lock .clean-bottom-panel[data-cta-full-weight="bottom-panel-route"]:after,
+  .cta-full-weight-lock .ct-product-clean-row button[data-cta-zone]:after{
+    display:none!important;
+  }
+}

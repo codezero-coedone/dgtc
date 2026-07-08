@@ -112,3 +112,14 @@ for(const token of ['data-cta-pressed','focus-visible','.cmd-search','.m-empty-s
 }
 if(fail.length){console.error('VERIFY HOLD');for(const f of fail)console.error('- '+f);process.exit(1)}
 console.log('PASS: CT-CTA-ATOM desktop/mobile/admin CTA atomic control-plane exists');
+
+if(!app.includes('CT-CTA-ATOM9~ATOM16 CTA FULL-WEIGHT INTERACTION CLOSURE')) fail.push('CT-CTA-ATOM9 app marker missing');
+if(!css.includes('CT-CTA-ATOM9~ATOM16 FULL-WEIGHT CTA CLOSURE')) fail.push('CT-CTA-ATOM9 CSS marker missing');
+for(const token of ['dktCtaHealth','DKT_CTA_FULL_VERSION','ctaFullWeight','product-row-zone','adminDirtyGuard','dktRunActiveCommand']){
+  if(!app.includes(token)) fail.push('CT-CTA-ATOM9 app token missing: '+token);
+}
+for(const token of ['data-cta-full-weight','data-cta-zone','.cmd-palette.full-weight','data-admin-dirty-guard']){
+  if(!css.includes(token)) fail.push('CT-CTA-ATOM9 CSS token missing: '+token);
+}
+if(fail.length){console.error('VERIFY HOLD');for(const f of fail)console.error('- '+f);process.exit(1)}
+console.log('PASS: CT-CTA-ATOM9~ATOM16 full-weight CTA closure exists');

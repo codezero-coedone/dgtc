@@ -1320,3 +1320,161 @@ try{ render(); }catch(e){ console.error('CT-CLICK-LOCK render failed', e); }
   localStorage.setItem('DKT_CTA_ATOM_VERSION', CTA_ATOM_VERSION);
   try{ render(); }catch(e){ console.error('CT-CTA-ATOM render failed', e); }
 })();
+
+/* CT-CTA-ATOM9~ATOM16 CTA FULL-WEIGHT INTERACTION CLOSURE
+   Closes remaining CTA edge cases: desktop bottom panel background, product-row per-zone routing, command keyboard index, admin dirty coverage, and live CTA health probe. */
+(function(){
+  const CTA_FULL_VERSION = 'CT-CTA-ATOM9~ATOM16 full-weight CTA closure';
+  const atomSelector = '[data-cta-atomic="1"],button,a[href],[onclick],[role="button"],.ct-screen-hit,.live-ux-hot,.detail-hot,.u-hot,.m-feed article,.m-card.clickable,.m-card.visual,.m-hero,.m-title';
+  const commandItemsFull = [
+    ['home','홈','public'],
+    ['company','회사소개','public'],
+    ['fields','가공분야','public'],
+    ['products','제품·가공사례','public'],
+    ['facilities','설비현황','public'],
+    ['quality','품질관리','public'],
+    ['admin/dashboard','Admin 대시보드','admin'],
+    ['admin/ops','운영고도화','admin'],
+    ['admin/products','제품관리','admin'],
+    ['admin/company','회사정보 관리','admin'],
+    ['admin/facilities','설비 관리','admin'],
+    ['admin/quality','품질 관리','admin'],
+    ['admin/flow','4D 플로우','admin'],
+    ['admin/preview','미리보기','admin'],
+    ['admin/settings','설정','admin']
+  ];
+  function commandFiltered(){
+    const q = (localStorage.getItem('DKT_COMMAND_QUERY') || '').trim().toLowerCase();
+    return commandItemsFull.filter(([route,label,group]) => `${route} ${label} ${group}`.toLowerCase().includes(q));
+  }
+  function commandIndex(max){
+    const raw = Number(localStorage.getItem('DKT_COMMAND_INDEX') || 0);
+    if(!Number.isFinite(raw) || raw < 0) return 0;
+    return Math.min(raw, Math.max(max - 1, 0));
+  }
+  CommandPalette = function(){
+    if(localStorage.getItem('DKT_COMMAND_OPEN') !== '1') return '';
+    const q = (localStorage.getItem('DKT_COMMAND_QUERY') || '').trim().toLowerCase();
+    const items = commandFiltered();
+    const active = commandIndex(items.length);
+    return `<aside class="cmd-backdrop" onclick="closeCommandPalette()"><section class="cmd-palette cta-command full-weight" onclick="event.stopPropagation()"><div><b>기능 검색</b><button type="button" onclick="closeCommandPalette()" aria-label="기능 검색 닫기">×</button></div><input class="cmd-search" value="${esc(q)}" placeholder="화면 또는 기능명 검색" oninput="localStorage.setItem('DKT_COMMAND_QUERY',this.value);localStorage.setItem('DKT_COMMAND_INDEX','0');render()" autofocus><p>Ctrl+K / ↑↓ 선택 / Enter 실행 / Esc 닫기</p>${items.map(([k,l,g],i)=>`<button type="button" class="${i===active?'on':''}" data-command-route="${esc(k)}" onclick="closeCommandPalette();go('${k}')"><span>${esc(l)}</span><small>${esc(g)} · #/${esc(k)}</small></button>`).join('') || '<small class="cmd-empty">검색 결과 없음</small>'}</section></aside>`;
+  };
+  window.openCommandPalette = openCommandPalette = function(){
+    localStorage.setItem('DKT_COMMAND_OPEN','1');
+    localStorage.removeItem('DKT_COMMAND_QUERY');
+    localStorage.setItem('DKT_COMMAND_INDEX','0');
+    render();
+    setTimeout(()=>document.querySelector('.cmd-search')?.focus(),0);
+  };
+  window.closeCommandPalette = closeCommandPalette = function(){
+    localStorage.removeItem('DKT_COMMAND_OPEN');
+    localStorage.removeItem('DKT_COMMAND_QUERY');
+    localStorage.removeItem('DKT_COMMAND_INDEX');
+    render();
+  };
+  function routeCommand(delta){
+    const items = commandFiltered();
+    if(!items.length) return;
+    const next = (commandIndex(items.length) + delta + items.length) % items.length;
+    localStorage.setItem('DKT_COMMAND_INDEX', String(next));
+    render();
+    setTimeout(()=>document.querySelector('.cmd-search')?.focus(),0);
+  }
+  function runActiveCommand(){
+    const items = commandFiltered();
+    const item = items[commandIndex(items.length)];
+    if(!item) return false;
+    closeCommandPalette();
+    go(item[0]);
+    return true;
+  }
+  function productRowZone(el){
+    const buttons = [...document.querySelectorAll('.ct-product-clean-row button')];
+    const idx = Math.max(0, buttons.indexOf(el.closest('.ct-product-clean-row button')));
+    return ['left','right','process'][idx] || 'left';
+  }
+  function bottomPanelRoute(el){
+    const panel = el.closest('.clean-bottom-panel');
+    if(!panel || el.closest('button,a,input,select,textarea')) return null;
+    const route = current();
+    return ({home:'company',company:'fields',fields:'products',products:'facilities',facilities:'quality',quality:'facilities'}[route] || 'company');
+  }
+  function ctaHealth(){
+    const all = [...document.querySelectorAll(atomSelector)];
+    const layer = current().startsWith('admin') ? 'admin' : (isMobile() ? 'mobile' : 'desktop');
+    return {
+      version:CTA_FULL_VERSION,
+      route:current(),
+      layer,
+      total:all.length,
+      atomic:document.querySelectorAll('[data-cta-atomic="1"]').length,
+      keyboard:document.querySelectorAll('[tabindex="0"][role="button"]').length,
+      commandOpen:!!document.querySelector('.cmd-palette'),
+      bottomPanel:!!document.querySelector('.clean-bottom-panel'),
+      productRowButtons:document.querySelectorAll('.ct-product-clean-row button').length,
+      adminDirtyInputs:document.querySelectorAll('.admin-live input,.admin-live textarea,.admin-live select').length
+    };
+  }
+  function installFullWeightCtas(){
+    document.querySelectorAll('.clean-bottom-panel').forEach(panel=>{
+      panel.dataset.ctaFullWeight = 'bottom-panel-route';
+      panel.setAttribute('tabindex','0');
+      panel.setAttribute('role','button');
+      panel.setAttribute('aria-label', panel.querySelector('b')?.textContent?.trim() || '하단 탐색 패널');
+    });
+    document.querySelectorAll('.ct-product-clean-row button').forEach((btn,i)=>{
+      btn.dataset.ctaFullWeight = `product-row-${i+1}`;
+      btn.dataset.ctaZone = ['left','right','process'][i] || 'left';
+      btn.setAttribute('aria-label', `${btn.textContent.trim() || '제품'} 상세 보기`);
+    });
+    document.querySelectorAll('.admin-live input,.admin-live textarea,.admin-live select').forEach(input=>{
+      if(input.closest('.cmd-palette') || input.disabled) return;
+      input.dataset.adminDirtyGuard = '1';
+    });
+    document.body.classList.add('cta-full-weight-lock');
+    document.body.dataset.ctaFullVersion = CTA_FULL_VERSION;
+    localStorage.setItem('DKT_CTA_FULL_VERSION', CTA_FULL_VERSION);
+    window.DKT_CTA_HEALTH = ctaHealth();
+  }
+  const prevRenderFullCta = render;
+  render = function(){
+    prevRenderFullCta();
+    installFullWeightCtas();
+    if(typeof dktInstallAtomicCtas === 'function') dktInstallAtomicCtas();
+  };
+  document.addEventListener('click',(e)=>{
+    const productBtn = e.target.closest('.ct-product-clean-row button');
+    if(productBtn){
+      e.preventDefault();
+      e.stopPropagation();
+      if(typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+      dktCtaTrace?.(productBtn,'product-row-zone');
+      openFullDesktopDetail('products', productRowZone(productBtn));
+      return;
+    }
+    const route = bottomPanelRoute(e.target);
+    if(route){
+      e.preventDefault();
+      e.stopPropagation();
+      dktCtaTrace?.(e.target.closest('.clean-bottom-panel'),'bottom-panel-route');
+      go(route);
+    }
+  }, true);
+  document.addEventListener('input',(e)=>{
+    if(!e.target.matches('.admin-live input,.admin-live textarea,.admin-live select') || e.target.closest('.cmd-palette') || e.target.disabled) return;
+    if(typeof adminMarkDirty === 'function') adminMarkDirty();
+  }, true);
+  document.addEventListener('change',(e)=>{
+    if(!e.target.matches('.admin-live input,.admin-live textarea,.admin-live select') || e.target.closest('.cmd-palette') || e.target.disabled) return;
+    if(typeof adminMarkDirty === 'function') adminMarkDirty();
+  }, true);
+  window.addEventListener('keydown',(e)=>{
+    if(localStorage.getItem('DKT_COMMAND_OPEN') !== '1') return;
+    if(e.key === 'ArrowDown'){ e.preventDefault(); e.stopPropagation(); routeCommand(1); return; }
+    if(e.key === 'ArrowUp'){ e.preventDefault(); e.stopPropagation(); routeCommand(-1); return; }
+    if(e.key === 'Enter'){ e.preventDefault(); e.stopPropagation(); runActiveCommand(); }
+  }, true);
+  window.dktCtaHealth = ctaHealth;
+  window.dktRunActiveCommand = runActiveCommand;
+  try{ render(); }catch(e){ console.error('CT-CTA-ATOM full-weight render failed', e); }
+})();
