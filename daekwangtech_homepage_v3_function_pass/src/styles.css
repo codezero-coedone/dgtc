@@ -583,8 +583,27 @@ body.ct-fix1-8-lock .admin-public-chip,
   .cta-atom-lock .m-hero.clickable:before,
   .cta-atom-lock .m-title.clickable:before{
     content:'상세';
+    position:absolute;
+    left:auto;
+    bottom:auto;
+    width:auto;
+    height:auto;
+    inset:auto 12px auto auto;
     right:12px;
     top:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px;
+    padding:5px 8px;
+    line-height:1;
+    background:rgba(13,72,138,.24);
+    border:1px solid rgba(116,190,255,.28);
+    color:#9ed2ff;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.03em;
+    backdrop-filter:blur(8px);
   }
   .cta-atom-lock .m-feed article:after,
   .cta-atom-lock .m-card.visual.clickable:after{
@@ -685,6 +704,164 @@ body.ct-fix1-8-lock .admin-public-chip,
 @media(max-width:899px){
   .cta-full-weight-lock .clean-bottom-panel[data-cta-full-weight="bottom-panel-route"]:after,
   .cta-full-weight-lock .ct-product-clean-row button[data-cta-zone]:after{
+    display:none!important;
+  }
+}
+
+/* CT-4D-CNC-FIELD1 INDUSTRIAL 4D FIELD VISUAL BLEND
+   CNC coordinate/time-field overlay. Visual-only: no layout shift, no CTA interception, no replacement of product/facility proof. */
+.dkt-4d-field-lock .ct-fix-final:before,
+.dkt-4d-field-lock .ct-fix-final:after,
+.dkt-4d-field-lock .m-hero[data-dkt4d-field]:before,
+.dkt-4d-field-lock .m-title[data-dkt4d-field]:before,
+.dkt-4d-field-lock .m-flow-card[data-dkt4d-field]:before,
+.dkt-4d-field-lock .full-detail-modal[data-dkt4d-field]:before,
+.dkt-4d-field-lock .desktop-detail-modal[data-dkt4d-field]:before{
+  content:"";
+  position:absolute;
+  pointer-events:none!important;
+  user-select:none!important;
+  contain:paint;
+}
+.dkt-4d-field-lock .ct-fix-final:before{
+  left:44%;
+  top:8%;
+  width:52%;
+  height:42%;
+  z-index:0;
+  opacity:.12;
+  background:
+    radial-gradient(ellipse at 48% 48%,rgba(95,174,255,.46) 0 2px,transparent 3px),
+    repeating-conic-gradient(from 22deg at 50% 50%,rgba(116,190,255,.34) 0 1deg,transparent 1deg 14deg),
+    radial-gradient(ellipse at 50% 52%,transparent 0 23%,rgba(72,157,255,.20) 24% 25%,transparent 26% 42%,rgba(9,66,130,.24) 43% 44%,transparent 45%),
+    linear-gradient(78deg,transparent 0 38%,rgba(80,155,240,.24) 39% 40%,transparent 41%),
+    linear-gradient(132deg,transparent 0 46%,rgba(160,210,255,.16) 47% 48%,transparent 49%);
+  clip-path:polygon(4% 45%,18% 28%,34% 36%,49% 9%,64% 35%,88% 18%,96% 50%,79% 66%,60% 58%,44% 88%,29% 61%,8% 72%);
+  filter:blur(.15px) saturate(1.22);
+  mix-blend-mode:screen;
+}
+.dkt-4d-field-lock .ct-fix-final:after{
+  left:2%;
+  right:2%;
+  top:7.35%;
+  height:76%;
+  z-index:0;
+  opacity:.07;
+  background:
+    linear-gradient(90deg,transparent 0 8%,rgba(104,180,255,.32) 8.15% 8.45%,transparent 8.7% 100%),
+    linear-gradient(113deg,transparent 0 32%,rgba(104,180,255,.22) 32.2% 32.45%,transparent 32.7%),
+    linear-gradient(154deg,transparent 0 58%,rgba(104,180,255,.20) 58.1% 58.35%,transparent 58.6%),
+    repeating-linear-gradient(0deg,transparent 0 38px,rgba(125,198,255,.18) 39px,transparent 40px),
+    repeating-linear-gradient(90deg,transparent 0 54px,rgba(125,198,255,.14) 55px,transparent 56px);
+  mask-image:radial-gradient(ellipse at 64% 34%,#000 0 30%,transparent 68%);
+  mix-blend-mode:screen;
+}
+.dkt-4d-field-lock .clean-live-header,
+.dkt-4d-field-lock .clean-bottom-panel,
+.dkt-4d-field-lock .ct-product-clean-row,
+.dkt-4d-field-lock .ct-screen-hit,
+.dkt-4d-field-lock .u-hot,
+.dkt-4d-field-lock .detail-hot,
+.dkt-4d-field-lock .live-ux-hot{
+  isolation:isolate;
+}
+.dkt-4d-field-lock .ct-fix-final > *{
+  position:relative;
+  z-index:1;
+}
+.dkt-4d-field-lock .m-hero[data-dkt4d-field],
+.dkt-4d-field-lock .m-title[data-dkt4d-field],
+.dkt-4d-field-lock .m-flow-card[data-dkt4d-field],
+.dkt-4d-field-lock .full-detail-modal[data-dkt4d-field],
+.dkt-4d-field-lock .desktop-detail-modal[data-dkt4d-field]{
+  position:relative;
+}
+@media(max-width:899px){
+  html,
+  body{
+    max-width:100%;
+    overflow-x:hidden!important;
+  }
+  .mobile-app,
+  main.mobile-app{
+    width:min(100vw,390px)!important;
+    max-width:min(100vw,390px)!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    overflow-x:hidden!important;
+  }
+  .m-hero,
+  .m-title,
+  .m-card,
+  .m-actions,
+  .m-kpi,
+  .m-flow{
+    width:calc(min(100vw,390px) - 24px)!important;
+    max-width:calc(min(100vw,390px) - 24px)!important;
+    overflow-x:hidden;
+  }
+  .mobile-app,
+  .m-hero,
+  .m-title,
+  .m-card,
+  .m-actions,
+  .m-kpi,
+  .m-flow{
+    min-width:0;
+  }
+  .m-hero h1,
+  .m-title h1,
+  .m-hero p,
+  .m-title p,
+  .m-card p,
+  .m-actions button,
+  .m-actions a,
+  .m-kpi button,
+  .m-kpi b{
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+  .m-kpi{
+    grid-template-columns:1fr!important;
+  }
+  .m-actions,
+  .m-actions.full{
+    grid-template-columns:1fr!important;
+  }
+  .m-kpi > :last-child,
+  .m-actions > :last-child{
+    grid-column:1 / -1;
+  }
+  .m-actions button,
+  .m-actions a{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  .cta-atom-lock .m-hero.clickable:before,
+  .cta-atom-lock .m-title.clickable:before{
+    content:none!important;
+    display:none!important;
+  }
+  .dkt-4d-field-lock .m-hero[data-dkt4d-field]:before,
+  .dkt-4d-field-lock .m-title[data-dkt4d-field]:before,
+  .dkt-4d-field-lock .m-flow-card[data-dkt4d-field]:before{
+    display:none!important;
+  }
+  .dkt-4d-field-lock .m-hero[data-dkt4d-field] > *,
+  .dkt-4d-field-lock .m-title[data-dkt4d-field] > *,
+  .dkt-4d-field-lock .m-flow-card[data-dkt4d-field] > *{
+    position:relative;
+    z-index:1;
+  }
+  .dkt-4d-field-lock .full-detail-modal[data-dkt4d-field]:before,
+  .dkt-4d-field-lock .desktop-detail-modal[data-dkt4d-field]:before{
+    display:none!important;
+  }
+}
+@media(min-width:900px){
+  .dkt-4d-field-lock .m-hero[data-dkt4d-field]:before,
+  .dkt-4d-field-lock .m-title[data-dkt4d-field]:before,
+  .dkt-4d-field-lock .m-flow-card[data-dkt4d-field]:before{
     display:none!important;
   }
 }

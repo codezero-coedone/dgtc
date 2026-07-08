@@ -123,3 +123,14 @@ for(const token of ['data-cta-full-weight','data-cta-zone','.cmd-palette.full-we
 }
 if(fail.length){console.error('VERIFY HOLD');for(const f of fail)console.error('- '+f);process.exit(1)}
 console.log('PASS: CT-CTA-ATOM9~ATOM16 full-weight CTA closure exists');
+
+if(!app.includes('CT-4D-CNC-FIELD1 INDUSTRIAL 4D FIELD VISUAL BLEND')) fail.push('CT-4D-CNC-FIELD app marker missing');
+if(!css.includes('CT-4D-CNC-FIELD1 INDUSTRIAL 4D FIELD VISUAL BLEND')) fail.push('CT-4D-CNC-FIELD CSS marker missing');
+for(const token of ['DKT_4D_FIELD_VERSION','dkt4dFieldHealth','data-dkt4d-field','dkt-4d-field-lock']){
+  if(!app.includes(token)) fail.push('CT-4D-CNC-FIELD app token missing: '+token);
+}
+for(const token of ['pointer-events:none','mix-blend-mode:screen','.dkt-4d-field-lock .ct-fix-final:before','data-dkt4d-field']){
+  if(!css.includes(token)) fail.push('CT-4D-CNC-FIELD CSS token missing: '+token);
+}
+if(fail.length){console.error('VERIFY HOLD');for(const f of fail)console.error('- '+f);process.exit(1)}
+console.log('PASS: CT-4D-CNC-FIELD industrial 4D visual blend exists without CTA interception');
