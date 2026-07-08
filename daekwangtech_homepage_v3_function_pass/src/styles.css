@@ -9,7 +9,6 @@
   --blue:#1673d8;
 }
 *{box-sizing:border-box}
-[hidden]{display:none!important}
 html{background:var(--paper);color:var(--ink);font-family:Arial,"Noto Sans KR",sans-serif;overflow-x:hidden}
 body{margin:0;min-width:320px;background:var(--paper);overflow-x:hidden}
 button,input{font:inherit}
