@@ -1,7 +1,19 @@
 import fs from 'fs';
 const app=fs.readFileSync('src/app.js','utf8');
 const css=fs.readFileSync('src/styles.css','utf8');
+const index=fs.readFileSync('index.html','utf8');
 const fail=[];
+// Visual drift quarantine gate: live layout authority must stay in the proven
+// single-source app/style shell until a new visual baseline is explicitly approved.
+if(fs.existsSync('src/authority')) fail.push('DRIFT LOCK violation: src/authority is quarantined after visual regression');
+if(index.includes('sss-live-authority.css')) fail.push('DRIFT LOCK violation: index.html must not load sss-live-authority.css');
+if(index.match(/<link[^>]+stylesheet/gi)?.length !== 1) fail.push('DRIFT LOCK violation: index.html must keep exactly one public stylesheet');
+for(const token of ['sss-live-authority.css','DGTC SSS live authority layer']){
+  if(app.includes(token) || css.includes(token) || index.includes(token)) fail.push('DRIFT LOCK violation token remains: '+token);
+}
+for(const token of ['문의하기','견적하기','기술문의','기술상담신청','지금 문의하세요','견적 및 상담 문의','도면 검토 및 견적 문의','contact us']){
+  if(app.includes(token) || css.includes(token) || index.includes(token)) fail.push('DRIFT LOCK public CTA violation: '+token);
+}
 for(const img of ['home','company','fields','products','facilities','quality']){
   if(!fs.existsSync(`public/screens/${img}.jpg`)) fail.push('Missing public screen asset: '+img);
 }
