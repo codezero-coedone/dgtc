@@ -769,6 +769,14 @@ body.ct-fix1-8-lock .admin-public-chip,
   position:relative;
   z-index:1;
 }
+.dkt-4d-field-lock .ct-fix-final .screen-wrap,
+.dkt-4d-field-lock .ct-fix-final .exact-screen{
+  position:relative!important;
+  z-index:2!important;
+  display:block!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
 .dkt-4d-field-lock .m-hero[data-dkt4d-field],
 .dkt-4d-field-lock .m-title[data-dkt4d-field],
 .dkt-4d-field-lock .m-flow-card[data-dkt4d-field],
