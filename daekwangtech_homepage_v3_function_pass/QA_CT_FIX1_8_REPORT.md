@@ -34,3 +34,9 @@ node --check src/app.js: PASS
 
 - 실제 GitHub push: 사용자 로컬 인증 필요.
 - live workers.dev 재배포 후 실기기 클릭 PASS_VERIFIED: 사용자 캡처/영상 또는 live URL 확인 필요.
+
+## CT-NOBLUE-BOTTOM1 추가 조치
+- 보이지 않는 hotspot hover/focus 파란 반투명 창 제거
+- 전체 배경 클릭 시 상세 팝업이 뜨는 click-capture 오작동 차단용 no-op shield 추가
+- 하단 문의/견적/상담 잔상 밴드 제거용 하단 마스크 추가
+- Desktop header/product row/detail hotspot 기능은 유지

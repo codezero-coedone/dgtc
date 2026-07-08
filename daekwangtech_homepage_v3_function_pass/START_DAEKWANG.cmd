@@ -69,7 +69,7 @@ echo  9. Build + Verify 연속 실행
 echo  10. 프로젝트 폴더 열기
 echo  0. 종료
 echo ------------------------------------------------------------
-set /p choice=번호 입력 후 Enter:
+set /p choice=번호 입력 후 Enter: 
 
 if "%choice%"=="1" goto START_DEV
 if "%choice%"=="2" goto OPEN_ADMIN
