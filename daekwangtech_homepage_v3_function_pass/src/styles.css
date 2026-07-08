@@ -581,6 +581,29 @@ body.ct-fix1-8-lock .admin-public-chip,
 
 /* CT-SSS1~8 FINAL UPGRADE LOCK
    service identity / no console UI / hero 4D / proof loop / B2B cards / company-info CTA / mobile performance / final QA */
+@media(min-width:900px){
+  body.ct-sss1-8-lock .company-only-screen.ct-fix-final{
+    position:relative!important;
+    display:block!important;
+    width:min(100vw,1448px)!important;
+    min-height:100vh!important;
+    height:auto!important;
+    margin:0 auto!important;
+    overflow:hidden!important;
+    background:#020b15!important;
+  }
+  body.ct-sss1-8-lock .company-only-screen.ct-fix-final .exact-screen{
+    position:relative!important;
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:100vh!important;
+    object-fit:cover!important;
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:none!important;
+  }
+}
 body.ct-sss1-8-lock .dev-route-switcher,
 body.ct-sss1-8-lock .screen-ux-dock,
 body.ct-sss1-8-lock .desktop-function-hint,
@@ -592,6 +615,106 @@ body.ct-sss1-8-lock .mobile-zoom{display:none!important;visibility:hidden!import
 body.ct-sss1-8-lock .ct-noop-click-shield{display:none!important;pointer-events:none!important}
 .ct-sss-proof-rail{left:2.2%!important;right:2.2%!important;bottom:2.0%!important;height:8.3%!important;z-index:2220!important;display:grid!important;grid-template-columns:1.1fr repeat(5,1fr)!important;gap:.55%!important;align-items:center!important;padding:.65%!important;border:1px solid rgba(96,168,255,.30)!important;background:linear-gradient(135deg,rgba(3,14,28,.985),rgba(4,19,36,.965))!important;border-radius:14px!important;box-shadow:0 18px 50px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.06)!important;pointer-events:auto!important}
 .ct-sss-proof-rail b{color:#fff;font-size:min(1.08vw,16px);letter-spacing:-.035em}.ct-sss-proof-rail button{height:100%;border:1px solid rgba(90,168,255,.22);background:rgba(8,30,56,.72);border-radius:10px;color:#dff1ff;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:7px;padding:0 10px;cursor:pointer;font-weight:900}.ct-sss-proof-rail em{font-style:normal;color:#50a7ff}.ct-sss-proof-rail span{font-size:min(.76vw,12px);white-space:nowrap}.ct-sss-proof-rail button:hover{background:rgba(20,124,255,.22);border-color:rgba(118,194,255,.42)}
+@media(min-width:900px){
+  body.ct-sss1-8-lock .company-only-screen .clean-bottom-panel.ct-fix-bottom{
+    display:grid!important;
+    visibility:visible!important;
+    position:absolute!important;
+    left:66.2%!important;
+    right:1.8%!important;
+    bottom:11.4%!important;
+    height:16.4%!important;
+    z-index:2215!important;
+    grid-template-columns:1fr auto!important;
+    gap:12px!important;
+    align-items:center!important;
+    padding:1.05% 1.45%!important;
+    border:1px solid rgba(96,168,255,.30)!important;
+    background:linear-gradient(135deg,rgba(3,14,28,.998),rgba(4,18,34,.996))!important;
+    border-radius:13px!important;
+    box-shadow:0 24px 70px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06)!important;
+    pointer-events:auto!important;
+  }
+  body.ct-sss1-8-lock .company-only-screen .clean-bottom-panel.ct-fix-bottom b{
+    display:block!important;
+    color:#fff!important;
+    font-size:min(1.15vw,17px)!important;
+    letter-spacing:-.04em!important;
+  }
+  body.ct-sss1-8-lock .company-only-screen .clean-bottom-panel.ct-fix-bottom span{
+    display:block!important;
+    margin-top:5px!important;
+    color:#a8bed4!important;
+    font-size:min(.76vw,12px)!important;
+    line-height:1.45!important;
+  }
+  body.ct-sss1-8-lock .company-only-screen .clean-bottom-panel.ct-fix-bottom button{
+    display:grid!important;
+    place-items:center!important;
+    min-width:118px!important;
+    height:42px!important;
+    border:1px solid rgba(115,185,255,.42)!important;
+    background:linear-gradient(135deg,#147cff,#075ac8)!important;
+    border-radius:9px!important;
+    color:#fff!important;
+    font-weight:900!important;
+    white-space:nowrap!important;
+    cursor:pointer!important;
+  }
+  body.ct-sss1-8-lock .company-only-screen .clean-bottom-panel.ct-fix-bottom button.ghost{
+    display:none!important;
+  }
+  body.ct-sss1-8-lock .company-only-screen.route-home::before{
+    content:"도면 검토  ->  공정 설계  ->  정밀 가공  ->  측정/검사  ->  세척·포장  ->  납품";
+    position:absolute!important;
+    left:46.2%!important;
+    top:30.25%!important;
+    width:51.2%!important;
+    height:4.35%!important;
+    z-index:2214!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:0 .9%!important;
+    border:1px solid rgba(96,168,255,.30)!important;
+    background:linear-gradient(135deg,rgba(3,14,28,.998),rgba(4,18,34,.996))!important;
+    border-radius:10px!important;
+    box-shadow:0 16px 42px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.06)!important;
+    color:#dff1ff!important;
+    font-size:min(.82vw,12px)!important;
+    font-weight:900!important;
+    letter-spacing:-.02em!important;
+    pointer-events:none!important;
+    white-space:nowrap!important;
+  }
+  body.ct-sss1-8-lock .company-only-screen.route-home::after{
+    content:"제조 프로세스   01 도면 검토  ->  02 공정 설계  ->  03 정밀 가공  ->  04 측정/검사  ->  05 세척·포장  ->  06 납품";
+    position:absolute!important;
+    left:.65%!important;
+    right:auto!important;
+    top:54.6%!important;
+    bottom:auto!important;
+    width:56.4%!important;
+    height:17.2%!important;
+    z-index:2213!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:0 1.6%!important;
+    border:1px solid rgba(96,168,255,.30)!important;
+    background:linear-gradient(135deg,#030e1c,#041222)!important;
+    border-radius:12px!important;
+    box-shadow:0 22px 58px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.06)!important;
+    color:#dff1ff!important;
+    font-size:min(.92vw,13px)!important;
+    font-weight:900!important;
+    letter-spacing:-.02em!important;
+    opacity:1!important;
+    transform:none!important;
+    pointer-events:none!important;
+    white-space:nowrap!important;
+  }
+}
 @media(max-width:899px){
   html,body{overflow-x:hidden!important;background:#020b15!important}
   body.ct-sss1-8-lock{background:#020b15!important}
