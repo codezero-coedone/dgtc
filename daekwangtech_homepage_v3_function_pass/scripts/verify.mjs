@@ -124,10 +124,10 @@ for(const token of ['ProofLoopMobile','ct-sss-proof-rail','mobile-safe-sheet','s
 }
 if(!css2.includes('body.ct-sss1-8-lock .mobile-detail-backdrop') || !css2.includes('display:none!important')) fail2.push('CT-SSS mobile old overlay suppression missing');
 if(!app2.includes('정보 탐색만으로 회사 역량을 확인하는 흐름입니다.')) fail2.push('CT-SSS company-intro CTA copy missing');
-if(!app2.includes('DESKTOP_BASELINE_AUTHORITY_LOCK')) fail2.push('desktop baseline authority app lock missing');
-if(!css2.includes('DESKTOP_BASELINE_AUTHORITY_LOCK')) fail2.push('desktop baseline authority CSS lock missing');
-if(!app2.includes('dk-desktop') || !css2.includes('.dk-desktop')) fail2.push('desktop DOM homepage renderer missing');
-if(!app2.includes('dkd-home-dashboard') || !css2.includes('.dkd-home-dashboard')) fail2.push('desktop home dashboard authority missing');
+if(!app2.includes('company-only-screen') || !css2.includes('.company-only-screen')) fail2.push('desktop exact screen authority missing');
+if(!app2.includes('exact-screen') || !css2.includes('.exact-screen')) fail2.push('desktop exact image shell missing');
+if(app2.includes('DESKTOP_BASELINE_AUTHORITY_LOCK') || css2.includes('DESKTOP_BASELINE_AUTHORITY_LOCK')) fail2.push('desktop drift override marker must stay quarantined out');
+if(app2.includes('dkd-home-dashboard') || css2.includes('.dkd-home-dashboard')) fail2.push('desktop dashboard approximation must not override exact screen');
 if(fail2.length){ console.error('VERIFY HOLD'); for(const f of fail2) console.error('- '+f); process.exit(1); }
 console.log('PASS: CT-SSS1~8 final upgrade markers, 4D proof loop, mobile safe sheet and overlay suppression exist');
-console.log('PASS: desktop baseline authority lock exists');
+console.log('PASS: desktop exact screen authority is restored and dashboard drift override is absent');

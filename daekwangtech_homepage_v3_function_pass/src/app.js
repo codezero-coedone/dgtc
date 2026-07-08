@@ -1029,11 +1029,13 @@ try{ render(); }catch(e){ console.error('CT-CLICK-LOCK render failed', e); }
   function finalFullModal(){ return (typeof FullDetailModal==='function'?FullDetailModal():'') + (typeof ImageLightbox==='function'?ImageLightbox():''); }
   desktopScreen = function(routeKey){
     const r=routes[routeKey]||routes.home;
-    return `<main class="screen-wrap company-only-screen ct-fix-final route-${routeKey}" data-route="${routeKey}">
-      <img class="exact-screen" src="./public/screens/${routeImgFinal[routeKey]||r.img}" alt="${esc(r.label)} exact screen" />
-      ${cleanHeader(routeKey)}
+    const isHomeExact = routeKey === 'home';
+    const exactImage = `<img class="exact-screen" src="./public/screens/${routeImgFinal[routeKey]||r.img}" alt="${esc(r.label)} exact screen" />`;
+    return `<main class="screen-wrap company-only-screen ct-fix-final ${isHomeExact?'home-reference-main':''} route-${routeKey}" data-route="${routeKey}">
+      ${isHomeExact ? `<div class="home-reference-frame">${exactImage}</div><footer class="home-reference-footer">CNC 자동선반 정밀가공 회사소개</footer>` : exactImage}
+      ${isHomeExact ? '' : cleanHeader(routeKey)}
       ${routeKey==='products'?productRepairOverlay():''}
-      ${cleanBottomPanel(routeKey)}
+      ${isHomeExact ? '' : cleanBottomPanel(routeKey)}
       ${typeof desktopUniversalHotspots==='function'?desktopUniversalHotspots(routeKey):''}
       ${typeof detailHotspots==='function'?detailHotspots(routeKey):''}
       <button type="button" class="screen-mask ct-screen-hit ct-hit-hero" onclick="openFullDesktopDetail('${routeKey}','hero')" aria-label="${esc(r.label)} 핵심 상세"></button>
@@ -1086,157 +1088,12 @@ try{ render(); }catch(e){ console.error('CT-CLICK-LOCK render failed', e); }
   try{ render(); }catch(e){ console.error('CT-FIX1~FIX8 final render failed', e); }
 })();
 
-/* DESKTOP_BASELINE_AUTHORITY_LOCK
-   Desktop-only company homepage renderer. Mobile/admin routes keep the existing
-   SSS layer; desktop no longer uses exact screenshot shell as its visual authority.
-*/
-(function(){
-  const DK_DESKTOP_LOCK='DESKTOP_BASELINE_AUTHORITY_LOCK';
-  const routeMeta={
-    home:{eyebrow:'DAE KWANG TECH',title:'CNC 자동선반 기반 정밀가공 회사',body:'대광테크는 김해 한림면 기반의 정밀 금속부품 가공 역량, 제품사례, 설비환경, 품질관리 흐름을 회사소개형 구조로 보여줍니다.',primary:'가공분야 보기',target:'fields',secondary:'설비현황 보기',alt:'facilities',image:'./public/screens/home.jpg'},
-    company:{eyebrow:'COMPANY PROFILE',title:'김해 기반 CNC 자동선반 가공 전문',body:'회사 개요, 사업분야, 운영 기준, 설비와 품질 체계를 한 화면에서 확인할 수 있게 정리했습니다.',primary:'가공분야 보기',target:'fields',secondary:'품질관리 보기',alt:'quality',image:'./public/screens/company.jpg'},
-    fields:{eyebrow:'MACHINING FIELDS',title:'자동차·유압·전자부품 가공 대응',body:'소재, 형상, 가공 방식에 따라 공정 검토부터 검사까지 이어지는 대응 흐름을 분리해 보여줍니다.',primary:'제품사례 보기',target:'products',secondary:'공정 흐름 보기',alt:'quality',image:'./public/screens/fields.jpg'},
-    products:{eyebrow:'PRODUCT CASE',title:'제품·가공사례 중심의 생산 증거',body:'제품 사진, 소재, 공정, 검사 기준을 연결해 어떤 부품을 어떤 흐름으로 관리하는지 확인합니다.',primary:'설비현황 보기',target:'facilities',secondary:'품질관리 보기',alt:'quality',image:'./public/screens/products.jpg'},
-    facilities:{eyebrow:'FACILITY',title:'자동선반 기반 정밀 가공 환경',body:'가공·검사·세척·포장 설비를 공정 흐름과 함께 배치해 생산 가능 영역을 즉시 파악합니다.',primary:'품질관리 보기',target:'quality',secondary:'제품사례 보기',alt:'products',image:'./public/screens/facilities.jpg'},
-    quality:{eyebrow:'QUALITY LOOP',title:'검사 기준과 품질 흐름 관리',body:'공정검사, 최종검수, 측정 기록 중심으로 품질관리 체계를 확인합니다.',primary:'설비현황 보기',target:'facilities',secondary:'회사정보 보기',alt:'company',image:'./public/screens/quality.jpg'}
-  };
-  const processSteps=[
-    ['01','도면 검토','요구 형상과 소재, 가공 가능 범위를 먼저 확인합니다.'],
-    ['02','공정 설계','자동선반 가공 순서와 검사 기준을 정리합니다.'],
-    ['03','정밀 가공','CNC 자동선반 기반으로 반복 생산 안정성을 확보합니다.'],
-    ['04','측정/검사','핵심 치수와 외관 상태를 출하 전 확인합니다.'],
-    ['05','세척/포장','후공정 품질을 유지해 출하 안정성을 높입니다.'],
-    ['06','출하 관리','제품별 기준과 이력을 확인 가능한 흐름으로 관리합니다.']
-  ];
-  function desktopProducts(){
-    const d=cms();
-    return (d.products||[]).filter(p=>p.status!=='비공개').slice(0,4).map(p=>`
-      <article class="dkd-card dkd-product" onclick="openPremiumDesktopDetail('product','${esc(p.id)}')">
-        <img src="${esc(p.image||'./public/products/product-01.jpg')}" alt="${esc(p.title)}">
-        <div><small>${esc(p.category||'가공사례')}</small><b>${esc(p.title)}</b><p>${esc([p.material,p.process,p.tolerance].filter(Boolean).join(' · '))}</p></div>
-      </article>`).join('');
-  }
-  function desktopFacilities(){
-    const d=cms();
-    return (d.facilities||[]).slice(0,3).map(f=>`
-      <article class="dkd-card" onclick="openPremiumDesktopDetail('facility','${esc(f.id)}')">
-        <img src="${esc(f.image||'./public/screens/facilities.jpg')}" alt="${esc(f.name)}">
-        <div><small>${esc(f.type||'설비')}</small><b>${esc(f.name)}</b><p>${esc(f.spec||'설비 운영 정보를 확인합니다.')}</p></div>
-      </article>`).join('');
-  }
-  function premiumPayload(kind,id){
-    const d=cms();
-    if(kind==='product'){
-      const p=(d.products||[]).find(x=>x.id===id)||d.products?.[0];
-      return {title:p?.title||'제품사례',body:p?`${p.material||''} ${p.process||''} ${p.tolerance||''}. ${p.description||'제품별 가공 정보를 확인합니다.'}`:'제품별 가공 정보를 확인합니다.',img:p?.image||'./public/products/product-01.jpg',target:'products'};
-    }
-    if(kind==='facility'){
-      const f=(d.facilities||[]).find(x=>x.id===id)||d.facilities?.[0];
-      return {title:f?.name||'설비현황',body:f?`${f.spec||''} 상태: ${f.status||'운영'}`:'설비 운영 정보를 확인합니다.',img:f?.image||'./public/screens/facilities.jpg',target:'facilities'};
-    }
-    if(kind==='process'){
-      const s=processSteps[Number(id)||0]||processSteps[0];
-      return {title:`${s[0]} ${s[1]}`,body:s[2],img:'./public/screens/home.jpg',target:'quality'};
-    }
-    const m=routeMeta[id]||routeMeta[current()]||routeMeta.home;
-    return {title:m.title,body:m.body,img:m.image,target:id||current()};
-  }
-  window.openPremiumDesktopDetail=(kind,id)=>{
-    localStorage.setItem('DKT_PREMIUM_DESKTOP_DETAIL', JSON.stringify(premiumPayload(kind,id)));
-    render();
-  };
-  window.closePremiumDesktopDetail=()=>{
-    localStorage.removeItem('DKT_PREMIUM_DESKTOP_DETAIL');
-    render();
-  };
-  function PremiumDesktopDetail(){
-    const raw=localStorage.getItem('DKT_PREMIUM_DESKTOP_DETAIL');
-    if(!raw) return '';
-    let d; try{d=JSON.parse(raw)}catch{return ''}
-    return `<aside class="dkd-detail-backdrop" onclick="closePremiumDesktopDetail()">
-      <section class="dkd-detail" onclick="event.stopPropagation()">
-        <button class="dkd-close" onclick="closePremiumDesktopDetail()" aria-label="닫기">×</button>
-        <img src="${esc(d.img||'./public/screens/home.jpg')}" alt="${esc(d.title||'상세 정보')}">
-        <div><small>DETAIL</small><h2>${esc(d.title||'상세 정보')}</h2><p>${esc(d.body||'대광테크 회사소개형 상세 정보를 확인합니다.')}</p><button onclick="closePremiumDesktopDetail();go('${esc(d.target||'company')}')">관련 화면 보기</button></div>
-      </section>
-    </aside>`;
-  }
-  function PremiumHomeDashboard(){
-    const d=cms();
-    const products=(d.products||[]).filter(p=>p.status!=='비공개').slice(0,6);
-    const facilities=(d.facilities||[]).slice(0,2);
-    return `<main class="dk-desktop dkd-home-dashboard route-home" data-desktop-lock="${DK_DESKTOP_LOCK}">
-      <section class="dkdash-hero">
-        <div class="dkdash-hero-copy">
-          <small>CNC 자동선반 정밀가공 회사소개</small>
-          <h1>정밀함이 만드는 차이,<br>그 차이가 <mark>제조 경쟁력</mark>입니다.</h1>
-          <p>대광테크는 CNC 자동선반 기반 정밀 금속부품 가공 역량과 제품사례, 설비환경, 품질관리 흐름을 한 화면에서 확인할 수 있게 정리한 회사소개형 홈페이지입니다.</p>
-          <div class="dkdash-actions">
-            <button onclick="go('fields')">가공분야 보기</button>
-            <button onclick="go('products')">제품사례 보기</button>
-            <button onclick="go('facilities')">설비현황 보기</button>
-          </div>
-        </div>
-        <figure><img src="./public/screens/home.jpg" alt="CNC 자동선반 정밀가공"><figcaption>DAE KWANG TECH</figcaption></figure>
-      </section>
-      <nav class="dkdash-nav">${nav.map(k=>`<button class="${k==='home'?'on':''}" onclick="go('${k}')">${esc(routes[k].label)}</button>`).join('')}</nav>
-      <section class="dkdash-grid">
-        <article class="dkdash-panel fields"><header><b>가공분야</b><button onclick="go('fields')">전체 보기</button></header><div>${productCards.map(([t,desc,img])=>`<button onclick="go('fields')"><img src="${img}" alt="${esc(t)}"><span><b>${esc(t)}</b><small>${esc(desc)}</small></span></button>`).join('')}</div></article>
-        <article class="dkdash-panel products"><header><b>제품·가공사례</b><button onclick="go('products')">전체 보기</button></header><div>${products.map(p=>`<button onclick="openPremiumDesktopDetail('product','${esc(p.id)}')"><img src="${esc(p.image)}" alt="${esc(p.title)}"><span>${esc(p.title)}</span></button>`).join('')}</div></article>
-        <article class="dkdash-panel process"><header><b>제조 프로세스</b><button onclick="openPremiumDesktopDetail('process','0')">상세 보기</button></header><div>${processSteps.map((s,i)=>`<button onclick="openPremiumDesktopDetail('process','${i}')"><em>${s[0]}</em><b>${s[1]}</b><small>${s[2]}</small></button>`).join('')}</div></article>
-        <article class="dkdash-panel facility"><header><b>설비현황</b><button onclick="go('facilities')">설비 보기</button></header><div>${facilities.map(f=>`<button onclick="openPremiumDesktopDetail('facility','${esc(f.id)}')"><img src="${esc(f.image)}" alt="${esc(f.name)}"><span><b>${esc(f.name)}</b><small>${esc(f.spec)}</small></span></button>`).join('')}</div></article>
-        <article class="dkdash-panel quality"><header><b>품질관리</b><button onclick="go('quality')">품질 보기</button></header><div>${(d.quality||[]).map(q=>`<button onclick="openPremiumDesktopDetail('quality','${esc(q.id)}')"><small>${esc(q.label)}</small><b>${esc(q.value)}</b><span>${esc(q.note)}</span></button>`).join('')}</div></article>
-        <article class="dkdash-panel company"><header><b>회사정보</b><button onclick="go('company')">회사정보 보기</button></header><p>${esc(d.companyInfo.intro||'CNC 자동선반 기반 정밀 금속 부품 제조 전문 기업입니다.')}</p><dl><div><dt>사업분야</dt><dd>${esc(d.companyInfo.businessArea||'CNC 자동선반 가공')}</dd></div><div><dt>주소</dt><dd>${esc(d.companyInfo.address||'경남 김해시 한림면 신천리 984')}</dd></div></dl></article>
-      </section>
-      <footer class="dkdash-footer"><b>CNC 자동선반 정밀가공 회사소개</b><span>제품사례 · 설비현황 · 품질관리 · 공정 흐름</span></footer>
-      ${PremiumDesktopDetail()}
-    </main>`;
-  }
-  function PremiumDesktop(routeKey){
-    if(routeKey==='home') return PremiumHomeDashboard();
-    const key=routeMeta[routeKey]?routeKey:'home';
-    const m=routeMeta[key];
-    const d=cms();
-    const navHtml=nav.map(k=>`<button class="${k===key?'on':''}" onclick="go('${k}')">${esc(routes[k].label)}</button>`).join('');
-    return `<main class="dk-desktop route-${key}" data-desktop-lock="${DK_DESKTOP_LOCK}">
-      <header class="dkd-header">
-        <button class="dkd-brand" onclick="go('home')"><img src="./public/screens/logo-angular-transparent.png" alt="DAE KWANG TECH"><span>DAE KWANG TECH</span></button>
-        <nav>${navHtml}</nav>
-        <button onclick="go('company')">회사정보 보기</button>
-      </header>
-      <section class="dkd-hero">
-        <div class="dkd-hero-copy"><small>${esc(m.eyebrow)}</small><h1>${esc(m.title)}</h1><p>${esc(m.body)}</p><div class="dkd-actions"><button onclick="go('${m.target}')">${esc(m.primary)}</button><button class="ghost" onclick="go('${m.alt}')">${esc(m.secondary)}</button></div></div>
-        <figure><img src="${esc(m.image)}" alt="${esc(m.title)}"><figcaption>CNC 자동선반 정밀가공 회사소개</figcaption></figure>
-      </section>
-      <section class="dkd-strip">
-        <div><b>CNC 자동선반</b><span>정밀 금속부품 가공</span></div>
-        <div><b>자동차부품</b><span>소형 정밀부품 대응</span></div>
-        <div><b>유압부품</b><span>내구성 중심 가공</span></div>
-        <div><b>전자부품</b><span>소형 형상 대응</span></div>
-      </section>
-      ${key==='home'?`<section class="dkd-section"><div class="dkd-title"><small>PROCESS</small><h2>4D Proof Loop</h2></div><div class="dkd-process">${processSteps.map((s,i)=>`<button onclick="openPremiumDesktopDetail('process','${i}')"><em>${s[0]}</em><b>${s[1]}</b><span>${s[2]}</span></button>`).join('')}</div></section>`:''}
-      <section class="dkd-section dkd-products"><div class="dkd-title"><small>PRODUCT</small><h2>제품·가공사례</h2><button onclick="go('products')">전체 보기</button></div><div class="dkd-grid">${desktopProducts()}</div></section>
-      <section class="dkd-section dkd-facility"><div class="dkd-title"><small>FACILITY</small><h2>설비현황</h2><button onclick="go('facilities')">설비 보기</button></div><div class="dkd-grid three">${desktopFacilities()}</div></section>
-      <section class="dkd-section dkd-company"><div><small>COMPANY</small><h2>${esc(d.companyInfo.name||'대광테크')}</h2><p>${esc(d.companyInfo.intro||'CNC 자동선반 기반 정밀 가공 기업입니다.')}</p></div><dl><div><dt>사업분야</dt><dd>${esc(d.companyInfo.businessArea||'CNC 자동선반 가공')}</dd></div><div><dt>주소</dt><dd>${esc(d.companyInfo.address||'경남 김해시 한림면 신천리 984')}</dd></div><div><dt>전화</dt><dd>${esc(d.companyInfo.phone||'055-323-7157')}</dd></div></dl></section>
-      <footer class="dkd-footer"><b>DAE KWANG TECH</b><span>회사소개 · 가공분야 · 제품사례 · 설비현황 · 품질관리</span></footer>
-      ${PremiumDesktopDetail()}
-    </main>`;
-  }
-  desktopScreen=PremiumDesktop;
-  const desktopAuthorityRender=render;
-  render=function(){
-    const key=current();
-    app.innerHTML=key.startsWith('admin') ? adminApp(key) : (isMobile() ? mobileApp(key) : desktopScreen(key));
-    document.body.classList.add('desktop-baseline-authority-lock');
-  };
-  try{ render(); }catch(e){ console.error(DK_DESKTOP_LOCK+' render failed',e); }
-})();
-
 /* CT-NOBLUE-BOTTOM1: stop accidental blue hotspot panels and sanitize lower inquiry band */
 (function(){
   const prevDesktopScreenNoBlue = desktopScreen;
   desktopScreen = function(routeKey){
     const html = prevDesktopScreenNoBlue(routeKey);
+    if(routeKey === 'home') return html;
     const harden = `
       <div class="screen-mask ct-inquiry-out-mask" aria-hidden="true"></div>
       <button type="button" class="screen-mask ct-noop-click-shield" aria-hidden="true" tabindex="-1"></button>
@@ -1339,7 +1196,7 @@ try{ render(); }catch(e){ console.error('CT-CLICK-LOCK render failed', e); }
   function proofRailDesktop(routeKey){
     return `<section class="screen-mask ct-sss-proof-rail" aria-label="4D Proof Loop"><b>4D Proof Loop</b>${proofSteps.slice(0,5).map((s,i)=>`<button onclick="openFullDesktopDetail('${routeKey}','process')"><em>${String(i+1).padStart(2,'0')}</em><span>${esc(s.t)}</span></button>`).join('')}</section>`;
   }
-  desktopScreen=function(routeKey){ return prevDesktop(routeKey).replace('</main>', `${proofRailDesktop(routeKey)}</main>`); };
+  desktopScreen=function(routeKey){ return routeKey === 'home' ? prevDesktop(routeKey) : prevDesktop(routeKey).replace('</main>', `${proofRailDesktop(routeKey)}</main>`); };
   const baseRender=render;
   render=function(){ const key=current(); app.innerHTML = key.startsWith('admin') ? adminApp(key) : (isMobile() ? mobileApp(key) : desktopScreen(key)); document.body.classList.add('ct-sss1-8-lock'); };
   try{ render(); }catch(e){ console.error(SSS_MARK+' render failed',e); }
