@@ -126,3 +126,40 @@ if(!css2.includes('body.ct-sss1-8-lock .mobile-detail-backdrop') || !css2.includ
 if(!app2.includes('정보 탐색만으로 회사 역량을 확인하는 흐름입니다.')) fail2.push('CT-SSS company-intro CTA copy missing');
 if(fail2.length){ console.error('VERIFY HOLD'); for(const f of fail2) console.error('- '+f); process.exit(1); }
 console.log('PASS: CT-SSS1~8 final upgrade markers, 4D proof loop, mobile safe sheet and overlay suppression exist');
+
+
+// CT-0~CT-10 final authority gates
+const finalApp = fs.readFileSync('src/app.js','utf8');
+const finalCss = fs.readFileSync('src/styles.css','utf8');
+const finalFail = [];
+if(!finalApp.includes('CT-0~CT-10_FINAL_AUTHORITY_LOCK')) finalFail.push('CT-0~CT-10 final app marker missing');
+if(!finalCss.includes('CT-0~CT-10 FINAL AUTHORITY LOCK')) finalFail.push('CT-0~CT-10 final CSS marker missing');
+['final-detail-panel','final-actions','final-proof-rail','final-inline-cta','final-mobile-sheet','final-mcards'].forEach(token=>{
+  if(!finalApp.includes(token) && !finalCss.includes(token)) finalFail.push('missing final UI token: '+token);
+});
+['요구 확인','도면 검토','공정 설계','CNC 정밀 가공','측정/검사','세척·포장','납품'].forEach(token=>{
+  if(!finalApp.includes(token)) finalFail.push('missing final 4D step: '+token);
+});
+const publicUiSlice = finalApp.split('function AdminLogin')[0] + finalApp.split('CT-0~CT-10 FINAL AUTHORITY LOCK').slice(-1)[0];
+['견적 문의','상담 문의','기술문의','기술상담','문의하세요','도면 검토 및 견적 문의','지금, 대광테크에 문의하세요'].forEach(token=>{
+  if(publicUiSlice.includes(token)) finalFail.push('forbidden public inquiry CTA: '+token);
+});
+if(finalFail.length){ console.error('VERIFY FAIL CT-0~CT-10'); finalFail.forEach(x=>console.error('- '+x)); process.exit(1); }
+console.log('PASS: CT-0~CT-10 final authority gates, compact CTA, angular modal, proof loop, mobile safety');
+
+// CT-B1~B10 final delivery hardening gates
+const bApp = fs.readFileSync('src/app.js','utf8');
+const bCss = fs.readFileSync('src/styles.css','utf8');
+const bFail = [];
+if(!bApp.includes('CT-B1~B10_FINAL_DELIVERY_LOCK')) bFail.push('CT-B1~B10 final app marker missing');
+if(!bCss.includes('CT-B1~B10_FINAL_DELIVERY_LOCK')) bFail.push('CT-B1~B10 final CSS marker missing');
+['b10-detail-panel','b10-actions','b10-proof','b10-cards','b10-bottom','b10-mobile'].forEach(t=>{ if(!bApp.includes(t) && !bCss.includes(t)) bFail.push('missing B10 UI token: '+t); });
+['요구 확인','도면 검토','공정 설계','CNC 정밀 가공','측정/검사','세척·포장','납품'].forEach(t=>{ if(!bApp.includes(t)) bFail.push('missing B10 4D step: '+t); });
+['product-01.jpg','product-02.jpg','product-03.jpg','product-04.jpg','product-05.jpg','product-06.jpg'].forEach(t=>{ if(!fs.existsSync('public/products/'+t)) bFail.push('missing product evidence image: '+t); });
+['home.jpg','company.jpg','fields.jpg','products.jpg','facilities.jpg','quality.jpg','logo-angular-transparent.png'].forEach(t=>{ if(!fs.existsSync('public/screens/'+t)) bFail.push('missing screen/evidence image: '+t); });
+const bPublicBlock = bApp.split('CT-B1~B10_FINAL_DELIVERY_LOCK').slice(-1)[0].split('function BPrevRender')[0];
+['견적 문의','상담 문의','기술문의','기술상담','문의하세요','도면 검토 및 견적 문의','지금, 대광테크에 문의하세요'].forEach(t=>{ if(bPublicBlock.includes(t)) bFail.push('forbidden B10 public copy: '+t); });
+if(!bCss.includes('body.ct-b10-lock .mobile-detail-backdrop') || !bCss.includes('display:none!important')) bFail.push('B10 legacy mobile overlay suppression missing');
+if(!bApp.includes('setFinalDetail') || !bApp.includes('openFinalDetail')) bFail.push('B10 CTA/detail click handler missing');
+if(bFail.length){ console.error('VERIFY FAIL CT-B1~B10'); bFail.forEach(x=>console.error('- '+x)); process.exit(1); }
+console.log('PASS: CT-B1~B10 live marker, full CTA/card/photo/4D click wiring, mobile safe sheet, bottom finish, angular modal and evidence images');
