@@ -2,8 +2,10 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
-    "lint": "node scripts/verify.mjs",
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/verify.mjs",
+    "verify:cta": "node scripts/verify-cta.mjs",
+    "verify:runtime": "node scripts/verify-runtime.mjs",
+    "verify:browser": "node scripts/browser-qa.mjs"
   },
   "dependencies": {},
   "devDependencies": {}

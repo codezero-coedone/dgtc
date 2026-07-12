@@ -35,11 +35,11 @@ jobs:
 
       - name: Install public app dependencies
         working-directory: daekwangtech_homepage_v3_function_pass
-        run: npm ci
+        run: npm install --ignore-scripts
 
       - name: Verify public app
         working-directory: daekwangtech_homepage_v3_function_pass
-        run: npm run lint
+        run: npm run verify
 
       - name: Build public app
         working-directory: daekwangtech_homepage_v3_function_pass

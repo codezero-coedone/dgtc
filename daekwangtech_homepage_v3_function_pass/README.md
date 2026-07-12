@@ -1,31 +1,32 @@
-# DAE KWANG TECH — Final Public Package
-
-대광테크 회사소개형 public 사이트 최종 패키지입니다.
+# DGTC SSS Single-Source Final
 
 ## 실행
-```powershell
-npm install
-npm run build
-npm run verify
-npm run dev
-```
+1. `START_HERE.cmd`
+2. 브라우저: `http://127.0.0.1:4173/#/home`
+3. 관리자: `http://127.0.0.1:4173/#/admin/login`
 
-## 정책
-- Public 사이트는 회사소개형입니다.
-- Public 화면에는 하단 고정 CTA, 상세확인 패널, 제품상세보기 오버레이를 노출하지 않습니다.
-- 기능은 상단 nav, 카드/사진 클릭, 상세 모달 내부 최소 버튼으로만 유지합니다.
-- Admin은 직접 `#/admin/login` 접근용 mock/localStorage CMS입니다.
-- 실제 DB, 보안 로그인, 파일 업로드는 별도 개발 범위입니다.
-
-## 주요 기능
-- 데스크탑 exact visual 기반 화면
-- 상단 nav route 이동
-- 카드/사진 클릭 상세 모달
-- 모달 닫기/다음/이전/관련 화면 이동
-- 모바일 safe sheet / bottom nav
-- 제품/설비/품질/회사정보 mock CMS
+관리자 데모:
+- ID: `admin@daekwang.co.kr`
+- PW: `demo1234`
 
 ## 검증
-- `npm run build`
-- `npm run verify`
-- `node --check src/app.js`
+```bash
+npm run build
+npm run verify
+npm run verify:cta
+npm run verify:runtime
+npm run verify:browser
+```
+
+`verify:browser`는 Windows Edge/Chrome 또는 지원 Chromium에서 실제 브라우저 hit-test를 수행합니다.
+
+## 구조
+- `src/app.js`: 단일 라우터, 단일 CTA_MAP, 단일 모달, 단일 관리자 이미지 콘솔
+- `src/styles.css`: 단일 z-index/pointer-events 정책
+- `public/screens`: 금지 영업 CTA 픽셀을 직접 정리한 exact 화면
+- `public/admin-assets`: 관리자 기본 이미지 자산
+- 이미지 업로드: 원본 Blob은 IndexedDB, 메타데이터는 localStorage
+
+## 운영 한계
+현재 관리자는 브라우저 로컬 저장 기반입니다. 서버 다중 사용자 운영에는 R2/D1/실제 인증 연동이 필요합니다.
+공차·조도·KPI·생산능력 수치는 실제 회사 자료 확인 후 확정해야 합니다.
