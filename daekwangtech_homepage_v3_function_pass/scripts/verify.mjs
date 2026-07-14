@@ -32,6 +32,11 @@ if(!css.includes('@media(prefers-reduced-motion:reduce)')) fail.push('reduced mo
 if(!css.includes('.hotspot{position:absolute;z-index:150')) fail.push('CTA z-index policy missing');
 if(!css.includes('.modal-backdrop')||!css.includes('z-index:500')) fail.push('modal z-index policy missing');
 
+
+if(app.includes('01092567475') || app.includes('010-9256-7475')) fail.push('mobile phone number remains in app source');
+if(!css.includes('CT-F1 footer/logo + hover-flash cleanup')) fail.push('footer/logo hover cleanup marker missing');
+if(css.includes('.hotspot:hover,.hotspot:focus-visible{outline:none;background:rgba')) fail.push('legacy blue hover popup CSS remains');
+
 if(fail.length){
   console.error('VERIFY HOLD');
   for(const f of fail) console.error('- '+f);

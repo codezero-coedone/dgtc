@@ -5,7 +5,8 @@
     "verify": "node scripts/verify.mjs",
     "verify:cta": "node scripts/verify-cta.mjs",
     "verify:runtime": "node scripts/verify-runtime.mjs",
-    "verify:browser": "node scripts/browser-qa.mjs"
+    "verify:browser": "node scripts/browser-qa.mjs",
+    "verify:footer-ui": "node scripts/verify-footer-ui.mjs"
   },
   "dependencies": {},
   "devDependencies": {}
