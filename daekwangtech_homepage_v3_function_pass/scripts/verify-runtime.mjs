@@ -2,7 +2,13 @@ import fs from 'fs';
 import vm from 'vm';
 const code=fs.readFileSync('src/app.js','utf8');
 const store=new Map();
-const appNode={innerHTML:''};
+const appNode={innerHTML:'',setAttribute(){},removeAttribute(){}};
+class ImageMock{
+  constructor(){this.complete=true;this.naturalWidth=1448;this.naturalHeight=1086;this.listeners={};}
+  addEventListener(type,fn){this.listeners[type]=fn;}
+  set src(value){this.currentSrc=value;queueMicrotask(()=>this.listeners.load?.());}
+  decode(){return Promise.resolve();}
+}
 const doc={
   body:{appendChild(){}},
   getElementById(id){return id==='app'?appNode:null;},
@@ -14,6 +20,7 @@ const doc={
 };
 const context={
   console,URLSearchParams,FormData:class{},structuredClone:o=>JSON.parse(JSON.stringify(o)),
+  Image:ImageMock,
   setTimeout:(fn)=>0,clearTimeout(){},queueMicrotask:fn=>fn(),requestAnimationFrame:fn=>fn(),
   confirm:()=>true,document:doc,window:{addEventListener(){}},matchMedia:()=>({matches:false}),
   location:{hash:'#/home',search:''},
@@ -29,7 +36,7 @@ const t=context.DGTC_TEST;
 const fail=[];
 if(!t)fail.push('DGTC_TEST missing');
 for(const r of ['home','company','fields','products','facilities','quality']){
-  t.go(r);if(t.route()!==r)fail.push(`route failed ${r}`);
+  await t.go(r);if(t.route()!==r)fail.push(`route failed ${r}`);
 }
 for(const key of ['automotive','hydraulic','electronic','mass','products','facilities','quality','process']){
   t.detail(key);if(!context.state?.modal && !appNode.innerHTML.includes('role="dialog"'))fail.push(`detail failed ${key}`);
