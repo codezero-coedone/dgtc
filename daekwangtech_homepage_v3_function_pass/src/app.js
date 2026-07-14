@@ -7,7 +7,8 @@
    No legacy patch stacking, no duplicate render/router/modal implementations.
 */
 
-const APP_VERSION = 'DGTC_SSS_SINGLE_SOURCE_20260713';
+const APP_VERSION = 'DGTC_CTA_PANEL_FREE_20260714_V1';
+const screenAsset = name => `./public/screens/${name}?v=${APP_VERSION}`;
 const PUBLIC_ROUTES = ['home','company','fields','products','facilities','quality'];
 const ROUTES = {
   home:{label:'홈', image:'home.jpg'},
@@ -186,7 +187,7 @@ const CTA_MAP = {
   home:[
     ['automotive','자동차부품 상세',1.5,36,14.5,18.4,'detail:automotive'],
     ['hydraulic','유압부품 상세',16,36,14.5,18.4,'detail:hydraulic'],
-    ['electronic','전자부품 상세',30.5,36,14.8,18.4,'detail:electronic'],
+    ['electronic','전자부품 상세',30.5,36,14.7,18.4,'detail:electronic'],
     ['mass','정밀 양산가공 상세',45.2,36,14.8,18.4,'detail:mass'],
     ['products','제품·가공사례 이동',61,36,37,18.4,'route:products'],
     ['process','제조 공정 상세',1.5,55.3,56.5,17.5,'detail:process'],
@@ -209,10 +210,10 @@ const CTA_MAP = {
     ['samples','가공 샘플 이동',2,79,96,10,'route:products']
   ],
   products:[
-    ['auto','자동차부품 상세',13,21.5,14,5,'detail:automotive'],
-    ['hyd','유압부품 상세',27.5,21.5,14,5,'detail:hydraulic'],
-    ['elec','전자부품 상세',42,21.5,14,5,'detail:electronic'],
-    ['mass','정밀 양산가공 상세',56.5,21.5,16.5,5,'detail:mass'],
+    ['auto','자동차부품 상세',13,21.5,14,4.5,'detail:automotive'],
+    ['hyd','유압부품 상세',27.5,21.5,14,4.5,'detail:hydraulic'],
+    ['elec','전자부품 상세',42,21.5,14,4.5,'detail:electronic'],
+    ['mass','정밀 양산가공 상세',56.5,21.5,16.5,4.5,'detail:mass'],
     ['grid1','제품 사진 상세',2,27,18,15,'detail:products'],
     ['grid2','제품 사진 상세',20.5,27,18,15,'detail:products'],
     ['grid3','제품 사진 상세',39,27,18,15,'detail:products'],
@@ -297,10 +298,11 @@ function toast(msg){
 }
 
 function header(active){
+  const primary=active==='company'?{action:'route:products',label:'제품사례 보기 →'}:{action:'route:company',label:'회사소개 보기 →'};
   return `<header class="public-header">
     <button class="brand" data-action="route:home" aria-label="대광테크 홈"><img src="./public/screens/logo-angular-transparent.png" alt="DAE KWANG TECH"></button>
     <nav aria-label="주요 메뉴">${PUBLIC_ROUTES.map(k=>`<button class="${active===k?'on':''}" data-action="route:${k}">${ROUTES[k].label}</button>`).join('')}</nav>
-    <button class="header-company" data-action="route:company">회사소개 보기 →</button>
+    <button class="header-company" data-action="${primary.action}">${primary.label}</button>
   </header>`;
 }
 function hotspots(active){
@@ -311,7 +313,7 @@ function modal(){
   return `<div class="modal-backdrop" role="presentation">
     <section class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detail-title">
       <button class="modal-close" data-action="modal:close" aria-label="상세 닫기">×</button>
-      <div class="modal-visual"><img src="./public/screens/${esc(d.image)}" alt="${esc(d.title)}"><button data-action="lightbox:${esc(d.image)}">이미지 크게 보기</button></div>
+      <div class="modal-visual"><img src="${esc(screenAsset(d.image))}" alt="${esc(d.title)}"><button data-action="lightbox:${esc(d.image)}">이미지 크게 보기</button></div>
       <div class="modal-copy"><small>DAEKWANG TECH DETAIL</small><h2 id="detail-title">${esc(d.title)}</h2><h3>${esc(d.headline)}</h3><p>${esc(d.body)}</p>
       <div class="spec-grid">${Object.entries(d.spec).map(([k,v])=>`<article><small>${esc(k)}</small><b>${esc(v)}</b></article>`).join('')}</div>
       <ul class="point-list">${d.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
@@ -323,19 +325,19 @@ function modal(){
 }
 function lightbox(){
   if(!state.lightbox) return '';
-  return `<div class="lightbox" role="dialog" aria-modal="true"><button data-action="lightbox:close" aria-label="이미지 닫기">×</button><img src="./public/screens/${esc(state.lightbox)}" alt="확대 이미지"></div>`;
+  return `<div class="lightbox" role="dialog" aria-modal="true"><button data-action="lightbox:close" aria-label="이미지 닫기">×</button><img src="${esc(screenAsset(state.lightbox))}" alt="확대 이미지"></div>`;
 }
 function desktopPage(active){
   const r=ROUTES[active]||ROUTES.home;
   return `<main class="exact-shell route-${active}">
-    <img class="exact-screen" src="./public/screens/${r.image}" alt="${esc(r.label)} 화면">
+    <img class="exact-screen" src="${esc(screenAsset(r.image))}" alt="${esc(r.label)} 화면">
     ${header(active)}
     ${hotspots(active)}
     ${modal()}${lightbox()}
   </main>`;
 }
 
-function mobileTop(active){return `<header class="m-top"><button data-action="route:home"><img src="./public/screens/logo-angular-transparent.png" alt="DAE KWANG TECH"></button><strong>${ROUTES[active]?.label||'DAE KWANG TECH'}</strong><button data-action="route:company">회사정보</button></header>`;}
+function mobileTop(active){const target=active==='company'?['products','제품사례']:['company','회사정보'];return `<header class="m-top"><button data-action="route:home"><img src="./public/screens/logo-angular-transparent.png" alt="DAE KWANG TECH"></button><strong>${ROUTES[active]?.label||'DAE KWANG TECH'}</strong><button data-action="route:${target[0]}">${target[1]}</button></header>`;}
 function mobileBottom(active){return `<nav class="m-bottom">${[['home','홈'],['fields','가공'],['products','제품'],['facilities','설비'],['quality','품질']].map(([k,l])=>`<button class="${active===k?'on':''}" data-action="route:${k}"><i>${{home:'⌂',fields:'◆',products:'▦',facilities:'▣',quality:'✓'}[k]}</i><span>${l}</span></button>`).join('')}</nav>`;}
 function mCard(key,title,img,copy){return `<button class="m-card" data-action="detail:${key}"><img src="${img}" alt="${esc(title)}"><span><b>${esc(title)}</b><p>${esc(copy)}</p><em>상세 보기 →</em></span></button>`;}
 function mobilePage(active){
@@ -351,7 +353,7 @@ function mobilePage(active){
 }
 function mobileModal(){
   const d=state.modal; if(!d) return '';
-  return `<div class="m-modal-backdrop"><section class="m-sheet" role="dialog" aria-modal="true" aria-labelledby="m-detail-title"><button class="modal-close" data-action="modal:close">×</button><img src="./public/screens/${esc(d.image)}" alt="${esc(d.title)}"><div><small>DETAIL VIEW</small><h2 id="m-detail-title">${esc(d.title)}</h2><h3>${esc(d.headline)}</h3><p>${esc(d.body)}</p><div class="m-spec">${Object.entries(d.spec).slice(0,4).map(([k,v])=>`<article><small>${esc(k)}</small><b>${esc(v)}</b></article>`).join('')}</div><ul>${d.points.slice(0,3).map(p=>`<li>${esc(p)}</li>`).join('')}</ul><button data-action="route:${esc(d.target)}">관련 화면으로 이동 →</button></div></section></div>`;
+  return `<div class="m-modal-backdrop"><section class="m-sheet" role="dialog" aria-modal="true" aria-labelledby="m-detail-title"><button class="modal-close" data-action="modal:close">×</button><img src="${esc(screenAsset(d.image))}" alt="${esc(d.title)}"><div><small>DETAIL VIEW</small><h2 id="m-detail-title">${esc(d.title)}</h2><h3>${esc(d.headline)}</h3><p>${esc(d.body)}</p><div class="m-spec">${Object.entries(d.spec).slice(0,4).map(([k,v])=>`<article><small>${esc(k)}</small><b>${esc(v)}</b></article>`).join('')}</div><ul>${d.points.slice(0,3).map(p=>`<li>${esc(p)}</li>`).join('')}</ul><button data-action="route:${esc(d.target)}">관련 화면으로 이동 →</button></div></section></div>`;
 }
 
 /* Admin image console — metadata in localStorage, image blobs in IndexedDB */
@@ -506,22 +508,82 @@ window.addEventListener('resize',render);
 
 /* In-page real-browser hit-test mode.
    Open ?qa=1#/home; the result is printed in #qa-result and data-qa-status. */
-function browserQa(){
-  if(!new URLSearchParams(location.search).has('qa'))return;
+function mobileBrowserQa(){
   const report=[];let ok=true;
+  if(Math.abs(window.innerWidth-390)>1){ok=false;report.push(`M_VIEWPORT ${window.innerWidth}/390`);}
   for(const r of PUBLIC_ROUTES){
     go(r);
+    const top=document.querySelector('.m-top'),main=document.querySelector('.mobile-main'),bottom=document.querySelector('.m-bottom');
+    if(route()!==r){ok=false;report.push(`M_ROUTE_FAIL ${r}`);}
+    if(!top||!main||!bottom){ok=false;report.push(`M_SHELL_FAIL ${r}`);continue;}
+    if(document.querySelector('.m-modal-backdrop,.modal-backdrop')){ok=false;report.push(`M_BASE_OVERLAY_FAIL ${r}`);}
+    if(document.documentElement.scrollWidth>window.innerWidth+1){ok=false;report.push(`M_HORIZONTAL_OVERFLOW ${r}`);}
+    const bottomStyle=getComputedStyle(bottom),mainStyle=getComputedStyle(main);
+    if(bottomStyle.position!=='fixed'||Math.abs(bottom.getBoundingClientRect().bottom-window.innerHeight)>1){ok=false;report.push(`M_BOTTOM_NAV_POSITION ${r}`);}
+    if(parseFloat(mainStyle.paddingBottom)<bottom.getBoundingClientRect().height+20){ok=false;report.push(`M_BOTTOM_SAFE_SPACE ${r}`);}
+    const cards=[...document.querySelectorAll('.m-card')];
+    if(!cards.length){ok=false;report.push(`M_CARD_MISSING ${r}`);}
+    window.scrollTo(0,document.documentElement.scrollHeight);
+    const last=cards.at(-1)?.getBoundingClientRect();
+    if(last&&last.bottom>bottom.getBoundingClientRect().top+1){ok=false;report.push(`M_CARD_NAV_OVERLAP ${r}`);}
+    const primary=top.querySelector('button:last-child')?.dataset.action;
+    if(primary===`route:${r}`){ok=false;report.push(`M_SELF_CTA ${r}`);}
+  }
+  go('home');detail('automotive');
+  const backdrop=document.querySelector('.m-modal-backdrop'),sheet=document.querySelector('.m-sheet');
+  if(!backdrop||!sheet||document.querySelectorAll('.m-modal-backdrop,[role="dialog"]').length!==2){ok=false;report.push('M_MODAL_SINGLETON_FAIL');}
+  if(backdrop&&getComputedStyle(backdrop).position!=='fixed'){ok=false;report.push('M_MODAL_POSITION_FAIL');}
+  if(sheet){
+    const rect=sheet.getBoundingClientRect();
+    if(rect.width>window.innerWidth+1){ok=false;report.push('M_MODAL_WIDTH_FAIL');}
+    if(rect.top<0||rect.bottom>window.innerHeight+1){ok=false;report.push('M_MODAL_VIEWPORT_FAIL');}
+  }
+  const modalNav=document.querySelector('.m-bottom');
+  if(backdrop&&modalNav&&Number(getComputedStyle(backdrop).zIndex)<=Number(getComputedStyle(modalNav).zIndex)){ok=false;report.push('M_MODAL_STACK_FAIL');}
+  closeModal();
+  if(document.querySelector('.m-modal-backdrop,.modal-backdrop,[role="dialog"]')){ok=false;report.push('M_MODAL_CLOSE_FAIL');}
+  go('home');window.scrollTo(0,0);
+  const pre=document.createElement('pre');pre.id='qa-result';pre.hidden=true;pre.dataset.qaStatus=ok?'PASS':'HOLD';pre.textContent=`${ok?'PASS':'HOLD'}\n${report.join('\n')||'mobile shell, cards, bottom nav, and sheet boundaries valid'}`;document.body.appendChild(pre);
+}
+async function browserQa(){
+  const qaMode=new URLSearchParams(location.search).get('qa');
+  if(!qaMode)return;
+  if(qaMode==='mobile')return mobileBrowserQa();
+  const report=[];let ok=true;
+  const waitForScreen=async()=>{
+    const img=document.querySelector('.exact-screen');
+    if(!img)return null;
+    if(!img.complete)await new Promise(resolve=>{
+      const done=()=>resolve();
+      img.addEventListener('load',done,{once:true});
+      img.addEventListener('error',done,{once:true});
+      setTimeout(done,4000);
+    });
+    return img;
+  };
+  for(const r of PUBLIC_ROUTES){
+    go(r);
+    const screen=await waitForScreen();
     if(route()!==r){ok=false;report.push(`ROUTE_FAIL ${r}`);}
+    if(!screen||screen.naturalWidth!==1448||screen.naturalHeight!==1086){ok=false;report.push(`SCREEN_IMAGE_FAIL ${r} ${screen?.naturalWidth||0}x${screen?.naturalHeight||0}`);}
+    if(document.querySelector('.modal-backdrop,.m-modal-backdrop')){ok=false;report.push(`BASE_OVERLAY_FAIL ${r}`);}
+    if(document.documentElement.scrollWidth>window.innerWidth+1){ok=false;report.push(`HORIZONTAL_OVERFLOW ${r}`);}
     const items=CTA_MAP[r]||[];
     const buttons=[...document.querySelectorAll('.hotspot')];
     if(buttons.length!==items.length){ok=false;report.push(`HOTSPOT_COUNT ${r} ${buttons.length}/${items.length}`);}
     buttons.forEach((btn,i)=>{
+      const style=getComputedStyle(btn);
+      if(style.backgroundColor!=='rgba(0, 0, 0, 0)'||style.boxShadow!=='none'){ok=false;report.push(`VISIBLE_HOTSPOT ${r}:${items[i]?.[0]||i}`);}
       btn.scrollIntoView({block:'center',inline:'center'});
       const rect=btn.getBoundingClientRect();
       const x=rect.left+rect.width/2,y=rect.top+rect.height/2;
       const hit=document.elementFromPoint(x,y);
       if(!hit || hit.closest('[data-action]')!==btn){ok=false;report.push(`HIT_TEST_FAIL ${r}:${items[i]?.[0]||i}`);}
     });
+    for(let i=0;i<buttons.length;i++)for(let j=i+1;j<buttons.length;j++){
+      const a=buttons[i].getBoundingClientRect(),b=buttons[j].getBoundingClientRect();
+      if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1){ok=false;report.push(`HOTSPOT_OVERLAP ${r}:${items[i]?.[0]||i}/${items[j]?.[0]||j}`);}
+    }
     for(const a of items){
       const x=a[2]+a[4]/2,y=a[3]+a[5]/2;
       if(x<0||x>100||y<0||y>100){ok=false;report.push(`OUTSIDE ${r}:${a[0]}`);}
@@ -529,10 +591,12 @@ function browserQa(){
     }
   }
   for(const r of PUBLIC_ROUTES){go(r);if(route()!==r){ok=false;report.push(`NAV_ROUTE_FAIL ${r}`);}}
-  detail('hydraulic');if(!state.modal||!document.querySelector('[role="dialog"]')){ok=false;report.push('MODAL_FAIL hydraulic');}closeModal();
-  detail('quality');if(!state.modal||!document.querySelector('[role="dialog"]')){ok=false;report.push('MODAL_FAIL quality');}closeModal();
+  detail('hydraulic');if(!state.modal||document.querySelectorAll('.modal-backdrop,[role="dialog"]').length!==2){ok=false;report.push('MODAL_FAIL hydraulic');}closeModal();
+  if(document.querySelector('.modal-backdrop,.m-modal-backdrop,[role="dialog"]')){ok=false;report.push('MODAL_CLOSE_FAIL hydraulic');}
+  detail('quality');if(!state.modal||document.querySelectorAll('.modal-backdrop,[role="dialog"]').length!==2){ok=false;report.push('MODAL_FAIL quality');}closeModal();
+  if(document.querySelector('.modal-backdrop,.m-modal-backdrop,[role="dialog"]')){ok=false;report.push('MODAL_CLOSE_FAIL quality');}
   go('home');
-  const pre=document.createElement('pre');pre.id='qa-result';pre.dataset.qaStatus=ok?'PASS':'HOLD';pre.textContent=`${ok?'PASS':'HOLD'}\n${report.join('\n')||'routes, CTA hit-test, modal actions valid'}`;document.body.appendChild(pre);
+  const pre=document.createElement('pre');pre.id='qa-result';pre.hidden=true;pre.dataset.qaStatus=ok?'PASS':'HOLD';pre.textContent=`${ok?'PASS':'HOLD'}\n${report.join('\n')||'routes, CTA hit-test, modal actions valid'}`;document.body.appendChild(pre);
 }
-render();setTimeout(browserQa,50);
+render();setTimeout(()=>browserQa(),50);
 window.DGTC_TEST={route,go,detail,closeModal,CTA_MAP,DETAIL_CATALOG,browserQa,version:APP_VERSION};
