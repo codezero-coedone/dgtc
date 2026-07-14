@@ -459,23 +459,8 @@ function desktopPage(active){
   </main>`;
 }
 
-function mobileTop(active){const target=active==='company'?['products','제품사례']:['company','회사정보'];return `<header class="m-top"><button data-action="route:home"><img src="./public/screens/logo-angular-transparent.png" alt="DAE KWANG TECH"></button><strong>${ROUTES[active]?.label||'DAE KWANG TECH'}</strong><button data-action="route:${target[0]}">${target[1]}</button></header>`;}
-function mobileBottom(active){return `<nav class="m-bottom">${[['home','홈'],['fields','가공'],['products','제품'],['facilities','설비'],['quality','품질']].map(([k,l])=>`<button class="${active===k?'on':''}" data-action="route:${k}"><i>${{home:'⌂',fields:'◆',products:'▦',facilities:'▣',quality:'✓'}[k]}</i><span>${l}</span></button>`).join('')}</nav>`;}
-function mCard(key,title,img,copy){return `<button class="m-card" data-action="detail:${key}"><img src="${img}" alt="${esc(title)}"><span><b>${esc(title)}</b><p>${esc(copy)}</p><em>상세 보기 →</em></span></button>`;}
 function mobilePage(active){
-  const cards={
-    home:[['automotive','자동차부품','./public/admin-assets/shaft_component_01.jpg','반복 생산의 치수 안정성과 조립 신뢰성'],['hydraulic','유압부품','./public/admin-assets/valve_block_07.jpg','씰링면·포트·버 관리 중심'],['electronic','전자부품','./public/admin-assets/coupling_parts_06.jpg','소형 조립성과 미세 버 관리']],
-    fields:[['automotive','자동차부품','./public/admin-assets/shaft_component_01.jpg','샤프트·슬리브·하우징'],['hydraulic','유압부품','./public/admin-assets/valve_block_07.jpg','밸브·피팅·카트리지'],['electronic','전자부품','./public/admin-assets/coupling_parts_06.jpg','커넥터·핀·센서 부품'],['mass','정밀 양산가공','./public/admin-assets/product_case_10.jpg','자동선반 반복 생산']],
-    products:[['products','제품·가공사례','./public/admin-assets/gear_assembly_03.jpg','소재·공정·검사 기준'],['products','샤프트 부품','./public/admin-assets/shaft_component_01.jpg','정밀 선삭 가공 사례'],['hydraulic','밸브 블록','./public/admin-assets/valve_block_07.jpg','유압 계통 가공 사례']],
-    facilities:[['facilities','자동선반 생산 라인','./public/admin-assets/factory_line_05.jpg','반복 생산 대응 환경'],['facilities','공장 설비 전경','./public/admin-assets/factory_plant_02.jpg','가공·검사·출하 연계']],
-    quality:[['quality','정밀 측정 공정','./public/admin-assets/inspection_05.jpg','검사항목·방법·기록'],['quality','품질 검사 장비','./public/admin-assets/quality_inspection_04.jpg','측정 장비와 검사 흐름']],
-    company:[['company','대광테크 회사소개','./public/admin-assets/factory_line_05.jpg','정밀가공·설비·품질 운영'],['process','제조 운영 공정','./public/admin-assets/cnc_process_02.jpg','도면 검토부터 출하까지']]
-  }[active]||[];
-  return `${mobileTop(active)}<main class="mobile-main"><section class="m-hero"><small>CNC AUTOMATIC LATHE</small><h1>${esc(ROUTES[active]?.label||'대광테크')}</h1><p>정밀가공 역량과 실제 생산·검사 흐름을 확인하세요.</p></section><section class="m-list">${cards.map(c=>mCard(...c)).join('')}</section></main>${mobileModal()}${mobileBottom(active)}`;
-}
-function mobileModal(){
-  const d=state.modal; if(!d) return '';
-  return `<div class="m-modal-backdrop"><section class="m-sheet" role="dialog" aria-modal="true" aria-labelledby="m-detail-title"><button class="modal-close" data-action="modal:close">×</button><img src="${esc(screenAsset(d.image))}" alt="${esc(d.title)}"><div><small>DETAIL VIEW</small><h2 id="m-detail-title">${esc(d.title)}</h2><h3>${esc(d.headline)}</h3><p>${esc(d.body)}</p><div class="m-spec">${Object.entries(d.spec).slice(0,4).map(([k,v])=>`<article><small>${esc(k)}</small><b>${esc(v)}</b></article>`).join('')}</div><ul>${d.points.slice(0,3).map(p=>`<li>${esc(p)}</li>`).join('')}</ul><button data-action="route:${esc(d.target)}">관련 화면으로 이동 →</button></div></section></div>`;
+  return window.DGTCMobile?.render(active)||'';
 }
 
 /* Admin image console — metadata in localStorage, image blobs in IndexedDB */
@@ -554,6 +539,7 @@ function render(){
   if(r.startsWith('admin')) app.innerHTML=adminPage(r);
   else app.innerHTML=isMobile()?mobilePage(PUBLIC_ROUTES.includes(r)?r:'home'):desktopPage(PUBLIC_ROUTES.includes(r)?r:'home');
   hydrateIDB().catch(()=>{});
+  window.DGTCMobile?.afterRender?.(r);
   queueMicrotask(focusModal);
 }
 function focusModal(){
@@ -564,6 +550,7 @@ function runAction(action){
   if(!action)return;
   const [type,...rest]=action.split(':');
   if(type==='route') return go(rest.join(':'));
+  if(type==='mobile') return window.DGTCMobile?.action(rest.join(':'));
   if(type==='detail') return detail(rest[0]);
   if(type==='modal'&&rest[0]==='close')return closeModal();
   if(type==='lightbox'){
@@ -654,43 +641,41 @@ async function mobileBrowserQa(){
   const waitForImages=()=>Promise.all([...document.images].map(img=>img.complete?Promise.resolve(img):new Promise(resolve=>{
     const done=()=>resolve(img);img.addEventListener('load',done,{once:true});img.addEventListener('error',done,{once:true});setTimeout(done,10000);
   })));
-  for(const r of PUBLIC_ROUTES){
-    await go(r);
-    const images=await waitForImages();
-    const top=document.querySelector('.m-top'),main=document.querySelector('.mobile-main'),bottom=document.querySelector('.m-bottom');
+  const routes=['home','fields','products','facilities','company'];
+  for(const r of routes){
+    await go(r);const images=await waitForImages();
+    const shell=document.querySelector('.mobile-exact-shell'),main=document.querySelector('.mb-content'),bottom=document.querySelector('.mb-bottom-nav');
     if(route()!==r){ok=false;report.push(`M_ROUTE_FAIL ${r}`);}
-    if(!top||!main||!bottom){ok=false;report.push(`M_SHELL_FAIL ${r}`);continue;}
+    if(!shell||!main||!bottom){ok=false;report.push(`M_SHELL_FAIL ${r}`);continue;}
+    if(bottom.querySelectorAll('button').length!==5){ok=false;report.push(`M_NAV_COUNT ${r}`);}
     if(images.some(img=>img.naturalWidth===0)){ok=false;report.push(`M_IMAGE_FAIL ${r}`);}
-    if(document.querySelector('.m-modal-backdrop,.modal-backdrop')){ok=false;report.push(`M_BASE_OVERLAY_FAIL ${r}`);}
+    if(document.querySelector('[data-mobile-dialog]')){ok=false;report.push(`M_BASE_OVERLAY_FAIL ${r}`);}
     if(document.documentElement.scrollWidth>window.innerWidth+1){ok=false;report.push(`M_HORIZONTAL_OVERFLOW ${r}`);}
-    const bottomStyle=getComputedStyle(bottom),mainStyle=getComputedStyle(main);
-    if(bottomStyle.position!=='fixed'||Math.abs(bottom.getBoundingClientRect().bottom-window.innerHeight)>1){ok=false;report.push(`M_BOTTOM_NAV_POSITION ${r}`);}
-    if(parseFloat(mainStyle.paddingBottom)<bottom.getBoundingClientRect().height+20){ok=false;report.push(`M_BOTTOM_SAFE_SPACE ${r}`);}
-    const cards=[...document.querySelectorAll('.m-card')];
-    if(!cards.length){ok=false;report.push(`M_CARD_MISSING ${r}`);}
-    window.scrollTo(0,document.documentElement.scrollHeight);
-    const last=cards.at(-1)?.getBoundingClientRect();
-    if(last&&last.bottom>bottom.getBoundingClientRect().top+1){ok=false;report.push(`M_CARD_NAV_OVERLAP ${r}`);}
-    const primary=top.querySelector('button:last-child')?.dataset.action;
-    if(primary===`route:${r}`){ok=false;report.push(`M_SELF_CTA ${r}`);}
+    if(getComputedStyle(bottom).position!=='fixed'||Math.abs(bottom.getBoundingClientRect().bottom-window.innerHeight)>1){ok=false;report.push(`M_BOTTOM_NAV_POSITION ${r}`);}
+    if(parseFloat(getComputedStyle(main).paddingBottom)<bottom.getBoundingClientRect().height+16){ok=false;report.push(`M_BOTTOM_SAFE_SPACE ${r}`);}
+    const undersized=[...shell.querySelectorAll('button,a,input')].filter(el=>{const rect=el.getBoundingClientRect();return rect.width>0&&rect.height>0&&(rect.width<44||rect.height<44);});
+    if(undersized.length){ok=false;report.push(`M_TOUCH_TARGET ${r} ${undersized.map(el=>`${el.tagName}.${el.className||'-'}:${Math.round(el.getBoundingClientRect().width)}x${Math.round(el.getBoundingClientRect().height)}`).join(',')}`);}
   }
-  await go('home');detail('automotive');
-  const modalImages=await waitForImages();
-  const backdrop=document.querySelector('.m-modal-backdrop'),sheet=document.querySelector('.m-sheet');
-  if(!backdrop||!sheet||document.querySelectorAll('.m-modal-backdrop,[role="dialog"]').length!==2){ok=false;report.push('M_MODAL_SINGLETON_FAIL');}
-  if(modalImages.some(img=>img.naturalWidth===0)){ok=false;report.push('M_MODAL_IMAGE_FAIL');}
-  if(backdrop&&getComputedStyle(backdrop).position!=='fixed'){ok=false;report.push('M_MODAL_POSITION_FAIL');}
-  if(sheet){
-    const rect=sheet.getBoundingClientRect();
-    if(rect.width>window.innerWidth+1){ok=false;report.push('M_MODAL_WIDTH_FAIL');}
-    if(rect.top<0||rect.bottom>window.innerHeight+1){ok=false;report.push('M_MODAL_VIEWPORT_FAIL');}
-  }
-  const modalNav=document.querySelector('.m-bottom');
-  if(backdrop&&modalNav&&Number(getComputedStyle(backdrop).zIndex)<=Number(getComputedStyle(modalNav).zIndex)){ok=false;report.push('M_MODAL_STACK_FAIL');}
-  closeModal();
-  if(document.querySelector('.m-modal-backdrop,.modal-backdrop,[role="dialog"]')){ok=false;report.push('M_MODAL_CLOSE_FAIL');}
+  await go('fields');window.DGTCMobile.action('field:hydraulic');
+  if(!document.querySelector('.mb-tabs .is-active')?.textContent.includes('유압')){ok=false;report.push('M_FIELD_TAB_FAIL');}
+  await go('products');window.DGTCMobile.action('filter:hydraulic');
+  if(!document.querySelectorAll('.mb-product-card').length){ok=false;report.push('M_PRODUCT_FILTER_FAIL');}
+  window.DGTCMobile.action('product:shaft-a');await waitForImages();
+  if(document.querySelectorAll('.mb-product-detail[role="dialog"]').length!==1){ok=false;report.push('M_PRODUCT_DETAIL_FAIL');}
+  window.DGTCMobile.action('viewer-open:shaft-a:0');await waitForImages();
+  if(document.querySelectorAll('.mb-viewer[role="dialog"]').length!==1||document.querySelectorAll('[role="dialog"]').length!==1){ok=false;report.push('M_VIEWER_SINGLETON_FAIL');}
+  window.DGTCMobile.action('viewer-index:1');
+  if(!document.querySelector('.mb-viewer-thumbs button:nth-child(2)')?.classList.contains('is-active')){ok=false;report.push('M_VIEWER_INDEX_FAIL');}
+  window.DGTCMobile.state.viewer=null;window.DGTCMobile.state.productId=null;render();
+  window.DGTCMobile.action('drawer-open');
+  if(document.querySelectorAll('.mb-drawer[role="dialog"]').length!==1){ok=false;report.push('M_DRAWER_FAIL');}
+  window.DGTCMobile.state.drawer=false;render();
+  await go('facilities');window.DGTCMobile.action('segment:quality');
+  if(!document.querySelector('.mb-segment .is-active')?.textContent.includes('품질')){ok=false;report.push('M_QUALITY_SEGMENT_FAIL');}
   await go('home');window.scrollTo(0,0);
-  const pre=document.createElement('pre');pre.id='qa-result';pre.hidden=true;pre.dataset.qaStatus=ok?'PASS':'HOLD';pre.textContent=`${ok?'PASS':'HOLD'}\n${report.join('\n')||'mobile shell, cards, bottom nav, and sheet boundaries valid'}`;document.body.appendChild(pre);
+  const forbidden=['문의','견적','상담'];
+  if(forbidden.some(word=>document.body.innerText.includes(word))){ok=false;report.push('M_FORBIDDEN_COPY');}
+  const pre=document.createElement('pre');pre.id='qa-result';pre.hidden=true;pre.dataset.qaStatus=ok?'PASS':'HOLD';pre.textContent=`${ok?'PASS':'HOLD'}\n${report.join('\n')||'five routes, tabs, filters, detail, viewer, drawer, touch and safe-area checks valid'}`;document.body.appendChild(pre);
 }
 async function browserQa(){
   const qaMode=new URLSearchParams(location.search).get('qa');
@@ -770,5 +755,6 @@ async function browserQa(){
   await go('home');
   const pre=document.createElement('pre');pre.id='qa-result';pre.hidden=true;pre.dataset.qaStatus=ok?'PASS':'HOLD';pre.textContent=`${ok?'PASS':'HOLD'}\n${report.join('\n')||'routes, CTA hit-test, modal actions valid'}`;document.body.appendChild(pre);
 }
+window.DGTCMobile?.init?.({go,render,route});
 render();setTimeout(()=>browserQa(),50);
 window.DGTC_TEST={route,go,detail,closeModal,CTA_MAP,DETAIL_CATALOG,browserQa,version:APP_VERSION};

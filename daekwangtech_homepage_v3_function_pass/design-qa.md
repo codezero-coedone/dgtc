@@ -27,3 +27,24 @@
 See `evidence/desktop-proof-breakout-v3-local/`.
 
 final result: passed
+
+---
+
+# DAEKWANGTECH MOBILE EXACT REBUILD DESIGN QA
+
+- final result: passed
+- reference authority: `evidence/mobile-exact-rebuild/reference/01-home.png` through `08-viewer.png`
+- comparison authority: `evidence/mobile-exact-rebuild/comparison/mobile-exact-overview.png`
+- viewport compared: 390x844
+- screen structure: 8/8 matched
+- order: home, fields, products, product detail, facility-quality, more, drawer, viewer
+- real DOM implementation: yes
+- full-screen reference PNG used as UI: no
+- transparent hotspots: none
+- desktop redesign: none
+- visual judgement: deep navy shell, app bar, cards, segmented controls, galleries, bottom navigation, drawer, and viewer match the reference composition. Product and facility photography intentionally uses verified project assets instead of reference sample facts.
+- visible overlap: none
+- horizontal overflow: none
+- broken images: none
+- undersized visible touch targets: none
+- forbidden inquiry or quote CTA: none

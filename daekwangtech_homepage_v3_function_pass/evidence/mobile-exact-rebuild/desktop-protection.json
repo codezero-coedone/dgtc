@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "baselineCommit": "4283b740a742d55d1913c553ff1ec43b8f594546",
+  "desktopBoundary": {
+    "viewport": "1100x900",
+    "desktopAuthorityVisible": true,
+    "mobileShellVisible": false,
+    "mobileBottomNavigationCount": 0,
+    "horizontalOverflow": 0,
+    "brokenImages": 0
+  },
+  "hashes": {
+    "src/styles.css": "AA47D54C8C1B2223FFA16534510DFD58DDFBBBAC38D84217009F42CE3EE3CBE4",
+    "public/screens/home.jpg": "4B63C8A0977847EBA9961D9031316362ED456CB6C9B9B46BB7F965A1AFB65DD9",
+    "public/screens/company.jpg": "1AC06430796F667CE93C217FF2D61DB4C42254BE561A6935BBFD512B7B25D9BE",
+    "public/screens/fields.jpg": "1D92AE2181440169F10F5E16960FF180DF37CAC36E5F790723F5ACF649B09262",
+    "public/screens/products.jpg": "DEA7890FFB14F881D03F528CD865C676FE48C7980A4BF0997A40E5A54026D823",
+    "public/screens/facilities.jpg": "E4CF32062E6E8181516C2F78165DC93FAC1FB98212EC6FA33C167542809271CE",
+    "public/screens/quality.jpg": "10700BE6E2CBC499569ECE6544EF4A336CDE31FB5CDCF8D20531C197C17D9D60"
+  },
+  "beforeAfterHashMatch": true
+}

@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "visibleTouchTargetsBelow44px": 0,
+  "imagesWithoutAccessibleAlt": 0,
+  "bottomNavigationItems": 5,
+  "dialogsUseAriaModal": true,
+  "drawerFocusOnOpen": true,
+  "drawerFocusTrap": true,
+  "escapeClosesOverlays": true,
+  "keyboardViewerNavigation": true,
+  "bodyScrollLockWhileOverlayOpen": true,
+  "bodyScrollRestoredAfterClose": true,
+  "focusVisibleStyle": true,
+  "notes": "Decorative drawer PNG icons use empty alt and aria-hidden; meaningful product, facility, company and logo images retain text alternatives."
+}

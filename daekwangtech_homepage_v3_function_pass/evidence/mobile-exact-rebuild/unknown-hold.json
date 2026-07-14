@@ -1,0 +1,9 @@
+{
+  "result": "NO_LOCAL_BLOCKER",
+  "unknown": [
+    "Physical iOS and Android safe-area behavior has not been observed on the user's real devices.",
+    "Production deployment and live Cloudflare asset freshness were outside this task and were not changed."
+  ],
+  "assetHold": [],
+  "hold": []
+}

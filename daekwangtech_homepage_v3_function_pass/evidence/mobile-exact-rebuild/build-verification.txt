@@ -1,0 +1,21 @@
+DAEKWANGTECH_MOBILE_EXACT_REBUILD
+timestamp: 2026-07-15T00:49:51+09:00
+branch: main
+HEAD: 4283b740a742d55d1913c553ff1ec43b8f594546
+origin/main: 4283b740a742d55d1913c553ff1ec43b8f594546
+
+node --check src/mobile/mobile-app.js: PASS
+node --check src/app.js: PASS
+npm run build: PASS
+  BUILD PASS: Daekwang Tech company-only final package copied to dist/
+  ENTRY: dist/index.html
+npm run verify: PASS
+  VERIFY PASS: CT-S1~S8 single-source structure and policy gates
+npm run verify:runtime: PASS
+  RUNTIME PASS: boot, six routes, eight detail actions
+in-app browser manual QA: PASS
+console errors: 0
+broken images: 0
+horizontal overflow: 0
+public admin exposure: false
+inquiry or quote CTA: false

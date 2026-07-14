@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "viewports": {
+    "390x844": {"mobile": true, "navigationCount": 5, "horizontalOverflow": 0, "brokenImages": 0},
+    "393x852": {"mobile": true, "navigationCount": 5, "horizontalOverflow": 0, "brokenImages": 0},
+    "430x932": {"mobile": true, "navigationCount": 5, "horizontalOverflow": 0, "brokenImages": 0},
+    "768x1024": {"mobile": true, "shellWidth": 430, "navigationCount": 5, "horizontalOverflow": 0, "brokenImages": 0},
+    "1100x900": {"mobile": false, "desktop": true, "navigationCount": 0, "horizontalOverflow": 0, "brokenImages": 0}
+  }
+}

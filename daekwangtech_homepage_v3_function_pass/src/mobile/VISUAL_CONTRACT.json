@@ -1,0 +1,54 @@
+{
+  "authority": "codex-clipboard-c4036adc-1986-480f-b926-f170d986ec69.png",
+  "referenceViewport": {
+    "width": 390,
+    "minimumHeight": 844,
+    "maximumContentWidth": 430
+  },
+  "breakpoint": {
+    "mobileMaximum": 899,
+    "desktopMinimum": 900
+  },
+  "screens": [
+    "home",
+    "fields",
+    "products",
+    "product-detail",
+    "facility-quality",
+    "more",
+    "menu-drawer",
+    "image-viewer"
+  ],
+  "navigation": [
+    "home",
+    "fields",
+    "products",
+    "facilities-quality",
+    "more"
+  ],
+  "colors": {
+    "background": "#020A13",
+    "card": "#071725",
+    "cardStrong": "#0B1D2D",
+    "line": "#173650",
+    "active": "#1387F4",
+    "title": "#F4F8FC",
+    "body": "#A7B7C7",
+    "muted": "#71879B"
+  },
+  "dimensions": {
+    "appBar": 56,
+    "bottomNavigation": 68,
+    "minimumTouchTarget": 44,
+    "cardRadiusMinimum": 10,
+    "cardRadiusMaximum": 14
+  },
+  "contentPolicy": {
+    "verifiedDataOnly": true,
+    "inquiryCta": false,
+    "quoteCta": false,
+    "adminEntry": false,
+    "fullScreenReferenceRaster": false,
+    "transparentHotspots": false
+  }
+}

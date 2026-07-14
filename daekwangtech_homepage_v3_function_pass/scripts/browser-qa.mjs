@@ -72,9 +72,9 @@ async function runMobileCase(){
       fs.writeFileSync(process.env.DGTC_QA_MOBILE_SCREENSHOT,Buffer.from(shot.data,'base64'));
     }
     if(process.env.DGTC_QA_MOBILE_MODAL_SCREENSHOT){
-      await send('Runtime.evaluate',{expression:"window.DGTC_TEST.detail('automotive')"});
+      await send('Runtime.evaluate',{expression:"window.DGTCMobile.action('product:shaft-a')"});
       for(let i=0;i<100;i++){
-        const ready=await send('Runtime.evaluate',{expression:"!!document.querySelector('.m-sheet img')?.complete&&document.querySelector('.m-sheet img').naturalWidth>0",returnByValue:true});
+        const ready=await send('Runtime.evaluate',{expression:"!!document.querySelector('.mb-product-detail img')?.complete&&document.querySelector('.mb-product-detail img').naturalWidth>0",returnByValue:true});
         if(ready.result.value)break;await new Promise(r=>setTimeout(r,100));
       }
       const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});

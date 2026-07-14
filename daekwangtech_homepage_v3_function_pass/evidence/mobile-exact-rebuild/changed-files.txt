@@ -1,0 +1,36 @@
+MODIFIED
+- index.html: mobile-only CSS and JavaScript entry points with cache authority version
+- src/app.js: delegates mobile rendering and interactions to the isolated mobile module; desktop renderer retained
+- scripts/browser-qa.mjs: mobile detail screenshot target aligned with the new product dialog
+
+ADDED SOURCE
+- src/mobile/mobile-app.js
+- src/mobile/mobile.css
+- src/mobile/VISUAL_CONTRACT.json
+
+ADDED ASSETS
+- public/mobile/assets/hero-cnc.jpg
+- public/mobile/assets/company-front.jpg
+- public/mobile/assets/facility/*
+- public/mobile/assets/products/*
+- public/mobile/icons/*.svg
+- public/mobile/icons/png/*.png
+
+ADDED EVIDENCE
+- design-qa.md
+- evidence/mobile-exact-rebuild/reference/*
+- evidence/mobile-exact-rebuild/actual/*
+- evidence/mobile-exact-rebuild/comparison/*
+- evidence/mobile-exact-rebuild/*.json
+- evidence/mobile-exact-rebuild/build-verification.txt
+
+PROTECTED / UNCHANGED
+- src/styles.css
+- public/screens/home.jpg
+- public/screens/company.jpg
+- public/screens/fields.jpg
+- public/screens/products.jpg
+- public/screens/facilities.jpg
+- public/screens/quality.jpg
+- admin source and data
+- server and deployment configuration
