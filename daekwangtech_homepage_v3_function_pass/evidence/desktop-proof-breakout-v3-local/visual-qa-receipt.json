@@ -1,0 +1,38 @@
+{
+  "authority": "DGTC_DESKTOP_PROOF_BREAKOUT_20260714_V3",
+  "viewports": {
+    "desktop1440": {
+      "homeFooterCollision": false,
+      "facilityStrengthRows": 1,
+      "facilityStrengthActions": 4,
+      "qualityAuthority": "dom",
+      "qualityLegacyExactScreens": 0,
+      "qualityHeroFontPx": 46,
+      "brokenImages": 0,
+      "horizontalOverflow": false
+    },
+    "desktop1920": {
+      "qualityMainWidthPx": 1448,
+      "qualityCentered": true,
+      "qualityHeroFontPx": 46,
+      "brokenImages": 0,
+      "horizontalOverflow": false
+    },
+    "mobile390": {
+      "routes": ["home", "facilities", "quality"],
+      "shellPreserved": true,
+      "desktopAuthorityVisible": false,
+      "bottomNavOverlap": false,
+      "brokenImages": 0,
+      "horizontalOverflow": false
+    }
+  },
+  "interaction": {
+    "facilityStrengthActionCount": 1,
+    "modalCountAfterClick": 1,
+    "dialogCountAfterClose": 0,
+    "backdropCountAfterClose": 0
+  },
+  "consoleWarningsOrErrors": 0,
+  "finalResult": "PASS_LOCAL_VISUAL"
+}
