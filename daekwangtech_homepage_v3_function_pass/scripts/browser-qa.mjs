@@ -59,7 +59,7 @@ async function runMobileCase(){
     await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true,screenWidth:390,screenHeight:844});
     await send('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:5});
     await send('Page.navigate',{url:'http://127.0.0.1:4173/?qa=mobile#/home'});
-    for(let i=0;i<100;i++){
+    for(let i=0;i<300;i++){
       const result=await send('Runtime.evaluate',{expression:"document.querySelector('#qa-result')?.outerHTML||''",returnByValue:true});
       out=result.result.value||'';if(out)break;await new Promise(r=>setTimeout(r,100));
     }
@@ -73,7 +73,10 @@ async function runMobileCase(){
     }
     if(process.env.DGTC_QA_MOBILE_MODAL_SCREENSHOT){
       await send('Runtime.evaluate',{expression:"window.DGTC_TEST.detail('automotive')"});
-      await new Promise(r=>setTimeout(r,300));
+      for(let i=0;i<100;i++){
+        const ready=await send('Runtime.evaluate',{expression:"!!document.querySelector('.m-sheet img')?.complete&&document.querySelector('.m-sheet img').naturalWidth>0",returnByValue:true});
+        if(ready.result.value)break;await new Promise(r=>setTimeout(r,100));
+      }
       const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
       fs.writeFileSync(process.env.DGTC_QA_MOBILE_MODAL_SCREENSHOT,Buffer.from(shot.data,'base64'));
     }

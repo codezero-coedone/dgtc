@@ -514,14 +514,19 @@ window.addEventListener('resize',render);
 
 /* In-page real-browser hit-test mode.
    Open ?qa=1#/home; the result is printed in #qa-result and data-qa-status. */
-function mobileBrowserQa(){
+async function mobileBrowserQa(){
   const report=[];let ok=true;
   if(Math.abs(window.innerWidth-390)>1){ok=false;report.push(`M_VIEWPORT ${window.innerWidth}/390`);}
+  const waitForImages=()=>Promise.all([...document.images].map(img=>img.complete?Promise.resolve(img):new Promise(resolve=>{
+    const done=()=>resolve(img);img.addEventListener('load',done,{once:true});img.addEventListener('error',done,{once:true});setTimeout(done,10000);
+  })));
   for(const r of PUBLIC_ROUTES){
     go(r);
+    const images=await waitForImages();
     const top=document.querySelector('.m-top'),main=document.querySelector('.mobile-main'),bottom=document.querySelector('.m-bottom');
     if(route()!==r){ok=false;report.push(`M_ROUTE_FAIL ${r}`);}
     if(!top||!main||!bottom){ok=false;report.push(`M_SHELL_FAIL ${r}`);continue;}
+    if(images.some(img=>img.naturalWidth===0)){ok=false;report.push(`M_IMAGE_FAIL ${r}`);}
     if(document.querySelector('.m-modal-backdrop,.modal-backdrop')){ok=false;report.push(`M_BASE_OVERLAY_FAIL ${r}`);}
     if(document.documentElement.scrollWidth>window.innerWidth+1){ok=false;report.push(`M_HORIZONTAL_OVERFLOW ${r}`);}
     const bottomStyle=getComputedStyle(bottom),mainStyle=getComputedStyle(main);
@@ -536,8 +541,10 @@ function mobileBrowserQa(){
     if(primary===`route:${r}`){ok=false;report.push(`M_SELF_CTA ${r}`);}
   }
   go('home');detail('automotive');
+  const modalImages=await waitForImages();
   const backdrop=document.querySelector('.m-modal-backdrop'),sheet=document.querySelector('.m-sheet');
   if(!backdrop||!sheet||document.querySelectorAll('.m-modal-backdrop,[role="dialog"]').length!==2){ok=false;report.push('M_MODAL_SINGLETON_FAIL');}
+  if(modalImages.some(img=>img.naturalWidth===0)){ok=false;report.push('M_MODAL_IMAGE_FAIL');}
   if(backdrop&&getComputedStyle(backdrop).position!=='fixed'){ok=false;report.push('M_MODAL_POSITION_FAIL');}
   if(sheet){
     const rect=sheet.getBoundingClientRect();
