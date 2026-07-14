@@ -16,7 +16,7 @@ for(const token of ['01092567475','010-9256-7475']) {
 }
 if(!css.includes('CT-F1 footer/logo + hover-flash cleanup')) fail.push('cleanup marker missing');
 if(!css.includes('.hotspot:hover{background:transparent;box-shadow:none}')) fail.push('transparent hover rule missing');
-if(!app.includes("DGTC_CTA_PANEL_FREE_20260714_V1")) fail.push('screen cache-bust authority missing');
+if(!app.includes("DGTC_CTA_PANEL_FREE_20260714_V2")) fail.push('screen cache-bust authority missing');
 for(const [img,expected] of Object.entries(screenHashes)){
   const file=`public/screens/${img}.jpg`;
   if(!fs.existsSync(file)){fail.push('screen missing '+img);continue;}

@@ -7,7 +7,7 @@
    No legacy patch stacking, no duplicate render/router/modal implementations.
 */
 
-const APP_VERSION = 'DGTC_CTA_PANEL_FREE_20260714_V1';
+const APP_VERSION = 'DGTC_CTA_PANEL_FREE_20260714_V2';
 const screenAsset = name => `./public/screens/${name}?v=${APP_VERSION}`;
 const PUBLIC_ROUTES = ['home','company','fields','products','facilities','quality'];
 const ROUTES = {
@@ -283,7 +283,10 @@ function route(){
 function isMobile(){return matchMedia('(max-width:899px)').matches && !route().startsWith('admin');}
 function go(path){
   state.modal=null; state.lightbox=null;
-  location.hash=`#/${path}`;
+  const next=`#/${path}`;
+  if(typeof history!=='undefined'&&history.pushState){
+    if(location.hash!==next)history.pushState(null,'',next);
+  }else location.hash=next;
   render();
 }
 function detail(key){
@@ -503,7 +506,10 @@ document.addEventListener('dragover',e=>{if(e.target.closest('.dropzone')){e.pre
 document.addEventListener('dragleave',e=>{if(e.target.closest('.dropzone'))e.target.closest('.dropzone').classList.remove('drag');});
 document.addEventListener('drop',e=>{const dz=e.target.closest('.dropzone');if(dz){e.preventDefault();dz.classList.remove('drag');state.uploadQueue=[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')&&f.size<=8*1024*1024).slice(0,10);render();}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(state.lightbox){state.lightbox=null;render();}else if(state.modal)closeModal();}});
-window.addEventListener('hashchange',render);
+let renderScheduled=false;
+function scheduleRender(){if(renderScheduled)return;renderScheduled=true;queueMicrotask(()=>{renderScheduled=false;render();});}
+window.addEventListener('hashchange',scheduleRender);
+window.addEventListener('popstate',scheduleRender);
 window.addEventListener('resize',render);
 
 /* In-page real-browser hit-test mode.

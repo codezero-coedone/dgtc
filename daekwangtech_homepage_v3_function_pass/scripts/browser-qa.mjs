@@ -12,6 +12,7 @@ const candidates=process.platform==='win32'
  ] : ['/usr/bin/chromium','/usr/bin/google-chrome'];
 const browser=candidates.find(fs.existsSync);
 if(!browser){console.error('BROWSER QA HOLD: supported browser executable not found');process.exit(2);}
+const cleanupProfile=profile=>{try{fs.rmSync(profile,{recursive:true,force:true,maxRetries:10,retryDelay:100});}catch{}}
 
 const server=spawn(process.execPath,['scripts/serve.mjs'],{stdio:['ignore','pipe','pipe']});
 await new Promise(r=>setTimeout(r,900));
@@ -24,7 +25,7 @@ async function runCase(name,size,query){
   child.stdout.on('data',d=>out+=d);child.stderr.on('data',d=>err+=d);
   const timer=setTimeout(()=>child.kill('SIGKILL'),18000);
   const code=await new Promise(r=>child.on('close',r));clearTimeout(timer);
-  fs.rmSync(profile,{recursive:true,force:true});
+  cleanupProfile(profile);
   const pass=out.includes('data-qa-status="PASS"')||out.includes("data-qa-status='PASS'");
   return {name,pass,code,out,err};
 }
@@ -47,7 +48,7 @@ async function runMobileCase(){
     await new Promise(r=>setTimeout(r,100));
   }
   const pageTarget=targets?.find(target=>target.type==='page');
-  if(!pageTarget){child.kill('SIGKILL');fs.rmSync(profile,{recursive:true,force:true});return {name,pass:false,code:2,out:'CDP page target unavailable',err};}
+  if(!pageTarget){child.kill('SIGKILL');cleanupProfile(profile);return {name,pass:false,code:2,out:'CDP page target unavailable',err};}
   const ws=new WebSocket(pageTarget.webSocketDebuggerUrl),pending=new Map();let id=0;
   await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true});});
   ws.addEventListener('message',event=>{const msg=JSON.parse(event.data);if(msg.id&&pending.has(msg.id)){const {resolve,reject}=pending.get(msg.id);pending.delete(msg.id);msg.error?reject(new Error(msg.error.message)):resolve(msg.result);}});
@@ -79,7 +80,7 @@ async function runMobileCase(){
   }catch(error){code=2;err+=`\n${error.stack||error}`;}
   try{await send('Browser.close');}catch{child.kill('SIGKILL');}
   await new Promise(resolve=>{if(child.exitCode!==null)return resolve();child.once('close',resolve);setTimeout(()=>{child.kill('SIGKILL');resolve();},3000);});
-  ws.close();fs.rmSync(profile,{recursive:true,force:true});
+  ws.close();cleanupProfile(profile);
   const pass=out.includes('data-qa-status="PASS"')||out.includes("data-qa-status='PASS'");
   return {name,pass,code,out,err};
 }
