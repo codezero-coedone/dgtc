@@ -425,6 +425,27 @@ function desktopQuality(){
     ${companyFooter()}
   </main>`;
 }
+function desktopCompany(){
+  return `<main class="desktop-company route-company" data-desktop-authority="company-native">
+    <section class="company-hero-raster">
+      <img src="${esc(screenAsset(ROUTES.company.image))}" alt="대광테크 회사소개 상단 화면">
+      ${header('company')}
+    </section>
+    <section class="company-overview-native" aria-label="회사 개요">
+      <figure><img src="${esc(screenAsset(ROUTES.facilities.image))}" alt="대광테크 생산 설비 환경"></figure>
+      <div class="company-facts-grid">
+        <div class="company-fact"><small>회사명</small><b>대광테크</b></div>
+        <div class="company-fact"><small>대표자</small><b>${COMPANY_INFO.representative}</b></div>
+        <div class="company-fact"><small>설립연도</small><b>${COMPANY_INFO.founded}</b></div>
+        <div class="company-fact"><small>사업분야</small><b>CNC 자동선반 기반 정밀가공</b></div>
+        <div class="company-fact"><small>주요 분야</small><b>자동차부품 · 유압부품 · 전자부품</b></div>
+      </div>
+      <aside><small>COMPANY PROFILE</small><h2>정밀가공 역량과 신뢰</h2><p>대광테크는 CNC 자동선반 기반의 정밀 금속 부품 가공을 수행합니다.</p></aside>
+    </section>
+    <section class="company-lower-raster"><img src="${esc(screenAsset(ROUTES.company.image))}" alt="대광테크 회사 운영 정보"></section>
+    ${companyFooter()}
+  </main>`;
+}
 function modal(){
   const d=state.modal; if(!d) return '';
   return `<div class="modal-backdrop" role="presentation">
@@ -448,13 +469,13 @@ function desktopPage(active){
   if(active==='home')return desktopHome();
   if(active==='facilities')return desktopFacilities();
   if(active==='quality')return desktopQuality();
+  if(active==='company')return desktopCompany();
   const r=ROUTES[active]||ROUTES.home;
   return `<main class="exact-shell route-${active}">
     <img class="exact-screen" src="${esc(screenAsset(r.image))}" alt="${esc(r.label)} 화면">
     ${header(active)}
     ${active==='products'?'<div class="products-raster-cleanup" aria-hidden="true"><i></i><i></i></div>':''}
     ${hotspots(active)}
-    ${active==='company'?`<div class="company-fact-correction" aria-label="회사 정보"><span><small>대표자</small><b>${COMPANY_INFO.representative}</b></span><span><small>설립연도</small><b>${COMPANY_INFO.founded}</b></span></div>`:''}
   </main>`;
 }
 
@@ -663,6 +684,9 @@ async function mobileBrowserQa(){
   window.DGTCMobile.action('drawer-open');
   if(document.querySelectorAll('.mb-drawer[role="dialog"]').length!==1){ok=false;report.push('M_DRAWER_FAIL');}
   window.DGTCMobile.state.drawer=false;render();
+  window.DGTCMobile.action('info:company');
+  if(!document.body.innerText.includes('남동현')||!document.body.innerText.includes('2008년')){ok=false;report.push('M_COMPANY_INFO_FAIL');}
+  window.DGTCMobile.action('info-close');
   await go('facilities');window.DGTCMobile.action('segment:quality');
   if(!document.querySelector('.mb-segment .is-active')?.textContent.includes('품질')){ok=false;report.push('M_QUALITY_SEGMENT_FAIL');}
   await go('home');window.scrollTo(0,0);
@@ -698,7 +722,8 @@ async function browserQa(){
     if(route()!==r){ok=false;report.push(`ROUTE_FAIL ${r}`);}
     if(images.some(img=>img.naturalWidth===0)){ok=false;report.push(`IMAGE_FAIL ${r}`);}
     const exact=document.querySelector('.exact-screen'),authority=document.querySelector('[data-desktop-authority]')?.dataset.desktopAuthority;
-    if(['company','fields','products'].includes(r)&&(!exact||exact.naturalWidth!==1448||exact.naturalHeight!==1086)){ok=false;report.push(`SCREEN_IMAGE_FAIL ${r} ${exact?.naturalWidth||0}x${exact?.naturalHeight||0}`);}
+    if(['fields','products'].includes(r)&&(!exact||exact.naturalWidth!==1448||exact.naturalHeight!==1086)){ok=false;report.push(`SCREEN_IMAGE_FAIL ${r} ${exact?.naturalWidth||0}x${exact?.naturalHeight||0}`);}
+    if(r==='company'&&(!document.querySelector('.company-hero-raster')||!document.querySelector('.company-overview-native'))){ok=false;report.push('COMPANY_NATIVE_LAYOUT_FAIL');}
     if(['home','facilities'].includes(r)&&authority!=='hybrid'){ok=false;report.push(`HYBRID_AUTHORITY_FAIL ${r}`);}
     if(r==='quality'&&authority!=='dom'){ok=false;report.push('QUALITY_DOM_AUTHORITY_FAIL');}
     if(document.querySelector('.modal-backdrop,.m-modal-backdrop,[role="dialog"]')){ok=false;report.push(`PUBLIC_MODAL_FAIL ${r}`);}

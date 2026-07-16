@@ -33,6 +33,8 @@ if(!css.includes('.hotspot{position:absolute;z-index:150')) fail.push('CTA z-ind
 if(app.includes('회사소개 보기')) fail.push('home/company CTA remains');
 if(app.includes('김경석')||app.includes('2005년')) fail.push('old company facts remain');
 if(!app.includes("representative:'남동현'")||!app.includes("founded:'2008년'")) fail.push('updated company facts missing');
+if(app.includes('company-fact-correction')||css.includes('company-fact-correction')) fail.push('company absolute correction overlay remains');
+if(!app.includes('company-overview-native')||!app.includes('company-facts-grid')) fail.push('native company overview layout missing');
 if(app.includes('${modal()}')||app.includes('${lightbox()}')) fail.push('public modal/lightbox render remains');
 if(mobile.includes('mb-filter-row')||mobile.includes('전체 형상')) fail.push('product filter controls remain');
 
