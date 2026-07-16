@@ -11,6 +11,7 @@ const APP_VERSION = 'DGTC_DESKTOP_PROOF_BREAKOUT_20260714_V3';
 const screenAsset = name => `./public/screens/${name}?v=${APP_VERSION}`;
 const precisionAsset = name => `./public/precision-assets/${name}?v=${APP_VERSION}`;
 const PUBLIC_ROUTES = ['home','company','fields','products','facilities','quality'];
+const COMPANY_INFO = {representative:'남동현',founded:'2008년'};
 const ROUTES = {
   home:{label:'홈', image:'home.jpg'},
   company:{label:'회사소개', image:'company.jpg'},
@@ -337,19 +338,17 @@ function toast(msg){
 }
 
 function header(active){
-  const primary=active==='company'?{action:'route:products',label:'제품사례 보기 →'}:{action:'route:company',label:'회사소개 보기 →'};
   return `<header class="public-header">
     <button class="brand" data-action="route:home" aria-label="대광테크 홈"><img src="./public/screens/logo-angular-transparent.png" alt="DAE KWANG TECH"></button>
     <nav aria-label="주요 메뉴">${PUBLIC_ROUTES.map(k=>`<button class="${active===k?'on':''}" data-action="route:${k}">${ROUTES[k].label}</button>`).join('')}</nav>
-    <button class="header-company" data-action="${primary.action}">${primary.label}</button>
   </header>`;
 }
 function hotspots(active){
-  return (CTA_MAP[active]||[]).map(a=>`<button class="hotspot" style="left:${a[2]}%;top:${a[3]}%;width:${a[4]}%;height:${a[5]}%" data-action="${a[6]}" aria-label="${esc(a[1])}"></button>`).join('');
+  return (CTA_MAP[active]||[]).filter(a=>a[6]&&!a[6].startsWith('detail:')).map(a=>`<button class="hotspot" style="left:${a[2]}%;top:${a[3]}%;width:${a[4]}%;height:${a[5]}%" data-action="${a[6]}" aria-label="${esc(a[1])}"></button>`).join('');
 }
 function croppedHotspots(active,cropHeight,excluded=[]){
   const canvasHeight=1086;
-  return (CTA_MAP[active]||[]).filter(a=>!excluded.includes(a[0])).map(a=>{
+  return (CTA_MAP[active]||[]).filter(a=>!excluded.includes(a[0])&&a[6]&&!a[6].startsWith('detail:')).map(a=>{
     const top=a[3]*canvasHeight/100;
     const bottom=Math.min(cropHeight,(a[3]+a[5])*canvasHeight/100);
     if(top>=cropHeight||bottom<=top)return '';
@@ -359,7 +358,7 @@ function croppedHotspots(active,cropHeight,excluded=[]){
 function companyFooter(){
   return `<footer class="company-footer">
     <div class="footer-brand"><img src="./public/screens/logo-angular-transparent.png" alt="DAE KWANG TECH"><span>대광테크<br><small>CNC 자동선반 전문 정밀가공</small></span></div>
-    <dl><dt>담당자</dt><dd>이원근 이사</dd><dt>주소</dt><dd>경남 김해시 한림면 신천산단로 52</dd></dl>
+    <dl><dt>대표자</dt><dd>${COMPANY_INFO.representative}</dd><dt>설립연도</dt><dd>${COMPANY_INFO.founded}</dd><dt>주소</dt><dd>경남 김해시 한림면 신천산단로 52</dd></dl>
     <dl><dt>TEL</dt><dd>055-323-7157</dd><dt>FAX</dt><dd>055-314-5430</dd><dt>E-mail</dt><dd>ndh7157@hanmail.net</dd></dl>
     <nav aria-label="푸터 메뉴"><button data-action="route:company">회사소개</button><button data-action="route:products">제품사례</button><button data-action="route:facilities">설비현황</button><button data-action="route:quality">품질관리</button></nav>
     <small class="footer-copy">© 2024 DAEKWANG TECH.</small>
@@ -383,7 +382,7 @@ function desktopHome(){
         <button data-action="route:fields">가공분야 보기 →</button>
       </article>
     </section>
-    ${companyFooter()}${modal()}${lightbox()}
+    ${companyFooter()}
   </main>`;
 }
 function desktopFacilities(){
@@ -392,20 +391,19 @@ function desktopFacilities(){
     <section class="raster-crop facilities-raster" style="--crop-height:${cropHeight}">
       <img class="raster-source" src="${esc(screenAsset(ROUTES.facilities.image))}" alt="대광테크 설비현황 상단 화면">
       ${header('facilities')}${croppedHotspots('facilities',cropHeight,['process','strength'])}
-      <button class="hotspot facility-process-hotspot" data-action="detail:process" aria-label="공정·설비 연계 상세"></button>
     </section>
     <section class="facility-strength-band" aria-label="설비 운영의 강점">
       <header><small>FACILITY OPERATION</small><h2>안정적인 생산을 위한 설비 운영</h2><p>가공부터 검사, 세척과 포장까지 역할을 분리하고 공정 기준으로 연결합니다.</p></header>
-      <button data-action="detail:facilities"><b>생산 유연성</b><span>소형 정밀 부품과 반복 생산에 유연하게 대응</span></button>
-      <button data-action="detail:quality"><b>정밀도 대응</b><span>공정 내 측정과 최종 검사 기준 연계</span></button>
-      <button data-action="detail:facilities"><b>작업 안정성</b><span>설비 상태와 공정 조건을 기준으로 관리</span></button>
-      <button data-action="detail:quality"><b>품질 일관성</b><span>공정·검사·관리 체계를 통한 품질 유지</span></button>
+      <article><b>생산 유연성</b><span>소형 정밀 부품과 반복 생산에 유연하게 대응</span></article>
+      <article><b>정밀도 대응</b><span>공정 내 측정과 최종 검사 기준 연계</span></article>
+      <article><b>작업 안정성</b><span>설비 상태와 공정 조건을 기준으로 관리</span></article>
+      <article><b>품질 일관성</b><span>공정·검사·관리 체계를 통한 품질 유지</span></article>
     </section>
-    ${companyFooter()}${modal()}${lightbox()}
+    ${companyFooter()}
   </main>`;
 }
 function qualityProcess(){
-  return [['01','현장재 검사','소재와 외관 상태 확인','detail:quality'],['02','공정 확인','가공 중 주요 치수 확인','detail:process'],['03','측정·검사','도면 기준에 따른 측정','detail:quality'],['04','최종 검수','출하 전 치수와 외관 확인','detail:quality'],['05','기록 관리','LOT별 검사 기록 관리','detail:quality']].map(x=>`<button class="quality-step" data-action="${x[3]}"><strong>${x[0]}</strong><span><b>${x[1]}</b><small>${x[2]}</small></span></button>`).join('');
+  return [['01','현장재 검사','소재와 외관 상태 확인'],['02','공정 확인','가공 중 주요 치수 확인'],['03','측정·검사','도면 기준에 따른 측정'],['04','최종 검수','출하 전 치수와 외관 확인'],['05','기록 관리','LOT별 검사 기록 관리']].map(x=>`<article class="quality-step"><strong>${x[0]}</strong><span><b>${x[1]}</b><small>${x[2]}</small></span></article>`).join('');
 }
 function desktopQuality(){
   return `<main class="desktop-quality route-quality" data-desktop-authority="dom">
@@ -421,10 +419,10 @@ function desktopQuality(){
     <section class="quality-process-band"><header><small>INSPECTION FLOW</small><h2>품질 검사 프로세스</h2><p>입고부터 출하까지 단계별 확인 기준을 연결합니다.</p></header><div>${qualityProcess()}</div></section>
     <section class="quality-evidence-grid">
       <div class="quality-table-wrap"><small>INSPECTION STANDARD</small><h2>검사항목과 검사체계</h2><table><thead><tr><th>검사 구분</th><th>확인 항목</th><th>검사 방법</th><th>검사 시점</th></tr></thead><tbody><tr><td>현장재 검사</td><td>소재, 외관, 치수</td><td>육안, 측정기</td><td>입고 시</td></tr><tr><td>공정 검사</td><td>주요 치수, 형상</td><td>게이지, 측정기</td><td>공정 중</td></tr><tr><td>최종 검사</td><td>치수, 외관, 기능</td><td>도면 기준 확인</td><td>출하 전</td></tr><tr><td>기록 관리</td><td>검사 결과, 출하 이력</td><td>LOT별 기록</td><td>검사 완료 후</td></tr></tbody></table></div>
-      <aside><small>QUALITY RECORD</small><h2>검사 기록 기준</h2><p>검사 결과를 생산 LOT와 연결해 공정 확인과 출하 이력을 관리합니다.</p><dl><dt>초도 확인</dt><dd>초기 세팅과 기준 치수 확인</dd><dt>공정 확인</dt><dd>공구 마모와 치수 변화 확인</dd><dt>최종 검수</dt><dd>도면 기준과 외관 상태 확인</dd><dt>기록 보관</dt><dd>검사 결과와 출하 이력 연결</dd></dl><button data-action="detail:quality">품질관리 상세 보기 →</button></aside>
+      <aside><small>QUALITY RECORD</small><h2>검사 기록 기준</h2><p>검사 결과를 생산 LOT와 연결해 공정 확인과 출하 이력을 관리합니다.</p><dl><dt>초도 확인</dt><dd>초기 세팅과 기준 치수 확인</dd><dt>공정 확인</dt><dd>공구 마모와 치수 변화 확인</dd><dt>최종 검수</dt><dd>도면 기준과 외관 상태 확인</dd><dt>기록 보관</dt><dd>검사 결과와 출하 이력 연결</dd></dl></aside>
     </section>
     <section class="quality-photo-proof"><header><small>REAL PRODUCT PROOF</small><h2>실제 가공품 기반 품질 확인</h2><p>제품 형상과 가공면을 기준으로 치수, 외관, 버와 조립 품질을 확인합니다.</p></header><figure><img src="${esc(precisionAsset('precision-shaft.jpg'))}" alt="정밀 가공 샤프트"><figcaption>샤프트 형상 및 가공면 확인</figcaption></figure><figure><img src="${esc(precisionAsset('valve-sleeve.jpg'))}" alt="정밀 가공 밸브 슬리브"><figcaption>홈과 외경 가공 상태 확인</figcaption></figure><figure><img src="${esc(precisionAsset('threaded-pair.jpg'))}" alt="정밀 가공 나사 부품"><figcaption>나사부와 체결면 상태 확인</figcaption></figure></section>
-    ${companyFooter()}${modal()}${lightbox()}
+    ${companyFooter()}
   </main>`;
 }
 function modal(){
@@ -454,8 +452,9 @@ function desktopPage(active){
   return `<main class="exact-shell route-${active}">
     <img class="exact-screen" src="${esc(screenAsset(r.image))}" alt="${esc(r.label)} 화면">
     ${header(active)}
+    ${active==='products'?'<div class="products-raster-cleanup" aria-hidden="true"><i></i><i></i></div>':''}
     ${hotspots(active)}
-    ${modal()}${lightbox()}
+    ${active==='company'?`<div class="company-fact-correction" aria-label="회사 정보"><span><small>대표자</small><b>${COMPANY_INFO.representative}</b></span><span><small>설립연도</small><b>${COMPANY_INFO.founded}</b></span></div>`:''}
   </main>`;
 }
 
@@ -551,12 +550,9 @@ function runAction(action){
   const [type,...rest]=action.split(':');
   if(type==='route') return go(rest.join(':'));
   if(type==='mobile') return window.DGTCMobile?.action(rest.join(':'));
-  if(type==='detail') return detail(rest[0]);
+  if(type==='detail') return;
   if(type==='modal'&&rest[0]==='close')return closeModal();
-  if(type==='lightbox'){
-    if(rest[0]==='close'){state.lightbox=null;return render();}
-    state.lightbox=rest.join(':');return render();
-  }
+  if(type==='lightbox') return;
   if(type==='admin') return adminAction(rest);
 }
 async function adminAction(parts){
@@ -658,15 +654,12 @@ async function mobileBrowserQa(){
   }
   await go('fields');window.DGTCMobile.action('field:hydraulic');
   if(!document.querySelector('.mb-tabs .is-active')?.textContent.includes('유압')){ok=false;report.push('M_FIELD_TAB_FAIL');}
-  await go('products');window.DGTCMobile.action('filter:hydraulic');
-  if(!document.querySelectorAll('.mb-product-card').length){ok=false;report.push('M_PRODUCT_FILTER_FAIL');}
-  window.DGTCMobile.action('product:shaft-a');await waitForImages();
-  if(document.querySelectorAll('.mb-product-detail[role="dialog"]').length!==1){ok=false;report.push('M_PRODUCT_DETAIL_FAIL');}
-  window.DGTCMobile.action('viewer-open:shaft-a:0');await waitForImages();
-  if(document.querySelectorAll('.mb-viewer[role="dialog"]').length!==1||document.querySelectorAll('[role="dialog"]').length!==1){ok=false;report.push('M_VIEWER_SINGLETON_FAIL');}
-  window.DGTCMobile.action('viewer-index:1');
-  if(!document.querySelector('.mb-viewer-thumbs button:nth-child(2)')?.classList.contains('is-active')){ok=false;report.push('M_VIEWER_INDEX_FAIL');}
-  window.DGTCMobile.state.viewer=null;window.DGTCMobile.state.productId=null;render();
+  await go('products');
+  if(document.querySelector('.mb-filter-row')||document.querySelectorAll('.mb-product-card').length!==window.DGTCMobile.data.PRODUCTS.length){ok=false;report.push('M_PRODUCT_STATIC_LIST_FAIL');}
+  if(document.querySelector('.mb-product-card[data-action]')){ok=false;report.push('M_PRODUCT_IMAGE_TRIGGER_FAIL');}
+  await go('home');
+  if(document.querySelector('.mb-mini-card.is-static[data-action]')){ok=false;report.push('M_HOME_IMAGE_TRIGGER_FAIL');}
+  if(document.querySelector('.mb-sample-grid [data-action]')){ok=false;report.push('M_SAMPLE_IMAGE_TRIGGER_FAIL');}
   window.DGTCMobile.action('drawer-open');
   if(document.querySelectorAll('.mb-drawer[role="dialog"]').length!==1){ok=false;report.push('M_DRAWER_FAIL');}
   window.DGTCMobile.state.drawer=false;render();
@@ -692,7 +685,7 @@ async function browserQa(){
     })));
     return images;
   };
-  const expectedHotspots={home:7,company:4,fields:7,products:14,facilities:10,quality:0};
+  const expectedHotspots={home:2,company:0,fields:1,products:0,facilities:0,quality:0};
   const assertSectionBeforeFooter=(routeName,sectionSelector)=>{
     const section=document.querySelector(sectionSelector),footer=document.querySelector('.company-footer');
     if(!section||!footer){ok=false;report.push(`DOM_SECTION_MISSING ${routeName}`);return;}
@@ -708,7 +701,7 @@ async function browserQa(){
     if(['company','fields','products'].includes(r)&&(!exact||exact.naturalWidth!==1448||exact.naturalHeight!==1086)){ok=false;report.push(`SCREEN_IMAGE_FAIL ${r} ${exact?.naturalWidth||0}x${exact?.naturalHeight||0}`);}
     if(['home','facilities'].includes(r)&&authority!=='hybrid'){ok=false;report.push(`HYBRID_AUTHORITY_FAIL ${r}`);}
     if(r==='quality'&&authority!=='dom'){ok=false;report.push('QUALITY_DOM_AUTHORITY_FAIL');}
-    if(document.querySelector('.modal-backdrop,.m-modal-backdrop')){ok=false;report.push(`BASE_OVERLAY_FAIL ${r}`);}
+    if(document.querySelector('.modal-backdrop,.m-modal-backdrop,[role="dialog"]')){ok=false;report.push(`PUBLIC_MODAL_FAIL ${r}`);}
     if(document.documentElement.scrollWidth>window.innerWidth+1){ok=false;report.push(`HORIZONTAL_OVERFLOW ${r}`);}
     const items=CTA_MAP[r]||[];
     const buttons=[...document.querySelectorAll('.hotspot')];
@@ -738,7 +731,7 @@ async function browserQa(){
     }
     if(r==='facilities'){
       assertSectionBeforeFooter(r,'.facility-strength-band');
-      if(document.querySelectorAll('.facility-strength-band>button').length!==4) {ok=false;report.push('FACILITY_STRENGTH_DUPLICATE');}
+      if(document.querySelectorAll('.facility-strength-band>article').length!==4) {ok=false;report.push('FACILITY_STRENGTH_STRUCTURE_FAIL');}
     }
     if(r==='quality'){
       assertSectionBeforeFooter(r,'.quality-photo-proof');
@@ -748,10 +741,8 @@ async function browserQa(){
     }
   }
   for(const r of PUBLIC_ROUTES){await go(r);if(route()!==r){ok=false;report.push(`NAV_ROUTE_FAIL ${r}`);}}
-  detail('hydraulic');if(!state.modal||document.querySelectorAll('.modal-backdrop,[role="dialog"]').length!==2){ok=false;report.push('MODAL_FAIL hydraulic');}closeModal();
-  if(document.querySelector('.modal-backdrop,.m-modal-backdrop,[role="dialog"]')){ok=false;report.push('MODAL_CLOSE_FAIL hydraulic');}
-  detail('quality');if(!state.modal||document.querySelectorAll('.modal-backdrop,[role="dialog"]').length!==2){ok=false;report.push('MODAL_FAIL quality');}closeModal();
-  if(document.querySelector('.modal-backdrop,.m-modal-backdrop,[role="dialog"]')){ok=false;report.push('MODAL_CLOSE_FAIL quality');}
+  await go('products');
+  if(document.querySelector('.modal-backdrop,.m-modal-backdrop,[role="dialog"]')){ok=false;report.push('PUBLIC_MODAL_REGRESSION');}
   await go('home');
   const pre=document.createElement('pre');pre.id='qa-result';pre.hidden=true;pre.dataset.qaStatus=ok?'PASS':'HOLD';pre.textContent=`${ok?'PASS':'HOLD'}\n${report.join('\n')||'routes, CTA hit-test, modal actions valid'}`;document.body.appendChild(pre);
 }

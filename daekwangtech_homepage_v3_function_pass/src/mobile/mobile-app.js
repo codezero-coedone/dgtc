@@ -72,7 +72,7 @@
   function homePage(){
     const capabilities=[['settings-2','정밀 가공','자동선반 가공 기술'],['repeat-2','반복 생산','공정 기준 관리'],['scan-line','측정·검사','공정·최종 검수'],['truck','납기 관리','세척·포장 연계']];
     const fieldCards=FIELD_KEYS.map(key=>{const item=FIELD_DATA[key];return `<button type="button" class="mb-mini-card" data-action="mobile:field-route:${key}">${image(item.image,item.title)}<span>${esc(item.label)}</span></button>`;}).join('');
-    const productCards=PRODUCTS.slice(0,4).map(product=>`<button type="button" class="mb-mini-card" data-action="mobile:product:${product.id}">${image(product.image,product.name)}<span>${esc(product.name)}</span></button>`).join('');
+    const productCards=PRODUCTS.slice(0,4).map(product=>`<article class="mb-mini-card is-static">${image(product.image,product.name)}<span>${esc(product.name)}</span></article>`).join('');
     return shell('home',`<section class="mb-home-hero" style="--mb-hero:url('${ASSET}/hero-cnc.jpg')">
         <div class="mb-hero-copy"><p>CNC AUTOMATIC LATHE</p><h1>정밀을 만드는 기술<br>신뢰로 완성하는 품질</h1><span>대광테크는 CNC 자동선반 기반의<br>정밀 금속 부품 가공업체입니다.</span><button type="button" data-action="mobile:route:products">제품 보기 ${icon('chevron-right')}</button></div>
         <div class="mb-hero-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -90,17 +90,16 @@
       <section class="mb-field-visual">${image(current.image,current.title,'',true)}</section>
       <section class="mb-feature-card"><div><h2>가공 특성</h2><ul>${current.features.map(item=>`<li>${icon('circle-check')}<span>${esc(item)}</span></li>`).join('')}</ul></div>${image(PRODUCTS.find(p=>p.category===state.field)?.image||current.image,current.title)}</section>
       <section class="mb-section mb-section-inset">${sectionHead('적용 부품 예시')}<div class="mb-tag-list">${current.parts.map(item=>`<span>${esc(item)}</span>`).join('')}</div></section>
-      <section class="mb-section mb-section-inset">${sectionHead('가공 샘플','route:products')}<div class="mb-sample-grid">${shown.map(product=>`<button type="button" data-action="mobile:product:${product.id}">${image(product.image,product.name)}<span>${esc(product.name)}</span></button>`).join('')}</div></section>`,{title:'가공분야'});
+      <section class="mb-section mb-section-inset">${sectionHead('가공 샘플','route:products')}<div class="mb-sample-grid">${shown.map(product=>`<article class="is-static">${image(product.image,product.name)}<span>${esc(product.name)}</span></article>`).join('')}</div></section>`,{title:'가공분야'});
   }
   function filteredProducts(){
     const query=state.search.trim().toLowerCase();
-    return PRODUCTS.filter(item=>(state.filter==='all'||item.category===state.filter)&&(!query||`${item.name} ${item.categoryLabel}`.toLowerCase().includes(query)));
+    return PRODUCTS.filter(item=>!query||`${item.name} ${item.categoryLabel}`.toLowerCase().includes(query));
   }
   function productsPage(){
     const products=filteredProducts();
-    const filters=[['all','전체'],...FIELD_KEYS.map(key=>[key,FIELD_DATA[key].label])];
-    return shell('products',`<section class="mb-product-tools"><label>${icon('search')}<span class="mb-sr-only">제품명 검색</span><input data-mobile-search type="search" value="${esc(state.search)}" placeholder="제품명 검색" autocomplete="off">${state.search?`<button class="mb-search-clear" type="button" data-action="mobile:search-clear" aria-label="검색어 지우기"><img src="${ICON}/png/x.png" alt="" aria-hidden="true"></button>`:''}</label><div class="mb-filter-row">${filters.map(([key,label])=>`<button type="button" class="${state.filter===key?'is-active':''}" data-action="mobile:filter:${key}">${esc(label)}</button>`).join('')}</div></section>
-      <section class="mb-product-grid" aria-live="polite">${products.length?products.map(product=>`<button type="button" class="mb-product-card" data-action="mobile:product:${product.id}">${image(product.image,product.name)}<span><b>${esc(product.name)}</b><small>${esc(product.categoryLabel)}</small></span></button>`).join(''):'<p class="mb-empty">일치하는 제품이 없습니다.</p>'}</section>`,{title:'제품'});
+    return shell('products',`<section class="mb-product-tools"><label>${icon('search')}<span class="mb-sr-only">제품명 검색</span><input data-mobile-search type="search" value="${esc(state.search)}" placeholder="제품명 검색" autocomplete="off">${state.search?`<button class="mb-search-clear" type="button" data-action="mobile:search-clear" aria-label="검색어 지우기"><img src="${ICON}/png/x.png" alt="" aria-hidden="true"></button>`:''}</label></section>
+      <section class="mb-product-grid" aria-live="polite">${products.length?products.map(product=>`<article class="mb-product-card is-static">${image(product.image,product.name)}<span><b>${esc(product.name)}</b><small>${esc(product.categoryLabel)}</small></span></article>`).join(''):'<p class="mb-empty">일치하는 제품이 없습니다.</p>'}</section>`,{title:'제품'});
   }
   function facilityPage(){
     const facility=state.facilityTab==='facility';
@@ -140,10 +139,10 @@
     if(!product)return '';
     const gallery=[product,...PRODUCTS.filter(item=>item.id!==product.id).slice(0,4)];
     return `<section class="mb-fullscreen mb-product-detail" role="dialog" aria-modal="true" aria-labelledby="mb-product-title" data-mobile-dialog="product">
-      <header><button class="mb-icon-button" type="button" data-action="mobile:product-close" aria-label="제품 상세 닫기">${icon('x')}</button><strong>제품 상세</strong><button class="mb-icon-button" type="button" data-action="mobile:viewer-open:${product.id}:0" aria-label="이미지 크게 보기">${icon('maximize-2')}</button></header>
-      <div class="mb-detail-scroll"><button type="button" class="mb-detail-image" data-action="mobile:viewer-open:${product.id}:0">${image(product.image,product.name,'',true)}<span>${icon('maximize-2')} 크게 보기</span></button><div class="mb-detail-dots" aria-label="이미지 1 / ${gallery.length}"><i class="is-active"></i>${gallery.slice(1).map(()=>'<i></i>').join('')}</div>
+      <header><button class="mb-icon-button" type="button" data-action="mobile:product-close" aria-label="제품 상세 닫기">${icon('x')}</button><strong>제품 상세</strong><span></span></header>
+      <div class="mb-detail-scroll"><div class="mb-detail-image is-static">${image(product.image,product.name,'',true)}</div><div class="mb-detail-dots" aria-label="이미지 1 / ${gallery.length}"><i class="is-active"></i>${gallery.slice(1).map(()=>'<i></i>').join('')}</div>
       <section class="mb-detail-copy"><small>${esc(product.categoryLabel)}</small><h1 id="mb-product-title">${esc(product.name)}</h1><dl><div><dt>분류</dt><dd>${esc(product.categoryLabel)}</dd></div><div><dt>가공 방식</dt><dd>CNC 자동선반 정밀가공</dd></div><div><dt>공정</dt><dd>가공 · 측정 · 검사 · 세척</dd></div><div><dt>검사</dt><dd>공정 중 측정 및 최종 검수</dd></div></dl></section>
-      <section class="mb-detail-gallery">${sectionHead('상세 이미지')}<div>${gallery.map((item,index)=>`<button type="button" data-action="mobile:viewer-open:${product.id}:${index}">${image(item.image,item.name)}</button>`).join('')}</div></section></div>
+       <section class="mb-detail-gallery">${sectionHead('상세 이미지')}<div>${gallery.map(item=>`<figure class="is-static">${image(item.image,item.name)}</figure>`).join('')}</div></section></div>
     </section>`;
   }
   function drawer(){
@@ -160,7 +159,7 @@
   function infoPanel(){
     if(!state.info)return '';
     const data={
-      company:['회사소개','대광테크는 CNC 자동선반을 기반으로 자동차부품, 유압부품, 전자부품 분야의 정밀 금속 부품을 가공합니다.'],
+      company:['회사소개','대광테크는 CNC 자동선반을 기반으로 자동차부품, 유압부품, 전자부품 분야의 정밀 금속 부품을 가공합니다.\n대표자 남동현\n설립연도 2008년'],
       contact:['연락처','TEL 055-323-7157\nFAX 055-314-5430\nE-mail ndh7157@hanmail.net'],
       directions:['오시는 길','경남 김해시 한림면 신천산단로 52'],
       privacy:['개인정보 처리방침','대광테크 공개 홈페이지는 별도의 개인정보 입력 양식이나 파일 업로드 기능을 제공하지 않습니다.']

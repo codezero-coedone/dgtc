@@ -1,5 +1,6 @@
 import fs from 'fs';
 const app=fs.readFileSync('src/app.js','utf8');
+const mobile=fs.readFileSync('src/mobile/mobile-app.js','utf8');
 const css=fs.readFileSync('src/styles.css','utf8');
 const html=fs.readFileSync('index.html','utf8');
 const fail=[];
@@ -26,11 +27,14 @@ if(!app.includes('file.size>8*1024*1024')) fail.push('8MB upload guard missing')
 if(!app.includes('.slice(0,10)')) fail.push('10-file upload cap missing');
 if(!html.includes('meta name="description"')) fail.push('SEO description missing');
 if(!html.includes('lang="ko"')) fail.push('lang=ko missing');
-if(!app.includes('aria-modal="true"')) fail.push('ARIA modal missing');
 if(!app.includes("e.key==='Escape'")) fail.push('ESC close missing');
 if(!css.includes('@media(prefers-reduced-motion:reduce)')) fail.push('reduced motion support missing');
 if(!css.includes('.hotspot{position:absolute;z-index:150')) fail.push('CTA z-index policy missing');
-if(!css.includes('.modal-backdrop')||!css.includes('z-index:500')) fail.push('modal z-index policy missing');
+if(app.includes('회사소개 보기')) fail.push('home/company CTA remains');
+if(app.includes('김경석')||app.includes('2005년')) fail.push('old company facts remain');
+if(!app.includes("representative:'남동현'")||!app.includes("founded:'2008년'")) fail.push('updated company facts missing');
+if(app.includes('${modal()}')||app.includes('${lightbox()}')) fail.push('public modal/lightbox render remains');
+if(mobile.includes('mb-filter-row')||mobile.includes('전체 형상')) fail.push('product filter controls remain');
 
 
 if(app.includes('01092567475') || app.includes('010-9256-7475')) fail.push('mobile phone number remains in app source');
