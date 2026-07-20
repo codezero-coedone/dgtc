@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "dgtc",
+  "account_id": "3b0bd76ccf8d28104a7abb8fad86a485",
   "main": "./worker/index.js",
   "compatibility_date": "2026-07-21",
   "assets": {
