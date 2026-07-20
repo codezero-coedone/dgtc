@@ -1,0 +1,8 @@
+PUBLIC APP BUILD
+> npm run build
+BUILD PASS: Daekwang Tech company-only final package copied to dist/
+ENTRY: dist/index.html
+
+PUBLIC APP VERIFY
+> npm run verify
+VERIFY PASS: CT-S1~S8 single-source structure and policy gates

@@ -1,0 +1,132 @@
+{
+  "schema": "DGTC_CMS_BASELINE_RECEIPT@1",
+  "generated_at": "2026-07-20T20:04:14.7033763Z",
+  "repo_root": "D:/Users/USER/Desktop/dgtc-cms-integration",
+  "active_root": "D:\\Users\\USER\\Desktop\\dgtc-cms-integration\\daekwangtech_homepage_v3_function_pass",
+  "branch": "feat/dgtc-admin-cms-v1",
+  "base_commit": "598e6ef3e3abc37aa793f60086b5870be4344644",
+  "remote": "https://github.com/codezero-coedone/dgtc.git",
+  "working_tree_status": [],
+  "node_version": "v24.18.0",
+  "npm_version": "11.16.0",
+  "build_command": "npm run build",
+  "active_build_output": "daekwangtech_homepage_v3_function_pass/dist",
+  "worker_entry": "worker/index.js",
+  "wrangler": "wrangler.jsonc",
+  "migration_files": [
+    "0001_dgtc_cms.sql",
+    "0002_admin_auth_notice_media_ops.sql",
+    "0003_admin_state_and_media_lifecycle.sql",
+    "0004_admin_login_attempts.sql"
+  ],
+  "protected_files": [
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/src/app.js",
+      "sha256": "d80b7969b401f3fe395a6f162318c0975972fd281c965d3054bd3f4a1b8a24e7"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/src/styles.css",
+      "sha256": "3be3e34a8eabff01a1040bb570e653e5e05dbe790eea94c7ab9a2afddccf8a11"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/src/mobile/mobile-app.js",
+      "sha256": "2e669c802547d5e2c5732c655f7d9105972b2c9bf58192fbbe0ae20231058046"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/src/mobile/mobile.css",
+      "sha256": "6c9099463483116da845683fbcef08fb3076fae9f01a113c976716ece24f6837"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/src/mobile/VISUAL_CONTRACT.json",
+      "sha256": "014a15d832d16a2d5ee414d007db5a227526b9f7744199987ba6f1b18c0f0127"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/admin-content.jpg",
+      "sha256": "803570310d0c7e8a0c3798a5331db984fdef32e9b60d6e121dae5d7cd6e1ff02"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/admin-dashboard.jpg",
+      "sha256": "1455dc838f8b06d551e19060fc846eb5555d178534530a1fcb23f789d6d445f8"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/admin-pipeline.jpg",
+      "sha256": "653472e4238399b139cb79677fdb8a22595d88afedc75f9ad5c4bc159f0dff92"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/company.jpg",
+      "sha256": "1ac06430796f667ce93c217ff2d61db4c42254be561a6935bbfd512b7b25d9be"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/facilities.jpg",
+      "sha256": "e4cf32062e6e8181516c2f78165dc93fac1fb98212ec6fa33c167542809271ce"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/fields.jpg",
+      "sha256": "1d92ae2181440169f10f5e16960ff180df37cac36e5f790723f5acf649b09262"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/home.jpg",
+      "sha256": "4b63c8a0977847eba9961d9031316362ed456cb6c9b9b46bb7f965a1afb65dd9"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/logo-angular-clean.png",
+      "sha256": "b0e2791347d2d361ee8523cbf3489f5dd6f50bc375db15129d1b08f1d3159ed0"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/logo-angular-transparent.png",
+      "sha256": "780e094c807edab78f87c85f61ac2ceb7f70dd237e31adbeaffcf306c0fbc675"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/products.jpg",
+      "sha256": "dea7890ffb14f881d03f528cd865c676fe48c7980a4bf0997a40e5a54026d823"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/public/screens/quality.jpg",
+      "sha256": "10700be6e2cbc499569ece6544ef4a336cde31fb5cdcf8d20531c197c17d9d60"
+    },
+    {
+      "path": "daekwangtech_homepage_v3_function_pass/index.html",
+      "sha256": "83f0cc5774a558c91c39e8ed4d24155cb6206bfef0e4971c1d6533d8064e229b"
+    },
+    {
+      "path": "worker/index.js",
+      "sha256": "dff900fb05a002a73172cd3effb1a99b17e62895c54176e90ff47a57e3a8e203"
+    },
+    {
+      "path": "대광테크 90프로/daekwangtech_homepage_v3_function_pass/wrangler.jsonc",
+      "sha256": "f8656e5326ff117e67caa1b01e7eec6eae7a71ab5a428a4106f100c02dea1609"
+    },
+    {
+      "path": "대광테크 90프로/wrangler.jsonc",
+      "sha256": "83ad7db22b8ea9904e2c0e0448159e149f680c2c47aa36078d73c67a1334defd"
+    },
+    {
+      "path": "dgtc-active-folder-dropin-final/daekwangtech_homepage_v3_function_pass/wrangler.jsonc",
+      "sha256": "f8656e5326ff117e67caa1b01e7eec6eae7a71ab5a428a4106f100c02dea1609"
+    },
+    {
+      "path": "dgtc-active-folder-dropin-final/wrangler.jsonc",
+      "sha256": "83ad7db22b8ea9904e2c0e0448159e149f680c2c47aa36078d73c67a1334defd"
+    },
+    {
+      "path": "wrangler.jsonc",
+      "sha256": "83ad7db22b8ea9904e2c0e0448159e149f680c2c47aa36078d73c67a1334defd"
+    },
+    {
+      "path": "migrations/0001_dgtc_cms.sql",
+      "sha256": "f0cd9f4da45dcf5e2c986ffb0ff780e962e7934ad5b79d9538ca78cbaa96e2b4"
+    },
+    {
+      "path": "migrations/0002_admin_auth_notice_media_ops.sql",
+      "sha256": "a18c27a6554704568ef4bfe63ecdada53b4ac69bf145aadd933f7fbfe48459c6"
+    },
+    {
+      "path": "migrations/0003_admin_state_and_media_lifecycle.sql",
+      "sha256": "578c0093d5120c53856c298918a77920fc9dfd6e44c98a0915b058313535dedc"
+    },
+    {
+      "path": "migrations/0004_admin_login_attempts.sql",
+      "sha256": "2956fb10a131edd84cab3a4aacf32c503d8054c098984e81f78937caf2610bc8"
+    }
+  ]
+}

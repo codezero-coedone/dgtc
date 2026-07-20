@@ -1,5 +1,6 @@
-import { defaultAdminContent, normalizeContent } from "../daekwangtech_homepage_v3_function_pass/src/adminContentSeed.js";
-import { notices as defaultNotices, noticeCtaSettings as defaultNoticeCtaSettings } from "../daekwangtech_homepage_v3_function_pass/src/data/daekwangAdminData.js";
+import { defaultAdminContent, normalizeContent } from "./compat-data.js";
+import { defaultNotices, defaultNoticeCtaSettings } from "./compat-data.js";
+import { handleCmsPrime } from "./cms-prime.js";
 
 const CONTENT_KEY = "published-site-content";
 const ADMIN_SESSION_COOKIE = "dk_admin_session";
@@ -900,6 +901,10 @@ async function serveStaticAsset(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname.startsWith("/api/cms/") || url.pathname === "/admin-cms" || url.pathname.startsWith("/admin-cms/")) {
+      const cmsResponse = await handleCmsPrime(request, env);
+      if (cmsResponse.status !== 404) return cmsResponse;
+    }
     if (url.pathname.startsWith("/api/")) return handleApi(request, env);
     return serveStaticAsset(request, env);
   },

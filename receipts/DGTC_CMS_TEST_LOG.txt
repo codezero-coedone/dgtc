@@ -1,0 +1,21 @@
+BASELINE
+- package SHA-256: d5a753faa793f35c7bcacbab29dcd230b03ebe916e2ce75b4143cc8e42db4094
+- branch: feat/dgtc-admin-cms-v1
+- base commit: 598e6ef3e3abc37aa793f60086b5870be4344644
+
+CURRENT PUBLIC APP
+- npm run build: PASS
+- npm run verify: PASS
+- node --check src/app.js: PASS
+- node --check src/mobile/mobile-app.js: PASS
+
+CANDIDATE PACKAGE
+- npm test: FAIL, 7 pass / 2 fail
+- failing tests: tests/local-api.test.mjs native Node callback assertion; tests/patch.test.mjs Python spawn status=null (`python3` unavailable on Windows)
+- candidate node syntax checks: PASS for worker, admin, extension, local-server, browser-qa scripts
+- npm run verify: NOT PASS because it stops at the failing node test phase
+
+DEPLOYMENT
+- production deploy: NOT RUN
+- remote D1 migration: NOT RUN
+- Cloudflare route/domain change: NOT RUN
